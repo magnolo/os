@@ -7,7 +7,10 @@ angular.module('osApp')
         $scope.selectedAlbum = [];
         $scope.ready = false;
         $scope.dateFilter = "";
-        $scope.setdate = "";
+        $scope.page = 1;
+        $scope.selectedDate = {
+            set: ''
+        };
         $scope.getActive = function(id) {
             angular.forEach($scope.galleries, function(item) {
                 if (item.id === id) {
@@ -15,12 +18,14 @@ angular.module('osApp')
                 }
             });
         };
-        $scope.galleries = Gallery.query(function() {
+        $scope.galleries = Gallery.query({
+            id: 'all'
+        }, function() {
             if (typeof $state.params.id !== 'undefined') {
                 $scope.getActive($state.params.id);
             }
             $scope.ready = true;
-
+            $scope.page++;
         });
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
             if (typeof toParams.id !== 'undefined') {
@@ -33,10 +38,27 @@ angular.module('osApp')
         $scope.moreItems = function() {
             if ($scope.ready) {
                 $scope.ready = false;
-
+                Gallery.query({
+                    limit: 12,
+                    page: $scope.page,
+                    id: 'all'
+                }, function(data) {
+                    angular.forEach(data, function(item) {
+                        $scope.galleries.push(item);
+                    })
+                    $scope.page++;
+                    $scope.ready = true;
+                });
             }
+
         };
-        $scope.$watchCollection('setdate', function(newItem, oldItem) {
-            console.log(newItem);
-        });
+        /*  $scope.$watchCollection('selectedDate.set', function(newItem, oldItem) {
+              $scope.galleries = Gallery.query({
+                  date: newItem.set,
+                  limit: 12,
+                  page: 3
+              });
+          });*/
+
+
     });

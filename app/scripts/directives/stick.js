@@ -38,7 +38,7 @@ angular.module('osApp')
                 });
                 sly.on('load', function() {
                     isLoaded = true;
-                    console.log('stick');
+                    //console.log('stick');
                 });
                 sly.on('move', function() {
                     $rootScope.$broadcast('slyscroll');

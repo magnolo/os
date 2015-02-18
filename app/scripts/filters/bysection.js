@@ -72,19 +72,24 @@ angular.module('osApp')
             return result;
         };
     })
-    .filter('bydate', function($timeout) {
+    .filter('bydater', function($timeout) {
         return function(items, value, scope) {
-            if (typeof value === 'undefined') {
+            if (items.length == 0 || !value) {
+                return items
+            }
+
+            if (typeof value == 'undefined') {
                 return items;
             }
             var result = [];
+
             angular.forEach(items, function(item, key) {
-                if (item.date.indexOf(value) !== -1) {
+                if (item.date.indexOf(value.substring(0, 8)) !== -1) {
                     result.push(item);
                 }
             });
             // console.log(items);
-            console.log(value);
+
             return result;
         };
     });
