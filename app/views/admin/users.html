@@ -27,7 +27,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="user in users | filter:search" style="display:table-row;">
-                <td ng-click="editUser(user)" class="pointer ">{{ user.name}}</td>
+                <td ng-click="editUser(user)" class="pointer "><strong>{{ user.name}}</strong>
+                </td>
                 <td>{{ user.username}}</td>
                 <td>{{ user.role.name}}</td>
                 <td class="">
@@ -37,7 +38,7 @@
                     </button>
                 </td>
                 <td class="">
-                  
+
                     <button class="btn btn-info btn-xs" ng-click="editUser(user)"><i class="fa fa-pencil"></i>
                     </button>
                     <button class="btn btn-danger btn-xs" ng-click="deleteUser(user)"><i class="fa fa-times"></i>
