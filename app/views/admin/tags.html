@@ -1,40 +1,46 @@
 <div class="full-fixed spaced">
-<div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
-	<i class="fa fa-times"></i>
-</div>
-<div class="admin-header container-fluid">
-	<h2 class="col-md-6">Schlagwörter</h2>
-	<div class="menu col-md-6">
-		<ul>
-			<li>
-				<button class="btn btn-default" ng-click="newTag()"><i class="fa fa-plus"></i></button>
-			</li>
-			<li>
-				<input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
-			</li>
-			
-		</ul>
-	</div>
-</div>
-<table class="table table-hover" bs-table  >
-	<thead>
-		<th class="sortable" ng-click="predicate='title'; reverse=!reverse">Name</th>
-		<th>Aktiv</th>
-		<th style="width:65px"></th>
-	</thead> 
-	<tbody>		
-		<tr ng-repeat="tag in tags | filter:search | orderBy:predicate:reverse">
-			<td ng-click="editTag(tag)" class="pointer">{{ tag.title}}</td>
-		
-			<td>
-				<button class="btn btn-success btn-xs" ng-if="tag.active == 1" ng-click="setOnline(tag, 0)"><i class="fa fa-check"></i></button>
-				<button class="btn btn-danger btn-xs" ng-if="tag.active == 0" ng-click="setOnline(tag, 1)"><i class="fa fa-times"></i></button></td>
-			<td>
-				<button class="btn btn-info btn-xs" ng-click="editTag(tag)"><i class="fa fa-pencil"></i></button>
-				<button class="btn btn-danger btn-xs" ng-click="deleteTag(tag)"><i class="fa fa-times"></i></button>
-			</td>
-		</tr>
-	</tbody>
-</table>
+    <div class="closer" ng-click="goBack()" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="admin-header container-fluid">
+        <h2 class="col-md-6">Schlagwörter</h2>
+        <div class="menu col-md-6">
+            <ul>
+                <li>
+                    <button class="btn btn-default" ng-click="newTag()"><i class="fa fa-plus"></i>
+                    </button>
+                </li>
+                <li>
+                    <input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <table class="table table-hover" bs-table>
+        <thead>
+            <th class="sortable" ng-click="predicate='title'; reverse=!reverse">Name</th>
+            <th>Aktiv</th>
+            <th style="width:65px"></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tag in tags | filter:search | orderBy:predicate:reverse">
+                <td ng-click="editTag(tag)" class="pointer">{{ tag.title}}</td>
+
+                <td>
+                    <button class="btn btn-success btn-xs" ng-if="tag.active == 1" ng-click="setOnline(tag, 0)"><i class="fa fa-check"></i>
+                    </button>
+                    <button class="btn btn-danger btn-xs" ng-if="tag.active == 0" ng-click="setOnline(tag, 1)"><i class="fa fa-times"></i>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info btn-xs" ng-click="editTag(tag)"><i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger btn-xs" ng-click="deleteTag(tag)"><i class="fa fa-times"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>

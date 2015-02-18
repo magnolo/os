@@ -8,52 +8,52 @@
  * Controller of the osApp
  */
 angular.module('osApp')
-	.controller('AdminCtrl', function($scope, $state, $rootScope, AuthService, FlashService, $modal, $alert) {
-		$scope.showMenu = true;
-		$scope.logout = function() {
-			AuthService.logout().success(function() {
-				$rootScope.isLoggedIn = false;
-				if ($state.current.url.indexOf('/admin') != -1) {
-					$state.go('home');
-				}
+    .controller('AdminCtrl', function($scope, $state, $rootScope, AuthService, FlashService, $modal, $alert) {
+        $scope.showMenu = true;
+        $scope.logout = function() {
+            AuthService.logout().success(function() {
+                $rootScope.isLoggedIn = false;
+                if ($state.current.url.indexOf('/admin') != -1) {
+                    $state.go('home');
+                }
 
-			});
-			
-		};
+            });
 
-		$scope.toggleMenu = function() {
-			if ($scope.showMenu == true) {
-				$scope.showMenu = false;
-			} else {
-				$scope.showMenu = true;
-			}
-		};
+        };
 
-		var modals = [];
+        $scope.toggleMenu = function() {
+            if ($scope.showMenu == true) {
+                $scope.showMenu = false;
+            } else {
+                $scope.showMenu = true;
+            }
+        };
 
-		$rootScope.$on('modal.show', function(e, $modal) {
-			// if modal is not already in list
-			if (modals.indexOf($modal) === -1) {
-				modals.push($modal);
-			}
-		});
+        var modals = [];
 
-		$rootScope.$on('modal.hide', function(e, $modal) {
-			var modalIndex = modals.indexOf($modal);
+        $rootScope.$on('modal.show', function(e, $modal) {
+            // if modal is not already in list
+            if (modals.indexOf($modal) === -1) {
+                modals.push($modal);
+            }
+        });
 
-			modals.splice(modalIndex, 1);
-		});
+        $rootScope.$on('modal.hide', function(e, $modal) {
+            var modalIndex = modals.indexOf($modal);
 
-		$rootScope.$on('$stateChangeStart', function() {
+            modals.splice(modalIndex, 1);
+        });
 
-			// hide all modals
-			if (modals.length) {
-				angular.forEach(modals, function($modal) {
-					$modal.$promise.then($modal.hide);
-				});
+        $rootScope.$on('$stateChangeStart', function() {
 
-				modals = [];
-			}
+            // hide all modals
+            if (modals.length) {
+                angular.forEach(modals, function($modal) {
+                    $modal.$promise.then($modal.hide);
+                });
 
-		});
-	});
+                modals = [];
+            }
+
+        });
+    });

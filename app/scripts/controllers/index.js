@@ -17,6 +17,19 @@ angular.module('osApp')
         $scope.goto = function(location, params) {
             $state.go(location, params);
         };
+        $scope.goBack = function() {
+
+            if ($rootScope.fromState) {
+                if ($rootScope.fromState.url != "^") {
+                    $state.go($rootScope.fromState.name, $rootScope.fromParams);
+                } else {
+                    $state.go('home');
+                }
+            } else {
+                $state.go('home');
+            }
+
+        };
         $scope.gotoSection = function() {
             var loc = "home";
             if ($state.current.name.substring(0, $state.current.name.indexOf('.')) == 'vol') {
@@ -107,9 +120,13 @@ angular.module('osApp')
                 $scope.activeArticle = toParams.article;
 
             }
-            $rootScope.$broadcast('nextConnection',-1);
+            $rootScope.$broadcast('nextConnection', -1);
         });
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            if (fromState.url.indexOf('/admin') == -1) {
+                $rootScope.fromState = fromState;
+                $rootScope.fromParams = fromParams;
+            }
             $scope.state = $state;
             if (fromState === toState && !$scope.scrolling) {
                 if (typeof toParams.article !== 'undefined' && toParams.categorie === fromParams.categorie) {
@@ -127,21 +144,21 @@ angular.module('osApp')
 
             $scope.checkLanguage();
             /*
-			var el = angular.element(document.getElementById('content_container'));
-			var someElement = angular.element(document.getElementById(toParams.article));
-			if (typeof toParams.article !== "undefined") {
-				$scope.stop = true;
-				$document.scrollToElement(someElement, 70, 200).then(function() {
-					$scope.stop = false;
-					$('.headroom').removeClass('headroom--pinned').addClass('headroom--unpinned');
-				});
-			} else if (typeof toParams.name !== "undefined") {
-				$scope.stop = true;
-				$document.scrollToElement(someElement, 70, 200).then(function() {
-					$scope.stop = false;
-					$('.headroom').removeClass('headroom--pinned').addClass('headroom--unpinned');
-				});
-			}*/
+            var el = angular.element(document.getElementById('content_container'));
+            var someElement = angular.element(document.getElementById(toParams.article));
+            if (typeof toParams.article !== "undefined") {
+                $scope.stop = true;
+                $document.scrollToElement(someElement, 70, 200).then(function() {
+                    $scope.stop = false;
+                    $('.headroom').removeClass('headroom--pinned').addClass('headroom--unpinned');
+                });
+            } else if (typeof toParams.name !== "undefined") {
+                $scope.stop = true;
+                $document.scrollToElement(someElement, 70, 200).then(function() {
+                    $scope.stop = false;
+                    $('.headroom').removeClass('headroom--pinned').addClass('headroom--unpinned');
+                });
+            }*/
         });
         $rootScope.activateArticle = function(article) {
             $scope.setArticle = article;
