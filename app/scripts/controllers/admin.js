@@ -18,6 +18,7 @@ angular.module('osApp')
 				}
 
 			});
+			
 		};
 
 		$scope.toggleMenu = function() {
