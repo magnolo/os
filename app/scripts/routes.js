@@ -286,6 +286,19 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'FAQs // OpenScience'
             }
         })
+         .state('users', {
+            url: '/admin/accounts',
+            views: {
+                'admin': {
+                    templateUrl: 'views/admin/users.html',
+                    controller: 'UserCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: USER_ROLES.admin,
+                pageTitle: 'Accounts // OpenScience'
+            }
+        })
         .state('tag', {
             url: '/tag/:name',
             views: {

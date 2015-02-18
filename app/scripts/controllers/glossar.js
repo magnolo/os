@@ -31,7 +31,7 @@ angular.module('osApp')
 			$scope.glossar = item;
 			$scope.showModal();
 		};
-		$scope.setOnline = function(item, online) {
+		$scope.setOnline = function(glossar, online) {
 			Glossar.update({
 				glossarId: glossar.id
 			}, {
@@ -45,14 +45,14 @@ angular.module('osApp')
 				}
 			});
 		};
-		$scope.deleteGlossar = function(item) {
+		$scope.deleteGlossar = function(glossar) {
 			if (confirm("Eintrag:\n" + glossar.word + "\nentgültig entfernen?")) {
 				Glossar.remove({
 					glossarId: glossar.id
 				}, function(response) {
 					if (response.status == true) {
 						FlashService.show(response.message, '', 'success');
-						$scope.glossar.splice($scope.glossar.indexOf(item), 1);
+						$scope.glossars.splice($scope.glossars.indexOf(glossar), 1);
 					} else {
 						FlashService.show('Löschen fehlgeschlagen!', '', 'danger');
 					}
@@ -73,9 +73,11 @@ angular.module('osApp')
 						}
 					});
 				} else {
+					$scope.glossar.active = 1; 
 					Glossar.create($scope.glossar, function(response) {
 						if (response.status == true) {
 							FlashService.show('Schlagwort erfolgreich gespeichert!', '', 'success');
+							$scope.glossars.push(response.entry);
 							$scope.hideModal();
 						} else {
 							FlashService.show('Speichern fehlgeschlagen', '', 'danger');

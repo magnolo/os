@@ -9,14 +9,37 @@
  */
 angular.module('osApp')
   .factory('User', function($resource) {
-    return $resource('http://www.openscience.or.at/api/accounts/:tagId', {}, {
+    return $resource('http://www.openscience.or.at/api/accounts/:userId', {}, {
       get:{
         method:'GET'
       },
       query: {
         method: 'GET',
         params: {
-          tagId: ''
+          userId: ''
+        },
+        isArray: true
+      },
+      update: {
+        method: 'PUT'
+      },
+      remove: {
+        method: 'DELETE'
+      },
+      create: {
+        method: 'POST'
+      }
+
+    });
+  }).factory('Role', function($resource) {
+    return $resource('http://www.openscience.or.at/api/roles/:roleId', {}, {
+      get:{
+        method:'GET'
+      },
+      query: {
+        method: 'GET',
+        params: {
+          roleId: ''
         },
         isArray: true
       },
