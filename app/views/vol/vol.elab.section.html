@@ -1,0 +1,20 @@
+<div class="article anim">
+	<h1 class="article_main_header"><a ui-sref="vol.elab">eLAB</a> &raquo; {{ elab.title }}</h1>
+</div>
+<div class="grid_9 floating" style="margin:0;width:720px;">
+	<div class="grid_3 article_thumb vol"  ng-repeat="lab in elabs">
+		<div class="thumb_image" ng-if="lab.image.url"  ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
+			<a ui-sref="section.categorie.article({section:article.section.name, categorie: article.categorie.name, article:article.name})">
+			<img  ng-if="article.image.url" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;fltr[]=gray&amp;fltr[]=brit|-40&amp;fltr[]=clr|60|{{colors[article.section.name]}}&amp;fltr[]=cont|10&amp;w=220&amp;h=145&amp;zc=1&amp;f=jpg&amp;q=100"></a>
+		</div>
+		<div class="thumb_categorie left">
+			<a ui-sref="vol.elab.section({section:lab.section.name})">{{ lab.section.title }}</a>
+		</div>
+		<div class="clear"></div>
+		<div class="thumb_heading">
+			<a ui-sref="vol.elab.section.details({name: lab.name})">{{ lab.title }}</a>
+		</div>
+		<div class="thumb_text">{{lab.text | htmlToPlaintext}}</div>
+	</div>
+
+</div>

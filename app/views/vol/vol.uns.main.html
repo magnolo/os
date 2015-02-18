@@ -1,0 +1,50 @@
+<div class="article anim " ng-if="article.id" context-menu="setContext(article)" context-menu-disabled="!$root.isLoggedIn" data-target="articleMenu">
+	<h1 ng-if="!article.edit && (lang == 'de' || article.title_en == '')" class="article_main_header" >{{article.title}}</h1>
+	<h1 ng-if="!article.edit && lang == 'en' && article.title_en != ''" class="article_main_header" >{{article.title_en}}</h1>
+	<h1 ng-if="article.edit && lang == 'de'" contenteditable id="{{ article.name }}" class="article_main_header" ng-model="article.title"></h1>
+	<h1 ng-if="article.edit && lang == 'en'" contenteditable id="{{ article.name }}" class="article_main_header" ng-model="article.title_en" ></h1>
+	<div class="article_pre_image solo" ng-if="article.image.url || article.edit" ng-class="{'editing': article.edit}">
+		<img ng-if="article.image_id" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=720&amp;q=100" class="article_main_image">
+		<img ng-if="!article.image_id || article.image_id == 0" ng-src="http://placehold.it/460x250&text=Kein+Bild" class="article_main_image">
+		<div id="image-menu" ng-if="article.edit">
+			<ul>
+				<li ng-click="uploadImage()" title="Neues Bild hochladen...">
+					<i class="fa fa-upload"></i>
+				</li>
+				<li ng-if="article.image_id" title="Bildinformationen ändern..." ng-click="cropImage()">
+					<i class="fa fa-pencil"></i>
+				</li>
+				<li ng-if="article.image_id" title="Bild löschen..." ng-click="deleteImage()">
+					<i class="fa fa-times"></i>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div ng-if="!article.edit && (lang == 'de' || article.text_en == '')" class="article_main_content" ng-bind-html="article.text" thesaurus></div>
+	<div ng-if="!article.edit && lang == 'en' && article.text_en != ''" class="article_main_content" ng-bind-html="article.text_en" thesaurus></div>
+	<div ng-if="article.edit && lang == 'de'" froala="froalaOptions" class="article_main_content" ng-model="article.text"></div>
+	<div ng-if="article.edit && lang == 'en'" froala="froalaOptions" class="article_main_content" ng-model="article.text_en"></div>
+</div>
+<edit nodelete="true"></edit>
+<div class="article full" ng-show="persons.length">
+	<h1 class="article_main_header">{{ 'THE_TEAM' | translate }}</h1>
+	<div id="uns_team" class="row floating">
+		<div class="team grid_3 article_thumb bordered openscience" ng-repeat="person in persons" ng-if="person.section.id != 1">
+			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)"> 
+				<a ui-sref="voluns.team.person({name:person.name})"><img ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&fltr[]=gray&fltr[]=brit|-40&fltr[]=clr|60|A31031&fltr[]=cont|10&w=220&h=145&zc=1&f=png" /></a>
+			</div>
+			<div class="thumb_heading">
+				<a ui-sref="voluns.team.person({name:person.name})">
+					{{ person.title + " " + person.firstname + " " + person.lastname }}
+				</a>
+			</div>
+			<div class="thumb_job">
+				{{person.job}}
+			</div>
+			<div class="thumb_info" >
+				{{person.mail}}<br>
+				{{person.phone}}
+			</div>
+		</div>
+	</div>
+</div>

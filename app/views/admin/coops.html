@@ -1,0 +1,45 @@
+<div class="full-fixed spaced">
+<div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+	<i class="fa fa-times"></i>
+</div>
+<div class="admin-header container-fluid">
+	<h2 class="col-md-6">Mitglieder</h2>
+	<div class="menu col-md-6">
+		<ul>
+			<li>
+				<a ui-sref="coop({id:'new'})" ><button class="btn btn-default" ng-click="newCoop()"><i class="fa fa-plus"></i></button></a>
+			</li>
+			<li>
+				<input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
+			</li>
+			
+		</ul>
+	</div>
+</div>
+<div class="container-fluid no-left">
+	<ul class="grid-view" as-sortable="sortController" ng-model="coops">
+		<li as-sortable-item class="col-lg-2 col-md-4 col-sm-6 col-xs-12 no-pad anim" ng-repeat="coop in coops | filter:search">
+			<div class="content">
+				<img ng-if="coop.image_id != 0" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=../../../{{coop.image.url}}&amp;w=285&amp;h=190&amp;zc=1" alt="default thumb" class="thumb">
+				<img ng-if="coop.image_id == 0" ng-src="http://www.placehold.it/285x190&text=Kein+Bild" alt="default thumb" class="thumb">
+				<div class="text">
+				<h3>{{coop.title}}</h3>
+				<span class="meta">{{coop.link}}</span>
+				</div>
+			</div>
+			<div class="image-menu">			
+				<ul>
+					<li><a ui-sref="coop({id:coop.id})"><i class="fa fa-pencil"></i></a></li>
+					<li ng-click="deleteCoop(coop)"><i class="fa fa-times"></i></li>
+					<li title="Online?" class="no-pad">
+						<button class="btn btn-success" ng-if="coop.online == 1" ng-click="setOnline(coop, 0)"><i class="fa fa-check"></i></button>
+						<button class="btn btn-danger" ng-if="coop.online == 0" ng-click="setOnline(coop, 1)"><i class="fa fa-times"></i></button>
+					</li>
+					<li as-sortable-item-handle >
+						<i class="fa fa-arrows"></i>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>

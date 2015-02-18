@@ -1,0 +1,51 @@
+.calendarFreeFull {
+    background-image: image-url('freeFull_day.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.calendarAfterFull {
+    background-image: image-url('freeAfter_day.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.calendarBeforeFull {
+    background-image: image-url('freeBefore_day.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.groupSoloDay {
+    color: #444 !important;
+}
+.calendarEventSolo {
+    background-image: image-url('fullday_event.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.calendarEventSolo_before {
+    background-image: image-url('noon_event.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.calendarEventSolo_after {
+    background-image: image-url('afternoon_event.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.calendarEventSolo_group {
+    background-image: image-url('fullday_event.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #444 !important;
+}
+.calendarEventSolo_before_group {
+    background-image: image-url('noon_event.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #444 !important;
+}
+.calendarEventSolo_after_group {
+    background-image: image-url('afternoon_event.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #d41231 !important;
+}

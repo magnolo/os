@@ -1,0 +1,650 @@
+$os-color: #112f56;
+$os-background: #D2D9E3;
+$wissen-color: #523c7c;
+$wissen-background: #eddced;
+$wissen-light:#a26fa7;
+$projekte-color: #0082A0;
+$projekte-background: #8BCEDB;
+$schulcorner-color: #858d1e;
+$schulcorner-background: #E9E59F;
+$vol-color: #a31031;
+$vol-background: #FAD7DC;
+
+.os, .os .triangle-up, .os .image_border {
+    color: $os-color;
+}
+.modal-header{
+	    background:$os-color;
+	}
+	.btn-primary{
+		background:$os-color;
+		border-color:$os-color;
+	}
+		 div.thesaurus .thesaurus-header{
+		background-color:#c0b6d7;
+		color:#442e74;
+		border-bottom:1px solid $os-color;
+	}
+	 div.thesaurus .thesaurus-header a{
+		color:#442e74;
+	}
+
+	 div.thesaurus > div.thesaurus-canvas.downwards:after { 
+		border-color: transparent transparent #c0b6d7 transparent;  
+		bottom: 100%; 
+	}
+.openscience{
+	color:$os-color !important;
+	border-color:$os-color;
+ 	.thumb_categorie{
+		border-bottom:1px solid $os-color;
+	}
+	&.article_thumb{
+		border:1px solid #D2D9E3;
+	}	
+   .thumb_heading a{
+	color:$os-color;
+	}
+
+	.background, .background a{
+		background-color:#D2D9E3;
+		color:$os-color;
+		
+	}
+	#cat_articles{ 
+		.sperator{
+			background-color:$os-color ;
+			color:#fff;
+			padding:5px 10px;
+		}
+	}
+	.bg_full, .mobile_menu_switcher, .mobile_menu_switcher:before, .mobile_menu_switcher:after{
+		background-color: $os-color !important;
+	    color: #FFFFFF !important;
+	    text-align: center;
+	}
+	 .cat_menu_main a{
+		border-bottom:1px solid $os-color;
+	}
+	.cat_menu_main li:nth-child(odd) a, .active,  .active a, .set a, .article h1, .article h2, dfn.thesaurus, .article_main_header  {
+		background-color:#D2D9E3;
+		color:$os-color;
+	}
+	.frame{
+			.cat_menu_sub{
+				a{
+					&.active{
+						background-color:#D2D9E3;
+						color:$os-color;
+					}
+				}
+			}
+		
+	}
+	 #cat_articles .active a{
+		color:$os-color !important;
+	}
+	.cat_menu_main li:nth-child(even) a {
+		background-color:#c0b6d7;
+		color:#442e74
+	}
+
+	#loading-bar{
+			.bar {
+				background:$os-color
+			}
+			.peg{
+				-moz-box-shadow: $os-color 1px 0 6px 1px;
+				-ms-box-shadow: $os-color 1px 0 6px 1px;
+				-webkit-box-shadow: $os-color 1px 0 6px 1px;
+				box-shadow: $os-color 1px 0 6px 1px;
+			}
+	} 
+	#loading-bar-spinner{
+		.spinner-icon{
+			 border-top-color:  $os-color;
+  			border-left-color: $os-color;
+		}
+	}
+	#navcontainer{
+		border-color:$os-color;
+	}
+
+
+}
+.openscience_border{
+	border:1px solid $os-color;
+}
+.wissen{
+	color:$wissen-color !important;
+	border-color:$wissen-color;
+	#loading-bar{
+			.bar {
+				background:$wissen-color
+			}
+			.peg{
+				-moz-box-shadow: $wissen-color 1px 0 6px 1px;
+				-ms-box-shadow: $wissen-color 1px 0 6px 1px;
+				-webkit-box-shadow: $wissen-color 1px 0 6px 1px;
+				box-shadow: $wissen-color 1px 0 6px 1px;
+			}
+	} 
+	#loading-bar-spinner{
+		.spinner-icon{
+			 border-top-color:  $wissen-color;
+  			border-left-color: $wissen-color;
+		}
+	}
+	#navcontainer{
+		border-color:$wissen-color;
+	}
+	.modal-header{
+	    background:$wissen-color;
+	}
+	.btn-primary{
+		background:$wissen-color;
+		border-color:$wissen-color;
+	}
+	.alert{
+	    &.alert-info{
+	        background-color: $wissen-background;
+	        color: $wissen-color;
+	        border-top:1px solid $wissen-color;
+	    }
+	}
+	.table{
+		thead{
+			background: $wissen-background;
+			color:$wissen-color;
+		}
+	}
+}
+.wissen a, .wissen .triangle-up, .wissen .image_border{
+	color:$wissen-color;
+}
+.wissen .thumb_categorie{
+	border-bottom:1px solid $wissen-color;
+}
+.wissen.article_thumb{
+	border:1px solid $wissen-color;
+}
+.wissen .thumb_heading a, #connections_list .wissen a, .cloned_weiter .wissen a/*, .wissen .thumb_categorie a*/{
+	color:$wissen-color;
+}
+.wissen_border{
+	border:1px solid $wissen-color;
+}
+.wissen .background, .wissen .background a, .wissen .scrollbar .handle,.wissen .thumb_image,.wissen .weiteres,.wissen .scroll_hor .handle{
+	background-color:$wissen-color;
+	color:$wissen-background
+}
+.wissen .bg_full,.wissen .mobile_menu_switcher, .wissen .mobile_menu_switcher:before, .wissen .mobile_menu_switcher:after, .wissen #connection-liner{
+	background-color:$wissen-color !important;
+	color:#fff !important;
+}
+.wissen .cat_menu_main a{
+	border-bottom:1px solid #b081cf;
+}
+.wissen .cat_menu_main li:nth-child(odd) a,.wissen .active, .wissen .set a, .wissen .active a,.wissen .article h1,.wissen .article h2,.wissen dfn.thesaurus {
+	background-color:$wissen-background;
+	color:$wissen-light;
+}
+.wissen{
+	.frame{
+		.cat_menu_sub{
+			a{
+				&.active{
+					background-color:$wissen-background;
+					color:$wissen-light;
+				}
+			}
+		}
+	}
+}
+.wissen #cat_articles .active a{
+	color:$wissen-light !important;
+}
+.wissen .cat_menu_main li:nth-child(even) a {
+	background-color:#c0b6d7;
+	color:#442e74
+}
+.wissen div.thesaurus .thesaurus-header{
+	background-color:#c0b6d7;
+	color:#442e74;
+	border-bottom:1px solid #b081cf;
+}
+.wissen div.thesaurus .thesaurus-header a{
+	color:#442e74;
+}
+
+.wissen div.thesaurus > div.thesaurus-canvas.downwards:after { 
+	border-color: transparent transparent #c0b6d7 transparent;  
+	bottom: 100%; 
+}
+.wissen .is_new{
+	background-position:0px 0px;
+}
+
+
+.projekte{
+	color:$projekte-color !important;
+	#loading-bar{
+			.bar {
+				background:$projekte-color
+			}
+			.peg{
+				-moz-box-shadow: $projekte-color 1px 0 6px 1px;
+				-ms-box-shadow: $projekte-color 1px 0 6px 1px;
+				-webkit-box-shadow: $projekte-color 1px 0 6px 1px;
+				box-shadow: $projekte-color 1px 0 6px 1px;
+			}
+	} 
+	#loading-bar-spinner{
+		.spinner-icon{
+			 border-top-color:  $projekte-color;
+  			border-left-color: $projekte-color;
+		}
+	}
+	#navcontainer{
+		border-color:$projekte-color;
+	}
+	.alert{
+	    &.alert-info{
+	        background-color: $projekte-background;
+	        color: $projekte-color;
+	        border-top:1px solid $projekte-color;
+	    }
+	}
+	.table{
+		thead{
+			background: $projekte-background;
+			color:$projekte-color;
+		}
+	}
+}
+.projekte a,.projekte .triangle-up, .projekte  .image_border{
+	color:$projekte-color;
+}
+.projekte .thumb_categorie{
+	border-bottom:1px solid $projekte-color;
+}
+.projekte.article_thumb{
+	border:1px solid $projekte-color;
+}
+.projekte .thumb_heading a, #connections_list .projekte a/*, .projekte .thumb_categorie a*/{
+	color:$projekte-color;
+}
+.projekte_border{
+	border:1px solid $projekte-color;
+}
+.projekte .background, .projekte .background a, .projekte .scrollbar .handle ,.projekte .thumb_image,.projekte .weiteres,.projekte .scroll_hor .handle{
+	background-color:$projekte-color ;
+	color:$projekte-background
+}
+.projekte .weiteres{
+	color:#fff;
+}
+.projekte .bg_full,.projekte .mobile_menu_switcher, .projekte .mobile_menu_switcher:before, .projekte .mobile_menu_switcher:after{
+	background-color:$projekte-color !important;
+	color:#fff !important;
+}
+.projekte .cat_menu_main a{
+	border-bottom:1px solid $projekte-color;
+}
+.projekte .cat_menu_main li:nth-child(odd) a,.projekte .active, .projekte .set a, .projekte .active a,.projekte .article h1,.projekte .article h2, .projekte dfn.thesaurus  {
+	background-color:$projekte-background;
+	color:$projekte-color;
+}
+.projekte div.thesaurus .thesaurus-header{
+	background-color:$projekte-background;
+	color:$projekte-color;
+	border-bottom:1px solid $projekte-color;
+}
+.projekte div.thesaurus .thesaurus-header a{
+	color:$projekte-color;
+}
+
+.projekte div.thesaurus > div.thesaurus-canvas.downwards:after { 
+	border-color: transparent transparent $projekte-background transparent;  
+	bottom: 100%; 
+}
+.projekte{
+	.frame{
+		.cat_menu_sub{
+			a{
+				&.active{
+					background-color:$projekte-background;
+					color:$projekte-color;
+				}
+			}
+		}
+	}
+	.modal-header{
+	    background:$projekte-color;
+	}
+	.btn-primary{
+		background:$projekte-color;
+		border-color:$projekte-color;
+	}
+}
+.projekte #cat_articles .active a{
+	color:$projekte-color !important;
+}
+.projekte .cat_menu_main li:nth-child(even) a {
+	background-color:#BDDFD4;
+	color:#84C4AA
+}
+.projekte .is_new, #connections_list .projekte .is_new{
+	background-position:-130px 0px;
+}
+#connections_list .thumb_text{
+	margin-bottom:10px !important;
+}
+.schulcorner{
+	color:$schulcorner-color !important;
+	#loading-bar{
+			.bar {
+				background:$schulcorner-color
+			}
+			.peg{
+				-moz-box-shadow: $schulcorner-color 1px 0 6px 1px;
+				-ms-box-shadow: $schulcorner-color 1px 0 6px 1px;
+				-webkit-box-shadow: $schulcorner-color 1px 0 6px 1px;
+				box-shadow: $schulcorner-color 1px 0 6px 1px;
+			}
+	} 
+	#loading-bar-spinner{
+		.spinner-icon{
+			 border-top-color:  $schulcorner-color;
+  			border-left-color: $schulcorner-color;
+		}
+	}
+	#navcontainer{
+		border-color:$schulcorner-color;
+	}
+		.modal-header{
+	    background:$schulcorner-color;
+	}
+	.btn-primary{
+		background:$schulcorner-color;
+		border-color:$schulcorner-color;
+	}
+	.alert{
+	    &.alert-info{
+	        background-color: $schulcorner-background;
+	        color: $schulcorner-color;
+	        border-top:1px solid $schulcorner-color;
+	    }
+	}
+	.table{
+		thead{
+			background: $schulcorner-background;
+			color:$schulcorner-color;
+		}
+	}
+}
+.schulcorner a,.schulcorner .triangle-up, .schulcorner .image_border{
+	color:$schulcorner-color;
+}
+.schulcorner .thumb_categorie{
+	border-bottom:1px solid $schulcorner-color;
+}
+.schulcorner.article_thumb{
+	border:1px solid $schulcorner-color;
+}
+.schulcorner .thumb_heading a, #connections_list .schulcorner a/*,.schulcorner .thumb_categorie a*/{
+	color:$schulcorner-color;
+}
+.schulcorner_border{
+	border:1px solid $schulcorner-color;
+}
+.schulcorner .background, .schulcorner .background a, .schulcorner .scrollbar .handle,.schulcorner .thumb_image,.schulcorner .weiteres,.schulcorner .scroll_hor .handle{
+	background-color:$schulcorner-color;
+	color:#E9E59F
+}
+.schulcorner .bg_full,.schulcorner .mobile_menu_switcher, .schulcorner .mobile_menu_switcher:before, .schulcorner .mobile_menu_switcher:after{
+	background-color:#8B8D1C !important;
+	color:#fff !important;
+}
+.schulcorner .cat_menu_main a{
+	border-bottom:1px solid #8B8D1C;
+}
+.schulcorner .cat_menu_main li:nth-child(odd) a,.schulcorner .active, .schulcorner .set a, .schulcorner .active a,.schulcorner .article h1,.schulcorner .article h2,.schulcorner dfn.thesaurus  {
+	background-color:#E9E59F;
+	color:#8B8D1C;
+}
+.schulcorner{
+	.frame{
+		.cat_menu_sub{
+			a{
+				&.active{
+					background-color:#E9E59F;
+					color:#8B8D1C;
+				}
+			}
+		}
+	}
+
+}
+.schulcorner #cat_articles .active a{
+	color:#8B8D1C !important;
+}
+.schulcorner .cat_menu_main li:nth-child(even) a {
+	background-color:#E9E59F;
+	color:#8B8D1C;
+}
+.schulcorner .is_new,  #connections_list .schulcorner .is_new{
+	background-position:-260px 0px;
+}
+.schulcorner div.thesaurus .thesaurus-header{
+	background-color:$schulcorner-background;
+	color:$schulcorner-color;
+	border-bottom:1px solid $schulcorner-color;
+}
+.schulcorner div.thesaurus .thesaurus-header a{
+	color:$schulcorner-color;
+}
+
+.schulcorner div.thesaurus > div.thesaurus-canvas.downwards:after { 
+	border-color: transparent transparent $schulcorner-background transparent;  
+	bottom: 100%; 
+}
+/*.vol{
+	color:#a21c34 !important;
+}
+.vol .thumb_categorie{
+	border-bottom:1px solid #a21c34;
+}
+.vol.article_thumb{
+	border:1px solid #a21c34;
+}
+.vol .thumb_heading a, .vol .thumb_categorie a{
+	color:#a21c34;
+}
+
+.vol_border{
+	border:1px solid #a21c34;
+}*/
+
+
+.vol{
+	color:$vol-color !important;
+	#loading-bar{
+			.bar {
+				background:$vol-color
+			}
+			.peg{
+				-moz-box-shadow: $vol-color 1px 0 6px 1px;
+				-ms-box-shadow: $vol-color 1px 0 6px 1px;
+				-webkit-box-shadow: $vol-color 1px 0 6px 1px;
+				box-shadow: $vol-color 1px 0 6px 1px;
+			}
+	} 
+	#loading-bar-spinner{
+		.spinner-icon{
+			 border-top-color:  $vol-color;
+  			border-left-color: $vol-color;
+		}
+	}
+	#navcontainer{
+		border-color:$vol-color;
+	}
+		.modal-header{
+	    background:$vol-color;
+	}
+	.btn-primary{
+		background:$vol-color;
+		border-color:$vol-color;
+	}
+	.alert{
+	    &.alert-info{
+	        background-color: $vol-background;
+	        color: $vol-color;
+	        border-top:1px solid $vol-color;
+	    }
+	}
+	.table{
+		thead{
+			background: $vol-background;
+			color:$vol-color;
+		}
+	}
+}
+.vol a,.vol .triangle-up, .vol .image_border{
+	color:$vol-color;
+}
+.vol .headline{
+	color:$vol-color !important;
+}
+.vol .headline h3{
+	font-size: 1.5em;
+    font-weight: normal;
+    margin: 95px 0 5px;
+    padding: 0;
+    text-transform: uppercase;
+    &.smaller{
+    	margin: 95px auto;
+    	margin-bottom:10px;
+    	width:63%;
+    }
+}
+.vol .headline small{
+	color: #E4363C !important;
+    float: left;
+    font-size: 13px;
+    line-height: 1.3em;
+    width: 100%;
+}
+.vol .thumb_categorie{
+	border-bottom:1px solid $vol-color;
+}
+.vol.article_thumb{
+	border:1px solid $vol-color;
+}
+.vol .thumb_heading a/*,.vol .thumb_categorie a*/{
+	color:$vol-color;
+}
+.vol_border{
+	border:1px solid $vol-color;
+}
+.vol .background, .vol .background a, .vol .scrollbar .handle,.vol .thumb_image,.vol .weiteres,.vol .scroll_hor .handle{
+	background-color:$vol-color;
+	color:#FAD7DC
+}
+.vol .bg_full, .top-title,.vol .mobile_menu_switcher, .vol .mobile_menu_switcher:before, .vol .mobile_menu_switcher:after{
+
+	background-color:$vol-color !important;
+	color:#fff !important;
+
+}
+.vol #cat_articles .sperator{
+	background-color:$vol-color;
+	color:#fff;
+	padding: 5px 10px;
+}
+.vol .cat_menu_main a{
+	border-bottom:1px solid $vol-color;
+}
+.vol .cat_menu_main li:nth-child(odd) a,.vol .active, .vol .set a, .vol .active a,.vol .article h1,.vol .article h2,.vol dfn.thesaurus,.vol .vol .cat_menu_main li ,.vol .article_main_header  {
+	background-color:#FAD7DC;
+	color:$vol-color;
+}
+.vol{
+	.frame{
+		.cat_menu_sub{
+			a{
+				&.active{
+					background-color:#FAD7DC;
+					color:$vol-color;
+				}
+			}
+		}
+	}
+}
+.vol div.thesaurus .thesaurus-header{
+	background-color:$vol-background;
+	color:$vol-color;
+	border-bottom:1px solid $vol-color;
+}
+.vol div.thesaurus .thesaurus-header a{
+	color:$vol-color;
+}
+
+.vol div.thesaurus > div.thesaurus-canvas.downwards:after { 
+	border-color: transparent transparent $vol-background transparent;  
+	bottom: 100%; 
+}
+.vol #cat_articles .active a{
+	color:$vol-color !important;
+}
+.vol .cat_menu_main li:nth-child(even) a, .calendar .top-title {
+	background-color:#FAD7DC;
+	color:$vol-color;
+}
+.vol .is_new{
+	background-position:-325px 0px;
+}
+.vol .top-title{
+	font-size: 1.5em;
+}
+.vol .top-title .lower-info{
+	font-size: 13px;
+	margin-left: 15px;
+}
+.inactive, .inactive a{
+	color: #999 !important
+}
+
+.autocomplete li.active{
+  width: 100%;
+  background-color: $os-color;
+  color:#fff !important;
+  &.wissen{
+  	background-color: $wissen-color;
+  	.hightlight{
+  		color: $wissen-color  !important;
+	  	background-color: $wissen-background;
+  	}
+  }
+  &.projekte{
+  	background-color: $projekte-color;
+  	.hightlight{
+  		color: $projekte-color !important;
+	  	background-color: $projekte-background;
+  	}
+  }
+  &.schulcorner{
+  	background-color: $schulcorner-color;
+  	.hightlight{
+  		color: $schulcorner-color !important;
+	  	background-color: $schulcorner-background;
+  	}
+  }
+  &.vol{
+  	background-color: $vol-color;
+  	.hightlight{
+  			color: $vol-color !important;
+	  	background: $vol-background;
+  	}
+  }
+}

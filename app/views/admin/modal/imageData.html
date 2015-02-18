@@ -1,0 +1,21 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="width:495px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="hideCropping()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Bildausschnitt auswählen</h4>
+      </div>
+      <form role="form" name="imagesForm" novalidate>
+        <div class="modal-body col-md-12">
+                <div class="col-md-3">
+                    <img style="max-width:460px;min-width:460px;width:460px" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=460&amp;q=100" />
+                </div>
+                <div class="col-md-"
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="hideCropping()">Schließen</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

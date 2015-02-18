@@ -1,0 +1,73 @@
+<div class="full-fixed spaced">
+    <div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="admin-header container-fluid">
+        <h2 class="col-md-6">Kurse</h2>
+        <div class="menu col-md-6">
+            <ul>
+                <li>
+                    <a ui-sref="class({id:'new'})">
+                        <button class="btn btn-default" ng-click="newClass()"><i class="fa fa-plus"></i>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <table class="table table-hover" bs-table>
+        <thead>
+            <th class="sortable" ng-click="predicate='title'; reverse=!reverse">Titel</th>
+            <th class="sortable" ng-click="predicate='section.name'; reverse=!reverse">Kategorie</th>
+            <th>Dauer in h</th>
+            <th>Kosten</th>
+            <th>Aktiv</th>
+            <th>Einzel</th>
+            <th>Gruppe</th>
+            <th>LAB 1</th>
+            <th>LAB 2</th>
+            <th style="width:65px"></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="class in classes | filter:search | orderBy:predicate:reverse">
+                <td class="pointer"><a ui-sref="class({id:class.id})"><strong>{{ class.title}}</strong></a>
+                </td>
+                <td ng-click="editClass(class)" class="pointer">{{ class.section.title}}</td>
+                <td>{{ class.duration }}</td>
+                <td>{{ class.prize | currency:'€ '}}</td>
+                <td>
+                    <button ng-if="class.active == 1" class="btn btn-success btn-xs"><i class="fa fa-check"></i>
+                    </button>
+                    <button ng-if="class.active == 0" class="btn btn-danger btn-xs"><i class="fa fa-times"></i>
+                    </button>
+                </td>
+                <td>
+                    <span ng-if="class.solo == 1" class="text-success"><i class="fa fa-check"></i></span>
+                    <span ng-if="class.solo == 0" class="text-danger"><i class="fa fa-times"></i></span>
+                </td>
+                <td>
+                    <span ng-if="class.groups == 1" class="text-success"><i class="fa fa-check"></i></span>
+                    <span ng-if="class.groups == 0" class="text-danger"><i class="fa fa-times"></i></span>
+                </td>
+                <td>
+                    <span ng-if="class.labor_1 == 1" class="text-success"><i class="fa fa-check"></i></span>
+                    <span ng-if="class.labor_1 == 0" class="text-danger"><i class="fa fa-times"></i></span>
+                </td>
+                <td>
+                    <span ng-if="class.labor_2 == 1" class="text-success"><i class="fa fa-check"></i></span>
+                    <span ng-if="class.labor_2 == 0" class="text-danger"><i class="fa fa-times"></i></span>
+                </td>
+                <td>
+                    <a ui-sref="class({id:class.id})">
+                        <button class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+                        </button>
+                    </a>
+                    <button class="btn btn-danger btn-xs" ng-click="deleteClass(class)"><i class="fa fa-times"></i>
+                    </button>
+                </td>
+            </tr>

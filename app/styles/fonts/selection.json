@@ -1,0 +1,66 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M842.24 71.68h-660.48c-60.518 0-110.080 49.562-110.080 110.080v660.48c0 60.57 49.562 110.029 110.029 110.029h334.029v-315.75h-105.472v-137.523h105.472v-68.915c0-106.24 78.438-189.44 178.586-189.44h97.178v155.341h-86.989c-22.733 0-29.389 13.056-29.389 31.078v71.885h116.378v137.574h-116.378l0 315.802h167.066c60.57 0 110.029-49.51 110.029-110.029v-660.531c0.102-60.518-49.408-110.080-109.978-110.080z"
+				],
+				"tags": [
+					"facebook",
+					"social"
+				],
+				"grid": 20
+			},
+			"properties": {
+				"id": 248,
+				"order": 1,
+				"prevSize": 20,
+				"code": 58880,
+				"name": "facebook",
+				"ligatures": ""
+			},
+			"setIdx": 3,
+			"iconIdx": 248
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icomoon"
+	},
+	"preferences": {
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
+			"showGlyphs": true,
+			"metrics": {
+				"emSize": 512,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"resetPoint": 58880,
+			"showQuickUse": true,
+			"quickUsageToken": false,
+			"showMetrics": true,
+			"showMetadata": false
+		},
+		"imagePref": {
+			"color": 0,
+			"height": 32,
+			"columns": 16,
+			"margin": 16,
+			"png": false,
+			"sprites": true
+		},
+		"historySize": 100,
+		"showCodes": true,
+		"gridSize": 16,
+		"showLiga": false,
+		"showGrid": true,
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"search": ""
+	}
+}

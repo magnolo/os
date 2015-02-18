@@ -1,0 +1,84 @@
+<div class="article anim" ng-repeat="kurs in kurse" in-view="inThaView($index, $inview, $inviewpart, kurs, section, locate)" in-view-offset="300">
+    <h1 style="opacity:0;height:0;margin:0;padding:0" id="{{kurs.name}}">{{ kurs.title }}</h1>
+    <div class="big_block kurs">
+        <div class="grid_3 block_image">
+            <img ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{kurs.image.url}}&amp;w=460&amp;q=100" class="article_main_image">
+            <div class="files gallery_menu anim" ng-if="kurs.files.length">
+                <div class="sub_section_title">
+                    <div style="padding:10px"> {{ 'MATERIALS' | translate }} </div>
+                </div>
+                <div class="gallery_menu_content">
+                    <ul>
+                        <li ng-repeat="file in kurs.files" class="anim">
+                            <div class="file_download left">
+                                <a href="http://www.openscience.or.at/{{file.url}}" download traget="_blank">
+                                    <div class="left os-icon download-icon"></div>
+                                    <div style="margin-left: 10px; max-width: 85%;" class="left">{{file.name}}</div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="interact_menu" class="anim">
+                <ul class="horizontal_list">
+                    <li>
+                        <div class="os-icon icon-facebook2 left" title="Auf Facebook teilen..." facebook article="kurs"></div>
+                    </li>
+                    <li>
+                        <div class="os-icon icon-twitter2 left" title="Teile auf Twitter..." twitter></div>
+                    </li>
+                    <li>
+                        <div class="os-icon icon-googleplus2 left " title="Teilen auf Google+..." googleplus></div>
+                    </li>
+                    <li>
+                        <div class="os-icon mail-icon left" title="Als E-Mail versenden..." ng-click="sendToEmail(kurs)"></div>
+                    </li>
+                    <li>
+                        <div class="os-icon print-icon left" title="Inhalt als PDF herunterladen..."></div>
+                    </li>
+                    <li ng-if="files.length">
+                        <div class="os-icon download-icon left" title="Alle Anhänge herunterladen..."></div>
+                    </li>
+
+                </ul>
+            </div>
+            &nbsp;
+        </div>
+        <div class="grid_6 block_content">
+            <h2 ng-if="lang == 'de' || kurs.title_en == ''">{{ kurs.title }}</h2>
+            <h2 ng-if="lang == 'en' && kurs.title_en != ''">{{ kurs.title_en }}</h2>
+            <div ng-if="lang == 'de' || kurs.text_en == '' || kurs.text_en == '<p>​</p>'" class="article_main_content" ng-bind-html="kurs.text"></div>
+            <div ng-if="lang == 'en' && kurs.text_en != '' && kurs.text_en != '<p>​</p>'" class="article_main_content" ng-bind-html="kurs.text_en"></div>
+            <div class="article_main_content" ng-if="kurs.groups == 1 || kurs.solo == 1">
+                <div>
+                    <span class="min-label">{{ 'FEES' | translate }}:</span> {{ kurs.prize | currency: '€ '}}
+                </div>
+                <div>
+                    <span class="min-label">{{ 'DURATION' | translate }}:</span>{{ kurs.duration}} {{ 'HOURS' | translate }}
+                </div>
+                <div>
+                    <h4 class="vol subHead">{{ 'REGISTRATION' | translate }}</h4>
+                    <div class="solo" style="margin-bottom:10px;height:25px" ng-if="kurs.solo == 1">
+                        &raquo; {{ 'SOLO_DATES' | translate }}:
+                        <span ng-if="kurs.dates.length">
+							<select ng-model="kurs.selectedDate" ng-options="kd as kd.date+' - '+kd.places_left+' Plätze frei' for kd in kurs.dates">
+								<option value="">- {{ 'SELECT_DATE' | translate }} -</option>
+							</select>
+						</span>
+                        <span ng-if="kurs.dates.length == null">
+							{{ 'LOADING_DATES' | translate }}
+						</span>
+                        <span ng-if="kurs.dates.length == 0">
+							{{ 'NO_DATES' | translate}}
+						</span>
+                        <span ng-if="kurs.selectedDate" date="{{kurs.selectedDate.date_start}}"><a ui-sref="vol.einzelanmeldung.kurs.date({kurs:kurs.title, date: kurs.selectedDate.date_start})">&raquo; {{ 'SEND' | translate }}</a></span>
+                    </div>
+                    <div class="group" ng-if="kurs.groups == 1">
+                        <a ui-sref="vol.gruppenbuchung.kurs({kurs:kurs.title})">&raquo; {{ 'GROUP_REGISTRATION' | translate }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

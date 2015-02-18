@@ -1,0 +1,54 @@
+<div class="full-fixed spaced">
+<div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+	<i class="fa fa-times"></i>
+</div>
+<div class="admin-header container-fluid">
+	<h2 class="col-md-6">Quiz</h2>
+	<div class="menu col-md-6">
+		<ul>
+			<li>
+				<button class="btn btn-default" ng-click="newQuiz()"><i class="fa fa-plus"></i></button>
+			</li>
+			<li>
+				<input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
+			</li>
+			
+		</ul>
+	</div>
+</div>
+<table class="table table-hover" bs-table  >
+	<thead>
+		<th class="sortable" ng-click="predicate='title'; reverse=!reverse">Name</th>
+		<th>Kategorien</th>
+		<th>Typ</th>
+		<th>Fragen</th>
+		<th>Teilnehmer</th>
+		<th>Start</th>
+		<th>Ende</th>
+		<th>Online</th>
+		<th style="width:65px"></th>
+	</thead> 
+	<tbody>		
+		<tr ng-repeat="quiz in quizes | filter:search | orderBy:predicate:reverse">
+			<td ng-click="editQuiz(quiz)" class="pointer"><a ui-sref="quizdetails({id: quiz.id})">{{ quiz.title}}</a></td>
+			<td><span ng-repeat="section in quiz.sections" style="text-transform:capitalize">{{section}}&nbsp;</span></td>
+			<td>
+				<span ng-if="quiz.type == 1">Quiz</span>
+				<span ng-if="quiz.type == 2">Umfrage</span>
+			</td>
+			<td>{{ quiz.questions.length}}</td>
+			<td></td>
+			<td>{{ quiz.date_start  | badDateToIso | date: 'dd.MM.yyyy'}}</td>
+			<td>{{ quiz.date_end  | badDateToIso | date: 'dd.MM.yyyy'}}</td>
+			<td>
+				<button class="btn btn-success btn-xs" ng-if="quiz.is_online == 1" ng-click="setOnline(quiz, 0)"><i class="fa fa-check"></i></button>
+				<button class="btn btn-danger btn-xs" ng-if="quiz.is_online == 0" ng-click="setOnline(quiz, 1)"><i class="fa fa-times"></i></button></td>
+			<td>
+				<button class="btn btn-info btn-xs"><a ui-sref="quizdetails({id: quiz.id})" style="color:#fff;"><i class="fa fa-pencil"></i></a></button>
+				<button class="btn btn-danger btn-xs" ng-click="deleteQuiz(quiz)"><i class="fa fa-times"></i></button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>

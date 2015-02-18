@@ -1,0 +1,88 @@
+<div class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog wide">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="$hide()">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Dateien hochladen</h4>
+			</div>
+			<form role="form" name="filesForm" novalidate ng-submit="addFiles(filesForm.$valid)">
+				<div class="modal-body">
+					<div class="content-box">
+						<div ng-show="uploader.isHTML5">
+						 <div nv-file-drop="" uploader="uploaderFiles">
+							<div class="well my-drop-zone" uploader="uploaderFiles" nv-file-over=""> Dateien hierherziehen.. </div>
+							</div>
+						</div>
+						<input type="file" multiple="" uploader="uploaderFiles" nv-file-select="">
+					</div>
+					<div class="content-box" ng-if="uploaderFiles.queue.length > 0">
+						<br> <br>
+						<table class="table">
+							<thead>
+								<tr>
+									<th width="30%">Name</th>
+									<th ng-show="uploaderFiles.isHTML5">Größe</th>
+									<th ng-show="uploaderFiles.isHTML5">Fortschritt</th>
+									<th>Status</th>
+									<th width="240px">Aktion</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in uploaderFiles.queue">
+									<td>
+										
+										<strong>{{ item.file.name }}</strong>
+									</td>
+									<td ng-show="uploaderFiles.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+									<td ng-show="uploaderFiles.isHTML5">
+										<div class="progress" style="margin-bottom: 0;">
+											<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+										</div>
+									</td>
+									<td class="text-center">
+										<span ng-show="item.isSuccess" title="Erfolgreich"><i class="glyphicon glyphicon-ok"></i></span>
+										<span ng-show="item.isCancel" title="Abgebrochen"><i class="glyphicon glyphicon-ban-circle"></i></span>
+										<span ng-show="item.isError" title="Fehlgeschlagen"><i class="glyphicon glyphicon-remove"></i></span>
+									</td>
+									<td>
+										<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+											<span class="glyphicon glyphicon-upload"></span> Hochladen
+										</button>
+										<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+											<span class="glyphicon glyphicon-ban-circle"></span> Abbrechen
+										</button>
+										<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+											<span class="glyphicon glyphicon-trash"></span> Löschen
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div>
+							<div>
+								Fortschritt Warteschlange:
+								<div class="progress" style="">
+									<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploaderFiles.progress + '%' }"></div>
+								</div>
+							</div>
+							<button type="button" class="btn btn-success btn-s" ng-click="uploaderFiles.uploadAll()" ng-disabled="!uploaderFiles.getNotUploadedItems().length">
+								<span class="glyphicon glyphicon-upload"></span> Alle Hochladen 
+							</button>
+							<button type="button" class="btn btn-warning btn-s" ng-click="uploaderFiles.cancelAll()" ng-disabled="!uploaderFiles.isUploading">
+								<span class="glyphicon glyphicon-ban-circle"></span> Alle Abbrechen
+							</button>
+							<button type="button" class="btn btn-danger btn-s" ng-click="uploaderFiles.clearQueue()" ng-disabled="!uploaderFiles.queue.length">
+								<span class="glyphicon glyphicon-trash"></span> Alle Löschen
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+					<button type="submit" class="btn btn-success" ng-disabled="filesForm.$invalid || uploaderFiles.queue.length == 0 || filesForm.length == 0">Hinzufügen</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

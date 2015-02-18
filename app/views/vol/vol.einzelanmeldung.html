@@ -1,0 +1,147 @@
+<div class="article">
+	<h1 class="article_main_header">{{ 'WORKSHOPS' | translate }} &raquo; {{ 'SOLO_REGISTRATION' | translate }}</h1>
+</div>
+<div class="grid_3" style="margin:0; margin-right:20px">
+	<div id="article_functions_menu" class="grid_3" ng-if="selectedClass" stick>
+		<div style="display: none;" id="gallery_menu" class="hide">
+			<div id="gallery_menu_title">
+				<div style="padding:10px">
+					{{ 'GALLERY' | translate }}
+				</div>
+			</div>
+			<div id="gallery_menu_content">
+				<div class="os-icon image-icon left" style="margin:10px"></div>
+			</div>
+		</div>
+		<div id="files_menu" class="files_list anim" ng-if="files.length">
+				<div class="gallery_menu_title">
+					{{ 'MATERIALS' | translate }}
+				</div>
+				<div class="files_menu_content">
+					<ul>
+						<li ng-repeat="file in files" class="anim" >
+							<a target="_blank" href="http://www.openscience.or.at/{{file.url}}" download="{{file.name}}" analytics-on="click" analytics-event="Download" analytics-category="{{setArticle.section.title}}" analytics-label="{{file.name}}">
+							<div class="file_download" title="{{ file.name +' - '+ file.filetype }}">
+								<span class=" os-icon download-icon"></span>
+								<span class="file_name">{{ file.name}}</span>
+							</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+		</div>
+		<div class="interact_menu" class="anim" ng-if="selectedClass.id">
+			<ul class="horizontal_list" >
+				<li>
+					<div class="os-icon icon-facebook left" title="Auf Facebook teilen..." facebook article="selectedClass"></div>
+				</li>
+				<li>
+						<div class="os-icon icon-twitter2 left" title="Teile auf Twitter..." twitter></div>
+					</li>
+					<li>
+						<div class="os-icon icon-googleplus2 left " title="Teilen auf Google+..." googleplus ></div>
+					</li>
+				<li>
+					<div class="os-icon mail-icon left" title="Als E-Mail versenden..." ng-click="sendToEmail(selectedClass)"></div>
+				</li>
+				<li>
+					<div class="os-icon print-icon left" title="Inhalt als PDF herunterladen..."></div>
+				</li> 
+				<li ng-if="files.length">
+					<div class="os-icon download-icon left" title="Alle Anhänge herunterladen..."></div>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="customer_form bordered" style="border:1px solid #fad7dc;" ng-class="{'grid_6': selectedClass, 'grid_9': !selectedClass}">
+	<form id="solo_booking" name="einzelanmeldungForm" ng-submit="sendAnmeldung(einzelanmeldungForm.$valid)" novalidate >
+		<div class="big_select">
+			<h2 ng-if="classes.length == 0">{{ 'LOADING_COURSE' | translate }}...</h2>
+			<select ng-model="selectedClass" required ng-options="class.title for class in classes" ng-show="classes.length">
+				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} - </option>
+			</select>
+			<!--<select ng-if="lang == 'en'" ng-model="selectedClass" required ng-options="class.title_en for class in classes" ng-show="classes.length">
+				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} - </option>
+			</select>-->
+		</div>
+		<div class="article_thumb" style="margin-top:20px" ng-if="selectedClass">
+			<div class="thumb_text">
+					<div ng-if="lang == 'de' || selectedClass.text_en == '' || selectedClass.text_en == '<p>​</p>'" class="article_main_content" ng-bind-html="selectedClass.text"></div>
+			<div ng-if="lang == 'en' && selectedClass.text_en != '' && selectedClass.text_en != '<p>​</p>'" class="article_main_content" ng-bind-html="selectedClass.text_en"></div>
+
+				<div><span class="min-label">{{ 'FEES' | translate }}:</span> {{ selectedClass.prize | currency : '€ '}} p.P</div>
+				<div><span class="min-label">{{ 'DURATION' | translate }}:</span> {{selectedClass.duration }} {{ 'HOURS' | translate }}</div>
+			</div>
+		</div>
+		<div ng-show="selectedClass" class="anim">
+			<div class="greyed_title" ng-if="dates.length > 0">
+				<h5 id="choose_date">1. {{ 'SELECT_DATE' | translate }}:</h5>
+			</div>
+			<div class="content_box">
+				<div class="eventStart">
+					<p ng-if="loading.dates">{{ 'SEARCHING_TIME_SLOT' | translate }}...</p>
+					<h4 ng-if="!loading.dates && !dates.length">{{ 'NOT_AVAILABLE' | translate }}</h4>
+					<select ng-show="dates.length > 0 " ng-model="selectedDate" required  ng-options="termin.date for termin in dates track by termin.event_id">
+							<option value="" >- {{ 'WHEN' | translate }} - </option>
+						</select>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-show="selectedDate.places_left > 0" class="anim">
+			<div class="greyed_title">
+				<h5 id="choose_places">2. {{ 'SELECT_PARTICIPANTS' | translate }}:</h5>
+			</div>
+			<div class="content_box">
+				<div class="eventStart">
+					<select  ng-model="selectedPlaces" required ng-options="n for n in [] | range:1:selectedDate.places_left">
+						<option value=""> - {{ 'NUMBER_PARTICIPANTS' | translate }}? -</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div ng-show="selectedClass && dates.length > 0 && selectedPlaces > 0" class="anim">
+			<div class="greyed_title">
+				<h5 id="fill_form">3. {{ 'FILL_DETAILS' | translate }}:</h5>
+			</div>
+			<div class="content_box field_list">
+				<div >
+					<label>{{ 'FIRSTNAME' | translate }}</label>
+					<input type="text" name="firstname" name="name" required ng-model="customer.firstname">
+				</div>
+				<div >
+					<label>{{ 'LASTNAME' | translate }}</label>
+					<input type="text" name="lastname" name="nachname" required ng-model="customer.lastname">
+				</div>
+				<div >
+					<label>{{ 'ADDRESS' | translate }}</label>
+					<input type="text" name="street" ng-model="customer.street">
+				</div>
+				<div >
+					<label>{{ 'ZIP' | translate }}</label>
+					<input type="text" style="width:67px" name="plz" ng-model="customer.zip">
+					<div class="seperator">/</div>
+					<input type="text" style="width:202px" name="ort" ng-model="customer.city">
+				</div>
+				<div >
+					<label>{{ 'PHONE' | translate }}</label>
+					<input type="text" name="telefon" ng-model="customer.phone">
+				</div>
+				<div>
+					<label>{{ 'MAIL' | translate }}</label>
+					<input type="email" name="email" required ng-model="customer.email">
+				</div>
+				<div>
+					<label>{{ 'REMARKS' | translate }}</label>
+					<textarea style="height: 60px;" ng-model="customer.text" ></textarea>
+				</div>
+				<div >
+					<button id="sendSoloRequest" class="right btn btn-primary" ng-disabled="einzelanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
+				</div>
+				<div class="row margin_20" id="message"></div>
+			</div>
+		</div>
+	</form>
+</div>

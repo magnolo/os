@@ -1,0 +1,58 @@
+<div class="full-fixed spaced">
+    <div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="admin-header container-fluid">
+        <h2 class="col-md-6">Veranstaltungen</h2>
+        <div class="menu col-md-6">
+            <ul>
+                <li>
+
+                    <button class="btn btn-default" ng-click="newEvent()"><i class="fa fa-plus"></i>
+                    </button>
+
+                </li>
+                <li>
+                    <input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <table class="table table-hover" bs-table>
+        <thead>
+            <th>Datum</th>
+            <th>Labor</th>
+            <th>Von</th>
+            <th>Bis</th>
+            <!--<th>Dauer</th>-->
+            <th>Titel</th>
+            <th>Art</th>
+            <th>von</th>
+            <th>Buchungen</th>
+            <th style="width:65px"></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="event in events | filter:search ">
+                <td>{{ event.date_start | amDateFormat:'DD.MM.YYYY' }}</td>
+                <td>{{ event.labor_id }}</td>
+                <td>{{ event.date_start | amDateFormat:'HH:mm'}}</td>
+                <td>{{ event.end | amDateFormat:'HH:mm' }}</td>
+                <!--<td>{{ event.class.duration }}</td>-->
+                <td>{{ event.class.title }}</td>
+                <td>{{ event.type }}</td>
+                <td>{{ event.company }}
+                    <br><small>{{event.firstname}} {{event.lastname}}</small>
+                </td>
+                <td>{{ event.booked || 0 }}</td>
+                <td>
+                    <button ng-if="event.groups == 1" class="btn btn-info btn-xs" ui-sref="event({id:event.id, type:'group'})"><i class="fa fa-eye"></i>
+                    </button>
+                    <button ng-if="event.solo == 1" class="btn btn-info btn-xs" ui-sref="event({id:event.id, type:'solo'})"><i class="fa fa-eye"></i>
+                    </button>
+                    <button ng-if="event.type == 'Sperrtermin'" class="btn btn-info btn-xs" ui-sref="event({id:event.id, type:'closed'})"><i class="fa fa-eye"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,290 @@
+@import 'reset.css';
+@import 'text.css';
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+
+body {
+  background: #fff;
+  color: #888888;
+  font-family:'LetterGothicTextOT-Light';
+  -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+h1 { 
+
+  
+}
+
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 ,
+.thumb_heading{
+  font-family:'conduit_itcregular';
+}
+
+a {
+  color: #06c;
+  -webkit-transition: all 150ms ease;
+	-moz-transition: all 150ms ease;
+	-ms-transition: all 150ms ease;
+	-o-transition: all 150ms ease;
+	transition: all 150ms ease;
+}
+
+a:hover {
+  color: #112F56;
+}
+
+small {
+  font-size: 11px;
+}
+input{
+	font-family:'LetterGothicTextOT';
+}
+q:before{
+	content:"\201E";
+}
+q:after{
+	content:"\201C";
+}
+/* `Misc Classes
+----------------------------------------------------------------------------------------------------*/
+.hide{
+	display:none;
+}
+.show{
+	display:block;
+}
+.align_center {
+  text-align: center;
+}
+
+.align_right {
+  text-align: right;
+}
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+.fixed{
+	/*position:fixed;*/
+}
+.pointer{
+	cursor:pointer;
+}
+.absolute{
+	position:absolute;
+}
+.relative{
+	position:relative;
+}
+.padding_5{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.padding_10{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.padding_20{
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.margin_5{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.margin_10{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.margin_20{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.mb20{
+	margin-bottom:20px;
+}
+.white{
+	background-color:#fff;
+}
+.bottom_grey{
+	border-bottom:1px solid #c4c4c4;
+}
+
+.grey_links a{
+	color:#888888;
+	
+}
+.greyed{
+	color:#BEBEBE  !important;
+	background-color:#fff !important;
+}
+::-webkit-input-placeholder {
+   color: #888888;
+   font-family:'LetterGothicTextOT';
+}
+
+:-moz-placeholder { 
+   color: #888888;  
+   font-family:'LetterGothicTextOT';
+}
+
+::-moz-placeholder {  
+   color: #888888;  
+   font-family:'LetterGothicTextOT';
+}
+
+:-ms-input-placeholder {  
+   color: #b1b1b1;
+	font-family:'LetterGothicTextOT';   
+}
+.row{
+	width:100%;
+	float:left;
+	margin:0;
+}
+.full{
+	width:100%;
+}
+.percent80{
+	width:80%;
+}
+.conduit{
+	font-family:'conduit_itcregular';
+}
+.letter{
+	font-family:'LetterGothicTextOT';
+}
+.background_center{
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+.horizontal_list{
+	display: inline-block;
+}
+.horizontal_list li{
+	display: inline-block;
+	background-repeat:no-repeat;
+	background-position: right center;
+}
+.list_trenner{
+	margin-bottom:0px;
+}
+.list_trenner li{
+	background-image:url(../images/trenner_small.png);
+	margin-left: 10px;
+    padding-right: 18px;
+}
+.list_trenner li:last-child{
+	padding-right:0px;
+	background-image:none;
+}
+.double_margin{
+	margin:0 10px;
+}
+.no_border{
+	border:0px !important;
+}
+label{
+	font-weight: normal;
+}
+/* `Data Table
+----------------------------------------------------------------------------------------------------*/
+
+.data,
+.data th,
+.data td {
+  border-style: solid;
+  border-color: #ddd;
+}
+
+.data {
+  border-width: 0 1px 1px;
+  width: 100%;
+}
+
+.data caption {
+  padding: 0 10px 5px;
+  text-transform: uppercase;
+}
+
+.data th,
+.data td {
+  border-top-width: 1px;
+  padding: 5px 10px;
+}
+
+.data th {
+  white-space: nowrap;
+}
+
+.data thead th {
+  background: #eee;
+  font-weight: bold;
+  text-shadow: #fff 0 1px 0;
+}
+
+.data tbody th {
+  width: 1px;
+}
+
+.data tr th:first-child {
+  text-align: right;
+}
+
+/* `Code
+----------------------------------------------------------------------------------------------------*/
+
+pre,
+code {
+  font-size: 12px;
+  font-family: Menlo, Courier, monospace;
+}
+
+pre,
+.notice {
+  background: #ffe;
+  border: 1px solid;
+  border-color: #eed #ccb #bba #ddc;
+  overflow: auto;
+  padding: 10px 0 10px 10px;
+}
+
+* html pre {
+  overflow: hidden;
+  width: 97%;
+}
+
+code {
+  background: #ff9;
+  padding: 0 2px;
+}
+
+.mb10{
+	margin-bottom:10px;
+	display: inline-block;
+	width: 100%;
+}
+.ml0{
+	margin-left:0 !important;
+}
+.mr0{
+	margin-right: 0 !important;
+}

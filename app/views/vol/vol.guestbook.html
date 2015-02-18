@@ -1,0 +1,54 @@
+<div class="article">
+	<h1 class="article_main_header">{{ 'GUESTBOOK' | translate}}</h1>
+</div>
+<form class="customer_form" novalidate name="gbForm" style="border:0px">
+	<div id="gb_interact" class="grid_6 "  >	
+		<h2 style="font-size:21px;color:#3ADC31;margin-left:16px;">{{ 'NEW_ENTRY' | translate }}</h2>
+			<div style="margin-bottom:5px;border-bottom:1px solid #333" class="content_box field_list">
+				<div class="row">
+					<label>Name</label>
+					<input type="text"  ng-model="gb.name" required >
+				</div>
+				<div class="row">
+					<label>{{ 'MAIL' | translate }}</label>
+					<input type="email"  required ng-model="gb.email">
+				</div>
+				<div class="row">
+					<label>{{ 'SUBJECT' | translate }}</label>
+					<input type="text" ng-model="gb.title">
+				</div>
+				<div class="row">
+					<label>{{ 'REMARKS' | translate }}</label>
+					<textarea required style="height: 130px;" ng-model="gb.text"></textarea>
+				</div>
+				<div class="row">
+					<label>&nbsp;</label>
+					<input type="checkbox" style="width:20px;padding-left:0px;margin-left:0px" id="newsletter" ng-model="gb.newsletter" value="1" checked="checked"> Newsletter abonnieren
+				</div>
+				<div class="row" style="padding-right:8%">
+					<button type="submit" class="right btn btn-primary" ng-disabled="gbForm.$invalid" >» {{ 'POST' | translate }}</button>
+				</div>
+				<div class="row margin_20" id="message" ></div>
+			</div>
+		
+	</div>
+	<div class="grid_3 content_box" style="text-align: center; margin-top: 44px; background: none repeat scroll 0% 0% rgb(250, 215, 220); color: rgb(163, 16, 49);">
+	
+		<h3>{{ 'SECURITY_QUESTION' | translate }}:</h3>
+		<div>
+			<div class="captcha" style="font-size: 2em;margin-bottom: 0.5em;display:inline-block">
+		         <span>{{numCapOne}} + {{numCapTwo}} =</span>
+		     </div>
+		     <input type="text" ng-model="captcha" captcha name="captcha" required style="display:inline-block;width:30%;margin:10px">
+	     </div>
+	     <div ng-show="gbForm.captcha.$dirty && gbForm.captcha.$error.captcha">
+	      {{ 'SECURITY_WRONG' | translate }}
+	     </div>
+	</div>
+</form>
+	<div class="grid_6 entry underlined anim" ng-repeat="entry in entries">
+		<h2 >{{entry.name}} // {{entry.date_created | badDateToIso | date: 'dd/MM/yyyy' }}</h2>
+		<h5 style="color:#333;font-weight:normal;" ng-if="entry.title">{{ entry.title}}</h5>
+		<div ng-bind-html="entry.text"></div>
+	</div>
+

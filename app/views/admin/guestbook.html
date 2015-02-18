@@ -1,0 +1,45 @@
+<div class="full-fixed spaced">
+<div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+	<i class="fa fa-times"></i>
+</div>
+<div class="admin-header container-fluid">
+	<h2 class="col-md-6">Gästebuch</h2>
+	<div class="menu col-md-6">
+		<ul>
+			<li>
+				<input class="form-control" type="search" ng-model="search" placeholder="Suchen..." />
+			</li>
+			
+		</ul>
+	</div>
+</div>
+
+<table class="table table-hover" bs-table  >
+	<thead>
+		<th></th>
+		<th>Datum</th>
+		<th>Name</th>
+		<th>Titel</th>
+		<th>IP</th>
+		<th>Aktiv</th>
+		<th style="width:65px"></th>
+	</thead>
+	<tbody>		
+		<tr ng-repeat="entry in guestbook | filter:search ">
+			<td ng-click="showEntry(entry)"><button class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button></td>
+			<td >{{ entry.date_created  | badDateToIso | date: 'dd.MM.yyyy HH:mm' }}</td>
+			<td>{{ entry.name }}</td>
+			<td>{{ entry.title }}</td>
+			<td>{{ entry.ip }}</td>
+			<td ng-click="toggleActive(entry)">
+				<button ng-if="entry.active == 1" class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+				<button ng-if="entry.active == 0" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
+			</td>
+			<td>
+				<button class="btn btn-danger btn-xs" ng-click="deleteEntry(entry)"><i class="fa fa-times"></i></button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>

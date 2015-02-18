@@ -1,0 +1,159 @@
+<div class="modal" ng-class="event.type" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span ng-if="event.type == 'group'">Gruppentermin</span>
+                    <span ng-if="event.type == 'solo'">Einzeltermin</span>
+                    <span ng-if="event.type == 'closed'">Sperrtermin</span>
+                    - {{event.start | amCalendar}}  
+                </h4>
+            </div>
+            <form class="form-horizontal" name="eventForm" ng-submit="createEvent(eventForm.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Typ</label>
+                        <div class="col-sm-10">
+                            <select ng-model="event.type" class="form-control" required>
+                                <option value="solo">Einzeltermin</option>
+                                <option value="group">Gruppentermin</option>
+                                <option value="closed">Sperrtermin</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="event.type == 'closed'">
+                        <label class="col-sm-2 control-label">Ganztags</label>
+                        <div class="col-sm-10">
+                            <btn-switch ng-model="event.full_day"></btn-switch>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="event.type != 'closed'">
+                        <label class="col-sm-2 control-label">Kurs</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="event.class_id" required ng-options="class.id as class.title for class in classes"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Wann</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="event.start" data-date-type="date" required data-min-date="today" bs-datepicker class="form-control" />
+                        </div>
+                        <div class="col-sm-5" ng-hide="event.type == 'closed' && event.full_day">
+                            <input type="text" ng-model="event.start" bs-timepicker required class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-hide="event.type == 'closed' && event.full_day">
+                        <label class="col-sm-2 control-label">Bis</label>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="event.end" ng-disabled="event.type != 'closed'" data-date-type="date" data-min-date="today" bs-datepicker class="form-control" data-min-date="event.start" />
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" ng-model="event.end" data-min-time="event.start" ng-disabled="event.type != 'closed'" bs-timepicker class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Wo</label>
+                        <div class="col-sm-10">
+                            <select ng-model="event.labor_id" class="form-control" required>
+                                <option value="1">Labor 1 [20 Plätze]</option>
+                                <option value="2">Labor 2 [30 Plätze]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger anim col-sm-10 col-sm-offset-2" ng-if="dateError && fetched" role="alert">Der gewählte Termin ist nicht frei!</div>
+                    <div ng-if="event.type == 'group'">
+                        <h2 class="col-sm-offset-2">Wer</h2>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Vorname</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="event.firstname" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nachname</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="event.lastname" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Institut</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="event.company" required class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Adresse</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="event.street" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">PLZ / Ort</label>
+                            <div class="col-sm-2">
+                                <input type="text" ng-model="event.zip" class="form-control" />
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="event.city" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Telefon</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="event.phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">E-Mailadresse</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="event.email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nachricht/Notiz</label>
+                            <div class="col-sm-10">
+                                <textarea ng-model="event.text" class="form-control" />
+                            </div>
+                        </div>
+                        <h2 class="col-sm-offset-2">Wieviel</h2>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Plätze</label>
+                            <div class="col-sm-10">
+                                <select ng-if="event.labor_id == 1" required class="form-control" ng-size="10" ng-model="event.booked">
+                                    <option ng-repeat="i in totalPlaces track by $index" value="{{$index+1}}">{{$index+1}}</option>
+                                </select>
+                                <select ng-if="event.labor_id == 2" required class="form-control" ng-size="10" ng-model="event.booked">
+                                    <option ng-repeat="i in totalPlaces30 track by $index" value="{{$index+1}}">{{$index+1}}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="event.type == 'closed'">
+                        <label class="col-sm-2 control-label">Titel</label>
+                        <div class="col-sm-10">
+                            <input type="text" ng-model="event.title" required class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="event.type == 'closed'">
+                        <label class="col-sm-2 control-label">Beschreibung</label>
+                        <div class="col-sm-10">
+                            <textarea ng-model="event.text" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-if="event.id" class="btn btn-info" ng-click="gotoEvent(event)">Anzeigen</button>
+                    <button type="button" ng-if="event.id" class="btn btn-danger">Löschen</button>
+                    <button type="submit" ng-if="!event.id" class="btn btn-success" ng-disabled="eventForm.$invalid || dateError">Erstellen</button>
+                    <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

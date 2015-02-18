@@ -1,0 +1,49 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content row">
+      <div class="modal-header row">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Gästebucheintrag</h4>
+      </div>
+      <form role="form" name="glossarForm" novalidate ng-submit="saveGlossar(glossarForm.$valid)">
+        <div class="modal-body row">
+            <div class="form-group col-md-12">
+                <label>Name</label>
+                 <h3>{{ entry.name}}</h3>
+            </div>
+            <div class="form-group col-md-12">
+                <label>Titel</label>
+                <h3>{{ entry.title || '-'}}</h3>
+            </div>
+             <div class="form-group col-md-6">
+                <label>Datum</label>
+                <p>{{ entry.date_created | badDateToIso | date: 'dd.MM.yyyy HH:mm'}}</p>
+            </div>
+             <div class="form-group  col-md-6">
+                <label>E-Mail</label>
+                <p>{{ entry.email || '-'}}</p>
+            </div>
+             <div class="form-group  col-md-6">
+                <label>Webseite</label>
+                <p>{{ entry.web || '-'}}</p>
+            </div>
+             <div class="form-group  col-md-6">
+                <label>IP</label>
+                <p>{{ entry.ip || '-'}}</p>
+            </div>
+            <div  class=" form-group col-md-12">
+                <label>Text</label>
+                <div ng-bind-html="entry.text" style="font-size:1.2em"></div>
+            </div>
+        
+          </div>
+          <div class="modal-footer row">
+            <button ng-if="entry.active == 0" ng-click="toggleActive(entry)" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;Online schalten</button>
+            <button ng-if="entry.active == 1" ng-click="toggleActive(entry)" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Offline schalten</button>
+            <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+           
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

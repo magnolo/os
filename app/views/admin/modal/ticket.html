@@ -1,0 +1,80 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog wide">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Teilnehmer</h4>
+            </div>
+            <form role="form" name="ticketForm" ng-submit="saveTicket(ticketForm.$valid)" novalidate>
+                <div class="modal-body row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Plätze</label>
+                            <input type="number" class="form-control" ng-disabled="!inFuture()" required ng-model="ticket.places" />
+                        </div>
+                        <div class="form-group">
+                            <label>Nachname</label>
+                            <input type="text" ng-model="ticket.lastname" ng-disabled="!inFuture()" required class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Vorname</label>
+                            <input type="text" ng-model="ticket.firstname" required class="form-control" ng-disabled="!inFuture()" />
+                        </div>
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <input type="text" ng-model="ticket.street" class="form-control" ng-disabled="!inFuture()" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Plz, Ort</label>
+                            <div class="clear"></div>
+                            <input type="text" style="width:24%;display:inline" ng-model="ticket.zip" class="form-control" ng-disabled="!inFuture()" />
+                            <input type="text" style="width:75%;display:inline" ng-model="ticket.city" class="form-control" ng-disabled="!inFuture()" />
+                        </div>
+                        <div class="form-group">
+                            <label>E-Mail</label>
+                            <input type="text" ng-model="ticket.email" class="form-control" ng-disabled="!inFuture()" />
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="text" ng-model="ticket.phone" class="form-control" ng-disabled="!inFuture()" />
+                        </div>
+                        <div class="form-group">
+                            <label>Fax</label>
+                            <input type="text" ng-model="ticket.fax" class="form-control" ng-disabled="!inFuture()" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Was</label>
+                            <h5>{{event.class.title}}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>Wann</label>
+                            <h5>{{event.start | amDateFormat:'dddd DD.MM.YYYY, HH:mm'}}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>Bis</label>
+                            <h5>{{event.end | amDateFormat:'dddd DD.MM.YYYY, HH:mm'}}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label>Plätze verfügbar</label>
+                            <h5>{{event.labor.places - places}}</h5>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kosten</label>
+                            <h5>{{(ticket.places * event.class.prize) || 0 | currency:'€ '}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-if="ticket.id && inFutuer()" ng-click="deleteTicket(ticket)">Löschen</button>
+                    <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+                    <button type="submit" class="btn btn-success" ng-if="inFuture()" ng-disabled="ticketForm.$invalid">Speichern</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

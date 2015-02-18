@@ -1,0 +1,28 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Glossareintrag</h4>
+      </div>
+      <form role="form" name="glossarForm" novalidate ng-submit="saveGlossar(glossarForm.$valid)">
+        <div class="modal-body">
+        
+            <div class="form-group">
+                <label>Wort</label>
+                <input type="text" class="form-control" required ng-model="glossar.word" />
+            </div>
+            <div class="form-group">
+                <label>Definition</label>
+                <textarea ng-model="glossar.text" class="form-control" required ></textarea>
+            </div>
+        
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+            <button type="submti" class="btn btn-success" ng-disabled="glossarForm.$invalid">Speichern</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

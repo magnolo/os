@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Bilder // <small >{{article.title}}</small></h4>
+      </div>
+      
+        <div class="modal-body">
+         
+            <button class="btn btn-success" ng-click="openImagesModal(true)">Neue Bilder</button>
+            <br><br>
+     
+
+            <div ng-if="article.images.length > 0" class="admin-image-container">
+                <div ng-repeat="image in article.images" class="anim admin-image-thumb">
+                    <img ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{image.url.replace('s_150', 'm_650')}}&amp;w=180&amp;q=100" />
+                    <div class="image-menu">
+                        <ul>
+                            <li ng-click="removeImage(image)">
+                                <i class="fa fa-times"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+          </div>
+    
+      </div>
+    </div>
+  </div>

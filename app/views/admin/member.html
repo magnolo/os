@@ -1,0 +1,113 @@
+<div class="full-fixed spaced">
+<div class="closer" ng-click="goto('home')" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+	<i class="fa fa-times"></i>
+</div>
+
+<div class="admin-header container-fluid">
+	<h2 class="col-md-8"><a ui-sref="team()">Team</a> // {{member.firstname}} {{member.lastname}}</h2>
+	<div class="menu col-md-4">
+		<ul>
+			<li>
+				<button type="submit" class="btn btn-success" ng-click="saveMember(memberForm.$valid)" ng-disabled="memberForm.$invalid">Speichern</button>
+			</li>
+			<li>
+				<button type="button" class="btn btn-default" ng-click="changeLanguage('de')" ng-class="{'btn-info': lang == 'de'}" >DEU</button>
+				<button type="button" class="btn btn-default" ng-click="changeLanguage('en')" ng-class="{'btn-info': lang == 'en'}" >ENG</button>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="container" style="padding-top:20px">
+	<div class="col-md-5">
+		<div class="article_pre_image">
+		<img  ng-if="member.image_id" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{member.image.url.replace('s_150', 'm_650')}}&amp;w=460&amp;q=100" class="article_main_image img-thumbnail">
+		<img ng-if="!member.image_id || member.image_id == 0" ng-src="http://placehold.it/460x250&text=Kein+Bild" class="article_main_image img-thumbnail">
+		<div id="image-menu">
+			<ul>
+				<li ng-click="openImagesModal(false)" title="Neues Bild hochladen...">
+					<i class="fa fa-upload"></i>
+				</li>
+				<li ng-if="member.image_id" title="Bild löschen..." ng-click="deleteImage()">
+					<i class="fa fa-times"></i>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	<form name="memberForm" novalidate ng-submit="saveMember(memberForm.$valid)"> 
+	<div class="col-md-5">
+		<div class="form-group">
+			<label>Abteilung</label>
+			<select class="form-control" ng-options="section.id as section.title for section in sections" ng-model="member.section_id"></select>
+		</div>
+		<div class="form-group">
+			<label>Bereich/Aufgabe</label>
+			<input type="text"  class="form-control" ng-model="member.job" />
+		</div>
+		<div class="form-group">
+			<label>Titel</label>
+			<input type="text"  class="form-control" ng-model="member.title" />
+		</div>
+		<div class="form-group">
+			<label>Vorname</label>
+			<input type="text" required class="form-control" ng-model="member.firstname" />
+		</div>
+		<div class="form-group">
+			<label>Nachname</label>
+			<input type="text" required class="form-control" ng-model="member.lastname" />
+		</div>
+		<div class="form-group">
+			<label>E-Mail</label>
+			<input type="email"  class="form-control" ng-model="member.mail" />
+		</div>
+		<div class="form-group">
+			<label>Telefon</label>
+			<input type="text"  class="form-control" ng-model="member.phone" />
+		</div>
+		<div class="form-group">
+			<label>Mobil</label>
+			<input type="text"  class="form-control" ng-model="member.mobile" />
+		</div>
+		<div class="form-group">
+			<label>Fax</label>
+			<input type="text"  class="form-control" ng-model="member.fax" />
+		</div>
+		<div class="form-group">
+			<label>Strasse</label>
+			<input type="text"  class="form-control" ng-model="member.street" />
+		</div>
+		<div class="form-group" style="display:inline-block; width:100%">
+			<label>PLZ, Ort</label>
+			<div class="row">
+			  <div class="col-md-3 no-pad">
+			   <input type="text"  class="form-control" ng-model="member.zip" />
+			  </div>
+			  <div class="col-xs-9" style="padding-right:0">
+			    <input type="text"  class="form-control" ng-model="member.city" />
+			  </div>
+	
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-2 img-thumbnail" style="margin-top:0px;padding-top: 10px;padding-bottom:10px">
+		<label> Sichtbar als</label>
+		<div ng-repeat="section in sections">
+			<btn-switch ></btn-switch> {{ section.title}}
+		</div>
+	</div>
+	<div class="col-md-5">
+		 
+	</div>
+	<div class="col-md-5">
+		<div class="form-group" ng-if="lang == 'de'">
+			<label>Beschreibung</label>
+			<div froala="" ng-model="member.text"></div>
+		</div>
+		<div class="form-group" ng-if="lang == 'en'">
+			<label>Description</label>
+			<div  froala="" ng-model="member.text_en"></div>
+		</div>
+	</div>
+	</form>
+</div>

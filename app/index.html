@@ -1,0 +1,469 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="osApp">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title update-title>Open Science</title>
+    <meta name="description" content="">
+    <meta name="fragment" content="!">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/x-icon" href="favicon_os.ico" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.min.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.min.css" />
+    <link rel="stylesheet" href="bower_components/magnific-popup/dist/magnific-popup.css" />
+    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_editor.min.css" />
+    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_content.min.css" />
+    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_style.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css" />
+    <link rel="stylesheet" href="bower_components/ng-sortable/dist/ng-sortable.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/redactor/redactor/redactor.css" />
+    <link rel="stylesheet" href="bower_components/glDatePicker/styles/glDatePicker.os.css" />
+    <link rel="stylesheet" href="bower_components/glDatePicker/styles/glDatePicker.default.css" />
+    <link rel="stylesheet" href="bower_components/angular-autocomplete/style/autocomplete.css" />
+    <link rel="stylesheet" href="bower_components/chosen/chosen.min.css" />
+    <link rel="stylesheet" href="bower_components/imageselect/imgareaselect-default.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+
+<body ng-controller="IndexCtrl" startup ng-class="section" id="body" ng-cloak class="waiting-for-angular">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+    <div id="init-panel">
+        <div class="spinner os">
+            <div class="cube1"></div>
+            <div class="cube2"></div>
+        </div>
+    </div>
+    <div class="all">
+        <header stickhead id="header" offset='80' class="grey_links" style="z-index:4" ng-class="{'stop': stop}">
+
+            <div class="container_12" style="overflow: hidden;position:relative">
+                <div class="grid_4" id="logo" login>
+                    <div id="os-logo" ng-click="gotoSection()"></div>
+                    <div id="os-trenner"></div>
+                </div>
+                <div class="grid_8" id="question" ng-show="question.question" ng-cloak>
+                    <div>
+                        <q><a ui-sref="section.categorie.article({section:question.section.name, categorie:question.categorie.name, article: question.name})">{{ question.question }}</a>
+                        </q>
+                        <div class="weiter"><a ui-sref="section.categorie.article({section:question.section.name, categorie:question.categorie.name, article: question.name})">&raquo; zum Artikel</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="languagebar">
+                    <ul class="horizontal_list">
+                        <li ng-class="{'active': lang == 'de'}">
+                            <a class="pointer" ng-click="changeLanguage('de')">de</a>
+                        </li>
+                        <li ng-class="{'active': lang == 'en'}">
+                            <a class="pointer" ng-click="changeLanguage('en')">en</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container_12 padding_5">
+                <div class="grid_3 push_9 align_center" id="socialbar">
+                    <div class="left">
+                        <a ng-click="showNewsletterModal()" class="pointer">Newsletter</a>
+
+                    </div>
+                    <a ng-attr-href="{{fbLink}}" target="_blank">
+                        <div class="os-icon icon-facebook left"></div>
+                    </a>
+
+                    <a href="#">
+                        <div class="os-icon plus-icon left"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="container_12 white bottom_grey padding_5">
+                <div class="grid_9 openscience" id="searchbar">
+                    <div class="os-icon search-icon left" ng-click="goSearch(search)"></div>
+                    <div class="os-icon line-icon left"></div>
+                    <autocomplete attr-placeholder="Suche nach Themen oder Begriffen" class="grid_8" ng-model="search" data="searchresult" on-select="selectSearch" on-type="updateSearchresult" on-enter="goSearch"></autocomplete>
+                </div>
+                <div id="smalling" class="grid_3 align_center">
+                    <ul class="horizontal_list list_trenner" ng-if="section != 'vol'">
+                        <li>
+                            <a id="ueber_link" ui-sref="uns" translate-cloak>{{ 'ABOUT_US' | translate }}</a>
+                        </li>
+                        <li>
+                            <a id="faq_link" ui-sref="uns.impressum" translate-cloak>{{ 'IMPRESSUM' | translate }}</a>
+                        </li>
+                        <li>
+                            <a id="contact_link" ui-sref="uns.kontakt" translate-cloak>{{ 'CONTACT' | translate }}</a>
+                        </li>
+                    </ul>
+                    <ul class="horizontal_list list_trenner" ng-if="section == 'vol'">
+                        <li>
+                            <a id="ueber_link" ui-sref="voluns" translate-cloak>{{ 'ABOUT_US' | translate }}</a>
+                        </li>
+                        <li>
+                            <a id="faq_link" ui-sref="vol.faq">FAQ</a>
+                        </li>
+                        <li>
+                            <a id="contact_link" ui-sref="vol.kontakt" translate-cloak>{{ 'CONTACT' | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="navcontainer" class="os_border_bottom">
+                <div style="width:115px;height: 51px;position: absolute;overflow: hidden;padding: 0;z-index:-1;top: 0;left: 5px;">
+                    <div id="os-logo-small" onclick="window.location.href='http://www.openscience.or.at/site'"></div>
+                </div>
+                <div class="container_12 align_center padding_5" id="navigation">
+                    <ul>
+                        <li class="grid_3">
+                            <a ui-sref="section({section:'wissen'})" class="wissen" ng-class="{'inactive':section != 'wissen' && section}" ng-cloak>{{ 'SCIENCE_UPDATES' | translate }}</a>
+                        </li>
+                        <li class="grid_3">
+                            <a ui-sref="section({section:'projekte'})" class="projekte" ng-class="{'inactive':section != 'projekte' && section}" ng-cloak>{{ 'PROJECTS' | translate }}</a>
+                        </li>
+                        <li class="grid_3">
+                            <a ui-sref="section({section:'schulcorner'})" class="schulcorner" ng-class="{'inactive':section != 'schulcorner' && section}" ng-cloak>Schulcorner</a>
+                        </li>
+                        <li class="grid_3">
+                            <a ui-sref="vol" class="vol" ng-class="{'inactive':section != 'vol' && section}">Vienna Open Lab</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div ui-view id="wrapper"></div>
+
+
+    </div>
+    <div ui-view="login"></div>
+    <div ui-view="admin"></div>
+    <div id="admin" class="anim" ng-if="$root.isLoggedIn" ng-controller="AdminCtrl">
+        <div class="menu-button" ng-click="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="admin-menu anim" ng-if="showMenu">
+            <ul>
+                <li>
+                    <i class="fa fa-calendar-o" ng-click="goto('calendar')"></i>
+                    <span class="text" ng-click="goto('calendar')">Termine/Kalender</span>
+                    <ul class="admin-sub-menu">
+                        <li ng-click="goto('calendar',{action:'new'})">
+                            <i class="fa fa-plus-circle"></i>
+                            <span class="text" style="width:110px">Neuer Termin</span>
+                        </li>
+                        <li ng-click="goto('classes')">
+                            <i class="fa fa-graduation-cap "></i>
+                            <span class="text">Kurse</span>
+                        </li>
+                        <li ng-click="goto('events')">
+                            <i class="fa fa-university"></i>
+                            <span class="text">Übersicht</span>
+                        </li>
+                        <li ng-click="goto('bookings')">
+                            <i class="fa fa-book"></i>
+                            <span class="text">Buchungen</span>
+                        </li>
+                        <li ng-click="goto('emailconfig')">
+                            <i class="fa fa-envelope"></i>
+                            <span class="text" style="width:120px">E-Mail Bestätigung</span>
+                        </li>
+
+                    </ul>
+                </li>
+                <li ng-click="goto('team')">
+                    <i class="fa fa-users"></i>
+                    <span class="text">Team</span>
+                </li>
+                <li ng-click="goto('partners')">
+                    <i class="fa fa-money"></i>
+                    <span class="text">Förderer</span>
+                </li>
+                <li ng-click="goto('coops')">
+                    <i class="fa fa-code-fork"></i>
+                    <span class="text">Mitglieder</span>
+                </li>
+                <li ng-click="goto('tags')">
+                    <i class="fa fa-tags"></i>
+                    <span class="text">Schlagwörter</span>
+                </li>
+                <li ng-click="goto('glossar')">
+                    <i class="fa fa-comment"></i>
+                    <span class="text">Glossar</span>
+                </li>
+                <li ng-click="goto('guestbook')">
+                    <i class="fa fa-book"></i>
+                    <span class="text">Gästebuch</span>
+                </li>
+                <li ng-click="goto('quiz')">
+                    <i class="fa fa-question"></i>
+                    <span class="text">Quiz</span>
+                </li>
+                <li ng-click="goto('faqs')">
+                    <i class="fa fa-life-ring"></i>
+                    <span class="text">FAQs</span>
+                </li>
+                <li ng-click="goto('newsletter')">
+                    <i class="fa fa-envelope"></i>
+                    <span class="text">Newsletter</span>
+                </li>
+                <li ng-click="goto('accounts')">
+                    <i class="fa fa-key"></i>
+                    <span class="text">Accounts</span>
+                </li>
+                <li ng-click="goto('shorturls')">
+                    <i class="fa fa-link"></i>
+                    <span class="text">shortUrls</span>
+                </li>
+                <li ng-click="goto('elab')">
+                    <i class="fa fa-flask"></i>
+                    <span class="text">eLAB</span>
+                </li>
+                <li ng-click="logout()">
+                    <i class="fa fa-power-off"></i>
+                    <span class="text">Abmelden</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/get-style-property/get-style-property.js"></script>
+    <script src="bower_components/get-size/get-size.js"></script>
+    <script src="bower_components/eventie/eventie.js"></script>
+    <script src="bower_components/doc-ready/doc-ready.js"></script>
+    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
+    <script src="bower_components/matches-selector/matches-selector.js"></script>
+    <script src="bower_components/outlayer/item.js"></script>
+    <script src="bower_components/outlayer/outlayer.js"></script>
+    <script src="bower_components/masonry/masonry.js"></script>
+    <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+    <script src="bower_components/angular-masonry/angular-masonry.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+    <script src="bower_components/angular-inview/angular-inview.js"></script>
+    <script src="bower_components/ng-context-menu/dist/ng-context-menu.js"></script>
+    <script src="bower_components/angular-redactor/angular-redactor.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/jquery-waypoints/waypoints.js"></script>
+    <script src="bower_components/SHA-1/sha1.js"></script>
+    <script src="bower_components/angulartics/src/angulartics.js"></script>
+    <script src="bower_components/angulartics/src/angulartics-ga-cordova.js"></script>
+    <script src="bower_components/angulartics/src/angulartics-ga.js"></script>
+    <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/froala_editor.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/block_styles.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/colors.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/media_manager.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/tables.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/video.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_family.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_size.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/char_counter.min.js"></script>
+    <script src="bower_components/angular-froala/src/angular-froala.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/ui-router-extras/release/ct-ui-router-extras.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/fullcalendar/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/ng-sortable/dist/ng-sortable.js"></script>
+    <script src="bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="bower_components/angular/angular.de.js"></script>
+    <script src="bower_components/redactor/redactor/redactor.js"></script>
+    <script src="bower_components/glDatePicker/glDatePicker.min.js"></script>
+    <script src="bower_components/angular-autocomplete/script/autocomplete.js"></script>
+    <script src="bower_components/sly/sly.js"></script>
+    <script src="bower_components/thesaurus/jquery.thesaurus.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/lists.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/langs/de.js"></script>
+    <script src="bower_components/chosen/chosen.jquery.min.js"></script>
+    <script src="bower_components/chosen/chosen.proto.min.js"></script>
+    <script src="bower_components/imageselect/jquery.imgareaselect.min.js"></script>
+    <script src="bower_components/hoverintent/hoverintent.js"></script>
+    <script src="bower_components/moment/locale/de.js"></script>
+    <script src="bower_components/bs-table/source/bs-table.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/routes.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/index.js"></script>
+    <script src="scripts/services/question.js"></script>
+    <script src="scripts/controllers/wissen.js"></script>
+    <script src="scripts/controllers/wissenmain.js"></script>
+    <script src="scripts/services/categorie.js"></script>
+    <script src="scripts/filters/htmltoplaintext.js"></script>
+    <script src="scripts/controllers/wissencategorie.js"></script>
+    <script src="scripts/services/article.js"></script>
+    <script src="scripts/services/class.js"></script>
+    <script src="scripts/directives/articlethumb.js"></script>
+    <script src="scripts/directives/article.js"></script>
+    <script src="scripts/controllers/article.js"></script>
+    <script src="scripts/directives/connections.js"></script>
+    <script src="scripts/directives/maxheight.js"></script>
+    <script src="scripts/controllers/uns.js"></script>
+    <script src="scripts/controllers/unsmain.js"></script>
+    <script src="scripts/services/person.js"></script>
+    <script src="scripts/filters/section.js"></script>
+    <script src="scripts/controllers/unswer.js"></script>
+    <script src="scripts/directives/persons.js"></script>
+    <script src="scripts/controllers/unswas.js"></script>
+    <script src="scripts/services/marker.js"></script>
+    <script src="scripts/services/partner.js"></script>
+    <script src="scripts/controllers/unspartner.js"></script>
+    <script src="scripts/services/coop.js"></script>
+    <script src="scripts/controllers/unscoops.js"></script>
+    <script src="scripts/controllers/unscontact.js"></script>
+    <script src="scripts/controllers/unsimpressum.js"></script>
+    <script src="scripts/directives/redactor.js"></script>
+    <script src="scripts/directives/contenteditable.js"></script>
+    <script src="scripts/controllers/volmain.js"></script>
+    <script src="scripts/controllers/vol.js"></script>
+    <script src="scripts/controllers/volcategorie.js"></script>
+    <script src="scripts/controllers/volkurse.js"></script>
+    <script src="scripts/controllers/volkalender.js"></script>
+    <script src="scripts/controllers/voleinzelanmeldung.js"></script>
+    <script src="scripts/controllers/volgruppenbuchung.js"></script>
+    <script src="scripts/controllers/volseminare.js"></script>
+    <script src="scripts/controllers/volcamps.js"></script>
+    <script src="scripts/controllers/volfaq.js"></script>
+    <script src="scripts/controllers/volguestbook.js"></script>
+    <script src="scripts/controllers/volgallery.js"></script>
+    <script src="scripts/controllers/volelab.js"></script>
+    <script src="scripts/filters/range.js"></script>
+    <script src="scripts/directives/kurse.js"></script>
+    <script src="scripts/services/faq.js"></script>
+    <script src="scripts/services/guestbook.js"></script>
+    <script src="scripts/filters/baddatetoiso.js"></script>
+    <script src="scripts/directives/datepicker.js"></script>
+    <script src="scripts/services/events.js"></script>
+    <script src="scripts/controllers/voluns.js"></script>
+    <script src="scripts/controllers/volunskonzept.js"></script>
+    <script src="scripts/controllers/volunsteam.js"></script>
+    <script src="scripts/controllers/volunsoranisation.js"></script>
+    <script src="scripts/controllers/volunsfakten.js"></script>
+    <script src="scripts/controllers/volunsmain.js"></script>
+    <script src="scripts/controllers/volkontakt.js"></script>
+    <script src="scripts/directives/stick.js"></script>
+    <script src="scripts/directives/stickhead.js"></script>
+    <script src="scripts/directives/imageloaded.js"></script>
+    <script src="scripts/controllers/tag.js"></script>
+    <script src="scripts/services/tag.js"></script>
+    <script src="scripts/services/search.js"></script>
+    <script src="scripts/directives/updatetitle.js"></script>
+    <script src="scripts/directives/favicon.js"></script>
+    <script src="scripts/services/files.js"></script>
+    <script src="scripts/filters/bysection.js"></script>
+    <script src="scripts/directives/loader.js"></script>
+    <script src="scripts/directives/translation.js"></script>
+    <script src="scripts/services/gallery.js"></script>
+    <script src="scripts/directives/mfp.js"></script>
+    <script src="scripts/directives/totext.js"></script>
+    <script src="scripts/services/elab.js"></script>
+    <script src="scripts/directives/elab.js"></script>
+    <script src="scripts/directives/thesaurus.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+    <script src="scripts/directives/captcha.js"></script>
+    <script src="scripts/directives/datepickersolo.js"></script>
+    <script src="scripts/filters/unsafe.js"></script>
+    <script src="scripts/directives/question.js"></script>
+    <script src="scripts/directives/ng-thumb.js"></script>
+    <script src="scripts/directives/imagearea.js"></script>
+    <script src="scripts/directives/startup.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/directives/login.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <script src="scripts/controllers/calendar.js"></script>
+    <script src="scripts/controllers/event.js"></script>
+    <script src="scripts/directives/edit.js"></script>
+    <script src="scripts/directives/articleoptions.js"></script>
+    <script src="scripts/directives/editfull.js"></script>
+    <script src="scripts/services/glossar.js"></script>
+    <script src="scripts/filters/linkify.js"></script>
+    <script src="scripts/services/shorturls.js"></script>
+    <script src="scripts/controllers/shorturls.js"></script>
+    <script src="scripts/controllers/classes.js"></script>
+    <script src="scripts/controllers/class.js"></script>
+    <script src="scripts/controllers/team.js"></script>
+    <script src="scripts/services/team.js"></script>
+    <script src="scripts/controllers/member.js"></script>
+    <script src="scripts/controllers/partners.js"></script>
+    <script src="scripts/controllers/partner.js"></script>
+    <script src="scripts/controllers/coops.js"></script>
+    <script src="scripts/controllers/coop.js"></script>
+    <script src="scripts/controllers/tags.js"></script>
+    <script src="scripts/controllers/glossar.js"></script>
+    <script src="scripts/services/quiz.js"></script>
+    <script src="scripts/controllers/quiz.js"></script>
+    <script src="scripts/controllers/quizdetails.js"></script>
+    <script src="scripts/controllers/guestbook.js"></script>
+    <script src="scripts/controllers/events.js"></script>
+    <script src="scripts/controllers/bookings.js"></script>
+    <script src="scripts/filters/eventtype.js"></script>
+    <script src="scripts/controllers/emailconfig.js"></script>
+    <script src="scripts/controllers/faqs.js"></script>
+
+    <script src="scripts/directives/sticker.js"></script>
+    <!-- endbuild -->
+
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-54896855-1');
+    </script>
+</body>
+
+</html>

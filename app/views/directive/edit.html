@@ -1,0 +1,47 @@
+<div id="articleMenu" class="context-menu" ng-if="$root.isLoggedIn">
+    <ul class="dropdown-menu">
+        <li ng-click="editArticle()" ng-if="!article.edit">
+            <i class="fa fa-edit"></i>
+            <span class="text">Bearbeiten</span>
+        </li>
+        <li ng-click="deleteArticle()" ng-if="!article.edit && !noDelete">
+            <i class="fa fa-trash-o"></i>
+            <span class="text">Löschen</span>
+        </li>
+        <li ng-click="saveArticle()" ng-if="article.edit">
+            <i class="fa fa-floppy-o"></i>
+            <span class="text">Speichern</span>
+        </li>
+        <li ng-click="abortArticle()" ng-if="article.edit">
+            <i class="fa fa-times"></i>
+            <span class="text">Abbrechen</span>
+        </li>
+        <li class="seperator" ng-if="article.edit"></li>
+        <!--<li ng-click="getText()" ng-if="article.edit">
+			<i class="fa fa-picture-o"></i>
+			<span class="text">Bilder verwalten</span>
+		</li>-->
+        <li class="seperator" ng-if="article.edit"></li>
+        <li ng-click="changeLanguage('en')" ng-if="article.edit && lang == 'de'">
+            <i class="fa fa-language"></i>
+            <span class="text">English...</span>
+        </li>
+        <li ng-click="changeLanguage('de')" ng-if="article.edit && lang == 'en'">
+            <i class="fa fa-language"></i>
+            <span class="text">Deutsch...</span>
+        </li>
+        <li class="seperator" ng-if="textSelection != '' && !noDelete"></li>
+        <li ng-click="setIntro()" ng-if="textSelection != '' && !noDelete">
+            <i class="fa fa-align-left"></i>
+            <span class="text">Einleitung</span>
+        </li>
+        <li ng-click="addTag()" ng-if="textSelection != '' && !noDelete">
+            <i class="fa fa-tag"></i>
+            <span class="text">Tag setzten</span>
+        </li>
+        <li ng-click="addGlossar()" ng-if="textSelection != '' && !noDelete">
+            <i class="fa fa-comment"></i>
+            <span class="text">Glossareintrag...</span>
+        </li>
+    </ul>
+</div>

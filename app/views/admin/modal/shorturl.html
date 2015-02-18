@@ -1,0 +1,33 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Short URL</h4>
+    </div>
+      <form role="form" name="shorturlForm" ng-submit="saveUrl(shorturlForm.$valid)" novalidate>
+        <div class="modal-body row">
+  
+             <div class="form-group">
+                <lable>Titel</lable>
+                <input type="text" ng-model="url.title" required  class="form-control"/>
+             </div>
+             <div class="form-group">
+                <lable>Keyword</lable>
+                <input type="text" ng-model="url.keyword" required  class="form-control"/>
+             </div>
+             <div class="form-group">
+                <lable>URL</lable>
+                <input type="url" ng-model="url.url" required  class="form-control"/>
+             </div>
+
+          </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+            <button type="submit" class="btn btn-success" ng-disabled="shorturlForm.$invalid">Speichern</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

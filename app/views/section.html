@@ -1,0 +1,91 @@
+<div id="content_container" class="container_12">
+    <div class="grid_12 headline align_center margin_20 anim" ng-if="categorie">
+        <div class="intro_text" style="min-height:20px;width:100%;" ng-bind-html="article.intro"></div>
+    </div>
+</div>
+<div class="container_12 {{ categorie.name }}">
+    <div class="grid_3 cat_menu ">
+        <div id="smart" class="frame hidden-print anim" sticker ng-class="{'stop':stop}" ng-if="categorie">
+            <div class="scrollbar">
+                <div class="handle"></div>
+            </div>
+            <div class="items scroll_menu" data-cat="{{catName}}">
+                <div id="sly-scroll-container">
+                    <div class="row" id="main_categorie_container" ng-if="section != 'projekte'">
+                        <h3 class="bg_full">{{ 'SORT' | translate }}</h3>
+                        <ul class="cat_menu_main ">
+                            <li ng-repeat="section in categorie.sections">
+                                <a class="pointer" ng-class="{'greyed': sectionFilter !== '' && sectionFilter !== section.name}" ng-click="setSectionFilter(section.name)">{{ section.title }}</a>
+                            </li>
+                        </ul>
+                        <ul class="cat_menu_sub" as-sortable="sortCategories" ng-model="categorie.categories">
+                            <li style="position:relative;" ng-class="{'offline': cat.active == 0}" as-sortable-item ng-repeat="cat in categorie.categories" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" context-menu="setCatContext(cat)" context-menu-disabled="!$root.isLoggedIn" data-target="catMenu">
+                                <a ng-class="{'active': catName == cat.name}" class="categorie_content_link editable_categorie_content_link" ui-sref="section.categorie({categorie: cat.name})">{{ cat.title }}</a>
+                                <div as-sortable-item-handle ng-show="doSorting" class="sort-handle">
+                                    <i class="fa fa-sort"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-if="section == 'projekte'">
+                        <h3 class="bg_full">{{ 'PROJECTS' | translate }}</h3>
+                        <ul class="cat_menu_sub" as-sortable="sortCategories" ng-model="categorie.categories">
+                            <li>
+                                <a class="pointer" ng-click="setFilterUrl('laufend','projekte-a-z')" ng-class="{'active': sectionFilter =='laufend'}">{{ 'CURRENT' | translate }}</a>
+                            </li>
+                            <li>
+                                <a class="pointer" ng-class="{'active': sectionFilter == 'abgeschlossen'}" ng-click="setFilterUrl('abgeschlossen', 'projekte-a-z')">{{ 'PAST' | translate }}</a>
+                            </li>
+                            <li style="position:relative;" ng-repeat="cat in categorie.categories" ng-if="cat.active == 1" context-menu="setCatContext(cat)" context-menu-disabled="!$root.isLoggedIn" data-target="catMenu" as-sortable-item>
+                                <a ng-click="resetFilter()" ui-sref="section.categorie({categorie: cat.name})" ng-click="setSelectedFilter(' ')" ng-class="{'active': catName == cat.name && !sectionFilter}">{{ cat.title }}</a>
+                                <div as-sortable-item-handle ng-show="doSorting" class="sort-handle">
+                                    <i class="fa fa-sort"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <connections articles="connections" article="activeArticle" style="display:inline-block;width:100%;"></connections>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ui-view="content" id="categorie_container" class="grid_9 floating"></div>
+</div>
+<div id="catMenu" class="context-menu" ng-if="$root.isLoggedIn">
+    <ul class="dropdown-menu">
+        <li ng-click="editCat()" ng-if="!editCategorie.edit">
+            <i class="fa fa-edit"></i>
+            <span class="text">Bearbeiten</span>
+        </li>
+        <li ng-click="deleteCat()">
+            <i class="fa fa-floppy-o"></i>
+            <span class="text">Löschen</span>
+        </li>
+        <li ng-click="toggleActivation(0)" ng-if="editCategorie.active == 1">
+            <i class="fa fa-eye-slash"></i>
+            <span class="text">Offline schalten</span>
+        </li>
+        <li ng-click="toggleActivation(1)" ng-if="editCategorie.active == 0">
+            <i class="fa fa-eye"></i>
+            <span class="text">Online schalten</span>
+        </li>
+        <li class="seperator"></li>
+        <li ng-click="newCat()">
+            <i class="fa fa-plus"></i>
+            <span class="text">Neue Kategorie</span>
+        </li>
+        <li class="seperator"></li>
+        <li ng-click="toggleSorting()" ng-class="{'active': doSorting}">
+            <i class="fa fa-sort"></i>
+            <span class="text">Sortieren</span>
+        </li>
+        <li ng-click="toggleOffline(true)" ng-if="showOffline == false">
+            <i class="fa fa-eye"></i>
+            <span class="text">Offline anzeigen</span>
+        </li>
+        <li ng-click="toggleOffline(false)" ng-if="showOffline == true">
+            <i class="fa fa-eye-slash"></i>
+            <span class="text">Offline verstecken</span>
+        </li>
+    </ul>
+</div>
