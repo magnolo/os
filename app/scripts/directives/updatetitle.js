@@ -121,5 +121,3 @@ angular.module('osApp')
             }
         };
     });
-
-;

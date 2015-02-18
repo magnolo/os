@@ -1,11 +1,26 @@
 'use strict';
 
 angular.module('osApp')
-	.controller('VolguestbookCtrl', function($scope, Guestbook) {
-		$scope.entries = Guestbook.query({
-			active: 1
-		});
-		$scope.captchaOptions = {
+    .controller('VolguestbookCtrl', function($scope, Guestbook) {
+        $scope.gb = {};
+        $scope.sent = false;
+        $scope.entries = Guestbook.query({
+            active: 1
+        });
+        $scope.newEntry = function(isValid) {
+            $scope.message = "";
+            if (isValid) {
+                Guestbook.add($scope.gb, function(data) {
+                    if (data.status == true) {
+                        $scope.sent = true;
+                        $scope.message = "Vielen lieben Dank. Der Eintrag wurde erfolgreich gespeichert!";
+                    } else {
+                        $scope.message = "Ups, da ist was schiefgelaufen!<br>Bitte versuchen Sie es nochmal";
+                    }
+                });
+            }
+        };
+        /*$scope.captchaOptions = {
 			imgPath: 'images/',
 			captcha: {
 				numberOfImages: 5,
@@ -23,5 +38,5 @@ angular.module('osApp')
 			init: function(captcha) {
 				$scope.captcha = captcha;
 			}
-		};
-	});
+		};*/
+    });
