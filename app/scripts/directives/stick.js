@@ -16,7 +16,7 @@ angular.module('osApp')
                 var isLoaded = false;
                 var mainHeader = element.parent().parent().find('.article');
 
-                console.log('---');
+                /*console.log('---');
                 console.log(header);
                 console.log(navigation);
                 console.log(top);
@@ -25,7 +25,7 @@ angular.module('osApp')
                 console.log(fMenu);
                 console.log(container);
                 console.log(mainHeader);
-                console.log('---');
+                console.log('---');*/
 
                 var sly = new Sly(list, {
                     //itemNav:'basic',

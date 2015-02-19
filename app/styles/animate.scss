@@ -229,7 +229,8 @@ $vol-background: #FAD7DC;
     margin: 100px auto;
     width: 32px;
     height: 32px;
-    position: relative;
+    position: absolute;
+    width: 100%;
     &.wissen {
         .cube1, .cube2 {
             background-color: $wissen-background;
@@ -257,7 +258,8 @@ $vol-background: #FAD7DC;
     height: 10px;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    margin-left: -20px;
     -webkit-animation: cubemove 1.8s infinite ease-in-out;
     animation: cubemove 1.8s infinite ease-in-out;
 }

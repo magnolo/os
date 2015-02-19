@@ -16,12 +16,13 @@
             <i class="fa fa-times"></i>
             <span class="text">Abbrechen</span>
         </li>
-        <li class="seperator" ng-if="article.edit"></li>
-        <!--<li ng-click="getText()" ng-if="article.edit">
+        <!--<li class="seperator" ng-if="article.edit"></li>
+        <li ng-click="getText()" ng-if="article.edit">
 			<i class="fa fa-picture-o"></i>
 			<span class="text">Bilder verwalten</span>
 		</li>-->
         <li class="seperator" ng-if="article.edit"></li>
+
         <li ng-click="changeLanguage('en')" ng-if="article.edit && lang == 'de'">
             <i class="fa fa-language"></i>
             <span class="text">English...</span>

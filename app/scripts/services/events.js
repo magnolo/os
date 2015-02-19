@@ -44,6 +44,12 @@ angular.module('osApp')
                     kind: 'ticket'
                 }
             },
+            updateTicket: {
+                method: 'PUT',
+                params: {
+                    kind: 'ticket'
+                }
+            },
             createClosed: {
                 method: 'POST',
                 params: {

@@ -286,7 +286,7 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'FAQs // OpenScience'
             }
         })
-         .state('users', {
+        .state('users', {
             url: '/admin/accounts',
             views: {
                 'admin': {

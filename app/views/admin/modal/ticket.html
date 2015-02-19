@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" ng-if="ticket.id && inFutuer()" ng-click="deleteTicket(ticket)">Löschen</button>
+                    <button type="button" class="btn btn-danger" ng-if="ticket.id && inFuture()" ng-click="deleteTicket(ticket)">Löschen</button>
                     <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
                     <button type="submit" class="btn btn-success" ng-if="inFuture()" ng-disabled="ticketForm.$invalid">Speichern</button>
                 </div>

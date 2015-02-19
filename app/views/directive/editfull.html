@@ -1,73 +1,73 @@
-<div id="listMenu" class="context-menu" >
-	<ul class="dropdown-menu">
-		<li ng-click="editArticle()" ng-if="!article.edit">
-			<i class="fa fa-edit"></i>
-			<span class="text">Bearbeiten</span>
-		</li>
-		<li ng-click="saveArticle()"  ng-if="article.edit">
-			<i class="fa fa-floppy-o"></i>
-			<span class="text">Speichern</span>
-		</li>
-		<li ng-click="abortArticle()"  ng-if="article.edit">
-			<i class="fa fa-times"></i>
-			<span class="text">Abbrechen</span>
-		</li>
-		
-		<li ng-click="deleteArticle()"  ng-if="!article.edit">
-			<i class="fa fa-trash-o"></i>
-			<span class="text">Löschen</span>
-		</li>
-		<li class="seperator"></li>
-		<li>
-			<i class="fa fa-crosshairs"></i>
-			<span class="text">Markierung</span>
-			<i class="fa fa-angle-right more"></i>
-			<ul class="subContext">
-				<li>
-					<i class="fa fa-caret-right"></i>
-					<span class="text">Wissen</span>
-				</li>
-				<li>
-					<i class="fa"></i>
-					<span class="text">Macht</span>
-				</li>
-			</ul>
-		</li>
-		<li ng-click="switchNew()">
-			<i ng-if="article.is_new == '0'" class="fa fa-bookmark-o"></i>
-			<i ng-if="article.is_new == '1'" class="fa fa-bookmark success"></i>
-			<span class="text">NEU - Label</span>
-		</li>
-		<li class="seperator"></li>
-		<li>
-			<i class="fa fa-level-down"></i>
-			<span class="text">Verschieben</span>
-			<i class="fa fa-angle-right more"></i>
-			<ul class="subContext">
-				<li>
-					<i class="fa fa-caret-right"></i>
-					<span class="text">Wissen</span>
-				</li>
-				<li>
-					<i class="fa"></i>
-					<span class="text">Projekte</span>
-				</li>
-				<li>
-					<i class="fa"></i>
-					<span class="text">Schulcorner</span>
-				</li>
-				<li>
-					<i class="fa"></i>
-					<span class="text">VOL</span>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<i class="fa fa-sort"></i>
-			<span class="text">Sortieren</span>
-		</li>
-		<li class="seperator"></li>
-		<li>
+<div id="listMenu" class="context-menu">
+    <ul class="dropdown-menu">
+        <li ng-click="editArticle()" ng-if="!article.edit">
+            <i class="fa fa-edit"></i>
+            <span class="text">Bearbeiten</span>
+        </li>
+        <li ng-click="saveArticle()" ng-if="article.edit">
+            <i class="fa fa-floppy-o"></i>
+            <span class="text">Speichern</span>
+        </li>
+        <li ng-click="abortArticle()" ng-if="article.edit">
+            <i class="fa fa-times"></i>
+            <span class="text">Abbrechen</span>
+        </li>
+
+        <li ng-click="deleteArticle()" ng-if="!article.edit">
+            <i class="fa fa-trash-o"></i>
+            <span class="text">Löschen</span>
+        </li>
+        <li class="seperator"></li>
+        <li>
+            <i class="fa fa-crosshairs"></i>
+            <span class="text">Markierung</span>
+            <i class="fa fa-angle-right more"></i>
+            <ul class="subContext">
+                <li>
+                    <i class="fa fa-caret-right"></i>
+                    <span class="text">Wissen</span>
+                </li>
+                <li>
+                    <i class="fa"></i>
+                    <span class="text">Macht</span>
+                </li>
+            </ul>
+        </li>
+        <li ng-click="switchNew()">
+            <i ng-if="article.is_new == '0'" class="fa fa-bookmark-o"></i>
+            <i ng-if="article.is_new == '1'" class="fa fa-bookmark success"></i>
+            <span class="text">NEU - Label</span>
+        </li>
+        <li class="seperator"></li>
+        <li>
+            <i class="fa fa-level-down"></i>
+            <span class="text">Verschieben</span>
+            <i class="fa fa-angle-right more"></i>
+            <ul class="subContext">
+                <li>
+                    <i class="fa fa-caret-right"></i>
+                    <span class="text">Wissen</span>
+                </li>
+                <li>
+                    <i class="fa"></i>
+                    <span class="text">Projekte</span>
+                </li>
+                <li>
+                    <i class="fa"></i>
+                    <span class="text">Schulcorner</span>
+                </li>
+                <li>
+                    <i class="fa"></i>
+                    <span class="text">VOL</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <i class="fa fa-sort"></i>
+            <span class="text">Sortieren</span>
+        </li>
+        <li class="seperator"></li>
+        <!--<li>
 			<i class="fa fa-indent"></i>
 			<span class="text">Verschachteln</span>
 		</li>
@@ -75,10 +75,10 @@
 			<i class="fa fa-list"></i>
 			<span class="text"><span class="text">Anzeigen</span>
 		</li>
-		<li class="seperator"></li>
-		<li ng-click="newArticle()">
-			<i class="fa fa-plus"></i>
-			<span class="text">Neu...</span>
-		</li>
-	</ul>
-</div> 
+		<li class="seperator"></li>-->
+        <li ng-click="newArticle()">
+            <i class="fa fa-plus"></i>
+            <span class="text">Neu...</span>
+        </li>
+    </ul>
+</div>

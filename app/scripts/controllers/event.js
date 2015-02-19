@@ -156,6 +156,14 @@ angular.module('osApp')
 
             }
         });
+        $scope.calcPlaces = function() {
+            if ($scope.event.solo == 1) {
+                $scope.places = 0;
+                angular.forEach($scope.event.tickets.query, function(ticket) {
+                    $scope.places += parseInt(ticket.places);
+                })
+            }
+        };
         $scope.inFuture = function() {
             var s = moment();
             var now = moment();
@@ -175,6 +183,7 @@ angular.module('osApp')
         };
         $scope.showTicket = function(ticket) {
             $scope.ticket = ticket;
+            console.log(ticket);
             $scope.ticket.places = parseInt($scope.ticket.places);
             $scope.ticketModal = $modal({
                 scope: $scope,
@@ -201,7 +210,18 @@ angular.module('osApp')
             if (isValid) {
 
                 if ($scope.ticket.id) {
-
+                    $scope.ticket.event_id = $scope.event.id;
+                    $scope.ticket.labor_id = $scope.event.labor_id;
+                    $scope.ticket.solo = 1;
+                    Events.updateTicket({
+                        eventId: $scope.ticket.id
+                    }, $scope.ticket, function(data) {
+                        if (data.status == true) {
+                            $scope.ticketModal.hide();
+                            $scope.calcPlaces();
+                            FlashService.show('Buchung erfolgreich gespeichert', '', 'success');
+                        }
+                    });
                 } else {
                     $scope.ticket.event_id = $scope.event.id;
                     $scope.ticket.labor_id = $scope.event.labor_id;
@@ -209,8 +229,10 @@ angular.module('osApp')
                     Events.createTicket($scope.ticket, function(data) {
                         if (data.status == true) {
                             $scope.ticket.id = data.event.id;
-                            $scope.event.tickets.query.push($scope.ticket);
+                            $scope.event.tickets.query.push(data.event);
                             $scope.ticketModal.hide();
+                            $scope.calcPlaces();
+                            FlashService.show('Buchung erfolgreich gespeichert', '', 'success');
                         }
                     });
                 }
@@ -224,9 +246,9 @@ angular.module('osApp')
                 }, function(data) {
                     if (data.status == true) {
                         $scope.ticketModal.hide();
-
                         $scope.event.tickets.query.splice($scope.event.tickets.query.indexOf(ticket), 1);
                         FlashService.show('Teilnehmer erfolgreich entfernt!', '', 'success');
+                        $scope.calcPlaces();
                     }
                 })
             }
