@@ -9,8 +9,6 @@
  * Filter in the osApp.
  */
 angular.module('osApp')
-  .filter('unsafe', function () {
-    return function (input) {
-      return 'unsafe filter: ' + input;
-    };
-  });
+    .filter('unsafe', function($sce) {
+        return $sce.trustAsHtml;
+    });
