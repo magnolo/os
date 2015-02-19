@@ -84,7 +84,7 @@ angular.module('osApp')
             var result = [];
 
             angular.forEach(items, function(item, key) {
-                if (item.date.indexOf(value.substring(0, 8)) !== -1) {
+                if (item.date.indexOf(value.substring(0, 7)) !== -1) {
                     result.push(item);
                 }
             });

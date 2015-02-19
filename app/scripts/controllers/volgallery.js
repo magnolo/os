@@ -11,6 +11,7 @@ angular.module('osApp')
         $scope.selectedDate = {
             set: ''
         };
+        $scope.galleries = [];
         $scope.getActive = function(id) {
             angular.forEach($scope.galleries, function(item) {
                 if (item.id === id) {
@@ -18,15 +19,27 @@ angular.module('osApp')
                 }
             });
         };
-        $scope.galleries = Gallery.query({
-            id: 'all'
-        }, function() {
-            if (typeof $state.params.id !== 'undefined') {
+        if (typeof $state.params.id !== 'undefined') {
+            $scope.selectedAlbum = true;
+            Gallery.get({
+                id: 'all',
+                action: $state.params.id
+            }, function(data) {
+                $scope.galleries.push(data);
+                $scope.ready = true;
                 $scope.getActive($state.params.id);
-            }
-            $scope.ready = true;
-            $scope.page++;
-        });
+            });
+
+        } else {
+            $scope.galleries = Gallery.query({
+                id: 'all'
+            }, function() {
+
+                $scope.ready = true;
+                $scope.page++;
+            });
+        }
+
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
             if (typeof toParams.id !== 'undefined') {
                 $scope.getActive(toParams.id);
@@ -35,30 +48,48 @@ angular.module('osApp')
             }
 
         });
-        $scope.moreItems = function() {
-            if ($scope.ready) {
-                $scope.ready = false;
-                Gallery.query({
-                    limit: 12,
-                    page: $scope.page,
-                    id: 'all'
-                }, function(data) {
-                    angular.forEach(data, function(item) {
+        $scope.fetchAlbums = function() {
+            var date = '';
+            if ($scope.selectedDate.set != '') {
+                date = $scope.selectedDate.set.substring(0, 7) + '-01';
+            }
+            Gallery.query({
+                limit: 12,
+                page: $scope.page,
+                id: 'all',
+                date: date
+            }, function(data) {
+                angular.forEach(data, function(item) {
+                    var found = false;
+                    angular.forEach($scope.galleries, function(album) {
+                        if (album.id == item.id) {
+                            found = true;
+                        }
+                    });
+                    if (!found) {
                         $scope.galleries.push(item);
-                    })
+                    }
+
+                })
+                if (date == '') {
                     $scope.page++;
-                    $scope.ready = true;
-                });
+
+                }
+
+                $scope.ready = true;
+            });
+        }
+        $scope.moreItems = function() {
+            if ($scope.ready && $scope.selectedDate.set == '') {
+                $scope.ready = false;
+                $scope.fetchAlbums();
             }
 
         };
-        /*  $scope.$watchCollection('selectedDate.set', function(newItem, oldItem) {
-              $scope.galleries = Gallery.query({
-                  date: newItem.set,
-                  limit: 12,
-                  page: 3
-              });
-          });*/
-
-
+        $scope.$watchCollection('selectedDate.set', function(newItem, oldItem) {
+            if (newItem == oldItem) {
+                return;
+            }
+            $scope.fetchAlbums();
+        });
     });

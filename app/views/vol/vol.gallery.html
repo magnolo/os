@@ -25,14 +25,14 @@
         </div>
         <div class="clear"></div>
         <div class="thumb_heading">
-            <a ui-sref="vol.gallery.details({id:album.id})">{{ album.title}}</a>
+            <a ui-sref="vol.gallery.details({id:album.id})" ng-bind-html="album.title | htmlToPlain"></a>
         </div>
         <div class="thumb_text">{{ album.text}}&nbsp;</div>
     </div>
 </div>
 <div class="article anim" ng-if="selectedAlbum.id">
-    <h1 class="article_main_header" ng-if="selectedAlbum.import == 0">{{ 'PHOTO_GALLERY' | translate}} &raquo; {{ selectedAlbum.title }} <small class="vol">{{ selectedAlbum.date| badDateToIso | date: 'dd.MM.yyyy' }}</small></h1>
-    <h1 class="article_main_header" ng-if="selectedAlbum.import == 1">{{ 'PHOTO_GALLERY' | translate}} &raquo; <span ng-bind-html="selectedAlbum.text | htmlToPlain"></span> <small class="vol">{{ selectedAlbum.date| badDateToIso | date: 'dd.MM.yyyy' }}</small></h1>
+    <h1 class="article_main_header" ng-if="selectedAlbum.import == 0">  <a ui-sref="vol.gallery()">{{ 'PHOTO_GALLERY' | translate}}</a> &raquo; {{ selectedAlbum.title }} <small class="vol">{{ selectedAlbum.date| badDateToIso | date: 'dd.MM.yyyy' }}</small></h1>
+    <h1 class="article_main_header" ng-if="selectedAlbum.import == 1"><a ui-sref="vol.gallery()">{{ 'PHOTO_GALLERY' | translate}}</a> &raquo; <span ng-bind-html="selectedAlbum.text | htmlToPlain"></span> <small class="vol">{{ selectedAlbum.date| badDateToIso | date: 'dd.MM.yyyy' }}</small></h1>
 </div>
 <masonry masonry-options="{ transitionDuration: '0s' }" preserve-order id="gallery_view" class="article anim" ng-if="selectedAlbum.id" mfp style="padding-left:10px !important">
     <div class="item masonry-brick" ng-repeat="image in selectedAlbum.images" ng-if="selectedAlbum.import == 0">
