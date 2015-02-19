@@ -1,25 +1,27 @@
-<div  id="content_container" class="container_12"><p>&nbsp;</p></div>
-<div class="container_12 vol" id="content_container" >
-	<div class="grid_3 cat_menu">
-		<div class="frame" stick>
+<div id="content_container" class="container_12">
+    <p>&nbsp;</p>
+</div>
+<div class="container_12 vol" id="content_container">
+    <div class="grid_3 cat_menu">
+        <div class="frame" sticker>
 
-				<h3 class="bg_full"><a ui-sref="voluns" style="color:#fff">{{ 'ABOUT_US' | translate }}</a></h3>
-				<ul class="tabs cat_menu_sub">
-					<li>
-						<a class="categorie_content_link" ui-sref="voluns.konzept" ng-class="{'active':state.includes('voluns.konzept')}">{{ 'IDEA' | translate }}</a>
-					</li>
-					<li>
-						<a class="categorie_content_link" ui-sref="voluns.team" ng-class="{'active':state.includes('voluns.team')}">{{ 'TEAM' | translate }}</a>
-					</li>
-					<li>
-						<a class="categorie_content_link" ui-sref="voluns.organisation" ng-class="{'active':state.includes('voluns.organisation')}">{{ 'ORGANIZATION' | translate }}</a>
-					</li>
-					<li>
-						<a class="categorie_content_link" ui-sref="voluns.fakten" ng-class="{'active':state.includes('voluns.fakten')}">{{ 'FACTS' | translate }}</a>
-					</li>
-				</ul>
-	
-		</div>
-	</div>
-	<div ui-view="content" id="categorie_container" class="grid_9 floating"></div>
+            <h3 class="bg_full"><a ui-sref="voluns" style="color:#fff">{{ 'ABOUT_US' | translate }}</a></h3>
+            <ul class="tabs cat_menu_sub">
+                <li>
+                    <a class="categorie_content_link" ui-sref="voluns.konzept" ng-class="{'active':state.includes('voluns.konzept')}">{{ 'IDEA' | translate }}</a>
+                </li>
+                <li>
+                    <a class="categorie_content_link" ui-sref="voluns.team" ng-class="{'active':state.includes('voluns.team')}">{{ 'TEAM' | translate }}</a>
+                </li>
+                <li>
+                    <a class="categorie_content_link" ui-sref="voluns.organisation" ng-class="{'active':state.includes('voluns.organisation')}">{{ 'ORGANIZATION' | translate }}</a>
+                </li>
+                <li>
+                    <a class="categorie_content_link" ui-sref="voluns.fakten" ng-class="{'active':state.includes('voluns.fakten')}">{{ 'FACTS' | translate }}</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div ui-view="content" id="categorie_container" class="grid_9 floating"></div>
 </div>

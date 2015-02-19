@@ -1,32 +1,35 @@
 <loader content="persons"></loader>
 <div class="grid_3 cat_menu">
-	<div id="smarter" class="frame" stick ng-if="persons.length">
-		<div class="items">
-			<div id="cat_articles">
-				<ul>
-					<li class="sperator">
-						{{ 'OUR_TEAM' | translate }}
-					</li>
-					<li ng-repeat="person in persons" ng-if="person.section.id != 1" ui-sref-active="active">
-						<a ui-sref="uns.wer.person({name:person.name})" class="link_scroller no-menu">{{ person.firstname + " " + person.lastname }}</a>
-					</li>
-					<li class="sperator">
-						{{ 'ADVISORY_BOARD' | translate }}
-					</li>
-					<li ng-repeat="person in persons | filter: {section:{id:1}}" ui-sref-active="active">
-						<a ui-sref="uns.wer.person({name:person.name})" class="link_scroller no-menu">{{ person.firstname + " " + person.lastname }}</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div id="article_functions_menu">
-			<div class="row">
-				<div class="os-icon arrow-up-limit-icon right" title="Zum Seitenanfang" style="margin:5px"></div>
-				<div class="os-icon arrow-up-icon right" title="Zum vorherigen Beitrag" style="margin:5px"></div>
-			</div>
-		</div>
-	</div>
+    <div id="smarter" class="frame" stick ng-if="persons.length">
+        <div class="scrollbar">
+            <div class="handle"></div>
+        </div>
+        <div id="meter" class="items scroll_menu">
+            <div id="cat_articles">
+                <ul>
+                    <li class="sperator">
+                        {{ 'OUR_TEAM' | translate }}
+                    </li>
+                    <li ng-repeat="person in persons" ng-if="person.section.id != 1" ui-sref-active="active">
+                        <a ui-sref="uns.wer.person({name:person.name})" class="link_scroller no-menu">{{ person.firstname + " " + person.lastname }}</a>
+                    </li>
+                    <li class="sperator">
+                        {{ 'ADVISORY_BOARD' | translate }}
+                    </li>
+                    <li ng-repeat="person in persons | filter: {section:{id:1}}" ui-sref-active="active">
+                        <a ui-sref="uns.wer.person({name:person.name})" class="link_scroller no-menu">{{ person.firstname + " " + person.lastname }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="article_functions_menu">
+            <div class="row">
+                <div class="os-icon arrow-up-limit-icon right" id="articlesToTop" title="Zum Seitenanfang" style="margin:5px" scrolltop></div>
+                <div class="os-icon arrow-up-icon right" scrollprev id="articlesToPreview" title="Zum vorherigen Beitrag" style="margin:5px"></div>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="articles_container" class="grid_6 details_container">
-	<persons persons="persons"></persons>
+    <persons persons="persons"></persons>
 </div>

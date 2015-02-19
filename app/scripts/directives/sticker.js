@@ -17,7 +17,6 @@ angular.module('osApp')
             var top = angular.element(document.getElementById('content_container'));
             var scrollbar = element.find('.scrollbar');
             var list = element.find('.items');
-
             var catContainer = list.find('.items').find('.row');
             var isLoaded = false;
             var mainHeader = element.parent().parent().find('.article');
@@ -82,8 +81,9 @@ angular.module('osApp')
 
                         isLoaded = false;
                         scrollbar.hide();
-                        sly.destroy();
-                        scrollbar.hide();
+                        if (sly.initialized) {
+                            sly.destroy();
+                        }
 
                     }
                 } else {

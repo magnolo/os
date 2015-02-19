@@ -16,6 +16,17 @@ angular.module('osApp')
                 var isLoaded = false;
                 var mainHeader = element.parent().parent().find('.article');
 
+                console.log('---');
+                console.log(header);
+                console.log(navigation);
+                console.log(top);
+                console.log(scrollbar);
+                console.log(list);
+                console.log(fMenu);
+                console.log(container);
+                console.log(mainHeader);
+                console.log('---');
+
                 var sly = new Sly(list, {
                     //itemNav:'basic',
                     speed: 100,
@@ -60,7 +71,13 @@ angular.module('osApp')
                     }
                 };
                 scope.checkDim = function() {
+
                     var varscroll = parseInt($document.scrollTop());
+                    var fMenuHeight = 0;
+                    if (fMenu.length) {
+                        fMenuHeight = fMenu.innerHeight();
+                    }
+
                     if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
                         element
                             .addClass('headroom--not-top')
@@ -69,12 +86,12 @@ angular.module('osApp')
 
                             });
 
-                        if ((container.innerHeight() + fMenu.innerHeight() + 50) > ($window.innerHeight - navigation.innerHeight() + 20)) {
+                        if ((container.innerHeight() + fMenuHeight + 50) > ($window.innerHeight - navigation.innerHeight() + 20)) {
                             list.css({
-                                'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenu.innerHeight()) + 'px'
+                                'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenuHeight) + 'px'
                             });
                             scrollbar.css({
-                                'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenu.innerHeight()) + 'px'
+                                'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenuHeight) + 'px'
                             });
                             if (isLoaded) {
                                 sly.reload();
@@ -85,7 +102,9 @@ angular.module('osApp')
                         } else {
                             isLoaded = false;
                             scrollbar.hide();
-                            sly.destroy();
+                            if (sly.initialized && typeof sly.frame != "undefined") {
+                                sly.destroy();
+                            }
                         }
 
                     } else {
@@ -105,13 +124,12 @@ angular.module('osApp')
                 scrollbar.hide();
                 $timeout(function() {
                     scope.checkDim();
-
                 });
                 angular.element($window).bind('resize', function() {
                     scope.checkDim();
                     //sly.reload();
                 });
-
+                //sly.init();
             }
         };
     });
