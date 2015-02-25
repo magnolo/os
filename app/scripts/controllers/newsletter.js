@@ -8,7 +8,7 @@
  * Controller of the osApp
  */
 angular.module('osApp')
-    .controller('NewsletterCtrl', function($scope, $stateParams, $modal, FlashService, Newsletter, Article) {
+    .controller('NewsletterCtrl', function($scope, $timeout, $document, $stateParams, $modal, FlashService, Newsletter, Article) {
         $scope.status = 'loading';
         $scope.colors = [{
             name: 'normal',
@@ -29,6 +29,12 @@ angular.module('osApp')
             name: 'vol',
             title: 'Vienna Open Lab'
         }];
+        $scope.color = {
+            'wissen': '523C7C',
+            'schulcorner': '858D1E',
+            'projekte': '1DA9C7',
+            'vol': 'A31031'
+        };
         $scope.overview = [];
         $scope.newsletter = Newsletter.get({
             newsId: $stateParams.id
@@ -48,6 +54,16 @@ angular.module('osApp')
                 $scope.status = newItem.status;
             }
         });
+
+        function scrollBottom() {
+            console.log($('.full-fixed').height());
+            $timeout(function() {
+                $('.full-fixed').animate({
+                    scrollTop: ($('#newsletter-box').height())
+                }, 250);
+                console.log($('.full-fixed').height());
+            });
+        };
         $scope.openArticlesModal = function() {
             if ($scope.overview.length == 0) {
                 $scope.overview = Article.overview({
@@ -97,7 +113,7 @@ angular.module('osApp')
                         $scope.newsletter.items = [];
                     }
                     $scope.newsletter.items.push(item);
-                    //scrollBottom();
+                    scrollBottom();
                 }
 
                 $scope.titleModal.hide();
@@ -158,7 +174,7 @@ angular.module('osApp')
                         $scope.newsletter.items = [];
                     }
                     $scope.newsletter.items.push(item);
-                    //scrollBottom();
+                    scrollBottom();
                 }
                 $scope.textModal.hide();
 
@@ -175,29 +191,43 @@ angular.module('osApp')
             item.size = 1;
         };
         $scope.toggleArticle = function(art) {
-            console.log(art);
-            if (art.type == 'class') {
-
-            } else if (art.type == 'article') {
-                var item = {
-                    title: art.title,
-                    categorie: art.categorie.title,
-                    image: art.image,
-                    intro: art.intro || art.text.substring(0, art.text.indexOf('.') + 1),
-                    size: 3,
-                    type: {
-                        name: art.type,
-                        intern: 'articles',
-                        'class': art.section.name,
-                        'typClass': 'article'
-
-                    }
-                };
-            }
 
             if (typeof $scope.newsletter.items == "undefined") {
                 $scope.newsletter.items = [];
             }
-            $scope.newsletter.items.push(item);
+            var found = false;
+            angular.forEach($scope.newsletter.items, function(item, key) {
+                if (art.type == item.type.name && art.id == item.id) {
+                    $scope.newsletter.items.splice(key, 1);
+                    found = true;
+                    console.log(item);
+                    console.log(key);
+                    console.log(art);
+                }
+            });
+            if (!found) {
+                if (art.type == 'class') {
+
+                } else if (art.type == 'article') {
+                    var item = {
+                        id: art.id,
+                        title: art.title,
+                        categorie: art.categorie.title,
+                        image: art.image,
+                        intro: art.intro || art.text.substring(0, art.text.indexOf('.') + 1),
+                        size: 3,
+                        type: {
+                            name: art.type,
+                            intern: 'articles',
+                            'class': art.section.name,
+                            'typClass': 'article'
+
+                        }
+                    };
+                }
+                $scope.newsletter.items.push(item);
+                scrollBottom();
+            }
+
         };
     });

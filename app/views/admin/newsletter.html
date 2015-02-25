@@ -20,7 +20,7 @@
             </ul>
         </div>
     </div>
-    <div class="row" style="margin-bottom: 40px; margin-top: 40px;" ng-if="newsletter.mailchimp">
+    <div class="row" id="newsletter-box" style="margin-bottom: 40px; margin-top: 40px;" ng-if="newsletter.mailchimp">
         <div class="col-md-4 col-md-offset-4">
             <div class="form-group">
                 <label>Betreff</label>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="thumb_image" ng-if="item.image.url">
                                         <a href="#">
-                                            <img ng-if="item.image.url" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{item.image.url.replace('s_150', 'm_650')}}&amp;fltr[]=gray&amp;fltr[]=brit|-40&amp;fltr[]=clr|60|{{colors[item.type.class]}}&amp;fltr[]=cont|10&amp;w=220&amp;h=145&amp;zc=1&amp;f=jpg&amp;q=100">
+                                            <img ng-if="item.image.url" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{item.image.url.replace('s_150', 'm_650')}}&amp;fltr[]=gray&amp;fltr[]=brit|-40&amp;fltr[]=clr|60|{{color[item.type.class]}}&amp;fltr[]=cont|10&amp;w=220&amp;h=145&amp;zc=1&amp;f=jpg&amp;q=100">
                                         </a>
                                     </div>
                                     <p class="categorie">
@@ -81,7 +81,7 @@
                                     <h2 class="title">
 										<span>{{ item.title}}</span>
 									</h2>
-                                    <p class="intro" ng-bind-html="item.intro" ng-if="item.intro && item.type.intern == 'articles'"></p>
+                                    <p class="intro" ng-bind-html="item.intro | htmlToPlain" ng-if="item.intro && item.type.intern == 'articles'"></p>
                                 </a>
                             </div>
                             <div class="newsletter-edit-menu">

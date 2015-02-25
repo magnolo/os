@@ -27,7 +27,7 @@
                     <div class="row">
                         <loader content="overview"></loader>
                         <ul class="overview-list">
-                            <li ng-if="art.id != article.id" ng-repeat="art in  overview | filter:searchArt | section:sortFilter" ng-click="toggleArticle(art)" class="{{art.section.name}} {{ art | insection: article.connections}}">
+                            <li ng-if="art.id != article.id" ng-repeat="art in  overview | filter:searchArt | section:sortFilter" ng-click="toggleArticle(art)" class="{{art.section.name}} {{ art | innewsletter: newsletter.items}}">
                                 {{ art.title }}
                             </li>
                         </ul>
