@@ -910,6 +910,12 @@ $vol-background: #FAD7DC;
         display: inline-block;
     }
 }
+.as-sortable-drag {
+    * {
+        width: 100%;
+        display: inline-block;
+    }
+}
 .form-group {
     p {
         font-size: 1.2em
@@ -988,6 +994,11 @@ table {
                 line-height: 24px;
             }
         }
+    }
+    .as-sortable-placeholder {
+        display: inline-block;
+        position: static;
+        float: left;
     }
 }
 #newsletter_content div[contenteditable="true"] {
