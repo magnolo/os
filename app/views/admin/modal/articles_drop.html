@@ -1,0 +1,39 @@
+<div class="modal modal-fix" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <div class="modal-header-content">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Artikelauswahl<input name="search" ng-model="searchArt" type="search" class="pull-right" style="color:#888;margin-right:20px;" placeholder="Suchen..."></h4>
+            </div>
+            <ul class="section-list">
+                <li class="wissen list" ng-class="{'chosen': sortFilter == 'wissen'}" ng-click="toggleSortFilter('wissen')">
+                    Wissen
+                </li>
+                <li class="projekte list" ng-class="{'chosen': sortFilter == 'projekte'}" ng-click="toggleSortFilter('projekte')">
+                    Projekte
+                </li>
+                <li class="schulcorner list" ng-class="{'chosen': sortFilter == 'schulcorner'}" ng-click="toggleSortFilter('schulcorner')">
+                    Schulcorner
+                </li>
+                <li class="vol list" ng-class="{'chosen': sortFilter == 'vol'}" ng-click="toggleSortFilter('vol')">
+                    Vol
+                </li>
+            </ul>
+        </div>
+        <div class="modal-content">
+
+            <form role="form" name="imagesForm" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <loader content="overview"></loader>
+                        <ul class="overview-list">
+                            <li ng-if="art.id != article.id" ng-repeat="art in  overview | filter:searchArt | section:sortFilter" ng-click="toggleArticle(art)" class="{{art.section.name}} {{ art | insection: article.connections}}">
+                                {{ art.title }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

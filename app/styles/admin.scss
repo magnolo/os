@@ -777,6 +777,19 @@ $vol-background: #FAD7DC;
                 }
             }
         }
+        .dropdown-menu {
+            float: left;
+            padding: 5px 0;
+            position: absolute;
+            text-align: left;
+            border-radius: 0px;
+            li {
+                float: none;
+                clear: both;
+                display: block;
+                margin: 0px;
+            }
+        }
     }
     a {
         color: #fff;
@@ -931,4 +944,131 @@ table {
     .as-sortable-placeholder {
         display: table-row;
     }
+}
+#newsletter_container {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    width: 722px;
+    margin: 40px auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background: #fff;
+    min-height: 500px;
+    padding-top: 20px;
+}
+#newsletter_content {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif !important;
+    h1, h2, h3, h4, h5, h6, .thumb_heading {
+        font-family: Helvetica, sans-serif !important;
+    }
+    .intern {
+        border: 1px solid;
+        p {
+            &.categorie {
+                margin: 16px;
+                font-size: 12px;
+                line-height: 1em;
+                a {
+                    text-decoration: underline;
+                }
+            }
+            &.intro {
+                color: #666;
+                font-size: 13px;
+                line-height: 1.8em;
+                margin: 0 14px 16px 16px;
+            }
+        }
+        h2 {
+            &.title {
+                margin: 0 14px 12px 16px;
+                font-size: 18px;
+                line-height: 24px;
+            }
+        }
+    }
+}
+#newsletter_content div[contenteditable="true"] {
+    outline: 2px solid lightgreen;
+}
+#newsletter_content > tbody > tr > td {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#newsletter_content .table-placeholder {
+    background: none repeat scroll 0 0 #333;
+    display: inline-block;
+    height: 250px;
+    width: 220px;
+}
+#newsletter-edit {
+    width: 800px;
+    max-width: 100%;
+    margin: 1em auto;
+    padding: 0.5em;
+    transition: all 100ms ease;
+    -ms-transition: all 100ms ease;
+    -webkit-transition: all 100ms ease;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+#newsletter-edit .item .content {
+    background-color: #ffffff;
+}
+#newsletter-edit.drag-over-accept {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+}
+#newsletter_content .content {
+    position: relative;
+}
+#newsletter_content .content .newsletter-edit-menu {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    right: 0px;
+    display: none;
+    box-shadow: 0px 0px 3px;
+}
+#newsletter_content .content .newsletter-edit-menu ul {
+    margin: 0px;
+    padding: 0px;
+}
+#newsletter_content .content .newsletter-edit-menu ul li {
+    display: inline-block;
+    line-height: 1em;
+    padding: 0.5em;
+    transition: all 200ms ease;
+    margin: 0px;
+    -ms-transition: all 200ms ease;
+    -webkit-transition: all 200ms ease;
+}
+#newsletter_content .content .newsletter-edit-menu ul li:hover {
+    background: none repeat scroll 0 0 $os-background;
+    cursor: pointer;
+}
+#newsletter_content .content:hover {
+    outline: 1px dashed #ccc;
+}
+#newsletter_content .content:hover .newsletter-edit-menu {
+    display: inline-block;
+}
+#newsletter_content .schulcorner .content .newsletter-edit-menu ul li:hover {
+    background: none repeat scroll 0 0 $schulcorner-background;
+}
+#newsletter_content .wissen .content .newsletter-edit-menu ul li:hover {
+    background: none repeat scroll 0 0 $wissen-background;
+}
+#newsletter_content .projekte .content .newsletter-edit-menu ul li:hover {
+    background: none repeat scroll 0 0 $projekte-background;
+}
+#newsletter_content .vol .content .newsletter-edit-menu ul li:hover {
+    background: none repeat scroll 0 0 $vol-background;
 }

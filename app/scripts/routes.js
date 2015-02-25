@@ -299,6 +299,31 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'Accounts // OpenScience'
             }
         })
+        .state('newsletters', {
+            url: '/admin/newsletters',
+            views: {
+                'admin': {
+                    templateUrl: 'views/admin/newsletters.html',
+                    controller: 'NewslettersCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: USER_ROLES.admin,
+                pageTitle: 'Newsletters // OpenScience'
+            }
+        }).state('newsletter', {
+            url: '/admin/newsletters/:id',
+            views: {
+                'admin': {
+                    templateUrl: 'views/admin/newsletter.html',
+                    controller: 'NewsletterCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: USER_ROLES.admin,
+                pageTitle: 'Newsletter // OpenScience'
+            }
+        })
         .state('tag', {
             url: '/tag/:name',
             views: {

@@ -1,0 +1,9 @@
+<ul role="menu" class="dropdown-menu">
+    <li><a href=""><i class="fa fa-eye"></i>&nbsp;&nbsp;Vorschau</a>
+    </li>
+    <li ng-if="status != 'sent'"><a href=""><i class="fa fa-bug"></i>&nbsp;&nbsp;Testmail</a>
+    </li>
+    <li class="divider" ng-if="status != 'sent'"></li>
+    <li ng-if="status != 'sent'"><a href=""><i class="fa fa-rocket"></i>&nbsp;&nbsp;Senden</a>
+    </li>
+</ul>

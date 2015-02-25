@@ -218,9 +218,19 @@
                     <i class="fa fa-life-ring"></i>
                     <span class="text">FAQs</span>
                 </li>
-                <li ng-click="goto('newsletter')">
+                <li ng-click="goto('newsletters')">
                     <i class="fa fa-envelope"></i>
-                    <span class="text">Newsletter</span>
+                    <span class="text">Newsletters</span>
+                    <ul class="admin-sub-menu">
+                        <li ng-click="goto('newsleters',{id:''})">
+                            <i class="fa fa-plus-circle"></i>
+                            <span class="text" style="width:110px">Neuer Newsletter</span>
+                        </li>
+                        <li ng-click="goto('classes')">
+                            <i class="fa fa-graduation-cap "></i>
+                            <span class="text">Einstellungen</span>
+                        </li>
+                    </ul>
                 </li>
                 <li ng-click="goto('users')">
                     <i class="fa fa-key"></i>
@@ -326,6 +336,7 @@
     <script src="bower_components/hoverintent/hoverintent.js"></script>
     <script src="bower_components/moment/locale/de.js"></script>
     <script src="bower_components/bs-table/source/bs-table.js"></script>
+    <script src="bower_components/sticky/jquery.sticky-kit.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/routes.js"></script>
     <script src="scripts/controllers/main.js"></script>
@@ -449,6 +460,10 @@
     <script src="scripts/directives/sticker.js"></script>
     <script src="scripts/services/user.js"></script>
     <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/directives/sticky.js"></script>
+    <script src="scripts/controllers/newsletters.js"></script>
+    <script src="scripts/services/newsletter.js"></script>
+    <script src="scripts/controllers/newsletter.js"></script>
     <!-- endbuild -->
 
     <script>
