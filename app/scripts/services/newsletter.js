@@ -73,6 +73,25 @@ angular.module('osApp')
                 params: {
                     partnerId: 'sort'
                 }
+            },
+            configs: {
+                method: 'GET',
+                params: {
+                    folder: 'newsletters',
+                    location: 'configs'
+
+                },
+                isArray: true
+            },
+            config: {
+                method: 'GET',
+                params: {
+                    folder: 'api',
+                    location: 'newsletters',
+                    newsId: 'configs'
+
+                }
+
             }
 
         });

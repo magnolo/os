@@ -107,7 +107,7 @@ angular.module('osApp')
                             'class': $scope.newTitle.type.class,
                             'typClass': 'title'
                         },
-                        size: 2
+                        size: 3
                     };
                     if (typeof $scope.newsletter.items == "undefined") {
                         $scope.newsletter.items = [];
@@ -162,12 +162,13 @@ angular.module('osApp')
                 if ($scope.addingText) {
                     var item = {
                         text: $scope.newText.text,
+                        size: 3,
                         type: {
                             name: 'text',
                             intern: 'additional',
                             'class': $scope.newText.type.class,
                             'typClass': 'text',
-                            size: 2
+
                         }
                     };
                     if (typeof $scope.newsletter.items == "undefined") {
@@ -185,13 +186,15 @@ angular.module('osApp')
             $scope.newsletter.items.splice(index, 1);
         };
         $scope.sizeUp = function(item) {
-            item.size = 2;
+            if (item.size < 3)
+                item.size++;
         };
         $scope.sizeDown = function(item) {
-            item.size = 1;
+            if (item.size > 0)
+                item.size--;
         };
         $scope.toggleArticle = function(art) {
-
+            console.log(art);
             if (typeof $scope.newsletter.items == "undefined") {
                 $scope.newsletter.items = [];
             }
@@ -207,7 +210,25 @@ angular.module('osApp')
             });
             if (!found) {
                 if (art.type == 'class') {
+                    var cat = "Kurs/Seminar";
+                    if (art.section.title == "Summercamp") {
+                        cat = "Summer Science Camp";
+                    }
+                    var item = {
+                        id: art.id,
+                        title: art.title,
+                        categorie: cat,
+                        image: art.image,
+                        intro: art.intro || art.text.substring(0, art.text.indexOf('.') + 1),
+                        size: 0,
+                        type: {
+                            name: art.type,
+                            intern: 'articles',
+                            'class': art.section.name,
+                            'typClass': 'article'
 
+                        }
+                    };
                 } else if (art.type == 'article') {
                     var item = {
                         id: art.id,
@@ -215,7 +236,7 @@ angular.module('osApp')
                         categorie: art.categorie.title,
                         image: art.image,
                         intro: art.intro || art.text.substring(0, art.text.indexOf('.') + 1),
-                        size: 3,
+                        size: 0,
                         type: {
                             name: art.type,
                             intern: 'articles',
@@ -228,6 +249,123 @@ angular.module('osApp')
                 $scope.newsletter.items.push(item);
                 scrollBottom();
             }
+
+        };
+
+
+        $scope.saveNewsletter = function(isValid) {
+
+            var table = $('<table></table>');
+            var columns = 0;
+            var row = $('<tr></tr>');
+            var pos = 0;
+            var i = null;
+            angular.forEach(angular.element(".newsletter-toconvert > div"), function(value, key) {
+                var item = angular.element(value).clone();
+                item.find('.newsletter-edit-menu').remove();
+                item.removeAttr('ng-class');
+                item.removeAttr('ng-repeat');
+                item.removeAttr('as-sortable-item');
+                // var cont = item.html().replace(/<!--[^(-->)]+-->/g, '');
+                var td = $('<td></td>');
+                if (item.hasClass('text')) {
+                    item.find('h2').wrap('<a target="_blank" href="http://www.openscience.or.at"></a>');
+                }
+                td.append(item);
+
+                if (item.hasClass('col-md-12')) {
+                    td.attr('width', '100%')
+                    td.attr('colspan', 6);
+                    columns += 6;
+                } else if (item.hasClass('col-md-8')) {
+                    td.attr('width', '75%')
+                    td.attr('colspan', 4);
+                    columns += 4;
+                } else if (item.hasClass('col-md-6')) {
+                    td.attr('width', '50%')
+                    td.attr('colspan', 3);
+                    columns += 3;
+                } else if (item.hasClass('col-md-4')) {
+                    td.attr('width', '33.33%')
+                    td.attr('colspan', 2);
+                    columns += 2;
+                }
+                console.log(columns);
+                if (columns > 0) {
+                    row.append(td);
+                }
+
+                if (columns >= 6) {
+
+                    table.append(row);
+                    row = $('<tr></tr>');
+                    columns = 0;
+                    pos = key + 1;
+                }
+                i = item;
+            });
+            /* if (pos != angular.element(".newsletter-toconvert > div").length) {
+
+                 i.find('.newsletter-edit-menu').remove();
+                 // var cont = item.html().replace(/<!--[^(-->)]+-->/g, '');
+                 var td = $('<td></td>');
+                 td.append(i);
+
+                 if (i.hasClass('col-md-12')) {
+                     td.attr('width', '100%')
+                     td.attr('colspan', 6);
+
+                 } else if (i.hasClass('col-md-8')) {
+                     td.attr('width', '75%')
+                     td.attr('colspan', 4);
+
+                 } else if (i.hasClass('col-md-6')) {
+                     td.attr('width', '50%')
+                     td.attr('colspan', 3);
+
+                 } else if (i.hasClass('col-md-4')) {
+                     td.attr('width', '33.33%')
+                     td.attr('colspan', 2);
+
+                 }
+                 row.append(td);
+
+                 table.append(row);
+
+             }*/
+            //var fbRow = $('<tr><td id="social-column" colspan="2" style="text-align:center"><a href="https://www.facebook.com/pages/Mascha-Seethaler/678185975581197?fref=ts" style="margin-top:8px;color: #8b8a8b !important;padding: 20px 0;display: inline-block;background: #fff;width: 98%;"><img src="http://www.architects.co.at/images/fb_icon.jpg"/>&nbsp;<span style="color: #8b8a8b;padding:5px;position:relative;top:-5px;"> be a fan on facebook</span></a></td><tr>')
+            //table.append(fbRow);
+            /*if (isValid) {
+                Mailchimpadmin.campaignUpdate({
+                    id: $scope.campaign.id
+                }, {
+                    content: '<center><table cellspacing="0" cellpadding="0" width="100%"  border="0" style="border-spacing: 0;"><tbody><tr><td align="center" valign="top" style="border-collapse: collapse;"><table id="main-content" width="800" cellspacing="0" cellpadding="0" valign="top" align="center">' + table.html().replace(/<!--[^(-->)]+-->/g, '') + "</table></td></tr></tbody></table></center>",
+                    data: JSON.stringify($scope.newsletter.items),
+                    title: $scope.campaign.title,
+                    subject: $scope.campaign.subject,
+                    from_name: $scope.campaign.from_name,
+                    from_email: $scope.campaign.from_email,
+                    image_id: $scope.campaign.local.image_id,
+                    status: $scope.campaign.status,
+                    list_id: $scope.campaign.list_id,
+                    online_at: $scope.campaign.local.online_at
+                }, function(response) {
+                    if (response.errors.length == 0) {
+                        FlashService.show('Speichern erfolgreich!', 'Der Inhalt wurde erfolgreich gespeichert', 'success');
+                    } else {
+                        FlashService.show('Speichern fehlgeschlagen!', 'Der Inhalt konnte nicht gespeichert werden!', 'danger');
+                    }
+                });
+            }*/
+            Newsletter.config({
+                action: 'newsletterstyle'
+            }, function(data) {
+                var html = '<style type="text/css">' + data.value + '</style>';
+                html += '<center><table cellspacing="0" cellpadding="0" width="100%"  border="0" style="border-spacing: 0;"><tbody><tr><td align="center" valign="top" style="border-collapse: collapse;"><table id="main-content" width="722" cellspacing="0" cellpadding="0" valign="top" align="center">' + table.html().replace(/<!--[^(-->)]+-->/g, '') + "</table></td></tr></tbody></table></center>";
+                var myWindow = window.open('', 'LetterTest', "width=800, height=800, scrollbars=yes");
+                myWindow.document.write(html);
+            });
+
 
         };
     });

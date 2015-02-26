@@ -324,13 +324,11 @@ $vol-background: #FAD7DC;
         color: $vol-color !important;
     }
 }
-#categorie_container {
-    .froala-editor .fr-dropdown .fr-dropdown-menu li {
-        list-style-type: none;
-        position: relative;
-        margin: 0px;
-        padding-left: 0px;
-    }
+.froala-editor .fr-dropdown .fr-dropdown-menu li {
+    list-style-type: none;
+    position: relative;
+    margin: 0px;
+    padding-left: 0px;
 }
 .froala-element ul, .froala-element ol, ul.fr-tag, ol.fr-tag {
     padding-left: 0;
@@ -942,9 +940,37 @@ $vol-background: #FAD7DC;
     }
 }
 .as-sortable-drag {
-    * {
+    div {
         width: 100%;
         display: inline-block;
+    }
+    .newsletter-edit-menu {
+        display: none;
+    }
+    .categorie {
+        font-size: 12px;
+        line-height: 1em;
+        margin: 16px;
+        a {
+            text-decoration: underline;
+        }
+    }
+    .title {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 14px 12px 16px;
+    }
+    .intro {
+        color: #666;
+        font-size: 13px;
+        line-height: 1.8em;
+        margin: 0 14px 16px 16px;
+    }
+    .article {
+        .box {
+            background: #fff;
+            border: 1px solid;
+        }
     }
 }
 .form-group {
@@ -992,6 +1018,8 @@ table {
     background: #fff;
     min-height: 500px;
     padding-top: 20px;
+    display: flex;
+    color: #666;
 }
 #newsletter_content {
     margin: 0;
@@ -999,6 +1027,10 @@ table {
     font-family: Helvetica, sans-serif !important;
     h1, h2, h3, h4, h5, h6, .thumb_heading {
         font-family: Helvetica, sans-serif !important;
+    }
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        padding-left: 10px;
+        padding-right: 10px;
     }
     .intern {
         border: 1px solid;
@@ -1026,6 +1058,14 @@ table {
             }
         }
     }
+    .item {
+        &.title {
+            h2 {
+                margin: 10px 0px;
+                padding: 0px;
+            }
+        }
+    }
     .as-sortable-placeholder {
         display: inline-block;
         position: static;
@@ -1041,11 +1081,16 @@ table {
     padding: 0;
     position: relative;
 }
-#newsletter_content .table-placeholder {
-    background: none repeat scroll 0 0 #333;
-    display: inline-block;
-    height: 250px;
-    width: 220px;
+#newsletter_content {
+    .table-placeholder {
+        background: none repeat scroll 0 0 #333;
+        display: inline-block;
+        height: 250px;
+        width: 220px;
+    }
+    > .item {
+        margin-bottom: 20px;
+    }
 }
 #newsletter-edit {
     width: 800px;
