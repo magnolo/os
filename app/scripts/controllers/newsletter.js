@@ -9,6 +9,14 @@
  */
 angular.module('osApp')
     .controller('NewsletterCtrl', function($scope, $timeout, $document, $stateParams, $modal, $aside, FlashService, Newsletter, Article) {
+        function gup(name, url) {
+            if (!url) url = location.href
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(url);
+            return results == null ? null : results[1];
+        }
         $scope.status = 'loading';
         $scope.colors = [{
             name: 'normal',
@@ -36,16 +44,92 @@ angular.module('osApp')
             'vol': 'A31031'
         };
         $scope.overview = [];
-        $scope.newsletter = Newsletter.get({
-            newsId: $stateParams.id
-        }, function() {
-            Newsletter.campaign({
-                id: $scope.newsletter.mailchimp_id
-            }, function(response) {
-                $scope.newsletter.mailchimp = response.data[0];
+        if ($stateParams.id != "new") {
+            $scope.newsletter = Newsletter.get({
+                newsId: $stateParams.id
+            }, function() {
+                Newsletter.campaign({
+                    id: $scope.newsletter.mailchimp_id
+                }, function(response) {
+                    $scope.newsletter.mailchimp = response.data[0];
 
+                    if ($scope.newsletter.content_data == '') {
+
+                        if (typeof $scope.newsletter.items == "undefined") {
+                            $scope.newsletter.items = [];
+                        }
+                        $($scope.newsletter.content).children().children().each(function(key, value) {
+                            $(value).find('.sort').each(function(k, item) {
+                                var i = {};
+                                var size = $(item).attr('data-width');
+                                if (size == 1) {
+                                    size = 0;
+                                }
+                                if ($(item).hasClass('text')) {
+                                    i = {
+                                        text: $(item).children().html(),
+                                        size: size,
+                                        type: {
+                                            name: 'text',
+                                            intern: 'additional',
+                                            'class': '',
+                                            'typClass': 'text'
+
+                                        }
+                                    };
+                                    $scope.newsletter.items.push(i);
+
+                                } else if ($(item).hasClass('header')) {
+
+                                    i = {
+                                        title: $(item).find('div').text(),
+                                        size: size,
+                                        type: {
+                                            name: 'header',
+                                            intern: 'additional',
+                                            'class': '',
+                                            'typClass': 'title'
+                                        },
+                                    };
+                                    $scope.newsletter.items.push(i);
+
+                                } else {
+                                    var id = $(item).attr('data-id');
+                                    Article.get({
+                                        articleId: id
+                                    }, function(data) {
+                                        i = {
+                                            id: data.id,
+                                            title: data.title, //art.title,
+                                            categorie: data.categorie.title,
+                                            image: data.image,
+                                            intro: data.intro || data.text.substring(0, data.text.indexOf('.') + 1),
+                                            size: 0,
+                                            type: {
+                                                name: '', //art.type,
+                                                intern: 'articles',
+                                                'class': data.section.name, //art.section.name,
+                                                'typClass': 'article'
+
+                                            }
+                                        };
+                                        $scope.newsletter.items.push(i);
+                                    });
+
+                                }
+
+                            });
+                            FlashService.show('Newsletter Inhalt wurde vom alten System konvertiert!', '', 'warning', 10);
+                        });
+                    }
+                });
             });
-        });
+        } else {
+            $scope.newsletter = {
+                status: 'create'
+            };
+            $scope.newsletter.items = [];
+        }
         $scope.list = Newsletter.list();
         $scope.$watchCollection('newsletter.mailchimp', function(newItem, oldItem) {
             if (newItem == oldItem) {
@@ -56,7 +140,6 @@ angular.module('osApp')
         });
 
         function scrollBottom() {
-            console.log($('.full-fixed').height());
             $timeout(function() {
                 $('.full-fixed').animate({
                     scrollTop: ($('#newsletter-box').height())
@@ -362,7 +445,7 @@ angular.module('osApp')
             }, function(data) {
                 var html = '<style type="text/css">' + data.value + '</style>';
                 html += '<center><table cellspacing="0" cellpadding="0" width="100%"  border="0" style="border-spacing: 0;"><tbody><tr><td align="center" valign="top" style="border-collapse: collapse;"><table id="main-content" width="722" cellspacing="0" cellpadding="0" valign="top" align="center">' + table.html().replace(/<!--[^(-->)]+-->/g, '') + "</table></td></tr></tbody></table></center>";
-                var myWindow = window.open('', 'LetterTest', "width=800, height=800, scrollbars=yes");
+                var myWindow = window.open('', 'LetterTest', "width=800,height=800,toolbar=yes,scrollbars=yes");
                 myWindow.document.write(html);
             });
 

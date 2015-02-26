@@ -1147,6 +1147,21 @@ table {
 #newsletter_content .content:hover .newsletter-edit-menu {
     display: inline-block;
 }
+#newsletter_content .article .content h2.title a {
+    text-decoration: none;
+}
+#newsletter_content .article.wissen .content h2.title a {
+    color: $wissen-color;
+}
+#newsletter_content .article.projekte .content h2.title a {
+    color: $projekte-color;
+}
+#newsletter_content .article.schulcorner .content h2.title a {
+    color: $schulcorner-color;
+}
+#newsletter_content .article.vol .content h2.title a {
+    color: $vol-color;
+}
 #newsletter_content .schulcorner .content .newsletter-edit-menu ul li:hover {
     background: none repeat scroll 0 0 $schulcorner-background;
 }
