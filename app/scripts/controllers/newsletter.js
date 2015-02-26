@@ -8,7 +8,7 @@
  * Controller of the osApp
  */
 angular.module('osApp')
-    .controller('NewsletterCtrl', function($scope, $timeout, $document, $stateParams, $modal, FlashService, Newsletter, Article) {
+    .controller('NewsletterCtrl', function($scope, $timeout, $document, $stateParams, $modal, $aside, FlashService, Newsletter, Article) {
         $scope.status = 'loading';
         $scope.colors = [{
             name: 'normal',
@@ -70,7 +70,7 @@ angular.module('osApp')
                     images: true
                 });
             }
-            $scope.articlesModal = $modal({
+            $scope.articlesModal = $aside({
                 scope: $scope,
                 template: 'views/admin/modal/articles_drop.html'
             });

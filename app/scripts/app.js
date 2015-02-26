@@ -24,6 +24,7 @@ angular
         'mgcrea.ngStrap.datepicker',
         'mgcrea.ngStrap.timepicker',
         'mgcrea.ngStrap.dropdown',
+        'mgcrea.ngStrap.aside',
         'pascalprecht.translate',
         'angularMoment',
         'froala',

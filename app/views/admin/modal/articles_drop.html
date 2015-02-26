@@ -1,9 +1,10 @@
-<div class="modal modal-fix" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-header">
-            <div class="modal-header-content">
+<div class="aside aside-fix" tabindex="-1" role="dialog">
+    <div class="aside-dialog">
+        <div class="aside-header">
+            <div class="aside-header-content">
                 <button type="button" class="close" ng-click="$hide()">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Artikelauswahl<input name="search" ng-model="searchArt" type="search" class="pull-right" style="color:#888;margin-right:20px;" placeholder="Suchen..."></h4>
+                <h4 class="aside-title" id="myModalLabel">Artikelauswahl</h4>
+                <input name="search" ng-model="searchArt" type="search" class="form-control" style="color:#888;margin-right:20px;" placeholder="Suchen...">
             </div>
             <ul class="section-list">
                 <li class="wissen list" ng-class="{'chosen': sortFilter == 'wissen'}" ng-click="toggleSortFilter('wissen')">
@@ -20,18 +21,16 @@
                 </li>
             </ul>
         </div>
-        <div class="modal-content">
+        <div class="aside-content">
 
             <form role="form" name="imagesForm" novalidate>
-                <div class="modal-body">
-                    <div class="row">
-                        <loader content="overview"></loader>
-                        <ul class="overview-list">
-                            <li ng-if="art.id != article.id" ng-repeat="art in  overview | filter:searchArt | section:sortFilter" ng-click="toggleArticle(art)" class="{{art.section.name}} {{ art | innewsletter: newsletter.items}}">
-                                {{ art.title }}
-                            </li>
-                        </ul>
-                    </div>
+                <div class="aside-body">
+                    <loader content="overview"></loader>
+                    <ul class="overview-list">
+                        <li ng-if="art.id != article.id" ng-repeat="art in  overview | filter:searchArt | section:sortFilter" ng-click="toggleArticle(art)" class="{{art.section.name}} {{ art | innewsletter: newsletter.items}}">
+                            {{ art.title }}
+                        </li>
+                    </ul>
                 </div>
             </form>
         </div>

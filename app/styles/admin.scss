@@ -725,6 +725,37 @@ $vol-background: #FAD7DC;
         }
     }
 }
+.aside {
+    &.aside-fix {
+        max-width: 350px;
+        .aside-dialog {
+            .aside-header {
+                position: absolute;
+                ;
+                top: 0px;
+                width: 100%;
+                z-index: 1;
+                padding: 0px;
+                .aside-header-content {
+                    h4 {
+                        padding: 4px 8px;
+                        margin-bottom: 0px;
+                        line-height: 30px;
+                    }
+                }
+                .close {
+                    margin-right: 0px;
+                }
+            }
+            .aside-content {
+                .aside-body {
+                    margin-top: 105px;
+                    padding: 0px;
+                }
+            }
+        }
+    }
+}
 .overview-list {
     padding: 0px;
     margin: 0px;
