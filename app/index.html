@@ -218,11 +218,11 @@
                     <i class="fa fa-life-ring"></i>
                     <span class="text">FAQs</span>
                 </li>
-                <li ng-click="goto('newsletters')">
-                    <i class="fa fa-envelope"></i>
-                    <span class="text">Newsletters</span>
+                <li>
+                    <i class="fa fa-envelope" ng-click="goto('newsletters')"></i>
+                    <span class="text" ng-click="goto('newsletters')">Newsletters</span>
                     <ul class="admin-sub-menu">
-                        <li ng-click="goto('newsleters',{id:''})">
+                        <li ng-click="goto('newsletter',{id:'new'})">
                             <i class="fa fa-plus-circle"></i>
                             <span class="text" style="width:110px">Neuer Newsletter</span>
                         </li>

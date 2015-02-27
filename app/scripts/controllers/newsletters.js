@@ -26,7 +26,7 @@ angular.module('osApp')
                             }
                         })
                     });
-                    console.log($scope.newsletters);
+                    //console.log($scope.newsletters);
                 }
             }
         }

@@ -31,7 +31,7 @@ angular.module('osApp')
                 params: {
                     folder: 'assets',
                     location: 'ajax',
-                    newsId: 'mailchimp.php',
+                    newsId: 'mailchimper.php',
                     fetch: 'campaigns'
                 }
             },
@@ -40,7 +40,7 @@ angular.module('osApp')
                 params: {
                     folder: 'assets',
                     location: 'ajax',
-                    newsId: 'mailchimp.php',
+                    newsId: 'mailchimper.php',
                     fetch: 'list'
                 }
             },
@@ -49,7 +49,7 @@ angular.module('osApp')
                 params: {
                     folder: 'assets',
                     location: 'ajax',
-                    newsId: 'mailchimp.php',
+                    newsId: 'mailchimper.php',
                     fetch: 'campaign',
                     id: ''
                 }
@@ -57,16 +57,35 @@ angular.module('osApp')
             content: {
                 method: 'GET',
                 params: {
-                    folder: 'assets/ajax/mailchimp.php',
+                    folder: 'assets/ajax/mailchimper.php',
+                    location: 'ajax',
+                    newsId: 'mailchimper.php',
                     fetch: 'content',
                     id: ''
                 }
             },
             create: {
-                method: 'POST'
+                method: 'POST',
+                params: {
+                    folder: 'api',
+                    location: 'newsletters'
+                }
+            },
+            createChimp: {
+                method: 'POST',
+                params: {
+                    folder: 'assets',
+                    location: 'ajax',
+                    newsId: 'mailchimper.php',
+                }
             },
             remove: {
-                method: 'DELETE'
+                method: 'DELETE',
+                params: {
+                    folder: 'api',
+                    location: 'newsletters',
+                    newsId: ''
+                }
             },
             sort: {
                 method: 'PUT',

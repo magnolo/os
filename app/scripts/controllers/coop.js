@@ -40,7 +40,7 @@ angular.module('osApp')
                         if (response.status == true) {
                             FlashService.show(response.message, '', 'success');
                             $state.go('coop', {
-                                id: response.parnter.id
+                                id: response.partner.id
                             });
                         } else {
                             FlashService.show('Speicher fehlgeschlagen!', '', 'danger');

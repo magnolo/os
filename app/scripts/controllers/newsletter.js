@@ -53,7 +53,7 @@ angular.module('osApp')
                 }, function(response) {
                     $scope.newsletter.mailchimp = response.data[0];
 
-                    if ($scope.newsletter.content_data == '') {
+                    if ($scope.newsletter.content_data == '' && $scope.newsletter.mailchimp.status != 'sent') {
 
                         if (typeof $scope.newsletter.items == "undefined") {
                             $scope.newsletter.items = [];
@@ -119,7 +119,7 @@ angular.module('osApp')
                                 }
 
                             });
-                            FlashService.show('Newsletter Inhalt wurde vom alten System konvertiert!', '', 'warning', 10);
+                            FlashService.show('Newsletter Inhalt wurde vom alten System konvertiert!', 'Elemente müssen eventuell neu positioniert werden', 'warning', 10);
                         });
                     }
                 });
@@ -448,7 +448,16 @@ angular.module('osApp')
                 var myWindow = window.open('', 'LetterTest', "width=800,height=800,toolbar=yes,scrollbars=yes");
                 myWindow.document.write(html);
             });
+            /*Newsletter.createChimp({
+                data: {
+                    method: 'create',
+                    list_id: $scope.newsletter.list_id,
+                    subject: $scope.newsletter.title,
+                    content: table.html().replace(/<!--[^(-->)]+-->/g, '')
+                }
+            }, function(data) {
 
+            });*/
 
         };
     });
