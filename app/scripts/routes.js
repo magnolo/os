@@ -324,6 +324,32 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'Newsletter // OpenScience'
             }
         })
+        .state('elabs', {
+            url: '/admin/elabs',
+            views: {
+                'admin': {
+                    templateUrl: 'views/admin/elabs.html',
+                    controller: 'ElabsCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: USER_ROLES.admin,
+                pageTitle: 'eLabs // OpenScience'
+            }
+        })
+        .state('elab', {
+            url: '/admin/elabs/:id',
+            views: {
+                'admin': {
+                    templateUrl: 'views/admin/elab.html',
+                    controller: 'ElabCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: USER_ROLES.admin,
+                pageTitle: 'eLabs // OpenScience'
+            }
+        })
         .state('tag', {
             url: '/tag/:name',
             views: {
