@@ -448,7 +448,7 @@ angular.module('osApp')
                 var myWindow = window.open('', 'LetterTest', "width=800,height=800,toolbar=yes,scrollbars=yes");
                 myWindow.document.write(html);
             });
-            /*Newsletter.createChimp({
+            Newsletter.createChimp({
                 data: {
                     method: 'create',
                     list_id: $scope.newsletter.list_id,
@@ -457,7 +457,7 @@ angular.module('osApp')
                 }
             }, function(data) {
 
-            });*/
+            });
 
         };
     });
