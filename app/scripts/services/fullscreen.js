@@ -1,4 +1,6 @@
 (function(window) {
+    'use strict';
+
     var createModule = function(angular) {
         var module = angular.module('FBAngular', []);
 
@@ -52,9 +54,9 @@
                     var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
                     return fullscreenElement ? true : false;
                 },
-                toggleAll: function() {
+                /*toggleAll: function() {
                     serviceInstance.isEnabled() ? serviceInstance.cancel() : serviceInstance.all();
-                },
+                },*/
                 isSupported: function() {
                     var docElm = document.documentElement;
                     var requestFullscreen = docElm.requestFullScreen || docElm.mozRequestFullScreen || docElm.webkitRequestFullscreen || docElm.msRequestFullscreen;

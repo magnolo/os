@@ -52,6 +52,12 @@ angular.module('osApp')
                     type: 'sections'
                 }
             },
+            remove: {
+                method: 'DELETE',
+                params: {
+                    type: 'sections'
+                }
+            },
             updateElabentry: {
                 method: 'PUT'
 
