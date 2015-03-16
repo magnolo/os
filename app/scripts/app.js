@@ -36,7 +36,8 @@ angular
         'ui.calendar',
         'ui.sortable',
         'bsTable',
-        'ui.checkbox'
+        'ui.checkbox',
+        'FBAngular'
     ]).value('froalaConfig', {
         inlineMode: false,
         toolbarFixed: false,

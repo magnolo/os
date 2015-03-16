@@ -7,15 +7,17 @@
  * # fullscreen
  */
 angular.module('osApp')
-    .directive('fullscreen', function() {
+    .directive('fillscreen', function(Fullscreen) {
         return {
             restrict: 'A',
             link: function postLink(scope, element, attrs) {
                 $(element).on('click', function() {
                     if ($('#categorie_container').hasClass('fullscreen')) {
                         $('#categorie_container').removeClass('fullscreen');
+                        Fullscreen.cancel();
                     } else {
                         $('#categorie_container').addClass('fullscreen');
+                        Fullscreen.all();
 
                     }
                 });
@@ -23,6 +25,7 @@ angular.module('osApp')
                     if (e.keyCode == 27) {
                         if ($('#categorie_container').hasClass('fullscreen')) {
                             $('#categorie_container').removeClass('fullscreen');
+                            Fullscreen.cancel();
                         }
                     }
                 });
