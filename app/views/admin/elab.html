@@ -37,7 +37,7 @@
             </div>
         </div>
         <form name="quizForm" class="col-md-9" novalidate ng-submit="saveQuiz(quizForm.$valid)">
-            <div class="panel-group" allow-multiple="true" bs-collapse>
+            <div class="panel-group" data-allow-multiple="true" bs-collapse>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 style="margin:0"><a class="pointer" bs-collapse-toggle>Details</a></h3>
@@ -50,7 +50,7 @@
                                     <input type="text" class="form-control" ng-model="elab.title" />
                                 </div>
                                 <div style="margin-bottom:15px">
-                                    <btn-switch ng-model="elab.is_online"></btn-switch> Online
+                                    <btn-switch ng-model="elab.online"></btn-switch> Online
                                 </div>
                             </div>
                             <div class="col-md-7">
@@ -101,8 +101,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </form>
     </div>
