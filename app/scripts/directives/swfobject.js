@@ -39,15 +39,19 @@ angular.module('osApp')
                   }, 0);*/
                 attrs.$observe('swfUrl', function(value) {
                     if (value) {
-                        SwfObject.embedSWF(value,
-                            scope.id,
-                            attrs.swfWidth || 700,
-                            attrs.swfHeight || 580,
-                            attrs.swfVersion || '10',
-                            null,
-                            null,
-                            scope.params,
-                            scope.attrs);
+                        console.log(value);
+                        $timeout(function() {
+
+                            SwfObject.embedSWF(value,
+                                scope.id,
+                                attrs.swfWidth || 700,
+                                attrs.swfHeight || 580,
+                                attrs.swfVersion || '10',
+                                null,
+                                null,
+                                scope.params,
+                                scope.attrs);
+                        }, attrs.swfTimeout || 0);
                     }
 
                 });

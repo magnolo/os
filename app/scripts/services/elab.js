@@ -21,7 +21,6 @@ angular.module('osApp')
                 method: 'GET',
                 params: {
                     type: 'sections'
-
                 }
             },
             sectionLabs: {
@@ -40,6 +39,28 @@ angular.module('osApp')
                 params: {
                     type: 'name'
                 }
+            },
+            create: {
+                method: 'POST',
+                params: {
+                    type: 'sections'
+                }
+            },
+            update: {
+                method: 'PUT',
+                params: {
+                    type: 'sections'
+                }
+            },
+            updateElabentry: {
+                method: 'PUT'
+
+            },
+            addElabentry: {
+                method: 'POST'
+            },
+            removeElabentry: {
+                method: 'DELETE'
             }
         });
     });
