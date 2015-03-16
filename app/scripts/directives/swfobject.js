@@ -6,7 +6,7 @@
  * @description
  * # SwfObject
  */
-angular.module('osApp', [])
+angular.module('osApp')
     .factory('SwfObject', ['$window', function($window) {
         return $window.swfobject;
     }])
@@ -25,17 +25,32 @@ angular.module('osApp', [])
                 scope.id = attrs.swfId ||
                     // Random hash looking thing
                     'swf-' + Math.floor(Math.random() * 1000000000000).toString(16);
-                $timeout(function() {
-                    SwfObject.embedSWF(attrs.swfUrl,
-                        scope.id,
-                        attrs.swfWidth || 800,
-                        attrs.swfHeight || 600,
-                        attrs.swfVersion || '10',
-                        null,
-                        null,
-                        scope.params,
-                        scope.attrs);
-                }, 0);
+                /*  $timeout(function() {
+                      console.log(attrs);
+                      SwfObject.embedSWF(attrs.swfUrl,
+                          scope.id,
+                          attrs.swfWidth || 700,
+                          attrs.swfHeight || 580,
+                          attrs.swfVersion || '10',
+                          null,
+                          null,
+                          scope.params,
+                          scope.attrs);
+                  }, 0);*/
+                attrs.$observe('swfUrl', function(value) {
+                    if (value) {
+                        SwfObject.embedSWF(value,
+                            scope.id,
+                            attrs.swfWidth || 700,
+                            attrs.swfHeight || 580,
+                            attrs.swfVersion || '10',
+                            null,
+                            null,
+                            scope.params,
+                            scope.attrs);
+                    }
+
+                });
                 if (scope.callbacks) {
                     var cbs = scope.callbacks;
                     var cbNames = Object.keys(cbs);
