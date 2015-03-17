@@ -58,6 +58,13 @@ angular.module('osApp')
                     type: 'sections'
                 }
             },
+            sort: {
+                method: 'PUT',
+                params: {
+                    type: 'sections',
+                    action: 'sort'
+                }
+            },
             updateElabentry: {
                 method: 'PUT'
 

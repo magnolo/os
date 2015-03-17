@@ -49,7 +49,7 @@ angular.module('osApp')
                     if (data.status == true) {
                         FlashService.show(data.message, '', 'success');
                         $state.go('elab', {
-                            id: data.elab.id
+                            id: data.elab.title
                         });
                     } else {
                         FlashService.show('Speichern fehlgeschlagen!', '', 'danger');
@@ -154,11 +154,11 @@ angular.module('osApp')
                 }, {
                     list: list
                 }, function(response) {
-                    //  if (response.status == false) {
-                    //      FlashService.show('Fehlgeschlagen', '', 'danger');
-                    //  } else {
-                    FlashService.show(response.message, '', 'success');
-                    //  }
+                    if (response.status == false) {
+                        FlashService.show('Fehlgeschlagen', '', 'danger');
+                    } else {
+                        FlashService.show(response.message, '', 'success');
+                    }
                 });
             }
         };
@@ -282,17 +282,6 @@ angular.module('osApp')
             				}
             			});*/
         };
-        $scope.updateFileName = function(file, data) {
-            FileEdit.update({
-                fileId: file.id
-            }, {
-                name: data
-            }, function(response) {
-
-            });
-        };
-
-
         // CALLBACKS
         uploaderFiles.onAfterAddingFile = function(fileItem) {
             uploaderFiles.formData[0].id = $scope.elabentry.id || 'new';
