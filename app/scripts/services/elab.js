@@ -9,7 +9,7 @@
  */
 angular.module('osApp')
     .factory('Elab', function($resource) {
-        return $resource('http://www.openscience.or.at/api/elab/:type/:id', {}, {
+        return $resource('http://www.openscience.or.at/api/elab/:type/:id/:action', {}, {
             sections: {
                 method: 'GET',
                 params: {
@@ -67,6 +67,13 @@ angular.module('osApp')
             },
             removeElabentry: {
                 method: 'DELETE'
+            },
+            sortEntries: {
+                method: 'PUT',
+                params: {
+                    type: 'sections',
+                    action: 'sort'
+                }
             }
         });
     });

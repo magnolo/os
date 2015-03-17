@@ -77,10 +77,10 @@
                                 <thead>
                                     <th ng-click="predicate='title'; reverse=!reverse">Name</th>
                                     <th class="align_center">Online</th>
-                                    <th style="width:65px"></th>
+                                    <th style="width:95px"></th>
                                 </thead>
-                                <tbody>
-                                    <tr ng-repeat="lab in elabs | orderBy:predicate:reverse">
+                                <tbody as-sortable="sortController" ng-model="elabs">
+                                    <tr ng-repeat="lab in elabs " as-sortable-item style="display:table-row;">
                                         <td ng-click="viewElab(lab)" class="pointer">{{ lab.title}}</td>
                                         <td class="align_center" ng-click="toggleEntryOnline(lab)">
                                             <button type="button" ng-if="lab.online == 1" class="btn btn-success btn-xs"><i class="fa fa-check"></i>
@@ -89,6 +89,8 @@
                                             </button>
                                         </td>
                                         <td>
+                                            <button class="btn btn-default btn-xs" as-sortable-item-handle><i class="fa fa-arrows"></i>
+                                            </button>
                                             <button type="button" class="btn btn-info btn-xs" ng-click="viewElab(lab)"><i class="fa fa-pencil"></i>
                                             </button>
                                             <button type="button" class="btn btn-danger btn-xs" ng-click="deleteElabentry(lab)"><i class="fa fa-times"></i>

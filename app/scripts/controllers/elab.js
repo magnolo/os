@@ -142,6 +142,26 @@ angular.module('osApp')
             }
         };
 
+        $scope.sortController = {
+            additionalPlaceholderClass: '',
+            orderChanged: function(event) {
+                var list = [];
+                angular.forEach($scope.elabs, function(entry) {
+                    list.push(entry.id);
+                });
+                Elab.sortEntries({
+                    id: $scope.elab.id
+                }, {
+                    list: list
+                }, function(response) {
+                    //  if (response.status == false) {
+                    //      FlashService.show('Fehlgeschlagen', '', 'danger');
+                    //  } else {
+                    FlashService.show(response.message, '', 'success');
+                    //  }
+                });
+            }
+        };
 
         var uploader = $scope.uploader = new FileUploader({
             url: 'http://www.openscience.or.at/assets/ajax/uploadImages.php',
