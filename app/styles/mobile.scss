@@ -1,4 +1,11 @@
 @media screen and (max-width: 960px) {
+  #body {
+    &.fixed {
+      #wrapper {
+        padding-top: 395px;
+      }
+    }
+  }
   .intro_text {
     text-align: center;
   }
@@ -193,6 +200,7 @@
     padding: 5px;
     text-align: center;
     z-index: 3;
+    margin-top: 3px;
   }
   #navcontainer li.grid_3 {
     width: 23%;
@@ -366,9 +374,8 @@
     display: none !important;
   }
   #navcontainer li.grid_3 {
-    width: 46%;
-    margin: 2%;
     text-align: center;
+    font-size: 0.6em;
   }
   .vol {
     #content_container {

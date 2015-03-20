@@ -54,48 +54,54 @@ angular.module('osApp')
                 });
                 var slyScrollContainer = angular.element(document.getElementById('sly-scroll-container'));
                 var varscroll = parseInt($document.scrollTop());
-                if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
+                if ($window.innerWidth > 960) {
+                    if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
 
-                    element
-                        .addClass('headroom--not-top')
-                        .css({
-                            'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)'
+                        element
+                            .addClass('headroom--not-top')
+                            .css({
+                                'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)'
 
-                        });
+                            });
 
-                    if (slyScrollContainer.innerHeight() + 30 > ($window.innerHeight - navigation.innerHeight())) {
+                        if (slyScrollContainer.innerHeight() + 30 > ($window.innerHeight - navigation.innerHeight())) {
 
-                        list.css({
-                            'height': ($window.innerHeight - navigation.innerHeight() - 30) + 'px'
-                        });
-                        scrollbar.css({
-                            'height': ($window.innerHeight - navigation.innerHeight() - 30) + 'px'
-                        });
-                        if (isLoaded) {
-                            sly.reload();
+                            list.css({
+                                'height': ($window.innerHeight - navigation.innerHeight() - 30) + 'px'
+                            });
+                            scrollbar.css({
+                                'height': ($window.innerHeight - navigation.innerHeight() - 30) + 'px'
+                            });
+                            if (isLoaded) {
+                                sly.reload();
+                            } else {
+                                sly.init();
+                            }
+                            scrollbar.show();
                         } else {
-                            sly.init();
-                        }
-                        scrollbar.show();
-                    } else {
 
-                        isLoaded = false;
-                        scrollbar.hide();
-                        if (sly.initialized) {
-                            sly.destroy();
+                            isLoaded = false;
+                            scrollbar.hide();
+                            if (sly.initialized) {
+                                sly.destroy();
+                            }
+
                         }
+                    } else {
+                        element
+                            .removeClass('headroom--not-top')
+                            .css({
+                                'transform': 'translateY(0px)'
+
+                            });
+                        //sly.destroy();
+                        //scrollbar.hide();
 
                     }
                 } else {
-                    element
-                        .removeClass('headroom--not-top')
-                        .css({
-                            'transform': 'translateY(0px)'
+                    if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() + $('#smart').height()) {
 
-                        });
-                    //sly.destroy();
-                    //scrollbar.hide();
-
+                    }
                 }
             };
             $document.on('scroll', function() {

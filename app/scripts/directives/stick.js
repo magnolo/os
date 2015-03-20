@@ -77,45 +77,52 @@ angular.module('osApp')
                     if (fMenu.length) {
                         fMenuHeight = fMenu.innerHeight();
                     }
+                    if ($window.innerWidth > 960) {
+                        if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
 
-                    if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
-                        element
-                            .addClass('headroom--not-top')
-                            .css({
-                                'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)'
 
-                            });
 
-                        if ((container.innerHeight() + fMenuHeight + 50) > ($window.innerHeight - navigation.innerHeight() + 20)) {
-                            list.css({
-                                'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenuHeight) + 'px'
-                            });
-                            scrollbar.css({
-                                'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenuHeight) + 'px'
-                            });
-                            if (isLoaded) {
-                                sly.reload();
+                            element
+                                .addClass('headroom--not-top')
+                                .css({
+                                    'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)',
+                                    '-webkit-transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)'
+
+                                });
+
+
+                            if ((container.innerHeight() + fMenuHeight + 50) > ($window.innerHeight - navigation.innerHeight() + 20)) {
+                                list.css({
+                                    'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenuHeight) + 'px'
+                                });
+                                scrollbar.css({
+                                    'height': ($window.innerHeight - navigation.innerHeight() - 30 - fMenuHeight) + 'px'
+                                });
+                                if (isLoaded) {
+                                    sly.reload();
+                                } else {
+                                    sly.init();
+                                }
+                                scrollbar.show();
                             } else {
-                                sly.init();
+                                isLoaded = false;
+                                scrollbar.hide();
+                                if (sly.initialized && typeof sly.frame != "undefined") {
+                                    sly.destroy();
+                                }
                             }
-                            scrollbar.show();
+
                         } else {
-                            isLoaded = false;
-                            scrollbar.hide();
-                            if (sly.initialized && typeof sly.frame != "undefined") {
-                                sly.destroy();
-                            }
+                            element
+                                .removeClass('headroom--not-top')
+                                .css({
+                                    'transform': 'translateY(0px)'
+
+                                });
+
+                            //sly.destroy();
+                            //scrollbar.hide();
                         }
-
-                    } else {
-                        element
-                            .removeClass('headroom--not-top')
-                            .css({
-                                'transform': 'translateY(0px)'
-
-                            });
-                        //sly.destroy();
-                        //scrollbar.hide();
                     }
                 };
                 $document.on('scroll', function() {
