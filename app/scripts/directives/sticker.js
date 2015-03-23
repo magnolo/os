@@ -56,7 +56,7 @@ angular.module('osApp')
                 var varscroll = parseInt($document.scrollTop());
                 if ($window.innerWidth > 960) {
                     if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
-
+                      
                         element
                             .addClass('headroom--not-top')
                             .css({

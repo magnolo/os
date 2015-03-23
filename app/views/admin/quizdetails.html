@@ -7,7 +7,7 @@
         <div class="menu col-md-4">
             <ul>
                 <li>
-                    <button type="submit" class="btn btn-success" ng-click="savePartner(partnerForm.$valid)" ng-disabled="partnerForm.$invalid">Speichern</button>
+                    <button type="submit" class="btn btn-success" ng-click="saveQuiz(quizForm.$valid)" ng-disabled="quizForm.$invalid">Speichern</button>
                 </li>
             </ul>
         </div>
@@ -35,8 +35,27 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-default" ng-if="quiz.id">
+                <div class="panel-heading">
+                    <h3 style="margin:0">Statistik</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Teilnehmer</label>
+                        <h4>{{ quiz.stats.count}} </h4>
+                    </div>
+                    <div class="form-group">
+                        <label>Korrekte Antworten</label>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{quiz.stats.success_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{quiz.stats.success_percent}}%;">
+                                <span>{{quiz.stats.success_percent}}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form name="quizForm" class="col-md-9" novalidate ng-submit="saveQuiz(quizForm.$valid)">
+        <form name="quizForm" class="col-md-9" novalidate>
             <div class="panel-group" allow-multiple="true" bs-collapse>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -47,19 +66,19 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Titel</label>
-                                    <input type="text" class="form-control" ng-model="quiz.title" />
+                                    <input type="text" class="form-control" required ng-model="quiz.title" />
                                 </div>
                                 <div class="form-group">
                                     <label>Start</label>
-                                    <input type="text" required class="form-control" ng-model="quiz.date_start" data-max-date="quiz.date_end" bs-datepicker/>
+                                    <input type="text" required class="form-control" required ng-model="quiz.date_start" data-max-date="quiz.date_end" bs-datepicker/>
                                 </div>
                                 <div class="form-group">
                                     <label>Ende</label>
-                                    <input type="text" required class="form-control" ng-model="quiz.date_end" data-min-date="quiz.date_start" bs-datepicker />
+                                    <input type="text" required class="form-control" required ng-model="quiz.date_end" data-min-date="quiz.date_start" bs-datepicker />
                                 </div>
                                 <div class="form-group">
                                     <label>Typ</label>
-                                    <select class="form-control" ng-model="quiz.type" ng-options="type.id as type.name for type in types"></select>
+                                    <select class="form-control" ng-model="quiz.type" required ng-options="type.id as type.name for type in types"></select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -82,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
+                <div class="panel panel-default" ng-if="quiz.id">
                     <div class="panel-heading">
                         <div class="btn-group pull-right">
                             <button class="btn btn-success btn-xs" ng-click="newQuestion()"><i class="fa fa-plus"></i>
@@ -94,13 +113,13 @@
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
-                                    <th ng-click="predicate='title'; reverse=!reverse">Name</th>
+                                    <th>Name</th>
                                     <th class="align_center">Typ</th>
                                     <th class="align_center">Antworten</th>
-                                    <th style="width:65px"></th>
+                                    <th style="width:95px"></th>
                                 </thead>
-                                <tbody>
-                                    <tr ng-repeat="question in quiz.questions | orderBy:predicate:reverse">
+                                <tbody as-sortable="sortController" ng-model="quiz.questions">
+                                    <tr ng-repeat="question in quiz.questions" as-sortable-item style="display:table-row;">
                                         <td ng-click="editQuestion(question)" class="pointer">{{ question.title}}</td>
                                         <td class="align_center">
                                             <span ng-if="question.type == 1">Single Choice</span>
@@ -108,10 +127,13 @@
                                         </td>
                                         <td class="align_center">{{ question.answers.length}}</td>
                                         <td>
+                                            <button class="btn btn-default btn-xs" as-sortable-item-handle><i class="fa fa-arrows"></i>
+                                            </button>
                                             <button class="btn btn-info btn-xs" ng-click="editQuestion(question)"><i class="fa fa-pencil"></i>
                                             </button>
                                             <button class="btn btn-danger btn-xs" ng-click="deleteQuestion(question)"><i class="fa fa-times"></i>
                                             </button>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -120,7 +142,7 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
+                <div class="panel panel-default" ng-if="quiz.id">
                     <div class="panel-heading">
                         <div class="btn-group pull-right">
                             <button class="btn btn-success btn-xs" ng-click="newConnection()"><i class="fa fa-plus"></i>
@@ -141,9 +163,13 @@
                                 <tbody>
                                     <tr ng-repeat="article in overview | byid: quiz.articles" ng-class="[article.section.name, article.sections]">
                                         <td>{{ article.title }}</td>
-                                        <td><span ng-if="article.categorie.title">{{ article.categorie.title }}</span><span ng-if="!article.categorie.title">{{ article.section.title }}</span>
+                                        <td>
+                                            <span ng-if="article.categorie.title">{{ article.categorie.title }}</span>
+                                            <span ng-if="!article.categorie.title">{{ article.section.title }}</span>
                                         </td>
-                                        <td><span ng-if="article.categorie.title">{{ article.section.title }}</span><span ng-if="!article.categorie.title">Vienna Open Lab</span>
+                                        <td>
+                                            <span ng-if="article.categorie.title">{{ article.section.title }}</span>
+                                            <span ng-if="!article.categorie.title">Vienna Open Lab</span>
                                         </td>
                                         <td>
                                             <button class="btn btn-danger btn-xs" ng-click="toggleConnection(article)"><i class="fa fa-times"></i>
