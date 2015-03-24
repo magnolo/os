@@ -1350,6 +1350,24 @@ div.thesaurus > div.thesaurus-canvas.downwards:after {
     font-size: 1.4em;
     font-weight: bold;
   }
+  .progress {
+    border-radius: 0;
+    height: 25px;
+    //  background-color: #a31031;
+    .progress-bar {
+      //background-color: #8b8d1c;
+      line-height: 25px;
+      font-size: 15px;
+    }
+  }
+  p {
+    &.percent {
+      color: #8b8d1c;
+      font-size: 1.4em;
+      margin: 5px 0;
+      display: inline-block;
+    }
+  }
 }
 @import 'admin.scss';
 @import 'vol.scss';

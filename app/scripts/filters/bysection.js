@@ -19,6 +19,11 @@ angular.module('osApp')
             return result;
         };
     })
+    .filter('toint', function() {
+        return function(item) {
+            return parseInt(item);
+        };
+    })
     .filter('insection', function() {
         return function(item, values, scope) {
             var found = "";
