@@ -116,8 +116,8 @@ angular.module('osApp')
                             element
                                 .removeClass('headroom--not-top')
                                 .css({
-                                    'transform': 'translateY(0px)'
-
+                                    'transform': 'translateY(0px)',
+                                    '-webkit-transform': 'translateY(0px)'
                                 });
 
                             //sly.destroy();

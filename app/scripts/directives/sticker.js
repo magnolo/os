@@ -56,12 +56,12 @@ angular.module('osApp')
                 var varscroll = parseInt($document.scrollTop());
                 if ($window.innerWidth > 960) {
                     if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
-                      
+
                         element
                             .addClass('headroom--not-top')
                             .css({
                                 'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)'
-
+                                '-webkit-transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) + 'px)'
                             });
 
                         if (slyScrollContainer.innerHeight() + 30 > ($window.innerHeight - navigation.innerHeight())) {
@@ -91,8 +91,8 @@ angular.module('osApp')
                         element
                             .removeClass('headroom--not-top')
                             .css({
-                                'transform': 'translateY(0px)'
-
+                                'transform': 'translateY(0px)',
+                                '-webkit-transform': 'translateY(0px)'
                             });
                         //sly.destroy();
                         //scrollbar.hide();
