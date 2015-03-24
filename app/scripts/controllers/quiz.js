@@ -39,4 +39,22 @@ angular.module('osApp')
                 }
             }
         };
+        $scope.toggleOnline = function(quiz) {
+            if (quiz.is_online == 0) {
+                quiz.is_online = 1;
+            } else {
+                quiz.is_online = 0;
+            }
+            Quiz.update({
+                quizId: quiz.id
+            }, {
+                is_online: quiz.is_online
+            }, function(data) {
+                if (data.status == true) {
+                    FlashService.show(data.message, '', 'success');
+                } else {
+                    FlashService.show('Speichern fehlgeschlagen!', '', 'danger');
+                }
+            });
+        };
     });

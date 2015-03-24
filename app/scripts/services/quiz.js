@@ -3,6 +3,13 @@
 angular.module('osApp')
     .factory('Quiz', function($resource) {
         return $resource('http://www.openscience.or.at/api/quiz/:quizId/:type/:typeId/:action', {}, {
+            byCategorie: {
+                method: 'GET',
+                params: {
+                    type: 'bycategorie'
+                },
+                isArray: true
+            },
             query: {
                 method: 'GET',
                 params: {

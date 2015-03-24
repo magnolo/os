@@ -5,8 +5,7 @@
 </div>
 <div class="container_12 {{ categorie.name }}">
     <div class="grid_3 cat_menu ">
-        <div id="smart" class="frame hidden-print anim" sticker
- ng-class="{'stop':stop}" ng-if="categorie">
+        <div id="smart" class="frame hidden-print anim" sticker ng-class="{'stop':stop}" ng-if="categorie">
             <div class="scrollbar">
                 <div class="handle"></div>
             </div>
@@ -20,7 +19,8 @@
                             </li>
                         </ul>
                         <ul class="cat_menu_sub" as-sortable="sortCategories" ng-model="categorie.categories">
-                            <li style="position:relative;" ng-class="{'offline': cat.active == 0}" as-sortable-item ng-repeat="cat in categorie.categories" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" context-menu="setCatContext(cat)" context-menu-disabled="!$root.isLoggedIn" data-target="catMenu">
+                            <li style="position:relative;" ng-class="{'offline': cat.active == 0}" as-sortable-item ng-repeat="cat in categorie.categories" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" context-menu="setCatContext(cat)" context-menu-disabled="!$root.isLoggedIn"
+                            data-target="catMenu">
                                 <a ng-class="{'active': catName == cat.name}" class="categorie_content_link editable_categorie_content_link" ui-sref="section.categorie({categorie: cat.name})">{{ cat.title }}</a>
                                 <div as-sortable-item-handle ng-show="doSorting" class="sort-handle">
                                     <i class="fa fa-sort"></i>
@@ -46,6 +46,11 @@
                         </ul>
                     </div>
                     <connections articles="connections" article="activeArticle" style="display:inline-block;width:100%;"></connections>
+                    <div ng-if="quiz.length > 0" class="anim row text-center" style="border:1px solid">
+                        <h3 class="bg_full"><a ui-sref="section.quiz()" style="color:#fff">Das OS QUIZ</a></h3>
+                        <p style="margin-top:10px;padding:10px"> Testen Sie Ihr Wissen zu den akutellsten Themen </p>
+                        <p class="open_quiz"><a ui-sref="section.quiz()"> » Hier gehts zum Quiz </a></p>
+                    </div>
                 </div>
             </div>
         </div>

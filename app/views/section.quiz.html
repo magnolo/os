@@ -1,0 +1,18 @@
+<masonry load-images="false" masonry-options="{ transitionDuration: '0s' }" preserve-order style="width:720px;float:left" infinite-scroll="moreItems()" infinite-scroll-distance="1">
+    <loader content="quiz" section="section"></loader>
+    <div class="grid_3 article_thumb masonry-brick" ng-if="article.is_online == 1" ng-repeat="article in quiz" style="border:1px solid">
+        <div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
+            <a ui-sref="section.quiz.start({section:section, name: article.name})">
+                <img ng-if="article.image.url" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;fltr[]=gray&amp;fltr[]=brit|-40&amp;fltr[]=clr|60|{{color}}&amp;fltr[]=cont|10&amp;w=220&amp;h=145&amp;zc=1&amp;f=jpg&amp;q=100">
+            </a>
+        </div>
+        <div class="thumb_categorie left">
+            <a ui-sref="section.categorie({section:article.section.name, categorie: article.categorie.name})">{{ article.categorie.title }}</a>
+        </div>
+        <div class="clear"></div>
+        <div class="thumb_heading">
+            <a ui-sref="section.quiz.start({section:section, name: article.name})">{{ article.title }}</a>
+        </div>
+        <div class="thumb_text" ng-if="article.description">{{article.description | htmlToPlain}}</div>
+    </div>
+</masonry>

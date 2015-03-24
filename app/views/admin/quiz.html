@@ -47,9 +47,9 @@
                 <td>{{ quiz.date_start | badDateToIso | date: 'dd.MM.yyyy'}}</td>
                 <td>{{ quiz.date_end | badDateToIso | date: 'dd.MM.yyyy'}}</td>
                 <td>
-                    <button class="btn btn-success btn-xs" ng-if="quiz.is_online == 1" ng-click="setOnline(quiz, 0)"><i class="fa fa-check"></i>
+                    <button class="btn btn-success btn-xs" ng-if="quiz.is_online == 1" ng-click="toggleOnline(quiz)"><i class="fa fa-check"></i>
                     </button>
-                    <button class="btn btn-danger btn-xs" ng-if="quiz.is_online == 0" ng-click="setOnline(quiz, 1)"><i class="fa fa-times"></i>
+                    <button class="btn btn-danger btn-xs" ng-if="quiz.is_online == 0" ng-click="toggleOnline(quiz)"><i class="fa fa-times"></i>
                     </button>
                 </td>
                 <td>

@@ -754,6 +754,32 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 }
             }
         })
+        .state('section.quiz', {
+            url: '/quiz',
+            views: {
+                '': {
+                    templateUrl: 'views/section.html',
+                    controller: 'WissenCtrl'
+                },
+                'content@section': {
+                    templateUrl: 'views/section.quiz.html',
+                    controller: 'SectionquizCtrl'
+                }
+            }
+        })
+        .state('section.quiz.start', {
+            url: '/:name',
+            views: {
+                '': {
+                    templateUrl: 'views/section.html',
+                    controller: 'WissenCtrl'
+                },
+                'content@section': {
+                    templateUrl: 'views/section.quiz.start.html',
+                    controller: 'SectionquizstartCtrl'
+                }
+            }
+        })
         .state('section.categorie', {
             url: '/:categorie',
             views: {

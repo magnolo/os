@@ -1310,6 +1310,47 @@ div.thesaurus > div.thesaurus-canvas.downwards:after {
   max-width: 100%;
   width: 100%;
 }
+.quiz_container {
+  .article_main_content {
+    .question_title {
+      font-size: 1.5em !important;
+    }
+    .answers {
+      margin: 30px 16px;
+      padding: 0;
+      li {
+        font-size: 1.3em;
+        list-style-type: none !important;
+        margin: 16px 0;
+        label {
+          display: inline-block;
+          width: 100%;
+        }
+        .answer-input {
+          display: inline-block;
+          font-size: 1.5em;
+          margin: 0;
+          transform: scale(1.4);
+          -webkit-transform: scale(1.4);
+          float: left;
+          margin: 0.3em 0 0;
+        }
+        .answer-text {
+          display: inline-block;
+          font-weight: normal;
+          padding-left: 0.5em;
+          position: relative;
+          top: 2px;
+          max-width: 95%;
+        }
+      }
+    }
+  }
+  button {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+}
 @import 'admin.scss';
 @import 'vol.scss';
 @import 'mobile.scss';
