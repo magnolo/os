@@ -103,7 +103,7 @@ angular.module('osApp')
                     var found = false;
                     var index = 0;
                     //var model = JSON.parse(scope.model);
-                    console.log(scope.model);
+                    //  console.log(scope.model);
                     angular.forEach(scope.model, function(id, i) {
                         if (id == scope.value) {
                             found = true;
@@ -116,7 +116,7 @@ angular.module('osApp')
                         scope.model.push(scope.value);
                     };
                     // scope.model = model;
-                    console.log(scope.model);
+                    //console.log(scope.model);
                 }
             }
         };

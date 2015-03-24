@@ -14,7 +14,10 @@ angular.module('osApp')
                 quizId: $state.params.id
             });
         } else {
-            $scope.quiz = {};
+            $scope.quiz = {
+                is_online: 0,
+                sections: []
+            };
         }
 
         $scope.types = [{
@@ -31,6 +34,7 @@ angular.module('osApp')
             id: "2",
             name: 'Multiple Choice'
         }];
+        $scope.categories = ['wissen', 'projekte', 'schulcorner', 'vol'];
         $scope.overview = Article.overview();
         $scope.sortFilter = '';
         $scope.articles = [];
@@ -176,6 +180,7 @@ angular.module('osApp')
                             if (typeof $scope.quiz.questions == "undefined") {
                                 $scope.quiz.questions = [];
                             }
+                            data.question.answers = JSON.parse(data.question.answers);
                             $scope.quiz.questions.push(data.question);
                             FlashService.show(data.message, '', 'success');
                             $scope.questionModal.hide();
