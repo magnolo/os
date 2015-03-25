@@ -9,7 +9,7 @@
  */
 angular.module('osApp')
     .factory('Newsletter', function($resource) {
-        return $resource('http://www.openscience.or.at/:folder/:location/:newsId/:action', {}, {
+        return $resource('http://www.openscience.or.at/:folder/:location/:newsId/:action/:id', {}, {
             query: {
                 method: 'GET',
                 params: {
@@ -29,54 +29,60 @@ angular.module('osApp')
             campaigns: {
                 method: 'GET',
                 params: {
-                    folder: 'assets',
-                    location: 'ajax',
-                    newsId: 'mailchimper.php',
-                    fetch: 'campaigns'
+                    folder: 'api',
+                    location: 'mailchimp',
+                    action: 'campaigns'
                 }
             },
             list: {
                 method: 'GET',
                 params: {
-                    folder: 'assets',
-                    location: 'ajax',
-                    newsId: 'mailchimper.php',
-                    fetch: 'list'
+                    folder: 'api',
+                    location: 'mailchimp',
+                    newsId: 'lists'
                 }
             },
             campaign: {
                 method: 'GET',
                 params: {
-                    folder: 'assets',
-                    location: 'ajax',
-                    newsId: 'mailchimper.php',
-                    fetch: 'campaign',
+                    folder: 'api',
+                    location: 'mailchimp',
+                    newsId: 'campaigns',
                     id: ''
                 }
             },
             content: {
                 method: 'GET',
                 params: {
-                    folder: 'assets/ajax/mailchimper.php',
-                    location: 'ajax',
+                    folder: 'api',
+                    location: 'mailchimp',
                     newsId: 'mailchimper.php',
                     fetch: 'content',
                     id: ''
                 }
             },
-            create: {
+            /*create: {
                 method: 'POST',
                 params: {
                     folder: 'api',
                     location: 'newsletters'
                 }
-            },
+            },*/
             createChimp: {
                 method: 'POST',
                 params: {
-                    folder: 'assets',
-                    location: 'ajax',
-                    newsId: 'mailchimper.php',
+                    folder: 'api',
+                    location: 'mailchimp',
+                    newsId: 'campaigns',
+                }
+            },
+            update: {
+                method: 'PUT',
+                params: {
+                    folder: 'api',
+                    location: 'mailchimp',
+                    newsId: 'campaigns',
+                    id: ''
                 }
             },
             remove: {

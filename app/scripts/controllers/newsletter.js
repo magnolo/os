@@ -8,7 +8,7 @@
  * Controller of the osApp
  */
 angular.module('osApp')
-    .controller('NewsletterCtrl', function($scope, $timeout, $document, $stateParams, $modal, $aside, FlashService, Newsletter, Article) {
+    .controller('NewsletterCtrl', function($scope, $state, $timeout, $document, $stateParams, $modal, $aside, FlashService, Newsletter, Article) {
         function gup(name, url) {
             if (!url) url = location.href
             name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -48,7 +48,7 @@ angular.module('osApp')
             $scope.newsletter = Newsletter.get({
                 newsId: $stateParams.id
             }, function() {
-                Newsletter.campaign({
+                $scope.campaign = Newsletter.campaign({
                     id: $scope.newsletter.mailchimp_id
                 }, function(response) {
                     $scope.newsletter.mailchimp = response.data[0];
@@ -144,7 +144,7 @@ angular.module('osApp')
                 $('.full-fixed').animate({
                     scrollTop: ($('#newsletter-box').height())
                 }, 250);
-                console.log($('.full-fixed').height());
+                //  console.log($('.full-fixed').height());
             });
         };
         $scope.openArticlesModal = function() {
@@ -204,7 +204,6 @@ angular.module('osApp')
             }
         };
         $scope.editTitle = function(item) {
-            console.log(item);
             $scope.addingTitle = false;
             $scope.newTitle = item;
             $scope.titleModal = $modal({
@@ -277,7 +276,7 @@ angular.module('osApp')
                 item.size--;
         };
         $scope.toggleArticle = function(art) {
-            console.log(art);
+
             if (typeof $scope.newsletter.items == "undefined") {
                 $scope.newsletter.items = [];
             }
@@ -286,9 +285,7 @@ angular.module('osApp')
                 if (art.type == item.type.name && art.id == item.id) {
                     $scope.newsletter.items.splice(key, 1);
                     found = true;
-                    console.log(item);
-                    console.log(key);
-                    console.log(art);
+
                 }
             });
             if (!found) {
@@ -338,7 +335,7 @@ angular.module('osApp')
 
         $scope.saveNewsletter = function(isValid) {
 
-            var table = $('<table></table>');
+            var table = $('<table id="main-content"></table>');
             var columns = 0;
             var row = $('<tr></tr>');
             var pos = 0;
@@ -357,19 +354,19 @@ angular.module('osApp')
                 td.append(item);
 
                 if (item.hasClass('col-md-12')) {
-                    td.attr('width', '100%')
+                    td.attr('width', '720')
                     td.attr('colspan', 6);
                     columns += 6;
                 } else if (item.hasClass('col-md-8')) {
-                    td.attr('width', '75%')
+                    td.attr('width', '540')
                     td.attr('colspan', 4);
                     columns += 4;
                 } else if (item.hasClass('col-md-6')) {
-                    td.attr('width', '50%')
+                    td.attr('width', '360')
                     td.attr('colspan', 3);
                     columns += 3;
                 } else if (item.hasClass('col-md-4')) {
-                    td.attr('width', '33.33%')
+                    td.attr('width', '240')
                     td.attr('colspan', 2);
                     columns += 2;
                 }
@@ -440,24 +437,41 @@ angular.module('osApp')
                     }
                 });
             }*/
-            Newsletter.config({
-                action: 'newsletterstyle'
-            }, function(data) {
-                var html = '<style type="text/css">' + data.value + '</style>';
-                html += '<center><table cellspacing="0" cellpadding="0" width="100%"  border="0" style="border-spacing: 0;"><tbody><tr><td align="center" valign="top" style="border-collapse: collapse;"><table id="main-content" width="722" cellspacing="0" cellpadding="0" valign="top" align="center">' + table.html().replace(/<!--[^(-->)]+-->/g, '') + "</table></td></tr></tbody></table></center>";
-                var myWindow = window.open('', 'LetterTest', "width=800,height=800,toolbar=yes,scrollbars=yes");
-                myWindow.document.write(html);
-            });
-            Newsletter.createChimp({
-                data: {
-                    method: 'create',
+            /*  Newsletter.config({
+                  action: 'newsletterstyle'
+              }, function(data) {
+                  var html = '<style type="text/css">' + data.value + '</style>';
+                  html += '<center><table cellspacing="0" cellpadding="0" width="100%"  border="0" style="border-spacing: 0;"><tbody><tr><td align="center" valign="top" style="border-collapse: collapse;"><table id="main-content" width="722" cellspacing="0" cellpadding="0" valign="top" align="center">' + table.html().replace(/<!--[^(-->)]+-->/g, '') + "</table></td></tr></tbody></table></center>";
+                  var myWindow = window.open('', 'LetterTest', "width=800,height=800,toolbar=yes,scrollbars=yes");
+                  myWindow.document.write(html);
+              });*/
+            if ($scope.newsletter.id) {
+                Newsletter.update({
+                    id: $scope.newsletter.mailchimp_id
+                }, {
                     list_id: $scope.newsletter.list_id,
                     subject: $scope.newsletter.title,
-                    content: table.html().replace(/<!--[^(-->)]+-->/g, '')
-                }
-            }, function(data) {
+                    content: table.html().replace(/<!--[^(-->)]+-->/g, ''),
+                    newsletter: $scope.newsletter
+                })
+            } else {
+                Newsletter.createChimp({
+                    list_id: $scope.newsletter.list_id,
+                    subject: $scope.newsletter.title,
+                    content: table.html().replace(/<!--[^(-->)]+-->/g, ''),
+                    newsletter: $scope.newsletter
+                }, function(data) {
+                    if (data.status == true) {
+                        FlashService.show(data.message, '', 'success');
+                        $state.go('newsletter', {
+                            id: data.newsletter.id
+                        });
+                    } else {
+                        FlashService.show('Fehler beim speichern des Newsletters!', '', 'danger');
+                    }
+                });
+            }
 
-            });
 
         };
     });
