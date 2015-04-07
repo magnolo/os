@@ -1,0 +1,23 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Emailadresse</h4>
+            </div>
+            <form role="form" name="emailForm" ng-submit="submitTest(emailForm.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" ng-model="test.email" required class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span>{{test.email}}</span>
+                    <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="emailForm.$invalid">Senden</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

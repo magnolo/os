@@ -30,21 +30,26 @@
         </thead>
         <tbody>
             <tr ng-repeat="newsletter in newsletters | filter:search | orderBy:predicate:reverse">
-                <td><strong><a ui-sref="newsletter({id:newsletter.id})">{{ newsletter.title}}</a></strong>
+                <td>
+                    <strong><a ui-sref="newsletter({id:newsletter.id})">{{ newsletter.title}}</a></strong>
                 </td>
                 <td>{{ newsletter.mailchimp.status}}</td>
                 <td>{{ newsletter.mailchimp.create_time | amDateFormat:'DD.MM.YYYY, HH:mm'}}</td>
                 <td>{{ newsletter.mailchimp.content_updated_time | amDateFormat:'DD.MM.YYYY, HH:mm'}}</td>
-                <td><span ng-if="newsletter.mailchimp.status == 'schedule'">{{ newsletter.mailchimp.send_time | amDateFormat:'DD.MM.YYYY, HH:mm' || '-'}}</span>
+                <td>
+                    <span ng-if="newsletter.mailchimp.status == 'schedule'">{{ newsletter.mailchimp.send_time | amDateFormat:'DD.MM.YYYY, HH:mm' || '-'}}</span>
                     <span ng-if="newsletter.mailchimp.status != 'schedule'">-</span>
                 </td>
-                <td><span ng-if="newsletter.mailchimp.status == 'sent'">{{ newsletter.mailchimp.send_time | amDateFormat:'DD.MM.YYYY, HH:mm' || '-'}}</span>
+                <td>
+                    <span ng-if="newsletter.mailchimp.status == 'sent'">{{ newsletter.mailchimp.send_time | amDateFormat:'DD.MM.YYYY, HH:mm' || '-'}}</span>
                     <span ng-if="newsletter.mailchimp.status != 'sent'">-</span>
                 </td>
 
 
                 <td>
-                    <button class="btn btn-info btn-xs" ui-sref="newsletter({id:newsletter.id})"><i class="fa fa-pencil"></i>
+                    <button class="btn btn-info btn-xs" ui-sref="newsletter({id:newsletter.id})">
+                        <i class="fa fa-pencil" ng-if="newsletter.mailchimp.status != 'sent'"></i>
+                        <i class="fa fa-eye" ng-if="newsletter.mailchimp.status == 'sent'"></i>
                     </button>
                     <button ng-if="newsletter.mailchimp.status != 'sent'" class="btn btn-danger btn-xs" ng-click="deleteNewsletter(newsletter)"><i class="fa fa-times"></i>
                     </button>

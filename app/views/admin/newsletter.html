@@ -7,10 +7,10 @@
         <div class="menu col-lg-4 col-md-6">
             <ul>
                 <li ng-if="status != 'sent'">
-                    <button class="btn btn-default" ng-click="saveNewsletter()" ng-disabled="newsletter.items.length == 0"><i class="fa fa-check"></i>&nbsp;Speichern
+                    <button class="btn btn-default" ng-click="saveNewsletter()" ng-disabled="newsletter.items.length == 0 || newsletter.title == '' || !newsletter.list_id || !newsletter.header_id"><i class="fa fa-check"></i>&nbsp;Speichern
                     </button>
                 </li>
-                <li>
+                <li ng-if="newsletter.mailchimp_id">
                     <button class="btn btn-warning" bs-dropdown="dropdown" data-animation="am-flip-x" type="button" data-template="views/admin/menue/newsletter_actions.html"><i class="fa fa-plus"></i>&nbsp;Aktionen</button>
                 </li>
 
@@ -88,8 +88,8 @@
                                         <a href="#">{{ item.categorie}}</a>
                                     </p>
                                     <h2 class="title">
-										<a href="#">{{ item.title}}</a>
-									</h2>
+                                        <a href="#">{{ item.title}}</a>
+                                    </h2>
                                     <p class="intro" ng-bind-html="item.intro | htmlToPlain" ng-if="item.intro && item.type.intern == 'articles'"></p>
                                 </a>
                             </div>

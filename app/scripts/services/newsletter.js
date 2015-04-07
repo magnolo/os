@@ -93,6 +93,25 @@ angular.module('osApp')
                     newsId: ''
                 }
             },
+            removeCampaign: {
+                method: 'DELETE',
+                params: {
+                    folder: 'api',
+                    location: 'mailchimp',
+                    action: 'campaigns',
+                    id: ''
+                }
+            },
+            sendTest: {
+                method: 'PUT',
+                params: {
+                    folder: 'api',
+                    location: 'mailchimp',
+                    newsId: 'campaigns',
+                    action: '',
+                    id: 'testmail'
+                }
+            },
             sort: {
                 method: 'PUT',
                 params: {

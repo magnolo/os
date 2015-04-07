@@ -30,4 +30,20 @@ angular.module('osApp')
                 }
             }
         }
+
+        $scope.deleteNewsletter = function(nl) {
+
+            if (confirm("Newsletter:\n" + nl.title + "\nentgültig entfernen?")) {
+                Newsletter.removeCampaign({
+                    id: nl.mailchimp_id
+                }, function(data) {
+                    if (data.status) {
+                        $scope.newsletters.splice($scope.newsletters.indexOf(nl), 1);
+                        FlashService.show(data.msg, '', 'success');
+                    } else {
+                        FlashService.show('Newsletter konnte nicht gelöscht werden!', '', 'danger');
+                    }
+                })
+            }
+        };
     });

@@ -474,4 +474,32 @@ angular.module('osApp')
 
 
         };
+        $scope.sendTest = function() {
+            $scope.test = {};
+            $scope.emailModal = $modal({
+                template: "views/admin/modal/email.html",
+                scope: $scope,
+                show: false
+            });
+            $scope.emailModal.$promise.then(function() {
+                $scope.emailModal.show();
+            });
+        };
+        $scope.submitTest = function(isValid) {
+            if (isValid) {
+                Newsletter.sendTest({
+                    action: $scope.newsletter.mailchimp_id
+                }, {
+                    'email': $scope.test.email
+                }, function(data) {
+                    if (data.status == true) {
+                        $scope.emailModal.hide();
+                        FlashService.show(data.msg, '', 'success');
+                        $scope.newsletter.mailchimp.tests_remain--;
+                    } else {
+                        FlashService.show('Fehler beim senden der Testmail', '', 'danger');
+                    }
+                });
+            }
+        };
     });
