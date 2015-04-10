@@ -45,12 +45,13 @@
                             </li>
                         </ul>
                     </div>
-                    <connections articles="connections" article="activeArticle" style="display:inline-block;width:100%;"></connections>
-                    <div ng-if="quiz.length > 0" class="anim row text-center" style="border:1px solid">
+                    <div ng-if="quiz.length > 0" class="quiz anim text-center row" style="border:1px solid; margin-bottom:20px;">
                         <h3 class="bg_full"><a ui-sref="section.quiz()" style="color:#fff">Das OS QUIZ</a></h3>
                         <p style="margin-top:10px;padding:10px"> Testen Sie Ihr Wissen zu den akutellsten Themen </p>
                         <p class="open_quiz"><a ui-sref="section.quiz()"> » Hier gehts zum Quiz </a></p>
                     </div>
+                    <connections articles="connections" article="activeArticle" style="display:inline-block;width:100%;"></connections>
+
                 </div>
             </div>
         </div>

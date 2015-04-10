@@ -936,9 +936,10 @@ img {
 #connections_list {
   .article_connections {
     position: relative;
+    display: inline-block;
     .article_thumb {
       margin: 0;
-      position: absolute;
+      //position: absolute;
       top: 0;
       background: #fff;
       display: inline-block;

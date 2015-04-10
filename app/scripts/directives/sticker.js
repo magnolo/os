@@ -50,7 +50,7 @@ angular.module('osApp')
 
                 var catContainer = list.find('.slide');
                 catContainer.css({
-                    height: (conHeight + 31) + 'px'
+                    height: ((conHeight + 31)) + 'px'
                 });
                 var slyScrollContainer = angular.element(document.getElementById('sly-scroll-container'));
                 var varscroll = parseInt($document.scrollTop());
@@ -122,9 +122,7 @@ angular.module('osApp')
                 if (con.length > 0) {
                     $timeout(function() {
                         conHeight = con.find('.article_thumb').eq(index).height();
-
                         scope.checkDim();
-
                     });
                 } else {
                     $timeout(function() {

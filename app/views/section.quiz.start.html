@@ -1,5 +1,5 @@
 <div class="article anim quiz_container" ng-if="q.id">
-    <div style="border: 5px solid;padding:10px;" class="row">
+    <div style="border: 5px solid;padding:10px;overflow:hidden" class="row">
         <h3 style="margin:16px 16px 0">
             <div style="border-bottom: 1px solid;padding-bottom: 5px;margin-bottom: 5px">QUIZ // {{ q.title}}</div>
             <div ng-if="startet && !finished" style="font-size: 0.7em; margin-bottom: 1em;text-transform: uppercase;">Frage {{position}}/{{q.questions.length}}</div>
@@ -8,23 +8,24 @@
 
 
         <div class="article_main_content" ng-bind-html="q.description" ng-if="!startet"></div>
-        <div class="article_main_content" ng-repeat="question in q.questions" ng-show="q.questions.indexOf(question) == position-1 && !finished">
+        <div style="position:relative;display:inline-block;width:100%">
+            <div class="article_main_content quiz_anim" ng-repeat="question in q.questions" ng-show="q.questions.indexOf(question) == position-1 && !finished">
 
-            <h2 class="question_title">
+                <h2 class="question_title">
 
-                <div>{{ question.title}}</div>
-            </h2>
-            <ul class="answers">
-                <li ng-repeat="answer in question.answers">
-                    <label>
-                        <input type="radio" ng-model="user" ng-change="setAnswer(question, answer)" name="{{question.name}}" class="answer-input" ng-value="question.answers.indexOf(answer)" />
-                        <span class="answer-text">{{answer.text}}</span>
-                    </label>
-                </li>
-            </ul>
+                    <div>{{ question.title}}</div>
+                </h2>
+                <ul class="answers">
+                    <li ng-repeat="answer in question.answers">
+                        <label>
+                            <input type="radio" ng-model="user" ng-change="setAnswer(question, answer)" name="{{question.name}}" class="answer-input" ng-value="question.answers.indexOf(answer)" />
+                            <span class="answer-text">{{answer.text}}</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <div class="article_main_content" ng-if="finished">
+        <div class="article_main_content quiz_anim" ng-show="finished">
             <h2 class="question_title">
                 <div>Sie haben {{ stats.right}} von {{ q.questions.length}} richtig beantwortet.</div>
             </h2>
@@ -36,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="article_main_content" ng-if="finished">
+        <div class="article_main_content quiz_anim" ng-show="finished">
             <h2 class="question_title">
                 <div style="font-size:0.85em">Der Druchschnitt liegt bei {{q.stats.success_percent | toint }}% richtiger Antworten.</div>
             </h2>
