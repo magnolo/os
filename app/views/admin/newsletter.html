@@ -2,7 +2,7 @@
     <div class="closer" ng-click="goBack()" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
         <i class="fa fa-times"></i>
     </div>
-    <div class="admin-header container-fluid">
+    <div class="admin-header container-fluid stick">
         <h2 class="col-lg-8 col-md-6"><a ui-sref="newsletters()">Newsletters</a> // {{newsletter.title || 'Neu'}}</h2>
         <div class="menu col-lg-4 col-md-6">
             <ul>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="box intern" ng-if="item.type.intern != 'additional'">
-                                <a target="_blank" ng-href="http://www.openscience.or.at/{{item.section.name}}/{{item.categorie}}/{{item.name}}">
+                                <a target="_blank" ng-href="http://www.openscience.or.at/{{item.section}}/{{item.cat}}/{{item.name}}">
                                     <div class="image" ng-if="item.images && !item.sign && !item.image.src">
                                         <div class="prev-thumb">
                                             <img ng-if="item.images[0].thumb != ''" ng-src="{{ $root.SETTINGS.baseUriRemote + item.images[0].thumb }}" />
@@ -80,15 +80,15 @@
                                         </div>
                                     </div>
                                     <div class="thumb_image" ng-if="item.image.url">
-                                        <a href="#">
+                                        <a href="http://www.openscience.or.at/{{item.section}}/{{item.cat}}/{{item.name}}">
                                             <img ng-if="item.image.url" class="article-image" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{item.image.url.replace('s_150', 'm_650')}}&amp;fltr[]=gray&amp;fltr[]=brit|-40&amp;fltr[]=clr|60|{{color[item.type.class]}}&amp;fltr[]=cont|10&amp;w=220&amp;h=145&amp;zc=1&amp;f=jpg&amp;q=100">
                                         </a>
                                     </div>
                                     <p class="categorie">
-                                        <a href="#">{{ item.categorie}}</a>
+                                        <a href="http://www.openscience.or.at/{{item.section}}/{{item.cat}}">{{ item.categorie}}</a>
                                     </p>
                                     <h2 class="title">
-                                        <a href="#">{{ item.title}}</a>
+                                        <a href="http://www.openscience.or.at/{{item.section}}/{{item.cat}}/{{item.name}}">{{ item.title}}</a>
                                     </h2>
                                     <p class="intro" ng-bind-html="item.intro | htmlToPlain" ng-if="item.intro && item.type.intern == 'articles'"></p>
                                 </a>

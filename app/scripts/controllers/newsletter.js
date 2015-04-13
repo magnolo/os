@@ -288,18 +288,26 @@ angular.module('osApp')
 
                 }
             });
+            console.log(art);
             if (!found) {
                 if (art.type == 'class') {
                     var cat = "Kurs/Seminar";
+                    var catname = "kurse";
                     if (art.section.title == "Summercamp") {
                         cat = "Summer Science Camp";
+                        catname = "summer-science-camps";
+                    } else if (art.section.title == "Seminare") {
+                        catname = "seminare";
                     }
                     var item = {
                         id: art.id,
                         title: art.title,
+                        name: art.name,
                         categorie: cat,
+                        cat: catname,
                         image: art.image,
                         intro: art.intro || art.text.substring(0, art.text.indexOf('.') + 1),
+                        section: "vol",
                         size: 0,
                         type: {
                             name: art.type,
@@ -313,8 +321,11 @@ angular.module('osApp')
                     var item = {
                         id: art.id,
                         title: art.title,
+                        name: art.name,
                         categorie: art.categorie.title,
+                        cat: art.categorie.name,
                         image: art.image,
+                        section: art.section.name,
                         intro: art.intro || art.text.substring(0, art.text.indexOf('.') + 1),
                         size: 0,
                         type: {
@@ -494,10 +505,28 @@ angular.module('osApp')
                 }, function(data) {
                     if (data.status == true) {
                         $scope.emailModal.hide();
-                        FlashService.show(data.msg, '', 'success');
+                        FlashService.show(data.message, '', 'success');
                         $scope.newsletter.mailchimp.tests_remain--;
                     } else {
                         FlashService.show('Fehler beim senden der Testmail', '', 'danger');
+                    }
+                });
+            }
+        };
+        $scope.showPreview = function() {
+
+        };
+        $scope.sendCampaign = function() {
+            console.log($scope.newsletter.mailchimp_id);
+            if (confirm("Newsletter:\n" + $scope.newsletter.title + "\njetzt senden?")) {
+                Newsletter.sendCampaign({
+                    action: $scope.newsletter.mailchimp_id
+                }, {}, function(data) {
+                    if (data.status == true) {
+                        FlashService.show(data.message, '', 'success');
+                        $state.go('newsletters');
+                    } else {
+                        FlashService.show('Fehler beim absenden des Newsletters', '', 'danger');
                     }
                 });
             }

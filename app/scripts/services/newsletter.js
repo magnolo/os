@@ -112,6 +112,16 @@ angular.module('osApp')
                     id: 'testmail'
                 }
             },
+            sendCampaign: {
+                method: 'POST',
+                params: {
+                    folder: 'api',
+                    location: 'mailchimp',
+                    newsId: 'campaigns',
+                    action: '',
+                    id: 'send'
+                }
+            },
             sort: {
                 method: 'PUT',
                 params: {
