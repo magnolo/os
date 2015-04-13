@@ -345,7 +345,7 @@ angular.module('osApp')
 
 
         $scope.saveNewsletter = function(isValid) {
-
+            $scope.loading(true, 'Newsletter wird gespeichert...');
             var table = $('<table id="main-content"></table>');
             var columns = 0;
             var row = $('<tr></tr>');
@@ -356,6 +356,7 @@ angular.module('osApp')
                 item.find('.newsletter-edit-menu').remove();
                 item.removeAttr('ng-class');
                 item.removeAttr('ng-repeat');
+                item.removeAttr('ng-if');
                 item.removeAttr('as-sortable-item');
                 // var cont = item.html().replace(/<!--[^(-->)]+-->/g, '');
                 var td = $('<td></td>');
@@ -367,6 +368,8 @@ angular.module('osApp')
                 if (item.hasClass('col-md-12')) {
                     td.attr('width', '720')
                     td.attr('colspan', 6);
+                    table.append(row);
+                    row = $('<tr></tr>');
                     columns += 6;
                 } else if (item.hasClass('col-md-8')) {
                     td.attr('width', '540')
@@ -381,7 +384,8 @@ angular.module('osApp')
                     td.attr('colspan', 2);
                     columns += 2;
                 }
-                console.log(columns);
+
+                //  item.removeClass('col-md-12 col-md-8 col-md-6 col-md-4');
                 if (columns > 0) {
                     row.append(td);
                 }
@@ -464,6 +468,13 @@ angular.module('osApp')
                     subject: $scope.newsletter.title,
                     content: table.html().replace(/<!--[^(-->)]+-->/g, ''),
                     newsletter: $scope.newsletter
+                }, function(data) {
+                    $scope.loading(false);
+                    if (data.status == true) {
+                        FlashService.show(data.message, '', 'success');
+                    } else {
+                        FlashService.show('Fehler beim speichern des Newsletters!', '', 'danger');
+                    }
                 })
             } else {
                 Newsletter.createChimp({
@@ -472,6 +483,7 @@ angular.module('osApp')
                     content: table.html().replace(/<!--[^(-->)]+-->/g, ''),
                     newsletter: $scope.newsletter
                 }, function(data) {
+                    $scope.loading(false);
                     if (data.status == true) {
                         FlashService.show(data.message, '', 'success');
                         $state.go('newsletter', {
@@ -498,13 +510,16 @@ angular.module('osApp')
         };
         $scope.submitTest = function(isValid) {
             if (isValid) {
+                $scope.loading(true, 'Testmail wird versendet');
+                $scope.emailModal.hide();
                 Newsletter.sendTest({
                     action: $scope.newsletter.mailchimp_id
                 }, {
                     'email': $scope.test.email
                 }, function(data) {
+                    $scope.loading(false);
                     if (data.status == true) {
-                        $scope.emailModal.hide();
+
                         FlashService.show(data.message, '', 'success');
                         $scope.newsletter.mailchimp.tests_remain--;
                     } else {
@@ -517,11 +532,12 @@ angular.module('osApp')
 
         };
         $scope.sendCampaign = function() {
-            console.log($scope.newsletter.mailchimp_id);
+            $scope.loading(true, 'Newsletter wird versendet...');
             if (confirm("Newsletter:\n" + $scope.newsletter.title + "\njetzt senden?")) {
                 Newsletter.sendCampaign({
                     action: $scope.newsletter.mailchimp_id
                 }, {}, function(data) {
+                    $scope.loading = false;
                     if (data.status == true) {
                         FlashService.show(data.message, '', 'success');
                         $state.go('newsletters');
@@ -529,6 +545,23 @@ angular.module('osApp')
                         FlashService.show('Fehler beim absenden des Newsletters', '', 'danger');
                     }
                 });
+            }
+        };
+        $scope.loading = function(show, msg) {
+            if (show) {
+                $scope.msg = msg;
+                $scope.loadingModal = $modal({
+                    template: 'views/admin/modal/loading.html',
+                    scope: $scope,
+                    show: false,
+                    placement: 'center',
+                    backdrop: 'static'
+                });
+                $scope.loadingModal.$promise.then(function() {
+                    $scope.loadingModal.show();
+                });
+            } else {
+                $scope.loadingModal.hide();
             }
         };
     });

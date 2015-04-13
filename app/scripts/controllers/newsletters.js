@@ -39,7 +39,7 @@ angular.module('osApp')
                 }, function(data) {
                     if (data.status) {
                         $scope.newsletters.splice($scope.newsletters.indexOf(nl), 1);
-                        FlashService.show(data.msg, '', 'success');
+                        FlashService.show(data.message, '', 'success');
                     } else {
                         FlashService.show('Newsletter konnte nicht gelöscht werden!', '', 'danger');
                     }
