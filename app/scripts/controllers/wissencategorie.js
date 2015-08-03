@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('osApp')
-    .controller('WissencategorieCtrl', function($scope, $rootScope, $state, $timeout, $document, $location, $modal, Categorie, Article, Person, Partner, FileUploader, FileEdit, AuthService, FlashService, ImageEdit, Glossar, $stateParams) {
+    .controller('WissencategorieCtrl', function($scope, $rootScope, $state, $timeout, $document, $location, $modal, Categorie, Article, Person, Partner, FileUploader, FileEdit, AuthService, FlashService, ImageEdit, Glossar, Tags, $stateParams) {
         $scope.activeCategorie = '';
         $scope.activeSection = '';
         if ($stateParams.categorie) {
@@ -52,12 +52,14 @@ angular.module('osApp')
         $scope.showAutor = false;
         $scope.showShort = false;
         $scope.showPartners = false;
+        $scope.showTags = false;
         $scope.authors = [];
         $scope.images = [];
         $scope.image = {};
         $scope.files = [];
         $scope.partners = [];
         $scope.parts = [];
+        $scope.tags = [];
         $scope.doSorting = false;
         $scope.showAllSchachtel = false;
         $scope.allCategories = [];
@@ -163,7 +165,27 @@ angular.module('osApp')
                     $scope.showPartners = false;
                     FlashService.show(response.message, '', 'success');
                 }
-            })
+            });
+        };
+        $scope.saveTags = function() {
+            var data = [];
+            console.log($scope.article.tags);
+            angular.forEach($scope.article.tags, function(tag) {
+                data.push(tag.id);
+            });
+
+            Article.tags({
+                articleId: $scope.article.id
+            }, {
+                tags: data
+            }, function(response) {
+                if (response.status == false) {
+                    FlashService.show(response.message, '', 'danger');
+                } else {
+                    $scope.showPartners = false;
+                    FlashService.show(response.message, '', 'success');
+                }
+            });
         };
         $scope.addTag = function() {
 
@@ -340,18 +362,25 @@ angular.module('osApp')
             delete $scope.article.image;
             $scope.article.image_id = 0;
         };
-        $scope.toggleQuestion = function() {
+        var hideFields = function(type){
+          if(type != "author")
             $scope.showAutor = false;
-            $scope.showShort = false;
-            $scope.showPartners = false;
-            $scope.showPartners = false;
+          if(type != "short")
+          $scope.showShort = false;
+          if(type != "partners")
+          $scope.showPartners = false;
+          if(type != "tags")
+          $scope.showTags = false;
+          if(type != "question")
+          $scope.showQuestion = false;
+        };
+
+        $scope.toggleQuestion = function() {
+            hideFields("question");
             $scope.showQuestion = ($scope.showQuestion == false ? true : false);
         };
         $scope.toggleShort = function() {
-            $scope.showAutor = false;
-            $scope.showQuestion = false;
-            $scope.showPartners = false;
-            $scope.showPartners = false;
+            hideFields("short");
             $scope.showShort = ($scope.showShort == false ? true : false);
         };
         $scope.toggleAutor = function() {
@@ -361,10 +390,7 @@ angular.module('osApp')
                     $scope.isLoading = false;
                 });
             }
-            $scope.showQuestion = false;
-            $scope.showShort = false;
-            $scope.showPartners = false;
-            $scope.showPartners = false;
+            hideFields("author");
             $scope.showAutor = ($scope.showAutor == false ? true : false);
         };
         $scope.togglePartners = function() {
@@ -374,11 +400,20 @@ angular.module('osApp')
                     $scope.isLoading = false;
                 });
             }
-            $scope.showQuestion = false;
-            $scope.showShort = false;
-            $scope.showAutor = false;
+            hideFields("partners");
             $scope.showPartners = ($scope.showPartners == false ? true : false);
         };
+        $scope.toggleTags = function() {
+          if ($scope.tags.length == 0) {
+              $scope.isLoading = true;
+              $scope.tags = Tags.query(function() {
+                  $scope.isLoading = false;
+              });
+          }
+            hideFields("tags");
+            $scope.showTags = ($scope.showTags == false ? true : false);
+        };
+
         $scope.setPerson = function() {
 
             if ($scope.article.person_id != 0 && $scope.article.person_id != '' && $scope.article.person_id != null) {
@@ -393,10 +428,7 @@ angular.module('osApp')
             }
         };
         $scope.cropImage = function() {
-            $scope.showAutor = false;
-            $scope.showShort = false;
-            $scope.showQuestion = false;
-            $scope.showPartners = false;
+            hideFields();
             $scope.cropModal = $modal({
                 scope: $scope,
                 template: 'views/admin/modal/cropImage.html',
@@ -414,10 +446,7 @@ angular.module('osApp')
             //console.log($scope.article.image);
         };
         $scope.editImages = function() {
-            $scope.showAutor = false;
-            $scope.showShort = false;
-            $scope.showQuestion = false;
-            $scope.showPartners = false;
+            hideFields();
             var imagesModal = $modal({
                 scope: $scope,
                 template: 'views/admin/modal/images.html',
@@ -528,10 +557,7 @@ angular.module('osApp')
 
 
         $scope.editFiles = function() {
-            $scope.showAutor = false;
-            $scope.showShort = false;
-            $scope.showQuestion = false;
-            $scope.showPartners = false;
+            hideFields();
             var filesModal = $modal({
                 scope: $scope,
                 template: 'views/admin/modal/files.html',

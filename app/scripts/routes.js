@@ -793,5 +793,5 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
             url: '/:article'
         });
 
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    //$locationProvider.html5Mode(true).hashPrefix('!');
 });

@@ -107,7 +107,7 @@
         </li>
         <li ng-click="abortArticle()" ng-if="article.edit">
             <i class="fa fa-times"></i>
-            <span class="text">Abbrechen</span>
+            <span class="text">Beenden</span>
         </li>
         <li ng-click="toggleActivation(0)" ng-if="article.active == 1">
             <i class="fa fa-eye-slash"></i>
@@ -233,9 +233,17 @@
             <i class="fa fa-arrows-h"></i>
             <span class="text">Verbindungen</span>
         </li>
-        <li>
-            <i class="fa fa-tags"></i>
-            <span class="text">Schlagwörter</span>
+        <li ng-class="{'active':showTags}">
+            <i class="fa fa-tags" ng-click="toggleTags()"></i>
+            <span class="text" ng-click="toggleTags()">Schlagwörter</span>
+            <div class="anim-left absoluted" ng-if="showTags">
+                <select ng-multiple="true" chosen multiple data-placeholder="Schlagwort auswählen..." ng-model="article.tags" ng-options="tag as tag.title for tag in tags track by tag.id">
+                </select>
+                <button class="btn btn-success" ng-click="saveTags()"><i class="fa fa-check"></i>
+                </button>
+                <button class="btn btn-danger" ng-click="toggleTags()"><i class="fa fa-times"></i>
+                </button>
+            </div>
         </li>
         <li ng-class="{'active':showShort}">
             <i class="fa fa-list" ng-click="toggleShort()"></i>

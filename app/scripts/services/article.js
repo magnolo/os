@@ -65,6 +65,13 @@ angular.module('osApp')
 					type: 'partners'
 				}
 			},
+			tags:{
+				method:'POST',
+				params:{
+					articleId:'',
+					type:'tags'
+				}
+			},
 			overview: {
 				method: 'GET',
 				params: {
