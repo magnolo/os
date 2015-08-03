@@ -8,15 +8,15 @@
  * Controller of the osApp
  */
 angular.module('osApp')
-	.controller('ClassesCtrl', function($scope, FlashService, Classes) {
+	.controller('ClassesCtrl', function ($scope, FlashService, Classes) {
 		$scope.classes = Classes.query();
 		$scope.predicate = 'title';
 
-		$scope.deleteClass = function(course) {
+		$scope.deleteClass = function (course) {
 			if (confirm('Kurs:\n' + course.title + '\nentgültig entfernen?')) {
 				Classes.remove({
 					classId: course.id
-				}, function(response) {
+				}, function (response) {
 					if (response.status == true) {
 						$scope.classes.splice($scope.classes.indexOf(course), 1);
 						FlashService.show(response.message, '', 'success');

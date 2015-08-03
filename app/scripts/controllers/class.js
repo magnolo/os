@@ -8,12 +8,12 @@
  * Controller of the osApp
  */
 angular.module('osApp')
-	.controller('ClassCtrl', function($scope, $state, $stateParams, $modal, $alert, FlashService, FileEdit, Classes, FileUploader) {
+	.controller('ClassCtrl', function ($scope, $state, $stateParams, $modal, $alert, FlashService, FileEdit, Classes, FileUploader) {
 		$scope.course = {};
 		if ($stateParams.id != 'new') {
 			$scope.course = Classes.get({
 				classId: $stateParams.id
-			}, function(response) {
+			}, function (response) {
 				if (!response.id) {
 					$state.go('classes');
 				}
@@ -24,13 +24,13 @@ angular.module('osApp')
 		$scope.files = [];
 		$scope.uploadMultiple = false;
 
-		$scope.saveClass = function(isValid) {
+		$scope.saveClass = function (isValid) {
 			console.log(isValid);
 			if (isValid) {
 				if ($scope.course.id) {
 					Classes.update({
 						classId: $scope.course.id
-					}, $scope.course, function(response) {
+					}, $scope.course, function (response) {
 						if (response.status == true) {
 							FlashService.show(response.message, '', 'success');
 						} else {
@@ -38,7 +38,7 @@ angular.module('osApp')
 						}
 					});
 				} else {
-					Classes.create($scope.course, function(response) {
+					Classes.create($scope.course, function (response) {
 						if (response.status == true) {
 							FlashService.show(response.message, '', 'success');
 							$state.go('class', {
@@ -64,21 +64,21 @@ angular.module('osApp')
 		// FILTERS
 		uploader.filters.push({
 			name: 'imageFilter',
-			fn: function(item /*{File|FileLikeObject}*/ , options) {
+			fn: function (item /*{File|FileLikeObject}*/ , options) {
 				var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
 				return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
 			}
 		});
 		// CALLBACKS
-		uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
+		uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/ , filter, options) {
 			//console.info('onWhenAddingFileFailed', item, filter, options);
 		};
-		uploader.onAfterAddingFile = function(fileItem) {
+		uploader.onAfterAddingFile = function (fileItem) {
 			uploader.formData[0].id = $scope.course.id;
 			fileItem.formData[0].id = $scope.course.id;
 
 		};
-		uploader.onSuccessItem = function(fileItem, response, status, headers) {
+		uploader.onSuccessItem = function (fileItem, response, status, headers) {
 			if ($scope.uploadMultiple) {
 				$scope.images.push(response.image);
 			} else {
@@ -86,7 +86,7 @@ angular.module('osApp')
 			}
 
 		};
-		$scope.openImagesModal = function(multiple) {
+		$scope.openImagesModal = function (multiple) {
 			uploader.clearQueue();
 			$scope.images = [];
 			$scope.image = {};
@@ -104,11 +104,11 @@ angular.module('osApp')
 			});
 			$scope.uploadImagesModal.$promise.then($scope.uploadImagesModal.show);
 		};
-		$scope.deleteImage = function() {
+		$scope.deleteImage = function () {
 			delete $scope.course.image;
 			$scope.course.image_id = 0;
 		};
-		$scope.openFilesModal = function() {
+		$scope.openFilesModal = function () {
 			uploaderFiles.clearQueue();
 			$scope.files = [];
 			$scope.uploadFilesModal = $modal({
@@ -118,16 +118,16 @@ angular.module('osApp')
 			});
 			$scope.uploadFilesModal.$promise.then($scope.uploadFilesModal.show);
 		};
-		$scope.addFiles = function(isValid) {
+		$scope.addFiles = function (isValid) {
 
 			if ($scope.course.files == null) {
 				$scope.course.files = [];
 			}
-			angular.forEach($scope.files, function(file) {
+			angular.forEach($scope.files, function (file) {
 				Classes.addFile({
 					file_id: file.id,
 					class_id: $scope.course.id
-				}, function() {
+				}, function () {
 					$scope.course.files.push(file);
 				});
 
@@ -135,22 +135,22 @@ angular.module('osApp')
 			$scope.files = [];
 			$scope.uploadFilesModal.hide();
 		};
-		$scope.removeFile = function(file) {
+		$scope.removeFile = function (file) {
 			Classes.removeFile({
 				classId: $scope.course.id,
 				actionId: file.id
-			}, function(response) {
+			}, function (response) {
 				if (response.status == true) {
 					$scope.course.files.splice($scope.course.files.indexOf(file), 1);
 				}
 			});
 		};
-		$scope.updateFileName = function(file, data) {
+		$scope.updateFileName = function (file, data) {
 			FileEdit.update({
 				fileId: file.id
 			}, {
 				name: data
-			}, function(response) {
+			}, function (response) {
 
 			});
 		};
@@ -164,15 +164,15 @@ angular.module('osApp')
 		}];
 
 		// CALLBACKS
-		uploaderFiles.onAfterAddingFile = function(fileItem) {
+		uploaderFiles.onAfterAddingFile = function (fileItem) {
 			uploaderFiles.formData[0].id = $scope.course.id;
 			fileItem.formData[0].id = $scope.course.id;
 		};
-		uploaderFiles.onSuccessItem = function(fileItem, response, status, headers) {
+		uploaderFiles.onSuccessItem = function (fileItem, response, status, headers) {
 			$scope.files.push(response.file);
 		};
 
-		$scope.addImages = function(isValid) {
+		$scope.addImages = function (isValid) {
 
 			$scope.course.image = $scope.image;
 			$scope.course.image_id = $scope.image.id;
