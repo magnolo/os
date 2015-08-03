@@ -12,9 +12,9 @@ body {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
-h1 { 
+h1 {
 
-  
+
 }
 
 
@@ -130,7 +130,7 @@ q:after{
 
 .grey_links a{
 	color:#888888;
-	
+
 }
 .greyed{
 	color:#BEBEBE  !important;
@@ -141,19 +141,19 @@ q:after{
    font-family:'LetterGothicTextOT';
 }
 
-:-moz-placeholder { 
-   color: #888888;  
+:-moz-placeholder {
+   color: #888888;
    font-family:'LetterGothicTextOT';
 }
 
-::-moz-placeholder {  
-   color: #888888;  
+::-moz-placeholder {
+   color: #888888;
    font-family:'LetterGothicTextOT';
 }
 
-:-ms-input-placeholder {  
+:-ms-input-placeholder {
    color: #b1b1b1;
-	font-family:'LetterGothicTextOT';   
+	font-family:'LetterGothicTextOT';
 }
 .row{
 	width:100%;
@@ -190,7 +190,7 @@ q:after{
 .list_trenner li{
 	background-image:image-url('trenner_small.png');
 	margin-left: 10px;
-    padding-right: 18px;
+    padding-right: 16px;
 }
 .list_trenner li:last-child{
 	padding-right:0px;
