@@ -44,7 +44,7 @@ angular.module('osApp')
 				}).glDatePicker(true);
 
 				Events.query({
-					kind: 'calendarrender',
+					kind: 'calendarstyle',
 					labor: attrs.lab,
 					date: moment(scope.selectedDate).format('YYYY-MM-DD')
 				}, function(data) {

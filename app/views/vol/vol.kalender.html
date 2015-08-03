@@ -46,7 +46,7 @@
   <div class="grid_3">
     <div style="margin:20px 10px;">
       <div>
-        <span ng-if="">{{ 'TODAY' | translate }}, </span>{{ selectedDate | date: 'longDate'}}
+        <span ng-if="">{{ 'TODAY' | translate }}, </span><span style="font-size:1.2em;font-weight:bold;">{{ selectedDate | date: 'longDate'}}</span>
         <h3 class="labor_info" ng-if="selected">LAB {{selectedLab}}</h3>
       </div>
       <div class="eventInfo">
@@ -65,6 +65,7 @@
           </div>
           <div class="company" ng-if="event.groups == 1">{{event.company}}</div>
         </div>
+      
       </div>
     </div>
   </div>

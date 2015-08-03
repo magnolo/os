@@ -1,3 +1,16 @@
+.gldp-flatwhite{
+  .sun, .sat{
+    color:#d41231 !important;
+  }
+  .next-arrow, .prev-arrow{
+    background-color: transparent !important;
+    span{
+      margin:8px 5px;
+    }
+  }
+
+}
+
 .calendarFreeFull {
     background-image: image-url('freeFull_day.png');
     background-position: center center;
@@ -14,12 +27,13 @@
     background-repeat: no-repeat;
 }
 .groupSoloDay {
-    color: #444 !important;
+    color: #444;
 }
 .calendarEventSolo {
     background-image: image-url('fullday_event.png');
     background-position: center center;
     background-repeat: no-repeat;
+      color:#d41231 !important;
 }
 .calendarEventSolo_before {
     background-image: image-url('noon_event.png');
@@ -35,17 +49,20 @@
     background-image: image-url('fullday_event.png');
     background-position: center center;
     background-repeat: no-repeat;
-    color: #444 !important;
+    color: #444;
 }
 .calendarEventSolo_before_group {
     background-image: image-url('noon_event.png');
     background-position: center center;
     background-repeat: no-repeat;
-    color: #444 !important;
+    color: #444;
 }
 .calendarEventSolo_after_group {
     background-image: image-url('afternoon_event.png');
     background-position: center center;
     background-repeat: no-repeat;
     color: #d41231 !important;
+}
+.calendarFull{
+  color:#d41231 !important;
 }
