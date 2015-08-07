@@ -77,6 +77,16 @@ angular.module('osApp')
             return result;
         };
     })
+    .filter('orderbycat', function(orderByFilter){
+        return function(items, value, scope){
+          if(items.length > 0){
+          if(items[0].categorie.name == "projekte-a-z"){
+            items = orderByFilter(items, '+name');
+          }
+        }
+          return items;
+        }
+    })
     .filter('bydater', function($timeout) {
         return function(items, value, scope) {
             if (items.length == 0 || !value) {

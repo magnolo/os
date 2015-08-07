@@ -1,4 +1,4 @@
-<div class="article" context-menu="setContext(article)" context-menu-disabled="!$root.isLoggedIn" data-target="articleMenu" ng-repeat="article in articles | bysection: sectionFilter" in-view="inThaView($index, $inview, $inviewpart, article)" in-view-offset="400" ng-if="article.active == 1 || article.active == 0 && $root.isLoggedIn || article.id == 0 && $root.isLoggedIn" ng-class="{'offline': article.active == 0}">
+<div class="article" context-menu="setContext(article)" context-menu-disabled="!$root.isLoggedIn" data-target="articleMenu" ng-repeat="article in articles | bysection: sectionFilter | orderbycat " in-view="inThaView($index, $inview, $inviewpart, article)" in-view-offset="400" ng-if="article.active == 1 || article.active == 0 && $root.isLoggedIn || article.id == 0 && $root.isLoggedIn" ng-class="{'offline': article.active == 0}">
     <h1 ng-if="!article.edit" id="{{ article.name }}" class="article_main_header" du-scrollspy>{{article.title}}</h1>
     <h1 ng-if="article.edit && lang == 'de'" contenteditable id="{{ article.name }}" class="article_main_header" ng-model="article.title"></h1>
     <h1 ng-if="article.edit && lang == 'en'" contenteditable id="{{ article.name }}" class="article_main_header" ng-model="article.title_en"></h1>
@@ -30,8 +30,6 @@
                 <div class="os-icon download-icon left" title="Alle Anhänge herunterladen..."></div>
             </div>
         </div>
-
-
         <ul>
             <li ng-repeat="file in article.files" class="anim">
                 <a target="_blank" href="http://www.openscience.or.at/{{file.url}}" download="{{file.name+'.'+file.filetype}}" analytics-on="click" analytics-event="Download" analytics-category="{{setArticle.section.title}}" analytics-label="{{file.name}}">
