@@ -8,7 +8,20 @@
       margin:8px 5px;
     }
   }
-
+ .core{
+   &:hover{
+     background-color:#ddd;
+   }
+   &.selected{
+     &:hover{
+       background-color:#a21c34;
+     }
+   }
+   &.outday{
+     opacity: 0;
+     pointer-events: none;
+   }
+ }
 }
 
 .calendarFreeFull {

@@ -602,13 +602,7 @@
 								// Handle active dates and weekends
 								cellClass = ([ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ])[cellDateVal.day];
 
-								// Handle today or selected dates
-								if(firstDateMonth != cellDateVal.month) { cellClass += ' outday'; }
-								if(todayTime == cellDateTime) { cellClass = 'today'; cellZIndex += 50; }
-								if(options.selectedDate._time() == cellDateTime) { cellClass = 'selected'; cellZIndex += 51; }
-
-								// Handle special dates
-								if(options.specialDates) {
+                if(options.specialDates) {
 									$.each(options.specialDates, function(i, v) {
 										var vDate = getRepeatDate(v, v.date);
 
@@ -619,6 +613,15 @@
 										}
 									});
 								}
+
+								// Handle today or selected dates
+                if(firstDateMonth != cellDateVal.month) { console.log(firstDateMonth,cellDateVal.month)}
+								if(firstDateMonth != cellDateVal.month) { cellClass += ' outday'; }
+								if(todayTime == cellDateTime) { cellClass = 'today'; cellZIndex += 50; }
+								if(options.selectedDate._time() == cellDateTime) { cellClass = 'selected'; cellZIndex += 51; }
+
+								// Handle special dates
+
 
 								cell
 									.mousedown(function() { return false; })
