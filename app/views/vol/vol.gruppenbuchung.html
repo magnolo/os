@@ -56,7 +56,7 @@
 				</li>
 				<li>
 					<div class="os-icon print-icon left" title="Inhalt als PDF herunterladen..."></div>
-				</li> 
+				</li>
 				<li ng-if="files.length">
 					<div class="os-icon download-icon left" title="Alle Anhänge herunterladen..."></div>
 				</li>
@@ -66,7 +66,7 @@
 	</div>
 </div>
 <div class="customer_form bordered grid_6" style="border:1px solid #fad7dc;">
-	<form id="group_booking" name="gruppenanmeldungForm" ng-submit="sendAnmeldung(einzelanmeldungForm.$valid)" novalidate >
+	<form id="group_booking" name="gruppenanmeldungForm" ng-submit="sendAnmeldung(gruppenanmeldungForm.$valid)" novalidate >
 		<div class="greyed_title">
 			<h5>1. Kurs ausw&auml;hlen:</h5>
 		</div>
@@ -83,7 +83,7 @@
 				<div><span class="min-label">{{ 'FEES' | translate }}:</span> {{ selectedClass.prize | currency : '€ '}} p.P</div>
 				<div><span class="min-label">{{ 'DURATION' | translate }}:</span> {{selectedClass.duration }} {{ 'HOURS' | translate }}</div>
 			</div>
-		</div>		
+		</div>
 		<div class="anim" ng-show="selectedClass.id">
 			<div class="greyed_title">
 				<h5 id="choose_places">2. {{ 'SELECT_PARTICIPANTS' | translate }}:</h5>
@@ -105,8 +105,8 @@
 						<input type="text" ng-model="selectedFirstDate" required class="dater required left" value="" id="date_first" name="date_first" disabled="disabled" style="margin-left: 20px;text-align: center; width: 70px;" />
 						<div class="left resetDater" ng-if="selectedFirstDate" ng-click="deleteDate(0)">X Termin l&ouml;schen</div>
 						<div class="left eventStart" ng-if="selectedFirstDate">
-							<select id="date_first_time" ng-model="selectedHours" required class="required" style="width: 80px; height: 26px;" ng-options="n for n in [] | hours:selectedDate.hours">
-								
+							<select id="date_first_time" ng-model="hours.selectedHours" required class="required" style="width: 80px; height: 26px;" ng-options="n for n in [] | hours:selectedDate.hours">
+
 							</select>
 						</div>
 					</div>
@@ -121,8 +121,8 @@
 					<input type="text" required ng-model="selectedSecondDate" class="dater required left"  value="" id="date_second" name="date_second" disabled="disabled" style="margin-left: 20px;text-align: center; width: 70px;" />
 					<div class="left resetDater" ng-if="selectedSecond" ng-click="deleteDate(1)">X Termin l&ouml;schen</div>
 					<div class="left eventStart" ng-if="selectedSecond">
-						<select  required ng-model="selectedSecondHours" class="required" style="width: 80px; height: 26px;" ng-options="n for n in [] | hours:selectedSecond.hours">
-								
+						<select  required ng-model="hours.selectedSecondHours" class="required" style="width: 80px; height: 26px;" ng-options="n for n in [] | hours:selectedSecond.hours">
+
 							</select>
 					</div>
 				</div>
@@ -132,14 +132,22 @@
 			<div class="greyed_title">
 				<h5 id="fill_form">5. {{ 'FILL_DETAILS' | translate }}:</h5>
 			</div>
+			<div class="content_box" ng-if="$root.isLoggedIn">
+				<div id="fillTestData" class="right btn btn-primary" ng-click="fillTestData()">&raquo; TestDaten</div>
+
+			</div>
 			<div class="content_box field_list">
 				<div >
 					<label>{{ 'FIRSTNAME' | translate }}</label>
-					<input type="text" name="firstname" name="name" required ng-model="customer.firstname">
+					<input type="text" name="firstname"  required ng-model="customer.firstname">
 				</div>
 				<div >
 					<label>{{ 'LASTNAME' | translate }}</label>
-					<input type="text" name="lastname" name="nachname" required ng-model="customer.lastname">
+					<input type="text" name="lastname"  required ng-model="customer.lastname">
+				</div>
+				<div >
+					<label>{{ 'COMPANY' | translate }}</label>
+					<input type="text"  name="company" required ng-model="customer.company">
 				</div>
 				<div >
 					<label>{{ 'ADDRESS' | translate }}</label>

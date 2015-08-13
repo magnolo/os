@@ -8,6 +8,11 @@
       margin:8px 5px;
     }
   }
+  .prev-arrow{
+    span{
+      margin-left:0px;
+    }
+  }
  .core{
    &:hover{
      background-color:#ddd;
@@ -21,7 +26,13 @@
      opacity: 0;
      pointer-events: none;
    }
+   &.monyear, &.dow{
+     &:hover{
+       background-color:#fff;
+     }
+   }
  }
+
 }
 
 .calendarFreeFull {

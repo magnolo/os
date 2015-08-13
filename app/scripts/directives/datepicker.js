@@ -55,7 +55,7 @@ angular.module('osApp')
 					});
 					cal.options.specialDates = sD;
 					cal.render(function() {
-						console.log(cal);
+						
 					});
 				});
 

@@ -337,8 +337,9 @@ angular.module('osApp')
 					event.end = moment(event.data_confirmed).add(event.class.duration);
 					event.confirmed = 1;
 					FlashService.show(data.message, '', 'success');
-					$scope.volCalendar.fullCalendar('refetchEvents');
-					$scope.setEventSource(event.labor_id);
+					
+					//$scope.volCalendar.fullCalendar('refetchEvents');
+					//$scope.setEventSource(event.labor_id);
 
 				}
 

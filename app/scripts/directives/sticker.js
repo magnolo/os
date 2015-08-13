@@ -55,7 +55,7 @@ angular.module('osApp')
                 var slyScrollContainer = angular.element(document.getElementById('sly-scroll-container'));
                 var varscroll = parseInt($document.scrollTop());
                 if ($window.innerWidth > 960) {
-                    if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight()) {
+                    if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 22 + mainHeader.innerHeight()) {
 
                         element
                             .addClass('headroom--not-top')
@@ -114,7 +114,9 @@ angular.module('osApp')
                 scope.checkDim();
             });
             angular.element($window).bind('resize', function() {
-                scope.checkDim();
+              $timeout(function() {
+                  scope.checkDim();
+              });
                 //sly.reload();
             });
             $rootScope.$on('nextConnection', function(s, index) {

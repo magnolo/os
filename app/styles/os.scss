@@ -29,9 +29,9 @@ $vol-background: #FAD7DC;
 		color:#442e74;
 	}
 
-	 div.thesaurus > div.thesaurus-canvas.downwards:after { 
-		border-color: transparent transparent #c0b6d7 transparent;  
-		bottom: 100%; 
+	 div.thesaurus > div.thesaurus-canvas.downwards:after {
+		border-color: transparent transparent #c0b6d7 transparent;
+		bottom: 100%;
 	}
 .openscience{
 	color:$os-color !important;
@@ -41,7 +41,7 @@ $vol-background: #FAD7DC;
 	}
 	&.article_thumb{
 		border:1px solid #D2D9E3;
-	}	
+	}
    .thumb_heading a{
 	color:$os-color;
 	}
@@ -49,9 +49,9 @@ $vol-background: #FAD7DC;
 	.background, .background a{
 		background-color:#D2D9E3;
 		color:$os-color;
-		
+
 	}
-	#cat_articles{ 
+	#cat_articles{
 		.sperator{
 			background-color:$os-color ;
 			color:#fff;
@@ -79,7 +79,7 @@ $vol-background: #FAD7DC;
 					}
 				}
 			}
-		
+
 	}
 	 #cat_articles .active a{
 		color:$os-color !important;
@@ -99,7 +99,7 @@ $vol-background: #FAD7DC;
 				-webkit-box-shadow: $os-color 1px 0 6px 1px;
 				box-shadow: $os-color 1px 0 6px 1px;
 			}
-	} 
+	}
 	#loading-bar-spinner{
 		.spinner-icon{
 			 border-top-color:  $os-color;
@@ -128,7 +128,7 @@ $vol-background: #FAD7DC;
 				-webkit-box-shadow: $wissen-color 1px 0 6px 1px;
 				box-shadow: $wissen-color 1px 0 6px 1px;
 			}
-	} 
+	}
 	#loading-bar-spinner{
 		.spinner-icon{
 			 border-top-color:  $wissen-color;
@@ -217,9 +217,9 @@ $vol-background: #FAD7DC;
 	color:#442e74;
 }
 
-.wissen div.thesaurus > div.thesaurus-canvas.downwards:after { 
-	border-color: transparent transparent #c0b6d7 transparent;  
-	bottom: 100%; 
+.wissen div.thesaurus > div.thesaurus-canvas.downwards:after {
+	border-color: transparent transparent #c0b6d7 transparent;
+	bottom: 100%;
 }
 .wissen .is_new{
 	background-position:0px 0px;
@@ -238,7 +238,7 @@ $vol-background: #FAD7DC;
 				-webkit-box-shadow: $projekte-color 1px 0 6px 1px;
 				box-shadow: $projekte-color 1px 0 6px 1px;
 			}
-	} 
+	}
 	#loading-bar-spinner{
 		.spinner-icon{
 			 border-top-color:  $projekte-color;
@@ -304,9 +304,9 @@ $vol-background: #FAD7DC;
 	color:$projekte-color;
 }
 
-.projekte div.thesaurus > div.thesaurus-canvas.downwards:after { 
-	border-color: transparent transparent $projekte-background transparent;  
-	bottom: 100%; 
+.projekte div.thesaurus > div.thesaurus-canvas.downwards:after {
+	border-color: transparent transparent $projekte-background transparent;
+	bottom: 100%;
 }
 .projekte{
 	.frame{
@@ -352,7 +352,7 @@ $vol-background: #FAD7DC;
 				-webkit-box-shadow: $schulcorner-color 1px 0 6px 1px;
 				box-shadow: $schulcorner-color 1px 0 6px 1px;
 			}
-	} 
+	}
 	#loading-bar-spinner{
 		.spinner-icon{
 			 border-top-color:  $schulcorner-color;
@@ -445,9 +445,9 @@ $vol-background: #FAD7DC;
 	color:$schulcorner-color;
 }
 
-.schulcorner div.thesaurus > div.thesaurus-canvas.downwards:after { 
-	border-color: transparent transparent $schulcorner-background transparent;  
-	bottom: 100%; 
+.schulcorner div.thesaurus > div.thesaurus-canvas.downwards:after {
+	border-color: transparent transparent $schulcorner-background transparent;
+	bottom: 100%;
 }
 /*.vol{
 	color:#a21c34 !important;
@@ -479,7 +479,7 @@ $vol-background: #FAD7DC;
 				-webkit-box-shadow: $vol-color 1px 0 6px 1px;
 				box-shadow: $vol-color 1px 0 6px 1px;
 			}
-	} 
+	}
 	#loading-bar-spinner{
 		.spinner-icon{
 			 border-top-color:  $vol-color;
@@ -495,6 +495,8 @@ $vol-background: #FAD7DC;
 	.btn-primary{
 		background:$vol-color;
 		border-color:$vol-color;
+    color: $vol-background;
+    font-weight: bold;
 	}
 	.alert{
 	    &.alert-info{
@@ -590,9 +592,9 @@ $vol-background: #FAD7DC;
 	color:$vol-color;
 }
 
-.vol div.thesaurus > div.thesaurus-canvas.downwards:after { 
-	border-color: transparent transparent $vol-background transparent;  
-	bottom: 100%; 
+.vol div.thesaurus > div.thesaurus-canvas.downwards:after {
+	border-color: transparent transparent $vol-background transparent;
+	bottom: 100%;
 }
 .vol #cat_articles .active a{
 	color:$vol-color !important;

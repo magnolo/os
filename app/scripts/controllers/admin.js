@@ -16,11 +16,8 @@ angular.module('osApp')
                 if ($state.current.url.indexOf('/admin') != -1) {
                     $state.go('home');
                 }
-
             });
-
         };
-
         $scope.toggleMenu = function() {
             if ($scope.showMenu == true) {
                 $scope.showMenu = false;
@@ -30,20 +27,16 @@ angular.module('osApp')
         };
 
         var modals = [];
-
         $rootScope.$on('modal.show', function(e, $modal) {
             // if modal is not already in list
             if (modals.indexOf($modal) === -1) {
                 modals.push($modal);
             }
         });
-
         $rootScope.$on('modal.hide', function(e, $modal) {
             var modalIndex = modals.indexOf($modal);
-
             modals.splice(modalIndex, 1);
         });
-
         $rootScope.$on('$stateChangeStart', function() {
 
             // hide all modals
@@ -51,9 +44,7 @@ angular.module('osApp')
                 angular.forEach(modals, function($modal) {
                     $modal.$promise.then($modal.hide);
                 });
-
                 modals = [];
             }
-
         });
     });
