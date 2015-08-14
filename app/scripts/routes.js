@@ -311,7 +311,17 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 authorizedRoles: USER_ROLES.admin,
                 pageTitle: 'Newsletters // OpenScience'
             }
-        }).state('newsletter', {
+        })
+        .state('newslettersConfig',{
+          url:'/admin/newsletters/config',
+          views: {
+            'admin':{
+              templateUrl: 'views/admin/newsletters-config.html',
+              controller: 'NewsletterconfigCtrl'
+            }
+          }
+        })
+        .state('newsletter', {
             url: '/admin/newsletters/:id',
             views: {
                 'admin': {
@@ -324,6 +334,7 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'Newsletter // OpenScience'
             }
         })
+
         .state('elabs', {
             url: '/admin/elabs',
             views: {

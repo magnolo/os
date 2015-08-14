@@ -131,11 +131,12 @@ angular.module('osApp')
             configs: {
                 method: 'GET',
                 params: {
-                    folder: 'newsletters',
-                    location: 'configs'
+                    folder: 'api',
+                    location: 'newsletters',
+                    newsId: 'configs'
 
-                },
-                isArray: true
+                }//,
+                //isArray: true
             },
             config: {
                 method: 'GET',
@@ -146,6 +147,15 @@ angular.module('osApp')
 
                 }
 
+            },
+            configSave:{
+              method:'PUT',
+              params:{
+                folder:'api',
+                location: 'newsletters',
+                newsId: 'configs',
+                id:''
+              }
             }
 
         });

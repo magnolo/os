@@ -1,0 +1,41 @@
+<div class="full-fixed spaced">
+    <div class="closer" ng-click="goBack()" style="font-size: 2em;left: 5px;position: absolute; top: 5px;cursor:pointer">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="admin-header container-fluid">
+        <h2 class="col-md-6"><a ui-sref="newsletters()">Newsletters</a> // Einstellungen</h2>
+        <div class="menu col-md-6">
+            <ul>
+              <li>
+                  <button class="btn btn-default" ng-click="saveData()"><i class="fa fa-check"></i> Speichern
+                  </button>
+
+              </li>
+                <li>
+                    <button class="btn btn-default" ng-class="{'btn-success': view == 'os'}" ng-click="view = 'os'">OpenScience
+                    </button>
+
+                </li>
+                <li>
+                    <button class="btn btn-default" ng-class="{'btn-success': view == 'vol'}" ng-click="view ='vol'">ViennaOpenLab
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-if="view == 'os'" class="col-sm-6 col-sm-offset-3" style="margin-bottom: 40px; margin-top: 40px;">
+      <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Header</h3>
+      <div froala="froalaOptions" ng-model="configs['headertext'].value">
+      </div>
+      <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Footer</h3>
+      <div froala="froalaOptions" ng-model="configs['footertext'].value">
+      </div>
+    </div>
+    <div ng-if="view == 'vol'" class="col-sm-6 col-sm-offset-3" style="margin-bottom: 40px; margin-top: 40px;">
+        <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Header</h3>
+        <div froala="froalaOptions" ng-model="configs['headertext_vol'].value">
+        </div>
+        <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Footer</h3>
+        <div froala="froalaOptions" ng-model="configs['footertext_vol'].value" >
+        </div>
+    </div>
