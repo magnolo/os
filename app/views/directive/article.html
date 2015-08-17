@@ -23,6 +23,20 @@
     <div ng-if="!article.edit" class="article_main_content" ng-bind-html="article.text | unsafe" thesaurus></div>
     <div ng-if="article.edit && lang == 'de'" froala="froalaOptions" class="article_main_content" ng-model="article.text"></div>
     <div ng-if="article.edit && lang == 'en'" froala="froalaOptions" class="article_main_content" ng-model="article.text_en"></div>
+    <div ng-if="article.images.length" class="gallery_view article_partners bordered">
+      <div class="small_header left" style="width:100%">
+        Bilder:
+      </div>
+      <div class="" style="width:100%;padding:10px 16px">
+      <masonry masonry-options="{ transitionDuration: '0s' }" preserve-order class="article anim"  mfp>
+          <div class="item masonry-brick" ng-repeat="image in article.images">
+              <a href="http://www.openscience.or.at/{{image.url}}">
+                  <img src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=http://www.openscience.or.at/{{image.url}}&w=175&q=100" />
+              </a>
+          </div>
+      </masonry>
+    </div>
+    </div>
     <div class="article_partners bordered" ng-if="article.files.length">
         <div class="small_header left" style="width:100%">
             <div class="left">Downloads:</div>

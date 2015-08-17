@@ -10,7 +10,7 @@ $schulcorner-background: #e9e59f;
 $vol-color: #a31031;
 $vol-background: #fad7dc;
 .anim {
-  
+
 }
 /*.article.ng-hide-remove, .article.ng-hide-remove.ng-hide-remove-active, .article.ng-enter,*/
 .anim.ng-enter,
@@ -162,11 +162,11 @@ $vol-background: #fad7dc;
 }
 .article_connections .article_thumb.ng-hide-add,
 .article_connections .article_thumb.ng-hide-remove.ng-hide-remove-active {
-  animation: comeIn 0.5s both;
-  -webkit-animation: comeIn 0.5s both;
+  animation: comeIn .5s both;
+  -webkit-animation: comeIn .5s both;
 }
 .quiz_anim {
-  
+
 }
 .quiz_anim.ng-hide-add,
 .quiz_anim.ng-hide-remove {
@@ -201,24 +201,24 @@ $vol-background: #fad7dc;
 @keyframes comeIn {
   from {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateX(100%);//  rotateY(-90deg);
     z-index: 1;
   }
   to {
     opacity: 1;
-    transform: translateY(0%);
+    transform: translateX(0);//rotateY(0deg);
     z-index: 1;
   }
 }
 @-webkit-keyframes comeIn {
   from {
     opacity: 0;
-    -webkit-transform: translateY(100%);
+    -webkit-transform:translateX(100%);//  rotateY(-90deg);
     z-index: 1;
   }
   to {
     opacity: 1;
-    -webkit-transform: translateY(0%);
+    -webkit-transform: translateX(0%);// rotateY(0deg);
     z-index: 1;
   }
 }

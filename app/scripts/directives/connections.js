@@ -72,18 +72,20 @@ angular.module('osApp')
                     }
                 };
                 scope.setLiner = function() {
-                    /*if (scope.articles.length > 0) {
+                  /*  if (scope.articles.length > 0) {
                         $timeout(function() {
                             var link = angular.element(document.getElementById(scope.article + '_link'));
                             var liner = angular.element(document.getElementById('connection-liner'));
                             var linerNeg = angular.element(document.getElementById('connection-liner-neg'));
-                            var connect = angular.element(document.getElementById('connect'));
+                            var connect = angular.element(document.getElementById('connections_list'));
+                            console.log(link.position().top);
+                            console.log(connect.position().top);
                             if (typeof link.position() !== 'undefined' && typeof connect.position() !== 'undefined') {
                                 if (connect.position().top > link.position().top) {
                                     linerNeg.hide();
                                     liner.css({
-                                        'height': Math.abs(connect.position().top - link.position().top),
-                                        'top': (connect.position().top - Math.abs(connect.position().top - link.position().top) + 15)
+                                        'height': (connect.position().top - link.position().top) - 30,
+                                        'top': (Math.abs(connect.position().top - link.position().top)*-1) + 45
                                     }).show();
                                 } else {
                                     linerNeg.css({
@@ -111,7 +113,6 @@ angular.module('osApp')
                 //sliderFunc();
                 scope.reset();
                 scope.$on('$destroy', function() {
-
                     $timeout.cancel(timer); // when the scope is getting destroyed, cancel the timer
                 });
                 $rootScope.$on('slyscroll', function() {
@@ -151,7 +152,7 @@ angular.module('osApp')
                             // debugger;
                             console.log(connection.position());
                             console.log(article_list);
-                            $document.on('scroll', function() { 
+                            $document.on('scroll', function() {
 
                             });*/
 

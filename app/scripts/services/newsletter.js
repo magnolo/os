@@ -155,7 +155,8 @@ angular.module('osApp')
                 location: 'newsletters',
                 newsId: 'configs',
                 id:''
-              }
+              },
+              isArray:true
             }
 
         });
