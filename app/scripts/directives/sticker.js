@@ -43,7 +43,6 @@ angular.module('osApp')
             });
             sly.on('load', function() {
                 isLoaded = true;
-                console.log('sticker');
             });
 
             scope.checkDim = function() {

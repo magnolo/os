@@ -29,8 +29,8 @@
 <div class="article full" ng-show="persons.length">
 	<h1 class="article_main_header">{{ 'THE_TEAM' | translate }}</h1>
 	<div id="uns_team" class="row floating">
-		<div class="team grid_3 article_thumb bordered openscience" ng-repeat="person in persons" ng-if="person.section.id != 1">
-			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)"> 
+		<div class="team grid_3 article_thumb bordered vol" ng-repeat="person in persons" ng-if="person.section.id != 1">
+			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)">
 				<a ui-sref="voluns.team.person({name:person.name})"><img ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&fltr[]=gray&fltr[]=brit|-40&fltr[]=clr|60|A31031&fltr[]=cont|10&w=220&h=145&zc=1&f=png" /></a>
 			</div>
 			<div class="thumb_heading">

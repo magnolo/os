@@ -16,14 +16,13 @@ angular.module('osApp')
 					$scope.loading = false;
 					if (response.success == true) {
 						FlashService.show('', response.message, 'success');
+						console.log($rootScope.lastState.state.name);
 						if($rootScope.lastState.state.name){
 							$state.go($rootScope.lastState.state.name, $rootScope.lastState.params);
 						}
 						else{
 							$state.go('home');
 						}
-			
-						
 
 					} else {
 						FlashService.show('', response.message, 'danger');

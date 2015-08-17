@@ -15,7 +15,7 @@
 	</div>
 </div>
 <div id="content" class="container_12 infinite_main" infinite-scroll="moreItems()" infinite-scroll-distance="1">
-	<div id="wissen_infinite" class="grid_3 infinite_container" >
+	<div id="wissen_infinite" class="grid_3 infinite_container" style="position:relative">
 		<loader content="wissen" section="'wissen'"></loader>
 		<div class="grid_3 article_thumb " ng-if="article.active == 1" ng-class="[article.section.name, article.sections]" ng-repeat="article in wissen">
 			<div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
@@ -34,7 +34,7 @@
 			<div class="is_new" ng-if="article.is_new"></div>
 		</div>
 	</div>
-	<div id="projekte_infinite" class="grid_3 infinite_container" i>
+	<div id="projekte_infinite" class="grid_3 infinite_container" style="position:relative">
 		<loader content="projekte" section="'projekte'"></loader>
 		<div class="grid_3 article_thumb " ng-if="article.active == 1" ng-class="[article.section.name, article.sections]" ng-repeat="article in projekte">
 			<div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
@@ -53,7 +53,7 @@
 			<div class="is_new" ng-if="article.is_new"></div>
 		</div>
 	</div>
-	<div id="schulcorner_infinite" class="grid_3 infinite_container">
+	<div id="schulcorner_infinite" class="grid_3 infinite_container" style="position:relative">
 		<loader content="schulcorner" section="'schulcorner'"></loader>
 		<div class="grid_3 article_thumb " ng-if="article.active == 1"  ng-class="[article.section.name, article.sections]" ng-repeat="article in schulcorner">
 			<div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
@@ -72,7 +72,7 @@
 			<div class="is_new" ng-if="article.is_new"></div>
 		</div>
 	</div>
-	<div id="vol_infinite" class="grid_3 infinite_container">
+	<div id="vol_infinite" class="grid_3 infinite_container" style="position:relative">
 		<loader content="vol" section="'vol'"></loader>
 		<div class="grid_3 article_thumb " ng-if="article.active == 1" ng-class="[article.section.name, article.sections]" ng-repeat="article in vol">
 			<div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
@@ -90,6 +90,6 @@
 			<div class="thumb_text" ng-if="article.intro">{{article.intro | htmlToPlain}}</div>
 			<div class="is_new" ng-if="article.is_new"></div>
 		</div>
-		
+
 	</div>
 </div>

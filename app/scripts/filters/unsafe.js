@@ -10,5 +10,8 @@
  */
 angular.module('osApp')
     .filter('unsafe', function($sce) {
-        return $sce.trustAsHtml;
+
+        return function(text){
+          return $sce.trustAsHtml(text);
+        };
     });
