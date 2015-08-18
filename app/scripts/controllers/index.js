@@ -190,6 +190,7 @@ angular.module('osApp')
 
 
             if ($inview && !$rootScope.isLoading) {
+              console.log(article, kurs, locate, $inviewpart);
                 var direct = true;
                 var section = 'section';
                 var cat = 'categorie';
@@ -204,6 +205,7 @@ angular.module('osApp')
                     }
                 }
                 if (typeof kurs !== 'undefined') {
+
                     if (kurs === 'team') {
                         //console.log($state);
                         if ($state.current.name.indexOf('vol') !== -1) {
@@ -213,6 +215,7 @@ angular.module('osApp')
                         }
                         data.name = article.name;
                     } else {
+                      console.log('hello');
                         var destination = {
                             section: 'kurse',
                             name: 'kurs'
@@ -230,7 +233,6 @@ angular.module('osApp')
 
                                 break;
                             default:
-
                                 break;
                         }
                         if (!article.dates) {
@@ -242,6 +244,9 @@ angular.module('osApp')
                             article.files = Classes.files({
                                 classId: article.id
                             });
+                        }
+                        if(kurs == "kalender"){
+                          direct = false;
                         }
                         state = 'vol.' + destination.section + '.' + destination.name;
 

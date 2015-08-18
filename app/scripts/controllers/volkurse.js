@@ -16,12 +16,10 @@ angular.module('osApp')
 						$document.scrollToElement(article, 70);
 						$rootScope.isLoading = false;
 					}, 200);
-
 				});
 			} else {
 				$rootScope.isLoading = false;
 			}
-
 		});
 		$scope.$watch('selectedDate', function(data) {
 			console.log(data);

@@ -83,6 +83,6 @@ angular.module('osApp')
 
     });
     $scope.$watch('kurse', function(kurs) {
-      //console.log(kurs);
+      console.log(kurs);
     });
   });
