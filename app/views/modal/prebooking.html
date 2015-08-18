@@ -15,7 +15,7 @@
                             </div>
                             <div>
                                 <label>1. {{'CHOOSE_COURSE' | translate}}</label>
-                                <select required ng-model="selectedCourse" ng-options="course as course.title for course in courses | coursedur:2:'groups':selectedLab"></select>
+                                <select required ng-model="selectedCourse" ng-options="course as course.title for course in courses | coursedur:gap:'groups':selectedLab"></select>
                             </div>
                             <div>
                                 <label>2. {{'SELECT_PARTICIPANTS' | translate}}</label>

@@ -154,7 +154,10 @@ angular
             SECURITY_QUESTION: 'Sicherheitsabfrage',
             SECURITY_WRONG: 'Das Ergebnis ist leider falsch!',
             CANCEL: 'Abbrechen',
-            NEXT: 'Weiter'
+            NEXT: 'Weiter',
+            SEAT:'Platz',
+            SEATS: 'Plätze',
+            LEFT: 'frei'
         });
         $translateProvider.translations('en', {
             WHO: 'Who we are',
@@ -240,7 +243,10 @@ angular
             SECURITY_QUESTION: 'Security question',
             SECURITY_WRONG: 'Your answer is wrong!',
             CANCEL: 'Cancel',
-            NEXT: 'Next'
+            NEXT: 'Next',
+            SEAT:'Place',
+            SEATS: 'Places',
+            LEFT :'left'
         });
         // Nicht vergessen: die Standardsprache
         //$translateProvider.determinePreferredLanguage();

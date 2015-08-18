@@ -59,17 +59,16 @@
           <div class="title">
             <a ui-sref="vol.kurse.kurs({kurs:event.class.name})" ng-if="event.type != 'closed'">{{event.class.title}}</a>
             <a ng-if="event.type == 'closed'">{{event.title}}</a>
-            <span ng-if="event.type == 'register'">{{ event.title}}</span>
+            <span ng-if="event.type == 'register'" style="color:#444">{{ event.title}}</span>
           </div>
           <div class="register" ng-if="event.solo == 1 && event.labor.places - event.booked > 0">
-            <a ui-sref="vol.einzelanmeldung.kurs.date({kurs:event.class.title, date: event.date_start})">&raquo; {{ 'REGISTRATION' | translate }} - {{ event.labor.places - event.booked }} <span ng-if="event.labor.places - event.booked > 1">Plätze</span><span ng-if="event.labor.places - event.booked == 1">Platz</span> frei </a>
+            <a ui-sref="vol.einzelanmeldung.kurs.date({kurs:event.class.title, date: event.date_start})">&raquo; {{ 'REGISTRATION' | translate }} - {{ event.labor.places - event.booked }} <span ng-if="event.labor.places - event.booked > 1">{{ 'SEATS' | translate }}</span><span ng-if="event.labor.places - event.booked == 1">{{ 'SEAT' | translate }}</span> {{ 'LEFT' | translate }} </a>
           </div>
           <div class="company" ng-if="event.groups == 1">{{event.company}}</div>
           <div ng-if="event.type =='register'">
               <a ng-click="preBooking(event)">&raquo; Möglichen Gruppenkurs buchen</a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
