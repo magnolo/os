@@ -24,7 +24,6 @@ angular.module('osApp')
 					selectableDates: [],
 					specialDates: [],
 					onClick: function(el, cell, date, data) {
-						console.log(data);
 						scope.$apply(function() {
 							if (typeof scope.selectedFirstDate === 'undefined') {
 								scope.selectedDate = data;
@@ -52,7 +51,7 @@ angular.module('osApp')
 							var d = {
 								date: new Date(date.time * 1000),
 								data: date,
-								cssClass: 'calendarBeforeFull'
+								cssClass: date.cssClass
 							}
 							cal.options.selectableDates.push(d);
 							cal.options.specialDates.push(d);

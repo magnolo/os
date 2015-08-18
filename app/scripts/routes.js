@@ -552,6 +552,9 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
         .state('vol.gruppenbuchung.kurs.date', {
             url: '/:date'
         })
+        .state('vol.gruppenbuchung.kurs.date.places', {
+            url: '/:places'
+        })
         .state('vol.seminare', {
             url: '/seminare',
             views: {

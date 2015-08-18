@@ -28,10 +28,20 @@ angular.module('osApp')
 		}, function (data) {
 			if ($state.params.kurs) {
 				angular.forEach(data, function (cl) {
-					if ($state.params.kurs === cl.title) {
+					if ($state.params.kurs === cl.name) {
 						$scope.selectedClass = cl;
 						$scope.direct = false;
 					}
+				});
+			}
+			if($state.params.places){
+				$timeout(function(){
+					$scope.selectedPlaces = parseInt($state.params.places);
+				});
+			}
+			if($state.params.date){
+				$timeout(function(){
+					$scope.selectedFirstDate = moment.unix($state.params.date).format('DD.MM.YYYY');
 				});
 			}
 		});
@@ -43,12 +53,14 @@ angular.module('osApp')
 			});
 		});
 		$scope.$watch('selectedPlaces', function (places) {
-			if (places = 0) {
+			if (places == 0) {
 				return;
 			}
 			$timeout(function () {
-				var marker = angular.element(document.getElementById('choose_date'));
-				$document.scrollToElement(marker, 0, 100);
+				$timeout(function(){
+					var marker = angular.element(document.getElementById('choose_date'));
+					$document.scrollToElement(marker, 0, 100);
+				});
 			});
 		});
 		$scope.$watch('selectedSecond', function (date) {

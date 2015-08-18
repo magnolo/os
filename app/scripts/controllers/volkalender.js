@@ -5,6 +5,10 @@ angular.module('osApp')
 	.controller('VolkalenderCtrl', function ($scope, $state, Events, Classes, $modal) {
 		$scope.events = [];
     $scope.courses = [];
+    $scope.user = {
+      selectedCourse: null,
+      selectedPlaces: 0
+    };
 		$scope.specialDates = [];
 		if ($state.params.lab && $state.params.date) {
 			$scope.selectedLab = $state.params.lab;
@@ -30,6 +34,7 @@ angular.module('osApp')
 
 					var d = moment(date);
           $scope.gap = 0;
+          var space = 120;
 					d.set('hour', 9).set('minute', 30);
 					angular.forEach(data, function (date) {
 						//date.cssClass = 'calendarEventSolo_before';
@@ -37,11 +42,11 @@ angular.module('osApp')
 						if (d.weekday() != 6 && d.weekday() != 7) {
 							var start = moment(date.date);
 							var diff = start.diff(d, 'minutes');
-							if (diff >= 150) {
+							if (diff >= space) {
                 if(d.hour() > 9){
                   d.add(30, 'minutes');
                 }
-                $scope.gap = Math.max($scope.gap, start.subtract(30, 'minutes').diff(d, 'hours'));
+                $scope.gap = Math.max($scope.gap, start.subtract(30, 'minutes').diff(d, 'minutes'));
 								$scope.eventList.push({
 									date_start: d,
 									type: 'register',
@@ -59,7 +64,7 @@ angular.module('osApp')
 					});
 					if (d.weekday() != 5 && d.weekday() != 6) {
 						var end = moment(date).set('hour', 18);
-						if (end.diff(d, 'minutes') >= 150) {
+						if (end.diff(d, 'minutes') >= space) {
               if(d.hour() > 9){
                 d.add(30, 'minutes');
               }
@@ -68,7 +73,8 @@ angular.module('osApp')
 								type: 'register',
                 start: d.unix()
 							};
-              $scope.gap = Math.max($scope.gap, end.diff(d, 'hours'));
+              console.log(end.diff(d, 'minutes'));
+              $scope.gap = Math.max($scope.gap, end.diff(d, 'minutes'));
               if($scope.eventList.length == 0){
                 registerEvent.title =  'Labor ganztags frei';
               }
@@ -81,7 +87,11 @@ angular.module('osApp')
           $scope.ev = date;
 
           if($scope.courses.length == 0){
-            $scope.courses = Classes.query();
+            $scope.courses = Classes.query({
+        			active: 1,
+        			order: 'title',
+        			kurse: 1
+        		});
           }
           $scope.prebookModal = $modal({
               scope: $scope,
@@ -89,6 +99,16 @@ angular.module('osApp')
               show: false
           });
           $scope.prebookModal.$promise.then($scope.prebookModal.show);
+        };
+        $scope.prebook = function(){
+          console.log($scope.user);
+           $scope.prebookModal.hide();
+           $state.go('vol.gruppenbuchung.kurs.date.places',{
+             kurs:$scope.user.selectedCourse.name,
+             date:moment($scope.ev.date_start).unix(),
+             places:$scope.user.selectedPlaces
+           });
+
         };
 				/*$scope.events.solo = Events.query({
 					kind: 'events',

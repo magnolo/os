@@ -615,7 +615,7 @@
 								}
 
 								// Handle today or selected dates
-                
+
 								if(firstDateMonth != cellDateVal.month) { cellClass += ' outday'; }
 								if(todayTime == cellDateTime) { cellClass = 'today'; cellZIndex += 50; }
 								if(options.selectedDate._time() == cellDateTime) { cellClass = 'selected'; cellZIndex += 51; }

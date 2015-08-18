@@ -12,7 +12,9 @@ angular.module('osApp')
 		};
 	}).filter('labcount', function() {
 		return function(input, min, course, lab) {
-
+			if(!course){
+				return;
+			}
 			if (typeof course === 'undefined') {
 				return;
 			}
@@ -39,7 +41,7 @@ angular.module('osApp')
 				lab = false;
 			}
 			angular.forEach(courses, function(course){
-				if(course.duration <= duration && course[type] == 1 ){
+				if(course.duration <= (duration/60) && course[type] == 1 ){
 					if(lab){
 						if(course[lab] == 1){
 							list.push(course);

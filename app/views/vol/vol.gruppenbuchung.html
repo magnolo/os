@@ -72,7 +72,7 @@
 		</div>
 		<div class="big_select">
 			<h2 ng-if="classes.length == 0">{{ 'LOADING_COURSE' | translate }}...</h2>
-			<select ng-model="selectedClass" required ng-options="class.title for class in classes" ng-show="classes.length">
+			<select ng-model="selectedClass" required ng-options="class as class.title for class in classes" ng-show="classes.length">
 				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} - </option>
 			</select>
 		</div>
