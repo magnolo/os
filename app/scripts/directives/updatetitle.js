@@ -18,7 +18,7 @@ angular.module('osApp')
                         if (toParams.categorie) {
                             title = capitalise(toParams.categorie) + ' // ' + capitalise(toParams.section);
                             if (toParams.article) {
-                                title = capitalise(toParams.article) + ' // ' + capitalise(toParams.categorie) + ' // ' + capitalise(toParams.section);
+                                title = capitalise(toParams.article.replace(new RegExp('-', 'g'), ' ')) + ' // ' + capitalise(toParams.categorie) + ' // ' + capitalise(toParams.section);
                             }
                         }
                     }
