@@ -23,7 +23,7 @@
           <div style="margin:5px 20px 0;" class="left">
             <img src="images/fullday_event.png">
           </div>
-          <div class="left"> {{ 'AVAILABLE_DATES' | translate }}
+          <div class="left" style="max-width:150px"> {{ 'AVAILABLE_DATES' | translate }}
             <br>{{ 'MORNING_AFTERNOON' | translate }}
           </div>
         </li>
@@ -47,7 +47,7 @@
     <div style="margin:20px 10px;">
       <div>
         <span ng-if="">{{ 'TODAY' | translate }}, </span><span style="font-size:1.2em;font-weight:bold;">{{ selectedDate | date: 'longDate'}}</span>
-        <h3 class="labor_info" ng-if="selected">LAB {{selectedLab}}</h3>
+        <h3 class="labor_info" ng-if="selectedLab">LAB {{selectedLab}}</h3>
       </div>
       <div class="eventInfo">
         <div class="group_view" ng-repeat="event in eventList | orderBy: 'start'">
@@ -59,17 +59,21 @@
           <div class="title">
             <a ui-sref="vol.kurse.kurs({kurs:event.class.name})" ng-if="event.type != 'closed'">{{event.class.title}}</a>
             <a ng-if="event.type == 'closed'">{{event.title}}</a>
+            <span ng-if="event.type == 'register'">{{ event.title}}</span>
           </div>
           <div class="register" ng-if="event.solo == 1 && event.labor.places - event.booked > 0">
             <a ui-sref="vol.einzelanmeldung.kurs.date({kurs:event.class.title, date: event.date_start})">&raquo; {{ 'REGISTRATION' | translate }} - {{ event.labor.places - event.booked }} <span ng-if="event.labor.places - event.booked > 1">Plätze</span><span ng-if="event.labor.places - event.booked == 1">Platz</span> frei </a>
           </div>
           <div class="company" ng-if="event.groups == 1">{{event.company}}</div>
+          <div ng-if="event.type =='register'">
+              <a ng-click="preBooking(event)">&raquo; Möglichen Gruppenkurs buchen</a>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
-  <div class="grid_3 article_thumb calendar calendar-labor2" style="margin-right:0;width:218px" ng-class="{'set': selectedLab == 2}">
+  <div class="grid_3 article_thumb calendar calendar-labor2" style="margin-right:0;width:218px;position:relative;z-index:1" ng-class="{'set': selectedLab == 2}">
     <input ng-model="lab2.date" id="dateIt2" type="text" class="" gldp-id="miniCalendar2" style="height:0;float:left;border:0;opacity:0" datepicker lab="2" />
     <div gldp-el="miniCalendar2" id="miniCalendar2" class="miniCalendar"></div>
   </div>

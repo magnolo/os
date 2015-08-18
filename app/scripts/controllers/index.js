@@ -190,7 +190,7 @@ angular.module('osApp')
 
 
             if ($inview && !$rootScope.isLoading) {
-              console.log(article, kurs, locate, $inviewpart);
+
                 var direct = true;
                 var section = 'section';
                 var cat = 'categorie';
@@ -215,7 +215,7 @@ angular.module('osApp')
                         }
                         data.name = article.name;
                     } else {
-                      console.log('hello');
+              
                         var destination = {
                             section: 'kurse',
                             name: 'kurs'

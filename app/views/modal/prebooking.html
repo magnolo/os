@@ -1,0 +1,36 @@
+<div class="modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" ng-click="$hide()" type="button">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Möglichen Kurs buchen</h4>
+            </div>
+            <form name="prebookingForm" ng-submit="prebook()" novalidate role="form">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="content_box field_list">
+                            <div>
+                                <label>Datum</label>
+                                <h3>{{ev.date_start | amDateFormat : 'dddd, DD. MMMM YYYY'}}</h3>
+                            </div>
+                            <div>
+                                <label>1. {{'CHOOSE_COURSE' | translate}}</label>
+                                <select required ng-model="selectedCourse" ng-options="course as course.title for course in courses | coursedur:2:'groups':selectedLab"></select>
+                            </div>
+                            <div>
+                                <label>2. {{'SELECT_PARTICIPANTS' | translate}}</label>
+                                <select required ng-model="selectedPlaces" ng-options="n for n in [] | labcount:8:selectedCourse:selectedLab">
+                      						<option value=""> - {{ 'NUMBER_PARTICIPANTS' | translate }} -</option>
+                      					</select>
+                            </div>
+                            <div class="row margin_20" id="message"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" ng-click="$hide()" type="button">{{ 'CANCEL' | translate }}</button>
+                        <button class="btn btn-primary" ng-disabled="prebookingForm.$invalid" type="submit">{{ 'NEXT' | translate }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

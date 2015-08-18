@@ -152,7 +152,9 @@ angular
             HOURS: 'Stunden',
             AND: 'und',
             SECURITY_QUESTION: 'Sicherheitsabfrage',
-            SECURITY_WRONG: 'Das Ergebnis ist leider falsch!'
+            SECURITY_WRONG: 'Das Ergebnis ist leider falsch!',
+            CANCEL: 'Abbrechen',
+            NEXT: 'Weiter'
         });
         $translateProvider.translations('en', {
             WHO: 'Who we are',
@@ -236,7 +238,9 @@ angular
             HOURS: 'hours',
             AND: 'and',
             SECURITY_QUESTION: 'Security question',
-            SECURITY_WRONG: 'Your answer is wrong!'
+            SECURITY_WRONG: 'Your answer is wrong!',
+            CANCEL: 'Cancel',
+            NEXT: 'Next'
         });
         // Nicht vergessen: die Standardsprache
         //$translateProvider.determinePreferredLanguage();
