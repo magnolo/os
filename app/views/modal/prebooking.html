@@ -10,18 +10,25 @@
                     <div class="row">
                         <div class="content_box field_list">
                             <div>
-                                <label>Datum</label>
+                                <label style="width:100%;margin-bottom:10px;">Datum</label>
                                 <h3>{{ev.date_start | amDateFormat : 'dddd, DD. MMMM YYYY'}}</h3>
                             </div>
                             <div>
-                                <label>1. {{'CHOOSE_COURSE' | translate}}</label>
-                                <select required ng-model="user.selectedCourse" ng-options="course as course.title for course in courses | coursedur:gap:'groups':selectedLab"></select>
+                                <label style="width:100%;margin-bottom:3px;">1. {{'CHOOSE_COURSE' | translate}}</label>
+                                <div class="big_select">
+                                <select required ng-model="user.selectedCourse" ng-options="course as course.title for course in courses | coursedur:gap:'groups':selectedLab">
+                                <option value="">- {{ 'CHOOSE_COURSE' | translate }} -</option></select>
+                                <div class="checker"></div>
+                              </div>
                             </div>
-                            <div>
-                                <label>2. {{'SELECT_PARTICIPANTS' | translate}}</label>
+                            <div style="margin-top:16px">
+                                <label style="width:100%;margin-bottom:10px;">2. {{'SELECT_PARTICIPANTS' | translate}}</label>
+                                <div class="small_select">
                                 <select required ng-model="user.selectedPlaces" ng-options="n for n in [] | labcount:8:user.selectedCourse:selectedLab">
                       						<option value=""> - {{ 'NUMBER_PARTICIPANTS' | translate }} -</option>
                       					</select>
+                                <div class="checker"></div>
+                              </div>
                             </div>
                             <div class="row margin_20" id="message"></div>
                         </div>

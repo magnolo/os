@@ -52,13 +52,14 @@
 	<form id="solo_booking" name="einzelanmeldungForm" ng-submit="sendAnmeldung(einzelanmeldungForm.$valid)" novalidate >
 		<div class="big_select">
 			<h2 ng-if="classes.length == 0">{{ 'LOADING_COURSE' | translate }}...</h2>
-			<select ng-model="selectedClass" required ng-options="class.title for class in classes" ng-show="classes.length">
-				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} - </option>
+			<select  ng-model="selectedClass" required ng-options="class.title for class in classes" ng-show="classes.length && lang == 'de'">
+				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} -</option>
+			</select>
+			<select  ng-model="selectedClass" required ng-options="class as class.title_en || class.title for class in classes" ng-show="classes.length && lang == 'en'">
+				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} -</option>
 			</select>
 			<div class="checker"></div>
-			<!--<select ng-if="lang == 'en'" ng-model="selectedClass" required ng-options="class.title_en for class in classes" ng-show="classes.length">
-				<option value="" >- {{ 'CHOOSE_COURSE' | translate }} - </option>
-			</select>-->
+
 		</div>
 		<div class="article_thumb" style="margin-top:20px" ng-if="selectedClass">
 			<div class="thumb_text">
@@ -77,8 +78,8 @@
 				<div class="eventStart">
 					<p ng-if="loading.dates">{{ 'SEARCHING_TIME_SLOT' | translate }}...</p>
 					<h4 ng-if="!loading.dates && !dates.length">{{ 'NOT_AVAILABLE' | translate }}</h4>
-					<div class="small_select">
-					<select ng-show="dates.length > 0 " ng-model="selectedDate" required  ng-options="termin.date for termin in dates track by termin.event_id">
+					<div class="small_select" ng-show="dates.length > 0 ">
+					<select  ng-model="selectedDate" required  ng-options="termin.date for termin in dates track by termin.event_id">
 							<option value="" >- {{ 'WHEN' | translate }} - </option>
 						</select>
 						<div class="checker"></div>
@@ -94,8 +95,8 @@
 			<div class="content_box">
 				<div class="eventStart">
 					<div class="small_select">
-					<select  ng-model="selectedPlaces" required ng-options="n for n in [] | range:1:selectedDate.places_left">
-						<option value=""> - {{ 'NUMBER_PARTICIPANTS' | translate }}? -</option>
+					<select  ng-model="selectedPlaces" required ng-options="n for n in [] | range:1:limitBooks(selectedDate.places_left)">
+						<option value=""> - {{ 'NUMBER_PARTICIPANTS' | translate }} -</option>
 					</select>
 					<div class="checker"></div>
 				</div>
@@ -138,7 +139,7 @@
 					<textarea style="height: 60px;" ng-model="customer.text" ></textarea>
 				</div>
 				<div >
-					<button id="sendSoloRequest" class="right btn btn-primary" ng-disabled="einzelanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
+					<button id="sendSoloRequest" class="right btn btn-primary" style="width:70%;margin-right:32px" ng-disabled="einzelanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
 				</div>
 				<div class="row margin_20" id="message"></div>
 			</div>

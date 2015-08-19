@@ -6,8 +6,8 @@ angular.module('osApp')
 		$scope.events = [];
     $scope.courses = [];
     $scope.user = {
-      selectedCourse: null,
-      selectedPlaces: 0
+      selectedCourse: "",
+      selectedPlaces: ""
     };
 		$scope.specialDates = [];
 		if ($state.params.lab && $state.params.date) {

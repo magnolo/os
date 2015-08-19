@@ -68,13 +68,12 @@
 <div class="customer_form bordered grid_6" style="border:1px solid #fad7dc;">
     <form id="group_booking" name="gruppenanmeldungForm" ng-submit="sendAnmeldung(gruppenanmeldungForm.$valid)" novalidate>
         <div class="greyed_title">
-            <h5>1. Kurs ausw&auml;hlen:</h5>
+            <h5>1. {{ 'CHOOSE_COURSE' | translate }}:</h5>
         </div>
         <div class="big_select">
             <h2 ng-if="classes.length == 0">{{ 'LOADING_COURSE' | translate }}...</h2>
             <select ng-model="selectedClass" ng-options="class as class.title for class in classes" ng-show="classes.length" required>
-                <option value="">- {{ 'CHOOSE_COURSE' | translate }} -
-                </option>
+                <option value="">- {{ 'CHOOSE_COURSE' | translate }} -</option>
             </select>
             <div class="checker"></div>
         </div>
@@ -193,7 +192,7 @@
                     <textarea ng-model="customer.text" style="height: 60px;"></textarea>
                 </div>
                 <div>
-                    <button class="right btn btn-primary" id="sendSoloRequest" ng-disabled="gruppenanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
+                    <button class="right btn btn-primary" id="sendSoloRequest" style="width:70%;margin-right:32px" ng-disabled="gruppenanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
                 </div>
                 <div class="row margin_20" id="message"></div>
             </div>

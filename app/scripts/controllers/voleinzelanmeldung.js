@@ -24,6 +24,9 @@ angular.module('osApp')
 				});
 			}
 		});
+		$scope.limitBooks = function(places){
+			return places > 5 ? 5 : places;
+		};
 		$scope.$watch('selectedClass', function(item, old) {
 			if (item === old) {
 				return;
@@ -54,12 +57,13 @@ angular.module('osApp')
 					$location.path('/vol/einzelanmeldung/' + $scope.selectedClass.title);
 				}
 				$timeout(function() {
-					var marker = angular.element(document.getElementById('choose_date'));
-					$document.scrollToElement(marker, 0, 100);
+						var marker = angular.element(document.getElementById('choose_date'));
+					if(marker.length){
+
+						$document.scrollToElement(marker, 0, 100);
+					}
 				});
-
 			}
-
 		});
 		$scope.$watch('selectedDate', function(item, old) {
 			if (item === old) {
