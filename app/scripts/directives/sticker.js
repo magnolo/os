@@ -98,9 +98,24 @@ angular.module('osApp')
 
                     }
                 } else {
-                    if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() + $('#smart').height()) {
+                  
+                    /*if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() + $('#smart').height()) {
+                      element
+                          .addClass('headroom--not-top')
+                          .css({
+                              'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() + $('#smart').height()) + 'px)',
+                              '-webkit-transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() + $('#smart').height()) + 'px)'
 
+                          });
                     }
+                    else{
+                      element
+                          .removeClass('headroom--not-top')
+                          .css({
+                              'transform': 'translateY(0px)',
+                              '-webkit-transform': 'translateY(0px)'
+                          });
+                    }*/
                 }
             };
             $document.on('scroll', function() {

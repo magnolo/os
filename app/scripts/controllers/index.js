@@ -2,7 +2,7 @@
 
 angular.module('osApp')
     .controller('IndexCtrl', function($scope, $rootScope, $state, $document, $timeout, $stateParams, $location, $modal, $alert, $translate, Ajax, AuthService, FlashService, Question, Article, Search, File, Classes) {
-
+        $rootScope.opened = false;
 
         $scope.stop = false;
         $scope.lang = $translate.use();
@@ -123,6 +123,7 @@ angular.module('osApp')
             $rootScope.$broadcast('nextConnection', -1);
         });
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.menuOpened = false;
             if (fromState.url.indexOf('/admin') == -1) {
                 $rootScope.fromState = fromState;
                 $rootScope.fromParams = fromParams;
@@ -215,7 +216,7 @@ angular.module('osApp')
                         }
                         data.name = article.name;
                     } else {
-              
+
                         var destination = {
                             section: 'kurse',
                             name: 'kurs'

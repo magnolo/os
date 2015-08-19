@@ -124,6 +124,56 @@ angular.module('osApp')
                             //scrollbar.hide();
                         }
                     }
+                    else{
+                      list.css({
+                          'height': ($window.innerHeight - navigation.innerHeight() - 41) + 'px'
+                      });
+
+                      /*$('#cat_articles').css({
+                          'height': ($window.innerHeight - navigation.innerHeight() - 41) + 'px',
+                      });
+                    //  sly.init();
+                      /*if (varscroll > header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() +$('#smart').height()+ $('#smarter').height()-25) {
+                          element
+                          .addClass('headroom--not-top')
+                          .css({
+                              'transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() +$('#smart').height()+ $('#smarter').height()-15) + 'px)',
+                              '-webkit-transform': 'translateY(-' + (header.innerHeight() - navigation.innerHeight() + top.innerHeight() - 20 + mainHeader.innerHeight() +$('#smart').height()+ $('#smarter').height()-15) + 'px)',
+                              'z-index': 3
+                          });
+
+                          list.height(31);
+
+                          //if(!sly.initialized){
+                            sly.init();
+                          //}
+                          var active = list.find('li.active');
+                          var pos = sly.getPos(active);
+                          console.log(pos);
+                          list.height(pos.size+1);
+                          $('#cat_articles').css({
+                            'transform': 'translateY(-'+pos.end+'px)',
+                            '-webkit-transform': 'translateY(-'+pos.end+'px)'
+                          });
+
+
+
+
+                      }
+                      else{
+                        element
+                            .removeClass('headroom--not-top')
+                            .css({
+                                'transform': 'translateY(0px)',
+                                '-webkit-transform': 'translateY(0px)'
+                            });
+                            $('#meter').css({'height': ''});
+                            $('#articles_container').css({
+                              'margin-top': ''
+                            });
+                            sly.destroy();
+                      }*/
+                    }
                 };
                 $document.on('scroll', function() {
                     scope.checkDim();

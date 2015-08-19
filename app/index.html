@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" ng-app="osApp">
+<html class="no-js waiting-for-angular" ng-app="osApp" startup>
 <!--<![endif]-->
 
 <head>
@@ -11,7 +11,7 @@
     <title update-title>Open Science</title>
     <meta name="description" content="">
     <meta name="fragment" content="!">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/x-icon" href="favicon_os.ico" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
@@ -41,7 +41,7 @@
     <!-- endbuild -->
 </head>
 
-<body ng-controller="IndexCtrl" startup ng-class="section" id="body" ng-cloak class="waiting-for-angular">
+<body ng-controller="IndexCtrl"  ng-class="{'opened':$root.menuOpened}" id="body" class="{{section}}">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->

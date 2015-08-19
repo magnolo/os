@@ -12,6 +12,7 @@ angular.module('osApp')
 			restrict: 'A',
 			link: function postLink(scope, element, attrs) {
 				element.removeClass('waiting-for-angular');
+				
 			}
 		};
 	});

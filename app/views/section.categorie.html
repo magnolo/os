@@ -1,6 +1,6 @@
 <loader content="articles" section="section"></loader>
 <div class="grid_3 cat_menu" ng-show="articles.length > 0">
-    <div id="smarter" class="frame" stick>
+    <div id="smarter" class="frame" stick ng-class="{'opened': $root.menuOpened}">
         <div class="scrollbar">
             <div class="handle"></div>
         </div>
@@ -33,15 +33,18 @@
                 </ul>
             </div>
         </div>
+        <div class="menu_toggler" ng-click="$root.menuOpened = !$root.menuOpened">
+          <i class="fa fa-bars"></i>  Übersicht <span class="right">{{catgorie.title}}</span>
+        </div>
         <div id="article_functions_menu" class="functions_menu">
-            <div style="display: none;" id="gallery_menu" class="hide">
+            <!--<div style="display: none;" id="gallery_menu" class="hide">
                 <div class="gallery_menu_title">
                     {{ 'GALLERY' | translate }}
                 </div>
                 <div class="gallery_menu_content">
                     <div class="os-icon image-icon left" style="margin:10px"></div>
                 </div>
-            </div>
+            </div>-->
             <!--<div id="files_menu" class="files_list anim" ng-if="setArticle.files.length > 0">
 				<div class="gallery_menu_title">
 					Downloads
@@ -84,7 +87,7 @@
 
                 </ul>
             </div>
-            <div class="row">
+            <div class="row swap">
                 <div class="os-icon arrow-up-limit-icon right" id="articlesToTop" title="Zum Seitenanfang" style="margin:5px" scrolltop></div>
                 <div class="os-icon arrow-up-icon right" scrollprev id="articlesToPreview" title="Zum vorherigen Beitrag" style="margin:5px"></div>
             </div>
