@@ -597,6 +597,7 @@
 								selectableMonths._indexOf(cellDateVal.month) < 0 ||
 								selectableDOW._indexOf(cellDateVal.day) < 0) {
 								cellClass = 'noday';
+                if(firstDateMonth != cellDateVal.month) { cellClass += ' outday'; }
 							}
 							else {
 								// Handle active dates and weekends
@@ -618,7 +619,7 @@
 
 								if(firstDateMonth != cellDateVal.month) { cellClass += ' outday'; }
 								if(todayTime == cellDateTime) { cellClass = 'today'; cellZIndex += 50; }
-								if(options.selectedDate._time() == cellDateTime) { cellClass = 'selected'; cellZIndex += 51; }
+								if(options.selectedDate._time() == cellDateTime) { cellClass += ' selected'; cellZIndex += 51; }
 
 								// Handle special dates
 

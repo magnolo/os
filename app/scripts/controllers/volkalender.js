@@ -39,7 +39,7 @@ angular.module('osApp')
 					angular.forEach(data, function (date) {
 						//date.cssClass = 'calendarEventSolo_before';
 						date.date = new Date(date.start * 1000);
-						if (d.weekday() != 6 && d.weekday() != 7) {
+						if (d.weekday() != 6 && d.weekday() != 7 && d.isAfter(moment())) {
 							var start = moment(date.date);
 							var diff = start.diff(d, 'minutes');
 							if (diff >= space) {
@@ -47,11 +47,14 @@ angular.module('osApp')
                   d.add(30, 'minutes');
                 }
                 $scope.gap = Math.max($scope.gap, start.subtract(30, 'minutes').diff(d, 'minutes'));
-								$scope.eventList.push({
-									date_start: d,
-									type: 'register',
-                  start: d.unix()
-								});
+								if($scope.gap >= space){
+									$scope.eventList.push({
+										date_start: d,
+										type: 'register',
+	                  start: d.unix(),
+										fullDay: false
+									});
+								}
 							}
 						}
 						d = moment(new Date(date.end * 1000));
@@ -62,7 +65,7 @@ angular.module('osApp')
 							}));
 						}
 					});
-					if (d.weekday() != 5 && d.weekday() != 6) {
+					if (d.weekday() != 5 && d.weekday() != 6 && d.isAfter(moment())) {
 						var end = moment(date).set('hour', 18);
 						if (end.diff(d, 'minutes') >= space) {
               if(d.hour() > 9){
@@ -73,9 +76,10 @@ angular.module('osApp')
 								type: 'register',
                 start: d.unix()
 							};
-              console.log(end.diff(d, 'minutes'));
+
               $scope.gap = Math.max($scope.gap, end.diff(d, 'minutes'));
               if($scope.eventList.length == 0){
+								registerEvent.fullDay = true;
                 registerEvent.title =  'Labor ganztags frei';
               }
 							$scope.eventList.push(registerEvent);

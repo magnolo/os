@@ -50,8 +50,8 @@
         <h3 class="labor_info" ng-if="selectedLab">LAB {{selectedLab}}</h3>
       </div>
       <div class="eventInfo">
-        <div class="group_view" ng-repeat="event in eventList | orderBy: 'start'">
-          <div class="time" ng-if="event.type != 'closed'">{{ event.date_start | amDateFormat:'HH:mm'}}</div>
+        <div class="group_view anim" ng-repeat="event in eventList | orderBy: 'start'">
+          <div class="time" ng-if="event.type != 'closed' && !event.fullDay">{{ event.date_start | amDateFormat:'HH:mm'}}</div>
           <div class="time" ng-if="event.type == 'closed'">
             <div ng-if="event.full_day == 1">{{ 'FULL_DAY' | translate }}</div>
             <div ng-if="event.full_day == 0">{{ event.date_start | amDateFormat:'HH:mm'}}</div>
@@ -66,7 +66,7 @@
           </div>
           <div class="company" ng-if="event.groups == 1">{{event.company}}</div>
           <div ng-if="event.type =='register'">
-              <a ng-click="preBooking(event)">&raquo; Möglichen Gruppenkurs buchen</a>
+              <a ng-click="preBooking(event)">&raquo; <span ng-if="!event.fullDay">Möglichen </span>Gruppenkurs buchen</a>
           </div>
         </div>
       </div>

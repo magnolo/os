@@ -6,9 +6,9 @@ angular.module('osApp')
 		$scope.dates = [];
 		$scope.files = [];
 		$scope.direct = true;
-		$scope.selectedPlaces = 0;
-		$scope.selectedDate = {};
-		$scope.selectedClass = {};
+		$scope.selectedPlaces = "";
+		$scope.selectedDate = "";
+		$scope.selectedClass = "";
 		$scope.hours = {
 			selectedHours: "",
 			selectedSecondHours: ""
@@ -46,14 +46,14 @@ angular.module('osApp')
 			}
 		});
 		$scope.$watch('selectedClass', function (course) {
-			$scope.selectedPlaces = 0;
+			$scope.selectedPlaces = "";
 			$timeout(function () {
 				var marker = angular.element(document.getElementById('choose_places'));
 				$document.scrollToElement(marker, 0, 100);
 			});
 		});
 		$scope.$watch('selectedPlaces', function (places) {
-			if (places == 0) {
+			if (places == 0 || places == "") {
 				return;
 			}
 			$timeout(function () {
@@ -86,6 +86,9 @@ angular.module('osApp')
 			$scope.customer.lastname = "Test";
 			$scope.customer.company = "Test-Institut";
 			$scope.customer.email = "test@test.com";
+		};
+		$scope.showCalendar = function(){
+			return $scope.selectedClass.id && $scope.selectedPlaces && (!$scope.selectedFirstDate ||  !$scope.selectedSecondDate);
 		};
 		$scope.sendAnmeldung = function (isValid) {
 			if (isValid) {

@@ -393,6 +393,10 @@ img {
         -webkit-transform: translateY(-55px);
       }
     }
+    &.no-anim{
+      transition:none;
+      -webkit-transition:none
+    }
   }
   .article {
     display: inline-block;

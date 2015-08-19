@@ -1,6 +1,12 @@
+.calendar-container{
+  transition: all .2s ease;
+  &.highlight{
+    box-shadow: 0px 0px 10px #a31031;
+  }
+}
 .gldp-flatwhite{
   .sun, .sat{
-    color:#d41231 !important;
+    color:#d41231;
   }
   .next-arrow, .prev-arrow{
     background-color: transparent !important;
@@ -32,6 +38,15 @@
      }
    }
  }
+ .today{
+   &.selected{
+     color:#a21c34 !important;
+     &:hover{
+       color:#fff !important;
+     }
+   }
+ }
+
 
 }
 

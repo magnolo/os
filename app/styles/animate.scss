@@ -379,6 +379,6 @@ $vol-background: #fad7dc;
   -webkit-transition: all 100ms ease;
 }
 .no-anim {
-  transition: all 0 linear !important;
-  -webkit-transition: all 0 linear !important;
+  transition: none !important;
+  -webkit-transition:none !important;
 }

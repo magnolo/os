@@ -6,8 +6,8 @@ angular.module('osApp')
 		$scope.dates = [];
 		$scope.files = [];
 		$scope.direct = true;
-		$scope.selectedPlaces = 0;
-		$scope.selectedDate = {};
+		$scope.selectedPlaces = "";
+		$scope.selectedDate = "";
 		$scope.loading = {
 			dates: false
 		};
@@ -31,8 +31,8 @@ angular.module('osApp')
 			if (typeof item !== 'undefined') {
 				$scope.dates = [];
 				$scope.files = [];
-				$scope.selectedPlaces = 0;
-				$scope.selectedDate = {};
+				$scope.selectedPlaces = "";
+				$scope.selectedDate = "";
 				$scope.loading.dates = true;
 				$scope.dates = Classes.dates({
 					classId: item.id
