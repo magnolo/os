@@ -9,5 +9,5 @@
  */
 angular.module('osApp')
     .controller('SectionquizCtrl', function($scope, $stateParams, Quiz) {
-        $scope.section = $stateParams.section;
+        $scope.section = $stateParams.section || 'vol';
     });

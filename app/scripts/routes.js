@@ -486,6 +486,32 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'Vienna Open Lab'
             }
         })
+        .state('vol.quiz', {
+            url: '/quiz',
+            views: {
+                '': {
+                    templateUrl: 'views/vol/vol.html',
+                    controller: 'VolCtrl'
+                },
+                'content@vol': {
+                    templateUrl: 'views/section.quiz.html',
+                    controller: 'SectionquizCtrl'
+                }
+            }
+        })
+        .state('vol.quiz.start', {
+            url: '/:name',
+            views: {
+                '': {
+                    templateUrl: 'views/vol/vol.html',
+                    controller: 'VolCtrl'
+                },
+                'content@vol': {
+                    templateUrl: 'views/section.quiz.start.html',
+                    controller: 'SectionquizstartCtrl'
+                }
+            }
+        })
         .state('vol.kurse', {
             url: '/kurse',
             views: {
@@ -704,6 +730,7 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'Fakten // ViennaOpenLab'
             }
         })
+
         .state('vol.elab', {
             url: '/elab',
             views: {
@@ -755,6 +782,7 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
         .state('vol.categorie.article', {
             url: '/:article'
         })
+
         .state('section', {
             url: '/:section',
             views: {

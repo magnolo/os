@@ -13,9 +13,9 @@ angular.module('osApp')
 				$timeout(function() {
 					$timeout(function() {
 						var article = angular.element(document.getElementById($state.params.kurs));
-						$document.scrollToElement(article, 70);
+						$document.scrollToElement(article, 215);
 						$rootScope.isLoading = false;
-					}, 200);
+					});
 				});
 			} else {
 				$rootScope.isLoading = false;

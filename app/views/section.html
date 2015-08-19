@@ -1,11 +1,11 @@
-<div id="content_container" class="container_12">
+<div class="container_12" id="content_container">
     <div class="grid_12 headline align_center margin_20 anim" ng-if="categorie">
-        <div class="intro_text" style="min-height:20px;width:100%;" ng-bind-html="article.intro"></div>
+        <div class="intro_text" ng-bind-html="article.intro" style="min-height:20px;width:100%;"></div>
     </div>
 </div>
 <div class="container_12 {{ categorie.name }}">
     <div class="grid_3 cat_menu ">
-        <div id="smart" class="frame hidden-print anim" sticker ng-class="{'stop':stop}" ng-if="categorie">
+        <div class="frame hidden-print anim" id="smart" ng-class="{'stop':stop}" ng-if="categorie" sticker>
             <div class="scrollbar">
                 <div class="handle"></div>
             </div>
@@ -18,11 +18,10 @@
                                 <a class="pointer" ng-class="{'greyed': sectionFilter !== '' && sectionFilter !== section.name}" ng-click="setSectionFilter(section.name)">{{ section.title }}</a>
                             </li>
                         </ul>
-                        <ul class="cat_menu_sub" as-sortable="sortCategories" ng-model="categorie.categories">
-                            <li style="position:relative;" ng-class="{'offline': cat.active == 0}" as-sortable-item ng-repeat="cat in categorie.categories" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" context-menu="setCatContext(cat)" context-menu-disabled="!$root.isLoggedIn"
-                            data-target="catMenu">
-                                <a ng-class="{'active': catName == cat.name}" class="categorie_content_link editable_categorie_content_link" ui-sref="section.categorie({categorie: cat.name})">{{ cat.title }}</a>
-                                <div as-sortable-item-handle ng-show="doSorting" class="sort-handle">
+                        <ul as-sortable="sortCategories" class="cat_menu_sub" ng-model="categorie.categories">
+                            <li as-sortable-item context-menu-disabled="!$root.isLoggedIn" context-menu="setCatContext(cat)" data-target="catMenu" ng-class="{'offline': cat.active == 0}" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" ng-repeat="cat in categorie.categories" style="position:relative;">
+                                <a class="categorie_content_link editable_categorie_content_link" ng-class="{'active': catName == cat.name}" ui-sref="section.categorie({categorie: cat.name})">{{ cat.title }}</a>
+                                <div as-sortable-item-handle class="sort-handle" ng-show="doSorting">
                                     <i class="fa fa-sort"></i>
                                 </div>
                             </li>
@@ -30,34 +29,40 @@
                     </div>
                     <div ng-if="section == 'projekte'">
                         <h3 class="bg_full">{{ 'PROJECTS' | translate }}</h3>
-                        <ul class="cat_menu_sub" as-sortable="sortCategories" ng-model="categorie.categories">
+                        <ul as-sortable="sortCategories" class="cat_menu_sub" ng-model="categorie.categories">
                             <li>
-                                <a class="pointer" ng-click="setFilterUrl('laufend','projekte-a-z')" ng-class="{'active': sectionFilter =='laufend'}">{{ 'CURRENT' | translate }}</a>
+                                <a class="pointer" ng-class="{'active': sectionFilter =='laufend'}" ng-click="setFilterUrl('laufend','projekte-a-z')">{{ 'CURRENT' | translate }}</a>
                             </li>
                             <li>
                                 <a class="pointer" ng-class="{'active': sectionFilter == 'abgeschlossen'}" ng-click="setFilterUrl('abgeschlossen', 'projekte-a-z')">{{ 'PAST' | translate }}</a>
                             </li>
-                            <li style="position:relative;" ng-repeat="cat in categorie.categories" ng-if="cat.active == 1" context-menu="setCatContext(cat)" context-menu-disabled="!$root.isLoggedIn" data-target="catMenu" as-sortable-item>
-                                <a ng-click="resetFilter()" ui-sref="section.categorie({categorie: cat.name})" ng-click="setSelectedFilter(' ')" ng-class="{'active': catName == cat.name && !sectionFilter}">{{ cat.title }}</a>
-                                <div as-sortable-item-handle ng-show="doSorting" class="sort-handle">
+                            <li as-sortable-item context-menu-disabled="!$root.isLoggedIn" context-menu="setCatContext(cat)" data-target="catMenu" ng-if="cat.active == 1" ng-repeat="cat in categorie.categories" style="position:relative;">
+                                <a ng-class="{'active': catName == cat.name && !sectionFilter}" ng-click="resetFilter()" ng-click="setSelectedFilter(' ')" ui-sref="section.categorie({categorie: cat.name})">{{ cat.title }}</a>
+                                <div as-sortable-item-handle class="sort-handle" ng-show="doSorting">
                                     <i class="fa fa-sort"></i>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <div ng-if="quiz.length > 0" class="quiz anim text-center row" style="border:1px solid; margin-bottom:20px;">
-                        <h3 class="bg_full"><a ui-sref="section.quiz()" style="color:#fff">Das OS QUIZ</a></h3>
-                        <p style="margin-top:10px;padding:10px"> Testen Sie Ihr Wissen zu den akutellsten Themen </p>
-                        <p class="open_quiz"><a ui-sref="section.quiz()"> » Hier gehts zum Quiz </a></p>
+                    <div class="quiz anim text-center row" ng-if="quiz.length" style="border:1px solid; margin-bottom:20px;">
+                        <h3 class="bg_full"><a style="color:#fff" ui-sref="section.quiz()">Das OS QUIZ</a></h3>
+                        <p style="margin-top:10px;padding:10px">
+                            Testen Sie Ihr Wissen zu den akutellsten Themen
+                        </p>
+                        <p class="open_quiz">
+                            <a ui-sref="section.quiz()">
+                                » Hier gehts zum Quiz
+                            </a>
+                        </p>
                     </div>
-                    <connections articles="connections" article="activeArticle" style="display:inline-block;width:100%;"></connections>
+                    <connections article="activeArticle" articles="connections" style="display:inline-block;width:100%;"></connections>
                 </div>
             </div>
         </div>
     </div>
-    <div ui-view="content" id="categorie_container" class="grid_9 floating"></div>
+    <div class="grid_9 floating" id="categorie_container" ui-view="content"></div>
 </div>
-<div id="catMenu" class="context-menu" ng-if="$root.isLoggedIn">
+<div class="context-menu" id="catMenu" ng-if="$root.isLoggedIn">
     <ul class="dropdown-menu">
         <li ng-click="editCat()" ng-if="!editCategorie.edit">
             <i class="fa fa-edit"></i>
@@ -81,7 +86,7 @@
             <span class="text">Neue Kategorie</span>
         </li>
         <li class="seperator"></li>
-        <li ng-click="toggleSorting()" ng-class="{'active': doSorting}">
+        <li ng-class="{'active': doSorting}" ng-click="toggleSorting()">
             <i class="fa fa-sort"></i>
             <span class="text">Sortieren</span>
         </li>
