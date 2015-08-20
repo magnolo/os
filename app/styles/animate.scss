@@ -201,24 +201,24 @@ $vol-background: #fad7dc;
 @keyframes comeIn {
   from {
     opacity: 0;
-    transform: translateX(100%);//  rotateY(-90deg);
+    transform: rotateY(-90deg);//translateY(-100%);//  rotateY(-90deg);
     z-index: 1;
   }
   to {
     opacity: 1;
-    transform: translateX(0);//rotateY(0deg);
+    transform: rotateY(0deg);//translateY(0);//rotateY(0deg);
     z-index: 1;
   }
 }
 @-webkit-keyframes comeIn {
   from {
     opacity: 0;
-    -webkit-transform:translateX(100%);//  rotateY(-90deg);
+    -webkit-transform:rotateY(-90deg);//translateY(-100%);//  rotateY(-90deg);
     z-index: 1;
   }
   to {
     opacity: 1;
-    -webkit-transform: translateX(0%);// rotateY(0deg);
+    -webkit-transform: rotateY(0deg);//translateY(0%);// rotateY(0deg);
     z-index: 1;
   }
 }

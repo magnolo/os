@@ -149,7 +149,7 @@
                 </div>
             </div>
         </div>
-        <div class="anim" ng-show="selectedClass.id && selectedPlaces && selectedFirstDate && selectedSecondDate">
+        <div  ng-if="selectedClass.id && selectedPlaces && selectedFirstDate && selectedSecondDate">
             <div class="greyed_title">
                 <h5 id="fill_form">5. {{ 'FILL_DETAILS' | translate }}:</h5>
             </div>
@@ -159,43 +159,58 @@
             <div class="content_box field_list">
                 <div>
                     <label>{{ 'FIRSTNAME' | translate }}</label>
-                    <input name="firstname" ng-model="customer.firstname" required type="text">
+                    <input name="firstname" ng-model="customer.firstname" ng-disabled="formLoading || bookingSuccess" required type="text">
                 </div>
                 <div>
                     <label>{{ 'LASTNAME' | translate }}</label>
-                    <input name="lastname" ng-model="customer.lastname" required type="text">
+                    <input name="lastname" ng-model="customer.lastname" ng-disabled="formLoading || bookingSuccess" required type="text">
                 </div>
                 <div>
                     <label>{{ 'COMPANY' | translate }}</label>
-                    <input name="company" ng-model="customer.company" required type="text">
+                    <input name="company" ng-model="customer.company" ng-disabled="formLoading || bookingSuccess" required type="text">
                 </div>
                 <div>
                     <label>{{ 'ADDRESS' | translate }}</label>
-                    <input name="street" ng-model="customer.street" type="text">
+                    <input name="street" ng-model="customer.street" ng-disabled="formLoading || bookingSuccess" type="text">
                 </div>
                 <div>
                     <label>{{ 'ZIP' | translate }}</label>
-                    <input ng-model="customer.zip" style="width:67px" type="text">
+                    <input ng-model="customer.zip" style="width:67px" ng-disabled="formLoading || bookingSuccess" type="text">
                     <div class="seperator">/</div>
-                    <input ng-model="customer.city" style="width:202px" type="text">
+                    <input ng-model="customer.city" style="width:202px" ng-disabled="formLoading || bookingSuccess" type="text">
                 </div>
                 <div>
                     <label>{{ 'PHONE' | translate }}</label>
-                    <input name="telefon" ng-model="customer.phone" type="text">
+                    <input name="telefon" ng-model="customer.phone" ng-disabled="formLoading || bookingSuccess" type="text">
                 </div>
                 <div>
                     <label>{{ 'MAIL' | translate }}</label>
-                    <input name="email" ng-model="customer.email" required type="email">
+                    <input name="email" ng-model="customer.email" ng-disabled="formLoading || bookingSuccess" required type="email">
                 </div>
                 <div>
                     <label>{{ 'REMARKS' | translate }}</label>
-                    <textarea ng-model="customer.text" style="height: 60px;"></textarea>
+                    <textarea ng-model="customer.text" style="height: 60px;" ng-disabled="formLoading || bookingSuccess"></textarea>
                 </div>
-                <div>
-                    <button class="right btn btn-primary" id="sendSoloRequest" style="width:70%;margin-right:32px" ng-disabled="gruppenanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
+                <div ng-show="!formLoading && !bookingSuccess">
+                    <button  class="right btn btn-primary" id="sendSoloRequest" style="width:70%;margin-right:32px" ng-disabled="gruppenanmeldungForm.$invalid">&raquo; {{ 'BOOK' | translate }}</button>
                 </div>
-                <div class="row margin_20" id="message"></div>
             </div>
         </div>
+
     </form>
+    <div id="response_message" class="article_thumb response_message anim" ng-class="{'success':bookingSuccess, 'error': bookingError}" ng-show="formLoading || bookingSuccess || bookingError">
+      <div class="anim" ng-if="formLoading">
+          <h3 >{{ 'BOOK_WAIT' | translate }}</h3>
+      </div>
+      <div ng-if="bookingSuccess" class="anim" >
+          <h3 >{{ 'BOOK_SUCCESS' | translate}}</h3>
+          <p class="thumb_text">{{ 'BOOK_SUCCESS_MESSAGE' | translate }} <b>{{customer.email}}</b><p>
+      </div>
+      <div ng-if="bookingError" class="anim" >
+          <h3 >{{ 'BOOK_ERROR' | translate }}</h3>
+          <p class="thumb_text">{{ 'BOOK_ERROR_MESSAGE' | translate }}<p>
+          <div ng-bind-html="{{contact.text}}" ng-if="lange == 'de'" class="thumb_text"></div>
+          <div ng-bind-html="{{contact.text_en || contact.text}}" ng-if="lang == 'en'" class="thumb_text"></div>
+      </div>
+    </div>
 </div>

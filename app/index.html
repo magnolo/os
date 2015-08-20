@@ -140,7 +140,7 @@
                             <a ui-sref="section({section:'schulcorner'})" class="schulcorner" ng-class="{'inactive':section != 'schulcorner' && section}" ng-cloak>Schulcorner</a>
                         </li>
                         <li class="grid_3">
-                            <a ui-sref="vol" class="vol" ng-class="{'inactive':section != 'vol' && section}">Vienna Open Lab</a>
+                            <a ui-sref="vol" class="vol" ng-class="{'inactive':section != 'vol' && section}"><span class="full_view">Vienna Open Lab</span><span class="mobile_view">VOL</span></a>
                         </li>
                     </ul>
                 </div>
@@ -474,6 +474,7 @@
     <script src="scripts/controllers/sectionquizstart.js"></script>
     <script src="scripts/directives/sticktop.js"></script>
     <script src="scripts/controllers/newsletterconfig.js"></script>
+    <script src="scripts/services/email.js"></script>
     <!-- endbuild -->
 
     <script>

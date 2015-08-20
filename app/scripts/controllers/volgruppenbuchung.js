@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('osApp')
-	.controller('VolgruppenbuchungCtrl', function ($scope, $state, $document, $timeout, Classes, Events) {
+	.controller('VolgruppenbuchungCtrl', function ($scope, $state, $document, $timeout, Classes, Events, Article, Email) {
 		$scope.site = true;
+		$scope.formLoading = false;
+		$scope.bookingSuccess = false;
+		$scope.bookingError = false;
 		$scope.dates = [];
 		$scope.files = [];
 		$scope.direct = true;
@@ -92,18 +95,16 @@ angular.module('osApp')
 		};
 		$scope.sendAnmeldung = function (isValid) {
 			if (isValid) {
-				console.log($scope.customer);
-				console.log($scope.selectedClass);
-				console.log($scope.selectedPlaces);
-				console.log($scope.selectedFirstDate);
-				console.log($scope.hours.selectedHours);
-				console.log($scope.selectedSecondDate);
-				console.log($scope.hours.selectedSecondHours);
-
-
+				$timeout(function () {
+					var marker = angular.element(document.getElementById('response_message'));
+					$document.scrollToElement(marker, 0, 100);
+				});
+				$scope.formLoading = true;
+				$scope.bookingSuccess = false;
+				$scope.bookingError = false;
 				Events.createTicket({
 					company: $scope.customer.company,
-					class_id: $scope.selectedClass.class_id,
+					class_id: $scope.selectedClass.id,
 					labor_id: 1,
 					firstname: $scope.customer.firstname,
 					lastname: $scope.customer.lastname,
@@ -116,15 +117,36 @@ angular.module('osApp')
 					text: $scope.customer.text,
 					places: $scope.selectedPlaces,
 					groups: 1,
-					date_first: $scope.selectedFirstDate + " " + $scope.hours.selectedHours,
-					date_second: $scope.selectedSecondDate + " " + $scope.hours.selectedSecondHours,
+					date_first: moment($scope.selectedFirstDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedHours,
+					date_second: moment($scope.selectedSecondDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedSecondHours,
 					confirmed: '0'
 				}, function (data) {
+
 					if (data.status == true) {
-						/*FlashService.show(data.message, '', 'success');
-						$scope.volCalendar.fullCalendar('refetchEvents');
-						$scope.newEventModal.hide();*/
+						Email.regmail({
+							id:data.id
+						},{
+							group:1
+						},function(response){
+							$scope.formLoading = false;
+							$scope.bookingSuccess = true;
+							$timeout(function () {
+								var marker = angular.element(document.getElementById('response_message'));
+								$document.scrollToElement(marker, 0, 100);
+							});
+						});
 					}
+					else{
+						$scope.bookingError = true;
+						$scope.contact = Article.get({
+							articleId: 584
+						});
+						$timeout(function () {
+							var marker = angular.element(document.getElementById('response_message'));
+							$document.scrollToElement(marker, 0, 100);
+						});
+					}
+
 				});
 			}
 		};

@@ -110,10 +110,4 @@ angular.module('osApp')
                 isArray: true
             }
         });
-    }).factory('Sendmail', function($resource) {
-        return $resource('http://www.openscience.or.at/ajax/sendMailSolobooking.php', {}, {
-            send: {
-                method: 'POST'
-            }
-        });
     });

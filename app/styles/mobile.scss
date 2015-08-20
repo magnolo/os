@@ -1,3 +1,6 @@
+.mobile_view,#smarter .menu_toggler{
+  display: none;
+}
 @media screen and (max-width: 960px) {
   *{
     max-width:100% !important;
@@ -407,7 +410,11 @@
   }
   #meter{
     overflow-y:scroll;
+    overflow-scrolling:auto;
+    -webkit-overlfow-scrolling: touch;
   }
+
+
   #smarter {
     max-height:100%;
     position:fixed;
@@ -490,7 +497,7 @@
   .article_thumb .thumb_image img {
     width: 100% !important;
     height: auto !important;
-    display: none;
+    display: none !important;
   }
   .article_thumb .thumb_image a {
     display: inline-block;
@@ -644,6 +651,14 @@
   .menued{
     position:fixed;
     top:calc(100% - 31px);
+  }
+}
+@media screen and (max-width: 500px) {
+  .full_view{
+    display: none;
+  }
+  .mobile_view{
+    display: block;
   }
 }
 @media screen and (max-width: 405px) {

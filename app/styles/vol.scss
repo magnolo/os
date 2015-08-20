@@ -369,3 +369,26 @@ button {
     }
   }
 }
+.response_message{
+  margin-top: 20px;
+    padding: 20px 0;
+    margin-bottom: 0px;
+  h3{
+    margin-left:16px;
+    font-size:2em;
+  }
+  &.error{
+    background-color: #fad7dc;
+  }
+  &.success{
+    background-color:#81BF38;
+    h3{
+      color:#fff;
+    }
+    p{
+      color:#fff !important;
+      font-size:1.4em;
+      line-height: 1.3em;
+    }
+  }
+}
