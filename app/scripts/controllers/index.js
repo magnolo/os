@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('osApp')
-    .controller('IndexCtrl', function($scope, $rootScope, $state, $document, $timeout, $stateParams, $location, $modal, $alert, $translate, Ajax, AuthService, FlashService, Question, Article, Search, File, Classes) {
+    .controller('IndexCtrl', function($scope, $rootScope, $state, $document, $timeout, $stateParams, $location, $modal, $alert, $translate, AuthService, FlashService, Question, Article, Search, File, Classes, Email) {
         $rootScope.opened = false;
 
         $scope.stop = false;
@@ -313,23 +313,38 @@ angular.module('osApp')
         $scope.downloadPdf = function(article) {
 
         };
-        $scope.shareOnFacebook = function(article) {
-
-        };
         $scope.sendToEmail = function(article) {
-            $scope.mailContent = {};
+            $scope.messenger = {};
             $scope.thisArticle = article;
-            $scope.mailContent = Ajax.contentToEmail({
+            /*$scope.mailContent = Ajax.contentToEmail({
                 id: article.id
             }, function(data) {
 
-            });
-            var mailModal = $modal({
+            });*/
+            $scope.mailModal = $modal({
                 scope: $scope,
                 template: 'views/modal/contentToMail.html',
                 show: false
             });
-            mailModal.$promise.then(mailModal.show);
+            $scope.mailModal.$promise.then($scope.mailModal.show);
+        };
+        $scope.sendArticleToMail = function(form, valid){
+          $scope.doLoad = true;
+          Email.sendArticle({id:$scope.thisArticle.id},{
+            from_name:$scope.messenger.name,
+            from_mail:$scope.messenger.email,
+            to_mail: $scope.messenger.receiver_email,
+            from_text:$scope.messenger.text
+          }, function(data){
+              $scope.doLoad = false;
+              if(data.success == true){
+                $scope.mailModal.hide();
+                FlashService.show('Die Email wurde erfolgreich an '+$scope.messenger.receiver_email+' gesendet!','', 'success');
+
+              }else {
+                FlashService.show('Leider ist ein Fehler beim versenden des Artikels aufgetreten!','', 'danger');
+              }
+        });
         };
         $scope.showNewsletterModal = function() {
             $scope.customer = {};

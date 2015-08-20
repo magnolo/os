@@ -297,6 +297,11 @@ $vol-background: #fad7dc;
   height: 32px;
   position: absolute;
   width: 100%;
+  &.small{
+    margin:10px;
+    position:relative;
+    width:auto;
+  }
   &.wissen {
     .cube1,
     .cube2 {

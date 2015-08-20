@@ -16,6 +16,13 @@ angular.module('osApp')
           type: 'ticket',
 					id: ''
 				}
-			}
+			},
+      sendArticle:{
+        method: 'POST',
+        params:{
+          type: 'article',
+          id:''
+        }
+      }
 		});
 	})

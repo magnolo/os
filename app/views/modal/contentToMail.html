@@ -11,19 +11,19 @@
            <div class="content_box field_list">
         <div>
           <label>Name</label>
-          <input type="text" ng-model="email.name"   >
+          <input type="text" ng-model="messenger.name" ng-disabled="doLoad"   >
         </div>
         <div>
           <label>Absender*</label>
-          <input type="email" ng-model="customer.email" required=""  >
+          <input type="email" ng-model="messenger.email" ng-disabled="doLoad" name="email" required=""  >
         </div>
        <div>
           <label>Empfänger*</label>
-          <input type="email" ng-model="customer.email" required="">
+          <input type="email" ng-model="messenger.receiver_email" ng-disabled="doLoad" required="">
         </div>
         <div class="mb20">
           <label>Nachricht</label>
-          <textarea ng-model="customer.text" style="height: 60px;" class="ng-pristine ng-valid"></textarea>
+          <textarea ng-model="messenger.text" style="height: 60px;" ng-disabled="doLoad" class="ng-pristine ng-valid"></textarea>
         </div>
         <div class="row">
           <div style="float:left;width:20%">
@@ -44,9 +44,15 @@
         <div id="message" class="row margin_20"></div>
       </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer" ng-if="!doLoad">
             <button type="button" class="btn btn-default" ng-click="$hide()">Abbrechen</button>
             <button type="submit" class="btn btn-primary" ng-disabled="toMailForm.$invalid">Senden</button>
+          </div>
+          <div class="modal-footer" ng-if="doLoad">
+            <div class="spinner small right" style="margin-right:50px">
+                <div class="cube1"></div>
+                <div class="cube2"></div>
+            </div>
           </div>
         </form>
       </div>
