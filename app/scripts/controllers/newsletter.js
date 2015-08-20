@@ -288,7 +288,6 @@ angular.module('osApp')
 
                 }
             });
-            console.log(art);
             if (!found) {
                 if (art.type == 'class') {
                     var cat = "Kurs/Seminar";

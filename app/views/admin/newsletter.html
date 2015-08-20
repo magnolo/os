@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label>Empfängerliste</label>
-                    <select class="form-control" ng-disabled="status == 'sent'" required ng-model="newsletter.list_id" ng-options="item.id as item.name for item in list.data">
+                    <select class="form-control" ng-disabled="status == 'sent'" required ng-model="newsletter.list_id" ng-options="item.id as item.name+' ['+item.stats.member_count+']' for item in list.data">
                         <option value="">- Liste auswählen -</option>
                     </select>
                 </div>
