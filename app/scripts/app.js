@@ -15,6 +15,7 @@ angular
         'angular-inview',
         'ng-context-menu',
         'autocomplete',
+        'angulartics',
         'angulartics.google.analytics',
         'djds4rce.angular-socialshare',
         'mgcrea.ngStrap.helpers.dateParser',
@@ -45,6 +46,8 @@ angular
         language: 'de',
         fileUploadURL: "/upload_file",
         buttons: ["formatBlock", "bold", "italic", "underline", "align", "insertOrderedList", "insertUnorderedList", "createLink", "insertImage", "insertVideo", "removeFormat"]
+    }).config(function($analyticsProvider){
+      $analyticsProvider.virtualPageviews(false);
     }).run(function(editableOptions) {
         editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
     }).run(function($FB) {
@@ -281,7 +284,7 @@ angular
         editor: 'editor',
         customer: 'customer',
         guest: 'guest'
-    }).run(function($rootScope, $state, $location, AuthService, FlashService, AUTH_EVENTS) {
+    }).run(function($rootScope, $state, $location,$analytics, AuthService, FlashService, AUTH_EVENTS, $timeout) {
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $rootScope.lastState = {
                 state: fromState,
@@ -306,6 +309,9 @@ angular
                     }
                 }
             }
+        });
+        $rootScope.$on('$stateChangeSuccess', function (event, current) {
+          $timeout(function(){$analytics.pageTrack($location.path())}, 500);
         });
         $rootScope.$on(AUTH_EVENTS.notAuthorized, function(event, args) {
             FlashService.show('Zugriff nicht erlaubt!', 'Sie haben leider keine Rechte, um auf diesen Inhalt zuzugreifen!', 'danger');

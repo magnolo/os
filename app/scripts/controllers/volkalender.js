@@ -105,7 +105,7 @@ angular.module('osApp')
           $scope.prebookModal.$promise.then($scope.prebookModal.show);
         };
         $scope.prebook = function(){
-          console.log($scope.user);
+      
            $scope.prebookModal.hide();
            $state.go('vol.gruppenbuchung.kurs.date.places',{
              kurs:$scope.user.selectedCourse.name,

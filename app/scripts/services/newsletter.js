@@ -61,6 +61,14 @@ angular.module('osApp')
                     id: ''
                 }
             },
+            registration: {
+                method: 'POST',
+                params:{
+                  folder: 'api',
+                  location: 'mailchimp',
+                  newsId: 'registration'
+                }
+            },
             /*create: {
                 method: 'POST',
                 params: {

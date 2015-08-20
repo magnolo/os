@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('osApp')
-    .controller('IndexCtrl', function($scope, $rootScope, $state, $document, $timeout, $stateParams, $location, $modal, $alert, $translate, AuthService, FlashService, Question, Article, Search, File, Classes, Email) {
+    .controller('IndexCtrl', function($scope, $rootScope, $state, $document, $timeout, $stateParams, $location, $modal, $alert, $translate, AuthService, FlashService, Question, Article, Search, File, Classes, Email, Newsletter) {
         $rootScope.opened = false;
 
         $scope.stop = false;
@@ -310,17 +310,17 @@ angular.module('osApp')
             }
 
         };
-        $scope.downloadPdf = function(article) {
-
-        };
+        /*$scope.downloadPdf = function(article) {
+          $scope.downloadPDFname = "";
+            Email.getPdf({
+              id:article.id
+            },function(data){
+              $scope.downloadPDFname = data.filename;
+            });
+        };*/
         $scope.sendToEmail = function(article) {
             $scope.messenger = {};
             $scope.thisArticle = article;
-            /*$scope.mailContent = Ajax.contentToEmail({
-                id: article.id
-            }, function(data) {
-
-            });*/
             $scope.mailModal = $modal({
                 scope: $scope,
                 template: 'views/modal/contentToMail.html',
@@ -347,16 +347,28 @@ angular.module('osApp')
         });
         };
         $scope.showNewsletterModal = function() {
-            $scope.customer = {};
-            $scope.customer.os = true;
-            $scope.customer.vol = true;
-            var newsletterModal = $modal({
+            $scope.newsletter = {};
+            $scope.newsletter.os = true;
+            $scope.newsletter.vol = true;
+            $scope.newsletterModal = $modal({
                 scope: $scope,
                 template: 'views/modal/newsletter.html',
                 show: false
             });
-            newsletterModal.$promise.then(newsletterModal.show);
+            $scope.newsletterModal.$promise.then($scope.newsletterModal.show);
 
+        };
+        $scope.sendNewsletterRegistartion = function(isValid){
+          $scope.doLoad = true;
+          Newsletter.registration({},$scope.newsletter, function(data){
+            $scope.doLoad = false;
+            if(data.success == true){
+              $scope.newsletterModal.hide();
+              FlashService.show(data.msg,'', 'success');
+            }else {
+              FlashService.show(data.msg,'', 'danger');
+            }
+          });
         };
         $scope.changeLanguage = function(key) {
             $translate.use(key);

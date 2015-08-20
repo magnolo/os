@@ -79,7 +79,7 @@
                         <div class="os-icon mail-icon left" title="Als E-Mail versenden..." ng-click="sendToEmail(setArticle)"></div>
                     </li>
                     <li>
-                        <div class="os-icon print-icon left" title="Inhalt als PDF herunterladen..."></div>
+                        <a class="os-icon print-icon left" style="width:20px;margin:3px;transition:none;-webkit-transition:none" title="Inhalt als PDF herunterladen..." target="_blank" href="http://www.openscience.or.at/api/pdf/article/{{setArticle.id}}" download="{{setArticle.name+'.pdf'}}" analytics-on="click" analytics-event="Download" analytics-category="{{setArticle.section.title}}" analytics-label="PDF"></a>
                     </li>
                     <li ng-if="setArticle.files.length > 1" ng-click="downloadZip(setArticle)" analytics-on="click" analytics-event="Download" analytics-category="{{setArticle.section.title}}" analytics-label="{{setArticle.name+'.zip'}}">
                         <div class="os-icon download-icon left" title="Alle Anhänge herunterladen..."></div>
