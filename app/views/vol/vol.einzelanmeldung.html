@@ -35,15 +35,14 @@
 						<div class="os-icon icon-googleplus2 left " title="Teilen auf Google+..." googleplus ></div>
 					</li>
 				<li>
-					<div class="os-icon mail-icon left" title="Als E-Mail versenden..." ng-click="sendToEmail(selectedClass)"></div>
+					<div class="os-icon mail-icon left" title="Als E-Mail versenden..." ng-click="sendToEmail(selectedClass, true)"></div>
 				</li>
 				<li>
-					<div class="os-icon print-icon left" title="Inhalt als PDF herunterladen..."></div>
+					<a class="os-icon print-icon left" style="width:20px;margin:3px;transition:none;-webkit-transition:none" title="Inhalt als PDF herunterladen..." target="_blank" href="http://www.openscience.or.at/api/pdf/class/{{selectedClass.id}}" download="{{selectedClass.name+'.pdf'}}" analytics-on="click" analytics-event="Download" analytics-category="Kurs" analytics-label="PDF"></a>
 				</li>
-				<li ng-if="files.length">
+				<!--<li ng-if="files.length">
 					<div class="os-icon download-icon left" title="Alle Anhänge herunterladen..."></div>
-				</li>
-
+				</li>-->
 			</ul>
 		</div>
 	</div>

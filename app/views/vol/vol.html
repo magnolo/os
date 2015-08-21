@@ -51,7 +51,7 @@
                             <li>
                                 <a ng-class="{'active': state.includes('vol.camps')}" ui-sref="vol.camps">{{ 'CAMPS' | translate}}</a>
                             </li>
-                            <li>
+                            <li ng-if="$root.isLoggedIn">
                                 <a ng-class="{'active': state.includes('vol.elab')}" ui-sref="vol.elab">eLAB</a>
                             </li>
                             <li ng-class="{'offline': cat.active == 0}" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" ng-repeat="cat in categorie.categories">

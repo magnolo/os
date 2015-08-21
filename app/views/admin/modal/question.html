@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Frage</label>
-                        <input type="text" class="form-control" required ng-model="question.title" />
+                        <textarea class="form-control" required ng-model="question.title" ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Art</label>
@@ -29,7 +29,7 @@
                         <tbody>
                             <tr ng-repeat="answer in question.answers">
                                 <td class="form-group">
-                                    <input type="text" class="form-control" ng-model="answer.text" />
+                                    <textarea class="form-control" ng-model="answer.text" ></textarea>
                                 </td>
                                 <td>
                                     <input ng-if="question.type == 1" type="radio" class="form-control" name="rightAnswer" ng-model="answer.correct" ng-value="1" ng-click="setAnswer(answer)" />
