@@ -42,11 +42,11 @@ angular.module('osApp')
 					$scope.selectedPlaces = parseInt($state.params.places);
 				});
 			}
-			if($state.params.date){
+			/*if($state.params.date){
 				$timeout(function(){
 					$scope.selectedFirstDate = moment.unix($state.params.date).format('DD.MM.YYYY');
 				});
-			}
+			}*/
 		});
 		$scope.$watch('selectedClass', function (course) {
 			$scope.selectedPlaces = "";

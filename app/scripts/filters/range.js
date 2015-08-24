@@ -56,25 +56,22 @@ angular.module('osApp')
 		}
 	})
 	.filter('hours', function() {
-		return function(input, hours) {
+		return function(input, hours, course) {
 			if (typeof hours === "undefined" || hours.length == 0) {
 				return;
 			}
-
 			var interval = 30;
-
 			var retVal = [];
 			angular.forEach(hours, function(time) {
 				var start = time.from_time * 1000;
 				var end = time.to_time * 1000;
 				var current = moment(time.from_time * 1000);
 
-				while (start <= end) {
-
-					retVal.push(current.add(interval, 'minutes').format('HH:mm'));
+				 do{
+					retVal.push(current.format('HH:mm'));
 					start += interval * 60 * 1000;
 					current = moment(start);
-				}
+				}while (start <= end - course.duration*3600000)
 			})
 			return retVal;
 		};

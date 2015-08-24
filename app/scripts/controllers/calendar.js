@@ -333,12 +333,11 @@ angular.module('osApp')
 			}, function (data) {
 				if (data.status = true) {
 					$scope.edit = false;
-					event.start = moment(event.date_confirmed);
-					event.end = moment(event.data_confirmed).add(event.class.duration);
-					event.confirmed = 1;
+					//event.start = moment(event.date_confirmed);
+					//event.end = moment(event.data_confirmed).add(event.class.duration);
+					//event.confirmed = 1;
 					FlashService.show(data.message, '', 'success');
-					
-					//$scope.volCalendar.fullCalendar('refetchEvents');
+					$scope.volCalendar.fullCalendar('refetchEvents');
 					//$scope.setEventSource(event.labor_id);
 
 				}

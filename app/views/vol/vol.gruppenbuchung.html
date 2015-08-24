@@ -120,7 +120,7 @@
                     <div class="left resetDater" ng-click="deleteDate(0)" ng-if="selectedFirstDate">&times; Termin l&ouml;schen</div>
                     <div class="left eventStart" ng-if="selectedFirstDate">
                         <div class="small_select">
-                            <select class="required" id="date_first_time" ng-model="hours.selectedHours" ng-options="n for n in [] | hours:selectedDate.hours" required style="width: 80px; height: 26px;"></select>
+                            <select class="required" id="date_first_time" ng-model="hours.selectedHours" ng-options="n for n in [] | hours:selectedDate.hours:selectedClass" required style="width: 80px; height: 26px;"></select>
                             <div class="checker"></div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     <div class="left resetDater" ng-click="deleteDate(1)" ng-if="selectedSecond">&times; Termin l&ouml;schen</div>
                     <div class="left eventStart" ng-if="selectedSecond">
                         <div class="small_select">
-                            <select class="required" ng-model="hours.selectedSecondHours" ng-options="n for n in [] | hours:selectedSecond.hours" required style="width: 80px; height: 26px;"></select>
+                            <select class="required" ng-model="hours.selectedSecondHours" ng-options="n for n in [] | hours:selectedSecond.hours:selectedClass" required style="width: 80px; height: 26px;"></select>
                             <div class="checker"></div>
                         </div>
                     </div>
