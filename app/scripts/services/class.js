@@ -55,6 +55,13 @@ angular.module('osApp')
 					kind: 'class'
 				}
 			},
+			dayfree:{
+				medthod: 'GET',
+				params:{
+					kind:'freeday'
+				},
+				isArray: true
+			},
 			labfree: {
 				method: 'GET',
 				params: {

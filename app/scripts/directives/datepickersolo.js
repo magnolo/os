@@ -24,15 +24,22 @@ angular.module('osApp')
 					selectableDates: [],
 					specialDates: [],
 					onClick: function(el, cell, date, data) {
-						scope.$apply(function() {
-							if (typeof scope.selectedFirstDate === 'undefined') {
-								scope.selectedDate = data;
-								scope.selectedFirstDate = moment(date).format('DD.MM.YYYY');
-							} else {
-								scope.selectedSecond = data;
-								scope.selectedSecondDate = moment(date).format('DD.MM.YYYY');
-							}
+						Classes.dayfree({
+							action: moment(date).format('YYYY-MM-DD'),
+							duration:scope.selectedClass.duration
+						}, function(frees){
+						//	scope.$apply(function() {
+								data.free = frees;
+								if (typeof scope.selectedFirstDate === 'undefined') {
+									scope.selectedDate = data;
+									scope.selectedFirstDate = moment(date).format('DD.MM.YYYY');
+								} else {
+									scope.selectedSecond = data;
+									scope.selectedSecondDate = moment(date).format('DD.MM.YYYY');
+								}
+							//});
 						});
+
 					}
 
 				}).glDatePicker(true);

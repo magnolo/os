@@ -102,10 +102,10 @@ angular.module('osApp')
 				$scope.formLoading = true;
 				$scope.bookingSuccess = false;
 				$scope.bookingError = false;
-				Events.createTicket({
+				var data = {
 					company: $scope.customer.company,
 					class_id: $scope.selectedClass.id,
-					labor_id: 1,
+					labor_id: $scope.hours.selectedHours.lab,
 					firstname: $scope.customer.firstname,
 					lastname: $scope.customer.lastname,
 					street: $scope.customer.street,
@@ -117,10 +117,12 @@ angular.module('osApp')
 					text: $scope.customer.text,
 					places: $scope.selectedPlaces,
 					groups: 1,
-					date_first: moment($scope.selectedFirstDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedHours,
-					date_second: moment($scope.selectedSecondDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedSecondHours,
+					date_first: moment($scope.selectedFirstDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedHours.time,
+					date_second: moment($scope.selectedSecondDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedSecondHours.time,
 					confirmed: '0'
-				}, function (data) {
+				};
+				console.log(data);
+				Events.createTicket(data, function (data) {
 
 					if (data.status == true) {
 						Email.regmail({

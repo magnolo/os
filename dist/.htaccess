@@ -64,7 +64,7 @@
 # http://httpd.apache.org/docs/current/content-negotiation.html#multiviews
 # http://www.webmasterworld.com/apache/3808792.htm
 
-Options -MultiViews
+#Options -MultiViews
 
 # ------------------------------------------------------------------------------
 # | Custom error messages / pages                                              |
