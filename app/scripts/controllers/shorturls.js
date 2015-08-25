@@ -46,6 +46,21 @@ angular.module('osApp')
 			$scope.url = url;
 			$scope.showQrCode();
 		};
+		$scope.deleteUrl = function(short){
+			if(confirm('ShortURL: '+short.title+'\nentgültig entfernen?')){
+				Shorturls.remove({
+					id: short.keyword
+				},{}, function(data){
+						if(data.status == true){
+							$scope.shorturls.splice($scope.shorturls.indexOf(short),1);
+								FlashService.show('ShortUrl erfolgreich entfernt!', '', 'success');
+						}
+						else{
+							FlashService.show('Löschen fehlgeschlagen', '', 'danger');
+						}
+				});
+			}
+		};
 		$scope.saveUrl = function(isValid) {
 			if (isValid) {
 				if ($scope.edit) {
@@ -60,14 +75,30 @@ angular.module('osApp')
 						}
 					});
 				} else {
-					Shorturls.create($scope.url, function(response) {
+						var yougo = yourls.connect('http://www.openscience.or.at/shorturls/yourls-api.php', {
+							username: 'short',
+							password: '12ShortItDown'
+							//signature: 'qpFr0GdU409u4Vb8cv92s3'
+						});
+						yougo.shorten($scope.url.url, $scope.url.keyword, $scope.url.title, function (data) {
+							if(data.url){
+								FlashService.show('ShortUrl erfolgreich gespeichert!', '', 'success');
+								$scope.hideModal();
+								data.url.clicks = 0;
+								$scope.shorturls.push(data.url);
+							}
+							else{
+									FlashService.show('Speichern fehlgeschlagen', '', 'danger');
+							}
+						});
+				/*	Shorturls.create($scope.url, function(response) {
 						if (response.success == true) {
 							FlashService.show('ShortUrl erfolgreich gespeichert!', '', 'success');
 							$scope.hideModal();
 						} else {
 							FlashService.show('Speichern fehlgeschlagen', '', 'danger');
 						}
-					});
+					});*/
 				}
 			}
 		};

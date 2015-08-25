@@ -43,7 +43,7 @@
         </div>
         <ul>
             <li ng-repeat="file in article.files" class="anim">
-                <a target="_blank" href="http://www.openscience.or.at/{{file.url}}" download="{{file.name+'.'+file.filetype}}" analytics-on="click" analytics-event="Download" analytics-category="{{setArticle.section.title}}" analytics-label="{{file.name}}">
+                <a target="_blank" href="http://www.openscience.or.at/{{file.url}}" download="{{file.name+'.'+file.filetype}}" analytics-on="click" analytics-event="Download" analytics-category="{{setArticle.section.title}}" analytics-label="{{file.name+'.'+file.filetype}}">
                     <div class="file_download" title="{{ file.name +'.'+ file.filetype }}">
                         <span class=" os-icon download-icon left" style="margin-right:10px"></span>
                         <span class="file_name left">{{ file.name}}</span>

@@ -13,7 +13,7 @@
                     <ul>
                         <li class="anim" ng-repeat="file in kurs.files">
                             <div class="file_download left">
-                                <a download href="http://www.openscience.or.at/{{file.url}}" traget="_blank">
+                                <a target="_blank" href="http://www.openscience.or.at/{{file.url}}" download="{{file.name+'.'+file.filetype}}" analytics-on="click" analytics-event="Download" analytics-category="VOL / Kurse" analytics-label="{{file.name+'.'+file.filetype}}">
                                     <div class="left os-icon download-icon"></div>
                                     <div class="left" style="margin-left: 10px; max-width: 85%;">{{file.name}}</div>
                                 </a>
