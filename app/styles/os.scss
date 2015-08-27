@@ -33,6 +33,52 @@ $vol-background: #FAD7DC;
 		border-color: transparent transparent #c0b6d7 transparent;
 		bottom: 100%;
 	}
+  .radios {
+    position: absolute;
+    top: 1px;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+  }
+
+  .radios:before {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid;
+    opacity:0.3;
+  }
+
+  .radios:checked:before {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+   height: .5rem;
+   top:0.2em;
+    opacity: 1;
+
+    border-top-style: none;
+    border-right-style: none;
+  }
+
+  .radios:after {
+    content: "";
+    position: absolute;
+    top: 0rem;
+    left: -0.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fff;
+    cursor: pointer;
+  }
+
 .openscience{
 	color:$os-color !important;
 	border-color:$os-color;
@@ -45,7 +91,9 @@ $vol-background: #FAD7DC;
    .thumb_heading a{
 	color:$os-color;
 	}
-
+  .radios:before,.radios:checked:before{
+      border-color: $os-color;
+  }
 	.background, .background a{
 		background-color:#D2D9E3;
 		color:$os-color;
@@ -118,6 +166,9 @@ $vol-background: #FAD7DC;
 .wissen{
 	color:$wissen-color !important;
 	border-color:$wissen-color;
+  .radios:before,.radios:checked:before{
+      border-color: $wissen-color;
+  }
 	#loading-bar{
 			.bar {
 				background:$wissen-color
@@ -228,6 +279,9 @@ $vol-background: #FAD7DC;
 
 .projekte{
 	color:$projekte-color !important;
+  .radios:before,.radios:checked:before{
+      border-color: $projekte-color;
+  }
 	#loading-bar{
 			.bar {
 				background:$projekte-color
@@ -414,6 +468,9 @@ $vol-background: #FAD7DC;
 	color:#8B8D1C;
 }
 .schulcorner{
+  .radios:before,.radios:checked:before{
+      border-color: $schulcorner-color;
+  }
 	.frame{
 		.cat_menu_sub{
 			a{
@@ -469,6 +526,9 @@ $vol-background: #FAD7DC;
 
 .vol{
 	color:$vol-color !important;
+  .radios:before,.radios:checked:before{
+      border-color: $vol-color;
+  }
 	#loading-bar{
 			.bar {
 				background:$vol-color

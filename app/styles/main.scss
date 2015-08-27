@@ -1323,6 +1323,23 @@ div.thesaurus > div.thesaurus-canvas.downwards:after {
 }
 .quiz_container {
   .article_main_content {
+    &.solution{
+      h2{
+        //border-bottom:1px solid;
+      }
+    }
+    .progress-bar-success{
+      background-color: $schulcorner-background;
+      span{
+        color:$schulcorner-color;
+      }
+    }
+    .progress-bar-info{
+      background-color: $wissen-background;
+      span{
+        color:$wissen-color;
+      }
+    }
     .question_title {
       font-size: 1.5em !important;
     }
@@ -1336,6 +1353,8 @@ div.thesaurus > div.thesaurus-canvas.downwards:after {
         label {
           display: inline-block;
           width: 100%;
+          position:relative;
+          cursor:pointer;
         }
         .answer-input {
           display: inline-block;
@@ -1349,13 +1368,65 @@ div.thesaurus > div.thesaurus-canvas.downwards:after {
         .answer-text {
           display: inline-block;
           font-weight: normal;
-          padding-left: 0.5em;
-          position: relative;
-          top: 2px;
+          padding-left: 0em;
+          left:5%;
+          position:relative;
           max-width: 95%;
         }
       }
     }
+    ol{
+      li{
+        list-style-type: none !important;
+        position:relative;
+        &:before{
+          position: absolute;
+          content: '';
+          width: 11px;
+          height: 11px;
+          border: 1px solid;
+          left: -20px;
+          top: 10px;
+          opacity: 0.7;
+          //background-color:#666;
+        }
+        &.useranswer{
+
+          color:$vol-color;
+          &:after{
+            content: "";
+            position: absolute;
+            left: -16px;
+            width: 5px;
+            height: 10px;
+            border-right: 2px solid;
+            border-bottom: 2px solid;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            top: 9px;
+          }
+          &:before{
+            //background-color:$vol-color;
+          }
+
+          &.success{
+            &:before{
+              //background-color: $schulcorner-color;
+            }
+            &:after{
+              color: $schulcorner-color;
+            }
+          }
+        }
+        &.success{
+          color:$schulcorner-color;
+          &:before{
+            //background-color:$schulcorner-color;
+          }
+        }
+      }
+    }
+
   }
   button {
     font-size: 1.4em;
@@ -1379,6 +1450,10 @@ div.thesaurus > div.thesaurus-canvas.downwards:after {
       display: inline-block;
     }
   }
+}
+
+.low_hide{
+  opacity:0.4;
 }
 @import 'admin.scss';
 @import 'vol.scss';

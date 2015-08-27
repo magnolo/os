@@ -17,7 +17,7 @@
 	<div id="connection-liner-neg"></div>
 	<div class="row" id="connections_list" ng-show="articles.length > 0">
 		<div class="article_connections">
-			<div class="grid_3 article_thumb" ng-class="[article.section.name, article.sections]" ng-repeat="article in articles" ng-show="article.visible">
+			<div class="grid_3 article_thumb {{article.section.name}} {{article.sections}}" ng-class="{low_hide: !article.text_en && lang == 'en'}" ng-repeat="article in articles" ng-show="article.visible">
 					<div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
 						<a ui-sref="section.categorie.article({section:article.section.name, categorie: article.categorie.name, article:article.name})">
 						<img ng-if="article.image.url" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;fltr[]=gray&amp;fltr[]=brit|-40&amp;fltr[]=clr|60|{{colors[article.section.name]}}&amp;fltr[]=cont|10&amp;w=220&amp;h=145&amp;zc=1&amp;f=jpg&amp;q=100"></a>

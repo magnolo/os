@@ -12,6 +12,7 @@ angular.module('osApp')
         $scope.q = {};
         $scope.stats = {};
         $scope.position = 0;
+        $scope.showMyAnswers = false;
         $scope.startet = false;
         $scope.finished = false;
         $scope.$parent.quiz.$promise.then(function() {
@@ -36,6 +37,7 @@ angular.module('osApp')
             var answer = {
                 questionId: question.id,
                 answerId: question.answers.indexOf(answer),
+                answer: answer.id,
                 correct: (answer.correct == 1 ? true : false)
             };
             angular.forEach($scope.answers, function(a, index) {
@@ -49,6 +51,20 @@ angular.module('osApp')
                 $scope.answers.push(answer);
             }
         };
+        $scope.showAnswers = function(show){
+          $scope.showMyAnswers = true;
+        };
+        $scope.userAnswered = function(answer, question){
+          var found = false;
+          angular.forEach($scope.answers, function(a, index) {
+            if(a.questionId == question.id){
+              if(question.answers.indexOf(answer) == a.answerId){
+                  found = true;
+              }
+            }
+          });
+          return found;
+        };
         $scope.finish = function() {
             var rights = 0;
             angular.forEach($scope.answers, function(answer, index) {
@@ -60,7 +76,21 @@ angular.module('osApp')
                 right: rights,
                 percent: 100 / $scope.q.questions.length * rights
             };
-
+            $scope.result = {
+              quiz_id:  $scope.q.id,
+              correct_count:$scope.stats.right,
+              questions_count:$scope.q.questions.length
+            };
+            console.log($scope.result);
+            console.log($scope.answers);
             $scope.finished = true;
+            Quiz.setresult({quizId:$scope.q.id}, $scope.result, function(data){
+                if(data.status == true){
+
+                }
+                else{
+
+                }
+            });
         };
     });

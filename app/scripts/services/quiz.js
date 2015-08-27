@@ -20,6 +20,12 @@ angular.module('osApp')
             get: {
                 method: 'GET'
             },
+            setresult: {
+              method: 'POST',
+              params:{
+                type:'answers'
+              }
+            },
             answers: {
                 method: 'GET',
                 params: {
