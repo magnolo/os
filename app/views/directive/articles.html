@@ -14,6 +14,7 @@
 	<div class="thumb_text" ng-if="!article.intro  ">{{article.text | htmlToPlaintext}}</div>
 	<div class="thumb_text" ng-if="article.intro ">{{article.intro | htmlToPlain}}</div>
 	<div class="is_new" ng-if="article.is_new"></div>
+
 	<!--<div class="grid_3 article_thumb masonry-brick {{article.section.name}} {{article.sections}}" ng-if="article.active == 1" ng-class="{low_hide: !article.text_en && lang == 'en'}"  ng-repeat="article in filtered = (articles | bysection: sectionFilter) ">
 		<div class="thumb_image" ng-if="article.image.url || article.is_new == 1" ng-style="{'background-image': 'url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{article.image.url.replace('s_150', 'm_650')}}&amp;w=218&amp;h=146&amp;zc=1&amp;f=jpg&amp;q=100)'}">
 			<a ui-sref="section.categorie.article({section:article.section.name, categorie: article.categorie.name, article:article.name})">

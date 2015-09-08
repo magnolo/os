@@ -77,7 +77,8 @@ angular.module('osApp')
                         categorieName: $scope.editCategorie.id
                     }, {
                         title: $scope.editCategorie.title,
-                        active: $scope.editCategorie.active
+                        active: $scope.editCategorie.active,
+    										title_en : $scope.editCategorie.title_en
                     }, function(response) {
                         if (response.status == true) {
                             if (typeof $scope.catModal != "undefined") {
@@ -92,7 +93,8 @@ angular.module('osApp')
                     Categorie.create({}, {
                         title: $scope.editCategorie.title,
                         active: $scope.editCategorie.active,
-                        parent_id: $scope.categorie.id
+                        parent_id: $scope.categorie.id,
+    										title_en : $scope.editCategorie.title_en
                     }, function(response) {
                         if (response.status == true) {
                             $scope.categorie.categories.push(response.categorie);

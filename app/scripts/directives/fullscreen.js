@@ -31,4 +31,29 @@ angular.module('osApp')
                 });
             }
         };
+    })
+    .directive('subswitcher', function($timeout){
+      return {
+        restrict: 'AC',
+        template: '<i class="fa fa-chevron-down" ng-class="{open: opened}"></i>',
+        link: function(scope,element, attrs){
+          $timeout(function(){
+            var sub = $(element).parent().find('ul');
+            var height  = sub.height();
+
+            element.on('click', function(e){
+              if(sub.css('height') == '0px'){
+                  sub.css({'height': height});
+
+              }
+              else{
+                  sub.css({'height': 0});
+
+              }
+
+            });
+          });
+
+        }
+      };
     });

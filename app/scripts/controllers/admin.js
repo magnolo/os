@@ -19,13 +19,14 @@ angular.module('osApp')
             });
         };
         $scope.toggleMenu = function() {
-            if ($scope.showMenu == true) {
-                $scope.showMenu = false;
-            } else {
-                $scope.showMenu = true;
-            }
+          $scope.showMenu = !$scope.showMenu;
         };
+        $scope.toggleAdminMenu = function(){
+            $rootScope.showAdminFullSize = !$rootScope.showAdminFullSize
+        };
+        $scope.toggleBigMenu = function(){
 
+        };
         var modals = [];
         $rootScope.$on('modal.show', function(e, $modal) {
             // if modal is not already in list

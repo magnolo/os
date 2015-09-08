@@ -105,6 +105,22 @@ angular.module('osApp')
 
 		});
 	})
+	.factory('MainSort', function($resource){
+		return $resource('http://www.openscience.or.at/api/:type/main_position',{},{
+			sortArticles:{
+				method:'PUT',
+				params:{
+					type:'articles'
+				}
+			},
+			sortClasses:{
+				method:'PUT',
+				params:{
+					type:'classes'
+				}
+			}
+		})
+	})
 	.factory('Ajax', function($resource) {
 		return $resource('http://www.openscience.or.at/assets/ajax/:action', {}, {
 			contentToEmail: {

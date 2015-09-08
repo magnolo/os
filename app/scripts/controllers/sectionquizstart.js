@@ -15,6 +15,8 @@ angular.module('osApp')
         $scope.showMyAnswers = false;
         $scope.startet = false;
         $scope.finished = false;
+        $scope.section = $stateParams.section || 'vol';
+        console.log($scope.section);
         $scope.$parent.quiz.$promise.then(function() {
             angular.forEach($scope.$parent.quiz, function(quiz, index) {
                 if (quiz.name == $stateParams.name) {

@@ -175,17 +175,17 @@
                 </div>
                 <div>
                     <label>{{ 'ADDRESS' | translate }}</label>
-                    <input name="street" ng-model="customer.street" ng-disabled="formLoading || bookingSuccess" type="text">
+                    <input name="street" ng-model="customer.street" ng-disabled="formLoading || bookingSuccess" required type="text">
                 </div>
                 <div>
                     <label>{{ 'ZIP' | translate }}</label>
-                    <input ng-model="customer.zip" style="width:67px" ng-disabled="formLoading || bookingSuccess" type="text">
+                    <input ng-model="customer.zip" style="width:67px" ng-disabled="formLoading || bookingSuccess" required type="text">
                     <div class="seperator">/</div>
-                    <input ng-model="customer.city" style="width:202px" ng-disabled="formLoading || bookingSuccess" type="text">
+                    <input ng-model="customer.city" style="width:202px" ng-disabled="formLoading || bookingSuccess" required type="text">
                 </div>
                 <div>
                     <label>{{ 'PHONE' | translate }}</label>
-                    <input name="telefon" ng-model="customer.phone" ng-disabled="formLoading || bookingSuccess" type="text">
+                    <input name="telefon" ng-model="customer.phone" ng-disabled="formLoading || bookingSuccess" required type="text">
                 </div>
                 <div>
                     <label>{{ 'MAIL' | translate }}</label>

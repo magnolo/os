@@ -20,10 +20,12 @@
                         </ul>
                         <ul as-sortable="sortCategories" class="cat_menu_sub" ng-model="categorie.categories">
                             <li as-sortable-item context-menu-disabled="!$root.isLoggedIn" context-menu="setCatContext(cat)" data-target="catMenu" ng-class="{'offline': cat.active == 0}" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" ng-repeat="cat in categorie.categories" style="position:relative;">
-                                <a class="categorie_content_link editable_categorie_content_link" ng-class="{'active': catName == cat.name}" ui-sref="section.categorie({categorie: cat.name})">{{ cat.title }}</a>
-                                <div as-sortable-item-handle class="sort-handle" ng-show="doSorting">
-                                    <i class="fa fa-sort"></i>
-                                </div>
+                                <a class="categorie_content_link editable_categorie_content_link" ng-class="{'active': catName == cat.name}" ui-sref="section.categorie({categorie: cat.name})">
+                                  <span ng-if="lang != 'en' || !cat.title_en">{{ cat.title }}</span>
+                                  <span ng-if="lang == 'en' && cat.title_en">{{ cat.title_en }}</span></a>
+                                  <div as-sortable-item-handle class="sort-handle" ng-show="doSorting">
+                                      <i class="fa fa-sort"></i>
+                                  </div>
                             </li>
                         </ul>
                     </div>

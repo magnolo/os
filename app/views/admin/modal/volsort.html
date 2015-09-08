@@ -1,0 +1,23 @@
+<div class="aside aside-fix" tabindex="-1" role="dialog">
+    <div class="aside-dialog">
+        <div class="aside-header" >
+            <div class="aside-header-content" style="background-color:#a31031">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="aside-title" id="myModalLabel">VOL Artikelsortierung</h4>
+                        </div>
+        </div>
+        <div class="aside-content">
+            <form role="form" name="imagesForm" novalidate>
+                <div class="aside-body" style="margin-top:40px;">
+                    <loader content="overview"></loader>
+                    <ul class="overview-list" as-sortable="sortController" ng-model="articles">
+                        <li as-sortable-item ng-repeat="art in articles" style="position:relative" class="{{art.section.name}} {{ art | innewsletter: newsletter.items}}">
+                            {{ art.title }}
+                            <div as-sortable-item-handle style="position:absolute;right:5px;top:5px;"><i class="fa fa-arrows-v"></i></div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

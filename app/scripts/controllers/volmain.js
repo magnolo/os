@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('osApp')
-	.controller('VolmainCtrl', function($scope, Categorie) {
+	.controller('VolmainCtrl', function($scope, Categorie, $modal, MainSort,FlashService) {
 		$scope.ready = false;
 		$scope.articles = Categorie.volarticles({
 			categorieName: 'vol',
@@ -41,5 +41,51 @@ angular.module('osApp')
 				});
 			}
 
+		};
+		$scope.openVolSorterModal = function(){
+			$scope.catModal = $modal({
+					scope: $scope,
+					show: false,
+					template: 'views/admin/modal/volsort.html'
+			});
+			$scope.catModal.$promise.then($scope.catModal.show);
+		};
+		$scope.sortController = {
+    	orderChanged: function(event) {
+				var pos = 999;
+				var arts = [];
+				var kurses = [];
+					angular.forEach($scope.articles, function(article){
+							var art = {
+								id: article.id,
+								position:pos
+							};
+							if(article.type == 'article'){
+								arts.push(art);
+							}
+							else if(article.type == 'kurs'){
+								kurses.push(art)
+							}
+							pos--;
+					});
+					MainSort.sortArticles({},{
+						list: arts
+					}, function(data){
+						if(data.status == true){
+							FlashService.show(data.message, '', 'success');
+						} else {
+								FlashService.show('Speichern Fehlgeschlagen', '', 'danger', 5);
+						}
+					});
+					MainSort.sortClasses({},{
+						list: kurses
+					}, function(data){
+						if(data.status == true){
+							FlashService.show(data.message, '', 'success');
+						} else {
+								FlashService.show('Speichern Fehlgeschlagen', '', 'danger', 5);
+						}
+					});
+			}
 		};
 	});
