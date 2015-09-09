@@ -164,6 +164,7 @@ $vol-background: #FAD7DC;
 #admin .text, #admin li:hover, .admin-sub-menu > li {
     background: $os-background;
 }
+
 .wissen {
     .froala-editor, .absoluted, &.selected {
         background: $wissen-background;
@@ -184,6 +185,16 @@ $vol-background: #FAD7DC;
                 background: $wissen-background;
             }
         }
+    }
+    #admin{
+      li,.admin-sub-menu{
+        &:hover,li{
+          .text{
+            color:$wissen-background;
+          }
+
+        }
+      }
     }
     #image-menu, .image-menu {
         li {
@@ -225,6 +236,16 @@ $vol-background: #FAD7DC;
             }
         }
     }
+    #admin{
+      li,.admin-submenu{
+        &:hover,li{
+          .text{
+            color:$projekte-background;
+          }
+
+        }
+      }
+    }
     #image-menu, .image-menu {
         li {
             background: $projekte-background;
@@ -265,6 +286,16 @@ $vol-background: #FAD7DC;
             }
         }
     }
+    #admin{
+      li,.admin-sub-menu{
+        &:hover,li{
+          .text{
+            color:$schulcorner-background;
+          }
+
+        }
+      }
+    }
     #image-menu, .image-menu {
         li {
             background: $schulcorner-background;
@@ -304,6 +335,15 @@ $vol-background: #FAD7DC;
                 background: $vol-background;
             }
         }
+    }
+    #admin{
+      li,.admin-sub-menu{
+        &:hover,li{
+          .text{
+            color:$vol-background;
+          }
+        }
+      }
     }
     #image-menu, .image-menu {
         li {
@@ -619,7 +659,39 @@ $vol-background: #FAD7DC;
         }
     }
 }
+
 .admin-full{
+  .vol{
+    #admin{
+      .text{
+        color:$vol-color;
+      }
+    }
+  }
+  .projekte{
+    #admin{
+      .text{
+        color:$projekte-color;
+      }
+    }
+  }
+  .schulcorner{
+    #admin{
+      .text{
+        color:$schulcorner-color;
+      }
+    }
+  }
+  .wissen{
+    #admin{
+      .text{
+        color:$wissen-color;
+      }
+    }
+  }
+  .menu-button{
+    display: none;
+  }
   .full-fixed{
     &.spaced{
       padding-left:200px;
@@ -640,7 +712,7 @@ $vol-background: #FAD7DC;
   #admin{
     width: 200px;
 
-    background-color: #fff;
+    background-color: #f7f7f5;
     height: 100%;
     overflow:hidden;
     overflow-y:auto;
@@ -737,6 +809,19 @@ $vol-background: #FAD7DC;
             > ul{
             //  height:auto;
             }
+          }
+        }
+      }
+      .admin-sub-menu{
+        li{
+          float:left;
+          width:100%;
+          i{
+            float:left;
+            margin-top:15px;
+          }
+          .text{
+            float:left;
           }
         }
       }
