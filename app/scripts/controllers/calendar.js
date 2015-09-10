@@ -163,7 +163,7 @@ angular.module('osApp')
 						}
 					});
 				} else if ($scope.event.type == 'group') {
-					Events.createTicket({
+					var ev = {
 						company: $scope.event.company,
 						class_id: $scope.event.class_id,
 						labor_id: $scope.event.labor_id,
@@ -178,10 +178,12 @@ angular.module('osApp')
 						text: $scope.event.text,
 						places: $scope.event.booked,
 						groups: 1,
-						date_first: $scope.event.start,
-						date_confirmed: $scope.event.start,
+						date_first: $scope.event.date_start,
+						date_confirmed: $scope.event.date_start,
 						confirmed: '1'
-					}, function (data) {
+					};
+					console.log(ev);
+					Events.createTicket(ev, function (data) {
 						if (data.status == true) {
 							FlashService.show(data.message, '', 'success');
 							$scope.volCalendar.fullCalendar('refetchEvents');
@@ -201,7 +203,8 @@ angular.module('osApp')
 						full_day: $scope.event.full_day,
 						title: $scope.event.title,
 						text: $scope.event.text,
-						duration: duration
+						duration: duration,
+						labor_id: $scope.event.labor_id
 					}, function (data) {
 						if (data.status == true) {
 							FlashService.show(data.message, '', 'success');

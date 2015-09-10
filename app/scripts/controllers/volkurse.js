@@ -22,6 +22,6 @@ angular.module('osApp')
 			}
 		});
 		$scope.$watch('selectedDate', function(data) {
-			console.log(data);
+			//console.log(data);
 		});
 	});

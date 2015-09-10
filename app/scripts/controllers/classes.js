@@ -11,7 +11,21 @@ angular.module('osApp')
 	.controller('ClassesCtrl', function ($scope, FlashService, Classes) {
 		$scope.classes = Classes.query();
 		$scope.predicate = 'title';
+		$scope.activation = function(course){
+				course.active = course.active == 1 ? 0 : 1;
+				Classes.update({
+					classId: course.id
+				},{
+					active: parseInt(course.active)
+				}, function(data){
+					if (data.status == true) {
 
+						FlashService.show(data.message, '', 'success');
+					} else {
+						FlashService.show('Speichern fehlgeschlagen', '', 'danger');
+					}
+				});
+		};
 		$scope.deleteClass = function (course) {
 			if (confirm('Kurs:\n' + course.title + '\nentgültig entfernen?')) {
 				Classes.remove({

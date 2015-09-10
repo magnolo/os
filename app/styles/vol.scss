@@ -178,7 +178,7 @@ button {
   }
 }
 .min-label {
-  width: 60px;
+  width: 75px;
   display: inline-block;
   font-weight: bold;
 }
@@ -260,8 +260,11 @@ button {
 }
 .group {
   a {
-    color: #d4ca00;
+    color: #666;
     text-decoration: none;
+    &:hover{
+      color:#a31031;
+    }
   }
 }
 /*.solo,*/
@@ -337,7 +340,7 @@ button {
 }
 .resetDater,
 .eventStart {
-  color: #e4363c;
+  color: #a31031;
   margin: 3px 20px;
 }
 .labor_2 {

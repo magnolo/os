@@ -8,7 +8,7 @@
 	</div>
 	<div class="clear"></div>
 	<div class="thumb_heading">
-		<a ui-sref="vol.kurse({kurs:article..name})">{{ article.title }}</a>
+		<a ui-sref="vol.kurse({kurs:article.name})">{{ article.title }}</a>
 	</div>
 	<div class="thumb_text">{{article.text | htmlToPlaintext}}</div>
 	<div class="is_new" ng-if="article.is_new"></div>

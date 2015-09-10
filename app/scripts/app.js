@@ -215,7 +215,7 @@ angular
             MATERIALS: 'Materials',
             LOADING_COURSE: 'Loading',
             LOADING_DATES: 'Loading',
-            NO_DATES: 'at the moment there a no dates available',
+            NO_DATES: 'at the moment there are no dates available',
             CHOOSE_COURSE: 'Choose Workshop',
             FEES: 'Fees',
             DURATION: 'Duration',

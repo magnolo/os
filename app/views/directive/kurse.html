@@ -53,21 +53,25 @@
             <div class="article_main_content" ng-bind-html="kurs.text_en" ng-if="lang == 'en' && kurs.text_en != '' && kurs.text_en != '[p]​[/p]'"></div>
             <div class="article_main_content" ng-if="kurs.groups == 1 || kurs.solo == 1">
                 <div>
-                    <span class="min-label">{{ 'FEES' | translate }}:</span>
-                    {{ kurs.prize | currency: '€ '}}
+                  <span class="min-label">{{ 'AGE' | translate }}:</span>{{ kurs.age_from}} - {{ kurs.age_limit}}
                 </div>
                 <div>
-                    <span class="min-label">{{ 'DURATION' | translate }}:</span>{{ kurs.duration}}
-                    {{ 'HOURS' | translate }}
+                    <span class="min-label">{{ 'FEES' | translate }}:</span>{{ kurs.prize | currency: '€ '}}
+                </div>
+                <div>
+                    <span class="min-label">{{ 'DURATION' | translate }}:</span>{{ kurs.duration}} {{ 'HOURS' | translate }}
                 </div>
                 <div>
                     <h4 class="vol subHead">{{ 'REGISTRATION' | translate }}</h4>
                     <div class="solo" ng-if="kurs.solo == 1" style="margin-bottom:10px;height:25px">
                         &raquo; {{ 'SOLO_DATES' | translate }}:
                         <span ng-if="kurs.dates.length">
-                            <select ng-model="kurs.selectedDate" ng-options="kd as kd.date+' - '+kd.places_left+' Plätze frei' for kd in kurs.dates">
+                            <div class="small_select" style="padding:0px">
+                            <select style="font-size:1em" ng-model="kurs.selectedDate" ng-options="kd as kd.date+' - '+kd.places_left+' Plätze frei' for kd in kurs.dates">
                                 <option value="">- {{ 'SELECT_DATE' | translate }} -</option>
                             </select>
+                            <div class="checker"></div>
+                          </div>
                         </span>
                         <span ng-if="kurs.dates.length == null">
                             {{ 'LOADING_DATES' | translate }}

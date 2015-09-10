@@ -8,10 +8,10 @@
 	<div ng-if="article.edit && lang == 'de'" froala="froalaOptions" class="article_main_content" ng-model="article.text"></div>
 	<div ng-if="article.edit && lang == 'en'" froala="froalaOptions" class="article_main_content" ng-model="article.text_en"></div>
 </div>
-<div class="row extra_thumb floating" id="marker_container">
-	<div class="grid_3 article_thumb no_border marker" ng-class="marker.categorie" ng-repeat="marker in markers">
-		<div class="thumb_heading" ng-bind-html="marker.title"></div> 
+<masonry class="row extra_thumb floating" id="marker_container" load-images="false" masonry-options="{ transitionDuration: '0s' }" preserve-order >
+	<div class="grid_3 article_thumb no_border marker masonry-brick" ng-class="marker.categorie" ng-repeat="marker in markers">
+		<div class="thumb_heading" ng-bind-html="marker.title"></div>
 		<div class="thumb_text" ng-bind-html="marker.text"></div>
 	</div>
-</div>
+</masonry>
 <edit nodelete="true"></edit>

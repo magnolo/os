@@ -41,9 +41,9 @@
                 <td>{{ class.duration }}</td>
                 <td>{{ class.prize | currency:'€ '}}</td>
                 <td>
-                    <button ng-if="class.active == 1" class="btn btn-success btn-xs"><i class="fa fa-check"></i>
-                    </button>
-                    <button ng-if="class.active == 0" class="btn btn-danger btn-xs"><i class="fa fa-times"></i>
+                    <button ng-click="activation(class)" class="btn btn-xs" ng-class="{'btn-danger': class.active == 0, 'btn-success': class.active == 1}">
+                      <i ng-if="class.active == 1" class="fa fa-check"></i>
+                      <i ng-if="class.active == 0" class="fa fa-times"></i>
                     </button>
                 </td>
                 <td>
