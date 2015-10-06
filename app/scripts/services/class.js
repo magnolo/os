@@ -58,14 +58,14 @@ angular.module('osApp')
 			dayfree:{
 				medthod: 'GET',
 				params:{
-					kind:'freeday'
+					kind:'freeonday'
 				},
 				isArray: true
 			},
 			labfree: {
 				method: 'GET',
 				params: {
-					kind: 'free'
+					kind: 'freecal'
 				},
 				isArray: true
 			},

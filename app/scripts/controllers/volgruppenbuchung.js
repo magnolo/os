@@ -50,6 +50,10 @@ angular.module('osApp')
 		});
 		$scope.$watch('selectedClass', function (course) {
 			$scope.selectedPlaces = "";
+			$scope.selectedDate = "";
+			$scope.deleteDate(0);
+			$scope.deleteDate(1);
+
 			$timeout(function () {
 				var marker = angular.element(document.getElementById('choose_places'));
 				$document.scrollToElement(marker, 0, 100);
@@ -59,6 +63,8 @@ angular.module('osApp')
 			if (places == 0 || places == "") {
 				return;
 			}
+			$scope.deleteDate(0);
+			$scope.deleteDate(1);
 			$timeout(function () {
 				$timeout(function(){
 					var marker = angular.element(document.getElementById('choose_date'));
@@ -78,9 +84,11 @@ angular.module('osApp')
 		$scope.deleteDate = function (pos) {
 			if (pos == 0) {
 				$scope.selectedDate = [];
+				$scope.hours.selectedHours = "";
 				delete $scope.selectedFirstDate;
 			} else if (pos == 1) {
 				$scope.selectedSecond = [];
+				$scope.hours.selectedSecondHours = "";
 				delete $scope.selectedSecondDate;
 			}
 		};
@@ -121,9 +129,8 @@ angular.module('osApp')
 					date_second: moment($scope.selectedSecondDate, 'DD.MM.YYYY').format('YYYY-MM-DD') + " " + $scope.hours.selectedSecondHours.time,
 					confirmed: '0'
 				};
-				console.log(data);
-				Events.createTicket(data, function (data) {
 
+				Events.createTicket(data, function (data) {
 					if (data.status == true) {
 						Email.regmail({
 							id:data.id
