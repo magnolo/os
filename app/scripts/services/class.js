@@ -65,7 +65,7 @@ angular.module('osApp')
 			labfree: {
 				method: 'GET',
 				params: {
-					kind: 'freecal'
+					kind: 'freecal_test'
 				},
 				isArray: true
 			},
