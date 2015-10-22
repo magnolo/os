@@ -20,7 +20,8 @@
         </div>
     </div>
     <h4 class="image_caption" ng-if="article.image.url && article.image.source" ng-bind-html="article.image.source | linkify | unsafe"></h4>
-    <div ng-if="!article.edit" class="article_main_content" ng-bind-html="article.text | unsafe" thesaurus></div>
+    <div ng-if="!article.edit && lang == 'en' && article.text_en == '' || !article.edit && lang != 'en'" class="article_main_content" ng-bind-html="article.text | unsafe" thesaurus></div>
+    <div ng-if="!article.edit && lang == 'en' && article.text_en != ''" class="article_main_content" ng-bind-html="article.text_en | unsafe" thesaurus></div>
     <div ng-if="article.edit && lang == 'de'" froala="froalaOptions" class="article_main_content" ng-model="article.text"></div>
     <div ng-if="article.edit && lang == 'en'" froala="froalaOptions" class="article_main_content" ng-model="article.text_en"></div>
     <div ng-if="article.images.length" class="gallery_view article_partners" style="border:0">
