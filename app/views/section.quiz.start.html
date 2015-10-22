@@ -18,7 +18,9 @@
                 <ul class="answers">
                     <li ng-repeat="answer in question.answers">
                         <label>
-                            <input type="radio" ng-model="user" ng-change="setAnswer(question, answer)" name="{{question.name}}" class="radios" ng-value="question.answers.indexOf(answer)" />
+
+                            <input type="radio" ng-if="question.type == 1" ng-model="user" ng-change="setAnswer(question, answer)" name="{{question.name}}" class="radios" ng-value="question.answers.indexOf(answer)" />
+                            <input type="checkbox" ng-if="question.type == 2" ng-model="activeAnswer" ng-change="setAnswers(question, answer)" name="{{question.name}}" class="radios" ng-true-value="true" ng-false-value="false" ng-value="question.answers.indexOf(answer)" />
                             <span class="answer-text">{{answer.text}}</span>
                         </label>
                     </li>
@@ -66,6 +68,7 @@
               <ol>
                   <li ng-repeat="answer in question.answers" ng-class="{'success': answer.correct == 1,'useranswer': userAnswered(answer, question)}">
                       <span >{{answer.text}}</span>
+                      <span ng-if="userAnswered(answer, question)"><b>[ Ihre Antwort ]</b></span>
                   </li>
               </ol>
           </div>

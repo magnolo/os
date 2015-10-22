@@ -16,16 +16,19 @@ angular.module('osApp')
                 if (!response.id) {
                     $state.go('classes');
                 }
+
             });
         }
         $scope.image = {};
         $scope.files = [];
         $scope.uploadMultiple = false;
-
         $scope.saveMember = function(isValid) {
             if (isValid) {
 
                 if ($scope.member.id) {
+                    if($scope.member.sections.length == 0){
+                      $scope.member.sections = "";
+                    }
                     Person.update({
                         personId: $scope.member.id
                     }, $scope.member, function(response) {
