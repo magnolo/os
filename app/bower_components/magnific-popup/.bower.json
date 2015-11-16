@@ -23,6 +23,5 @@
   },
   "_source": "git://github.com/dimsemenov/Magnific-Popup.git",
   "_target": "~0.9.9",
-  "_originalSource": "magnific-popup",
-  "_direct": true
+  "_originalSource": "magnific-popup"
 }

@@ -147,7 +147,6 @@
         /**
          * Calculates the event position and sets the direction
          * properties.
-         * this method code is from - https://github.com/JimLiu/angular-ui-tree
          *
          * @param pos the current position of the element.
          * @param event the move event.
@@ -329,6 +328,7 @@
     $scope.callbacks = null;
     $scope.type = 'sortable';
     $scope.options = {};
+    $scope.isDisabled = false;
 
     /**
      * Inserts the item in to the sortable list.
@@ -498,10 +498,14 @@
             scope.callbacks = callbacks;
           }, true);
 
-          // Set isEnabled if attr is set, if undefined isEnabled = true
-          scope.$watch(attrs.isEnabled, function (newVal, oldVal) {
-            scope.isEnabled = newVal !== undefined ? newVal : true;
-          }, true);
+          // Set isDisabled if attr is set, if undefined isDisabled = false
+          if(angular.isDefined(attrs.isDisabled)) {
+            scope.$watch(attrs.isDisabled, function (newVal, oldVal) {
+              if(!angular.isUndefined(newVal)) {
+                scope.isDisabled = newVal;
+              }
+            }, true);
+          }
         }
       };
     });
@@ -563,7 +567,7 @@
             unBindEvents,//unbind the drag events.
             hasTouch,// has touch support.
             dragHandled, //drag handled.
-            isEnabled = true; //sortable is enabled
+            isDisabled = false; // drag enabled
 
           hasTouch = $window.hasOwnProperty('ontouchstart');
 
@@ -573,18 +577,16 @@
 
           scope.itemScope = itemController.scope;
 
-          scope.$watch('sortableScope.isEnabled', function(newVal) {
-            if (isEnabled !== newVal) {
-              isEnabled = newVal;
-
-              if (isEnabled) {
-                bindDrag();
-              } else {
+          scope.$watch('sortableScope.isDisabled', function(newVal) {
+            if(isDisabled !== newVal) {
+              isDisabled = newVal;
+              if(isDisabled) {
                 unbindDrag();
+              } else {
+                bindDrag();
               }
             }
           });
-
 
           /**
           * Listens for a 10px movement before
@@ -706,10 +708,17 @@
 
             elementClicked = angular.element(event.target);
             sourceScope = elementClicked.scope();
-            isDraggable = true;
-            if (!sourceScope || !sourceScope.type || sourceScope.type !== 'handle') {
-              return false;
+
+            // look for the handle on the current scope or parent scopes
+            isDraggable = false;
+            while (!isDraggable && sourceScope !== undefined) {
+              if (sourceScope.type && sourceScope.type === 'handle') {
+                isDraggable = true;
+              } else {
+                sourceScope = sourceScope.$parent;
+              }
             }
+
             //If a 'no-drag' element inside item-handle if any.
             while (isDraggable && elementClicked[0] !== element[0]) {
               if ($helper.noDrag(elementClicked)) {

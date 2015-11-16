@@ -1,6 +1,6 @@
 /*!
- * angular-translate - v2.4.0 - 2014-09-22
- * http://github.com/PascalPrecht/angular-translate
+ * angular-translate - v2.4.2 - 2014-10-21
+ * http://github.com/angular-translate/angular-translate
  * Copyright (c) 2014 ; Licensed MIT
  */
 angular.module('pascalprecht.translate', ['ng']).run([
@@ -26,7 +26,7 @@ angular.module('pascalprecht.translate').provider('$translate', [
   '$STORAGE_KEY',
   function ($STORAGE_KEY) {
     var $translationTable = {}, $preferredLanguage, $availableLanguageKeys = [], $languageKeyAliases, $fallbackLanguage, $fallbackWasString, $uses, $nextLang, $storageFactory, $storageKey = $STORAGE_KEY, $storagePrefix, $missingTranslationHandlerFactory, $interpolationFactory, $interpolatorFactories = [], $interpolationSanitizationStrategy = false, $loaderFactory, $cloakClassName = 'translate-cloak', $loaderOptions, $notFoundIndicatorLeft, $notFoundIndicatorRight, $postCompilingEnabled = false, NESTED_OBJECT_DELIMITER = '.', loaderCache;
-    var version = '2.4.0';
+    var version = '2.4.2';
     var getLocale = function () {
       var nav = window.navigator;
       return ((angular.isArray(nav.languages) ? nav.languages[0] : nav.language || nav.browserLanguage || nav.systemLanguage || nav.userLanguage) || '').split('-').join('_');
@@ -211,8 +211,8 @@ angular.module('pascalprecht.translate').provider('$translate', [
       $storageKey = key;
     };
     this.storageKey = storageKey;
-    this.useUrlLoader = function (url) {
-      return this.useLoader('$translateUrlLoader', { url: url });
+    this.useUrlLoader = function (url, options) {
+      return this.useLoader('$translateUrlLoader', angular.extend({ url: url }, options));
     };
     this.useStaticFilesLoader = function (options) {
       return this.useLoader('$translateStaticFilesLoader', options);
@@ -381,10 +381,11 @@ angular.module('pascalprecht.translate').provider('$translate', [
           if (typeof cache === 'string') {
             cache = $injector.get(cache);
           }
-          $injector.get($loaderFactory)(angular.extend($loaderOptions, {
-            key: key,
-            $http: angular.extend({}, $loaderOptions.$http, { cache: cache })
-          })).then(function (data) {
+          var loaderOptions = angular.extend({}, $loaderOptions, {
+              key: key,
+              $http: angular.extend({}, { cache: cache }, $loaderOptions.$http)
+            });
+          $injector.get($loaderFactory)(loaderOptions).then(function (data) {
             var translationTable = {};
             $rootScope.$emit('$translateLoadingSuccess', { language: key });
             if (angular.isArray(data)) {
@@ -752,6 +753,7 @@ angular.module('pascalprecht.translate').provider('$translate', [
           if ($fallbackLanguage && $fallbackLanguage.length) {
             var processAsyncResult = function (translation) {
               translations(translation.key, translation.table);
+              $rootScope.$emit('$translateChangeEnd', { language: translation.key });
             };
             for (var i = 0, len = $fallbackLanguage.length; i < len; i++) {
               langPromises[$fallbackLanguage[i]] = loadAsync($fallbackLanguage[i]).then(processAsyncResult);
@@ -921,12 +923,23 @@ angular.module('pascalprecht.translate').directive('translateCloak', [
   function ($rootScope, $translate) {
     return {
       compile: function (tElement) {
-        var removeListener = $rootScope.$on('$translateChangeEnd', function () {
+        var applyCloak = function () {
+            tElement.addClass($translate.cloakClassName());
+          }, removeCloak = function () {
             tElement.removeClass($translate.cloakClassName());
+          }, removeListener = $rootScope.$on('$translateChangeEnd', function () {
+            removeCloak();
             removeListener();
             removeListener = null;
           });
-        tElement.addClass($translate.cloakClassName());
+        applyCloak();
+        return function linkFn(scope, iElement, iAttr) {
+          if (iAttr.translateCloak && iAttr.translateCloak.length) {
+            iAttr.$observe('translateCloak', function (translationId) {
+              $translate(translationId).then(removeCloak, applyCloak);
+            });
+          }
+        };
       }
     };
   }

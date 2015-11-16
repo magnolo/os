@@ -1,8 +1,8 @@
 {
   "name": "ui-router-extras",
-  "version": "0.0.11",
+  "version": "0.0.14",
   "authors": [
-    "Chris Thielen <ui-router-extras@sandgnat.com>"
+    "Chris Thielen <christopherthielen@ikkyikkyikkypikangzoopboing.com>"
   ],
   "description": "Extras for UI-Router including: Sticky States (a.k.a. parallel states), Deep State Redirect (for tab-like navigation), Future States (async state definition), Previous State ",
   "keywords": [
@@ -29,11 +29,11 @@
     "*.iws"
   ],
   "dependencies": {
-    "angular": "~1.2.0",
+    "angular": "^1.2.0",
     "angular-ui-router": "~0.2.8"
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.0",
+    "angular-mocks": "^1.2.0",
     "lodash": "latest",
     "jquery": "~1.11"
   }

@@ -1,8 +1,8 @@
 # Outlayer
 
-_Layout class_
+_Brains and guts of a layout library_
 
-Outlayer is a base layout class for layout libraries like [Packery](http://packery.metafizzy.co) and [Masonry](http://masonry.desandro.com)
+Outlayer is a base layout class for layout libraries like [Isotope](http://isotope.metafizzy.co), [Packery](http://packery.metafizzy.co), and [Masonry](http://masonry.desandro.com)
 
 Outlayer layouts work with a container element and children item elements.
 
@@ -14,6 +14,12 @@ Outlayer layouts work with a container element and children item elements.
   ...
 </div>
 ```
+
+## Install
+
+Install with [Bower](http://bower.io): `bower install outlayer`
+
+[Install with npm](http://npmjs.org/package/outlayer): `npm install outlayer`
 
 ## Outlayer.create()
 

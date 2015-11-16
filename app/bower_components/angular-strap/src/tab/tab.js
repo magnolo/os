@@ -26,16 +26,39 @@ angular.module('mgcrea.ngStrap.tab', [])
 
       self.$panes = $scope.$panes = [];
 
-      self.$viewChangeListeners = [];
+      // DEPRECATED: $viewChangeListeners, please use $activePaneChangeListeners
+      // Because we deprecated ngModel usage, we rename viewChangeListeners to 
+      // activePaneChangeListeners to make more sense.
+      self.$activePaneChangeListeners = self.$viewChangeListeners = [];
 
       self.$push = function(pane) {
         self.$panes.push(pane);
       };
 
+      self.$remove = function(pane) {
+        var index = self.$panes.indexOf(pane);
+        var activeIndex = self.$panes.$active;
+
+        // remove pane from $panes array
+        self.$panes.splice(index, 1);
+
+        if (index < activeIndex) {
+          // we removed a pane before the active pane, so we need to 
+          // decrement the active pane index
+          activeIndex--;
+        }
+        else if (index === activeIndex && activeIndex === self.$panes.length) {
+          // we remove the active pane and it was the one at the end,
+          // so select the previous one
+          activeIndex--;
+        }
+        self.$setActive(activeIndex);
+      };
+
       self.$panes.$active = 0;
       self.$setActive = $scope.$setActive = function(value) {
         self.$panes.$active = value;
-        self.$viewChangeListeners.forEach(function(fn) {
+        self.$activePaneChangeListeners.forEach(function(fn) {
           fn();
         });
       };
@@ -51,7 +74,7 @@ angular.module('mgcrea.ngStrap.tab', [])
 
   })
 
-  .directive('bsTabs', function($window, $animate, $tab) {
+  .directive('bsTabs', function($window, $animate, $tab, $parse) {
 
     var defaults = $tab.defaults;
 
@@ -68,10 +91,14 @@ angular.module('mgcrea.ngStrap.tab', [])
         var ngModelCtrl = controllers[0];
         var bsTabsCtrl = controllers[1];
 
+        // DEPRECATED: ngModel, please use bsActivePane
+        // 'ngModel' is deprecated bacause if interferes with form validation
+        // and status, so avoid using it here.
         if(ngModelCtrl) {
+          console.warn('Usage of ngModel is deprecated, please use bsActivePane instead!');
 
           // Update the modelValue following
-          bsTabsCtrl.$viewChangeListeners.push(function() {
+          bsTabsCtrl.$activePaneChangeListeners.push(function() {
             ngModelCtrl.$setViewValue(bsTabsCtrl.$panes.$active);
           });
 
@@ -84,6 +111,21 @@ angular.module('mgcrea.ngStrap.tab', [])
 
         }
 
+        if (attrs.bsActivePane) {
+          // adapted from angularjs ngModelController bindings
+          // https://github.com/angular/angular.js/blob/v1.3.1/src%2Fng%2Fdirective%2Finput.js#L1730
+          var parsedBsActivePane = $parse(attrs.bsActivePane);
+
+          // Update bsActivePane value with change
+          bsTabsCtrl.$activePaneChangeListeners.push(function() {
+            parsedBsActivePane.assign(scope, bsTabsCtrl.$panes.$active);
+          });
+
+          // watch bsActivePane for value changes
+          scope.$watch(attrs.bsActivePane, function(newValue, oldValue) {
+            bsTabsCtrl.$setActive(newValue * 1);
+          }, true);
+        }
       }
     };
 
@@ -115,13 +157,18 @@ angular.module('mgcrea.ngStrap.tab', [])
         // Push pane to parent bsTabs controller
         bsTabsCtrl.$push(scope);
 
+        // remove pane from tab controller when pane is destroyed
+        scope.$on('$destroy', function() {
+          bsTabsCtrl.$remove(scope);
+        });
+
         function render() {
           var index = bsTabsCtrl.$panes.indexOf(scope);
           var active = bsTabsCtrl.$panes.$active;
           $animate[index === active ? 'addClass' : 'removeClass'](element, bsTabsCtrl.$options.activeClass);
         }
 
-        bsTabsCtrl.$viewChangeListeners.push(function() {
+        bsTabsCtrl.$activePaneChangeListeners.push(function() {
           render();
         });
         render();
