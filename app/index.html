@@ -10,16 +10,16 @@
     <base href="/" />
     <meta charset="utf-8">
     <title update-title>Open Science</title>
-    <meta name="description" content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit.">
+    <meta name="description" update-description content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit.">
     <meta name="fragment" content="!">
-
+    <meta name="robots" content="noarchive">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/x-icon" href="favicon_os.ico" />
     <meta property="og:title" content="Open Science"/>
-  <meta property="og:description" content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="http://www.openscience.or.at/images/os_logoFB.png"/>
-  <meta property="og:url" content="http://www.openscience.or.at"/>
+    <meta property="og:description" update-description content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.openscience.or.at/images/os_logoFB.png"/>
+    <meta property="og:url" content="http://www.openscience.or.at"/>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -330,6 +330,8 @@
     <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script src="bower_components/ng-sortable/dist/ng-sortable.js"></script>
     <script src="bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
+    <script src="bower_components/angular-ckeditor/angular-ckeditor.js"></script>
+    <script src="bower_components/ckeditor/ckeditor.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -507,6 +509,20 @@
         ga('create', 'UA-54896855-1');
     </script>
     <script src="bower_components/swfobject/swfobject.js"></script>
+    <script type="application/ld+json">
+      { "@context" : "http://schema.org",
+        "@type" : "Organization",
+        "name" : "Open Science",
+        "url" : "http://www.openscience.or.at",
+        "sameAs" : [ "https://www.facebook.com/OpenScience.or.at", "https://www.facebook.com/ViennaOpenLab"],
+        "logo": "http://www.openscience.or.at/images/os_logoFB.png",
+        "contactPoint" : [
+          { "@type" : "ContactPoint",
+            "telephone" : "+43 (0)1 4277-24090",
+            "contactType" : "customer service"
+          } ] }
+      }
+    </script>
 </body>
 
 </html>

@@ -38,7 +38,8 @@ angular
         'ui.sortable',
         'bsTable',
         'ui.checkbox',
-        'FBAngular'
+        'FBAngular',
+        'ckeditor'
     ]).value('froalaConfig', {
         inlineMode: false,
         toolbarFixed: false,

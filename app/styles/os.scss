@@ -229,7 +229,7 @@ $vol-background: #FAD7DC;
 	background-color:$wissen-color;
 	color:$wissen-background
 }
-.wissen .bg_full,.wissen .mobile_menu_switcher, .wissen .mobile_menu_switcher:before, .wissen .mobile_menu_switcher:after, .wissen #connection-liner{
+.wissen .bg_full, .wissen .mobile_menu_switcher, .wissen .mobile_menu_switcher:before, .wissen .mobile_menu_switcher:after, .wissen #connection-liner{
 	background-color:$wissen-color !important;
 	color:#fff !important;
 }
@@ -275,7 +275,15 @@ $vol-background: #FAD7DC;
 .wissen .is_new{
 	background-position:0px 0px;
 }
-
+.wissen .cke_top{
+  background-color: $wissen-background;
+  border-top:2px solid $wissen-color;
+  border-bottom:2px solid $wissen-color;
+  box-shadow: 0px 0px 10px $wissen-background;
+  .cke_toolgroup{
+    border-color:$wissen-color;
+  }
+}
 
 .projekte{
 	color:$projekte-color !important;
@@ -391,6 +399,16 @@ $vol-background: #FAD7DC;
 .projekte .is_new, #connections_list .projekte .is_new{
 	background-position:-130px 0px;
 }
+
+.projekte .cke_top{
+  background-color: $projekte-background;
+  border-top:2px solid $projekte-color;
+  border-bottom:2px solid $projekte-color;
+  box-shadow: 0px 0px 10px $projekte-background;
+  .cke_toolgroup{
+    border-color:$projekte-color;
+  }
+}
 #connections_list .thumb_text{
 	margin-bottom:10px !important;
 }
@@ -505,6 +523,15 @@ $vol-background: #FAD7DC;
 .schulcorner div.thesaurus > div.thesaurus-canvas.downwards:after {
 	border-color: transparent transparent $schulcorner-background transparent;
 	bottom: 100%;
+}
+.schulcorner .cke_top{
+  background-color: $schulcorner-background;
+  border-top:2px solid $schulcorner-color;
+  border-bottom:2px solid $schulcorner-color;
+  box-shadow: 0px 0px 10px $schulcorner-background;
+  .cke_toolgroup{
+    border-color:$schulcorner-color;
+  }
 }
 /*.vol{
 	color:#a21c34 !important;
@@ -672,6 +699,15 @@ $vol-background: #FAD7DC;
 .vol .top-title .lower-info{
 	font-size: 13px;
 	margin-left: 15px;
+}
+.vol .cke_top{
+  background-color: $vol-background;
+  border-top:2px solid $vol-color;
+  border-bottom:2px solid $vol-color;
+  box-shadow: 0px 0px 10px $vol-background;
+  .cke_toolgroup{
+    border-color:$vol-color;
+  }
 }
 .inactive, .inactive a{
 	color: #999 !important

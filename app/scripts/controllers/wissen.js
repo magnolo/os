@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('osApp')
-    .controller('WissenCtrl', function($scope, $modal, $stateParams, Categorie, Article, FlashService, Quiz) {
+    .controller('WissenCtrl', function($scope, $modal, $rootScope, $stateParams, Categorie, Article, FlashService, Quiz) {
         var articleId = 0;
         $scope.quiz = [];
         $scope.color = '523C7C';
@@ -22,6 +22,8 @@ angular.module('osApp')
         }
         $scope.article = Article.get({
             articleId: articleId
+        }, function(data){
+          $rootScope.activateArticle(data);
         });
         $scope.categorie = Categorie.categorie({
             categorieName: $stateParams.section
