@@ -1,7 +1,7 @@
 {
   "name": "angular-masonry",
   "description": "An AngularJS directive for Masonry.",
-  "version": "0.9.1",
+  "version": "0.9.0",
   "main": "./angular-masonry.js",
   "ignore": [
     "**/.*",
@@ -27,13 +27,14 @@
     "jasmine-sinon": "~0.3.0"
   },
   "homepage": "https://github.com/passy/angular-masonry",
-  "_release": "0.9.1",
+  "_release": "0.9.0",
   "_resolution": {
     "type": "version",
-    "tag": "v0.9.1",
-    "commit": "b839ab253968ff05242e93ca814c90f7a39cea47"
+    "tag": "v0.9.0",
+    "commit": "f7409dfa585b72ecb53925f494edbf54879a6e59"
   },
   "_source": "git://github.com/passy/angular-masonry.git",
   "_target": "~0.9.0",
-  "_originalSource": "angular-masonry"
+  "_originalSource": "angular-masonry",
+  "_direct": true
 }

@@ -1,6 +1,8 @@
 # getStyleProperty - quick & dirty CSS property testing
 
-[Original by @kangax](https://github.com/kangax/cft/blob/gh-pages/getStyleProperty.js) :heart_eyes: :zap: :star2:. See [perfectionkills.com/feature-testing-css-properties/](http://perfectionkills.com/feature-testing-css-properties/)
+by [@kangax](https://github.com/kangax) :heart_eyes: :zap: :star2:
+
+See [perfectionkills.com/feature-testing-css-properties/](http://perfectionkills.com/feature-testing-css-properties/)
 
 ``` js
 var transformProp = getStyleProperty('transform');
@@ -14,14 +16,16 @@ element.style[ transformProp ] = 'translate( 12px, 34px )';
 var supportsTranforms = !!transformProp;
 ```
 
-## Install
+## Install with package manager
 
-[Bower](http://bower.io) :bird:: `bower install get-style-property`
+Install with [Bower](http://bower.io) :bird:
 
-npm: `npm install desandro-get-style-property`
+``` bash
+bower install desandro/get-style-property
+```
 
-[Component](http://github.com/component/component): `component install desandro/get-style-property`
+Or [Component](http://github.com/component/component)
 
-## MIT License
-
-getStyleProperty is released under the [MIT License](http://desandro.mit-license.org/).
+``` bash
+component install desandro/get-style-property
+```

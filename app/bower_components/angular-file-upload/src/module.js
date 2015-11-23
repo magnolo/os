@@ -81,7 +81,7 @@ module
                         this.queue.push(fileItem);
                         this._onAfterAddingFile(fileItem);
                     } else {
-                        var filter = arrayOfFilters[this._failFilterIndex];
+                        var filter = this.filters[this._failFilterIndex];
                         this._onWhenAddingFileFailed(temp, filter, options);
                     }
                 }, this);
@@ -451,10 +451,6 @@ module
                     });
                 });
 
-                if ( typeof(item._file.size) != 'number' ) {
-                    throw new TypeError('The file specified is no longer valid');
-                }
-
                 form.append(item.alias, item._file, item.file.name);
 
                 xhr.upload.onprogress = function(event) {
@@ -800,12 +796,7 @@ module
              * Uploads a FileItem
              */
             FileItem.prototype.upload = function() {
-                try {
-                    this.uploader.uploadItem(this);
-                } catch (e) {
-                    this.uploader._onCompleteItem( this, '', 0, [] );
-                    this.uploader._onErrorItem( this, '', 0, [] );
-                }
+                this.uploader.uploadItem(this);
             };
             /**
              * Cancels uploading of FileItem

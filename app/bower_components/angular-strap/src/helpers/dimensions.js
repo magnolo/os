@@ -73,6 +73,7 @@ angular.module('mgcrea.ngStrap.helpers.dimensions', [])
 
         // Get *real* offsetParentElement
         offsetParentElement = offsetParent(element);
+        offset = fn.offset(element);
 
         // Get correct offsets
         offset = fn.offset(element);

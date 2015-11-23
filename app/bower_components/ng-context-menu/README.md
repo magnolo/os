@@ -29,55 +29,8 @@ var app = angular.module('menu-demo', ['ngRoute', 'ng-context-menu'])
   ...
 </div>
 ```
-#### Step 4: Add the markup of the menu you want to be displayed
 
-Customize the menu to your needs. It may look something like:
-
-```html
-<div class="dropdown position-fixed" id="myMenu{{ $index }}">
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-    <li>
-      <a class="pointer" role="menuitem" tabindex="1"
-         ng-click="panel.highlight = true">
-         Select Panel {{ $index + 1 }}
-      </a>
-    </li>
-    <li>
-      <a class="pointer" role="menuitem" tabindex="2"
-         ng-click="panel.highlight = false">
-         Deselect Panel  {{ $index + 1 }}
-      </a>
-    </li>
-    <li>
-      <a class="pointer" role="menuitem" tabindex="3"
-         ng-click="panel.expanded = true">
-         Expand Panel {{ $index + 1 }}
-      </a>
-    </li>
-    <li>
-      <a class="pointer" role="menuitem" tabindex="4"
-         ng-click="panel.expanded = false">
-         Contract Panel {{ $index + 1 }}
-      </a>
-    </li>
-    <li>
-      <a class="pointer" role="menuitem" tabindex="5"
-         ng-click="addPanel()">
-         Add a panel
-      </a>
-    </li>
-    <li>
-      <a href="https://github.com/ianwalter/ng-context-menu"
-         role="menuitem"
-         tabindex="-1">
-         ng-context-menu on GitHub
-      </a>
-    </li>
-  </ul>
-</div>
-```
-
-#### Step 5: Make sure your menu is has the ```position: fixed``` CSS property
+#### Step 4: Make sure your menu is has the ```position: fixed``` CSS property
 
 As you can see in the demo, I just created a class called position-fixed and added the property:
 

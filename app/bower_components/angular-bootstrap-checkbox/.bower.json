@@ -35,5 +35,6 @@
   },
   "_source": "git://github.com/sebastianha/angular-bootstrap-checkbox.git",
   "_target": "~0.3.1",
-  "_originalSource": "angular-bootstrap-checkbox"
+  "_originalSource": "angular-bootstrap-checkbox",
+  "_direct": true
 }

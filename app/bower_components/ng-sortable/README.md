@@ -8,13 +8,11 @@ If you use this module you can give it a thumbs up at [http://ngmodules.org/modu
 
 #### Release:
 
-Latest release version 1.1.9
+Latest release version 1.1.6
 
 #### Demo Page:
 
-[Simple] (http://a5hik.github.io/ng-sortable/plunker.html)
-
-[Advanced] (http://a5hik.github.io/ng-sortable/)
+[Demo Site] (http://a5hik.github.io/ng-sortable/)
 
 Demo Includes:
 
@@ -58,7 +56,7 @@ The directives are structured like below.
 - the drag item handle can listen for custom events as well.
 - Added a Jquery like 'containment' option to the sortable to prevent the drag outside specified bounds.
 - 'containerPositioning' option may be set to 'relative' to accomodate relative positioning on the container or its ancestry. Use this if the draggable item is offset from the mouse cursor while dragging. A common scenario for this is when using bootstrap columns.
-- The 'is-disabled' attribute can be added optionally to as-sortable disable the Drag at runTime.
+- The 'is-enabled' attribute on as-sortable to determine Drag at runTime.
 
 #### Placeholder:
 - A placeholder element is created using the same tag as the as-sortable-item element
@@ -208,9 +206,9 @@ Plunkr example link: http://plnkr.co/edit/5hzdWd?p=preview
 
 ###### Enable/Disable Drag at Runtime:
 
-The Drag can be controlled at runtime and you can enable/disable it by setting the "is-disabled" property to true or false.
+The Drag can be controlled at runtime and you can enable/disable it by setting the "is-enabled" property to true or false.
 
-    <div as-sortable is-disabled="true">..</div>
+    <div as-sortable is-enabled="true">..</div>
 
 ##### Testing:
 

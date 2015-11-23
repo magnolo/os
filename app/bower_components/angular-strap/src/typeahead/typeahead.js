@@ -17,11 +17,10 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
       delay: 0,
       minLength: 1,
       filter: 'filter',
-      limit: 6,
-      comparator: ''
+      limit: 6
     };
 
-    this.$get = function($window, $rootScope, $tooltip, $timeout) {
+    this.$get = function($window, $rootScope, $tooltip) {
 
       var bodyEl = angular.element($window.document.body);
 
@@ -73,13 +72,12 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 
         $typeahead.select = function(index) {
           var value = scope.$matches[index].value;
-          // console.log('$setViewValue', value);
           controller.$setViewValue(value);
           controller.$render();
           scope.$resetMatches();
           if(parentScope) parentScope.$digest();
           // Emit event
-          scope.$emit(options.prefixEvent + '.select', value, index, $typeahead);
+          scope.$emit(options.prefixEvent + '.select', value, index);
         };
 
         // Protected methods
@@ -134,14 +132,12 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
         var show = $typeahead.show;
         $typeahead.show = function() {
           show();
-          // use timeout to hookup the events to prevent
-          // event bubbling from being processed imediately.
-          $timeout(function() {
+          setTimeout(function() {
             $typeahead.$element.on('mousedown', $typeahead.$onMouseDown);
             if(options.keyboard) {
               element.on('keydown', $typeahead.$onKeyDown);
             }
-          }, 0, false);
+          });
         };
 
         var hide = $typeahead.hide;
@@ -175,18 +171,15 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 
         // Directive options
         var options = {scope: scope};
-        angular.forEach(['placement', 'container', 'delay', 'trigger', 'keyboard', 'html', 'animation', 'template', 'filter', 'limit', 'minLength', 'watchOptions', 'selectMode', 'comparator', 'id'], function(key) {
+        angular.forEach(['placement', 'container', 'delay', 'trigger', 'keyboard', 'html', 'animation', 'template', 'filter', 'limit', 'minLength', 'watchOptions', 'selectMode'], function(key) {
           if(angular.isDefined(attr[key])) options[key] = attr[key];
         });
 
         // Build proper ngOptions
         var filter = options.filter || defaults.filter;
         var limit = options.limit || defaults.limit;
-        var comparator = options.comparator || defaults.comparator;
-
         var ngOptions = attr.ngOptions;
         if(filter) ngOptions += ' | ' + filter + ':$viewValue';
-        if (comparator) ngOptions += ':' + comparator;
         if(limit) ngOptions += ' | limitTo:' + limit;
         var parsedOptions = $parseOptions(ngOptions);
 
@@ -229,21 +222,14 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
           });
         });
 
-        // modelValue -> $formatters -> viewValue
-        controller.$formatters.push(function(modelValue) {
-          // console.warn('$formatter("%s"): modelValue=%o (%o)', element.attr('ng-model'), modelValue, typeof modelValue);
-          var displayValue = parsedOptions.displayValue(modelValue);
-          return displayValue === undefined ? '' : displayValue;
-        });
-
         // Model rendering in view
         controller.$render = function () {
           // console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
           if(controller.$isEmpty(controller.$viewValue)) return element.val('');
           var index = typeahead.$getIndex(controller.$modelValue);
           var selected = angular.isDefined(index) ? typeahead.$scope.$matches[index].label : controller.$viewValue;
-          selected = angular.isObject(selected) ? parsedOptions.displayValue(selected) : selected;
-          element.val(selected ? selected.toString().replace(/<(?:.|\n)*?>/gm, '').trim() : '');
+          selected = angular.isObject(selected) ? selected.label : selected;
+          element.val(selected ? selected.replace(/<(?:.|\n)*?>/gm, '').trim() : '');
         };
 
         // Garbage collection

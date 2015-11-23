@@ -1,6 +1,6 @@
 /**
  * angular-strap
- * @version v2.1.6 - 2015-01-11
+ * @version v2.1.1 - 2014-09-26
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes (olivier@mg-crea.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -95,7 +95,7 @@ angular.module('mgcrea.ngStrap.scrollspy', ['mgcrea.ngStrap.helpers.debounce', '
           // Unbind events
           scrollEl.off('click', this.checkPositionWithEventLoop);
           windowEl.off('resize', debouncedCheckPosition);
-          scrollEl.off('scroll', throttledCheckPosition);
+          scrollEl.off('scroll', debouncedCheckPosition);
           unbindViewContentLoaded();
           unbindIncludeContentLoaded();
           if (scrollId) {
@@ -131,9 +131,7 @@ angular.module('mgcrea.ngStrap.scrollspy', ['mgcrea.ngStrap.helpers.debounce', '
         };
 
         $scrollspy.checkPositionWithEventLoop = function() {
-          // IE 9 throws an error if we use 'this' instead of '$scrollspy'
-          // in this setTimeout call
-          setTimeout($scrollspy.checkPosition, 1);
+          setTimeout(this.checkPosition, 1);
         };
 
         // Protected methods

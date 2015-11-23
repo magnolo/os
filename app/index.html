@@ -25,7 +25,8 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.min.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.min.css" />
     <link rel="stylesheet" href="bower_components/magnific-popup/dist/magnific-popup.css" />
     <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_editor.min.css" />
@@ -281,8 +282,9 @@
     <script src="bower_components/eventie/eventie.js"></script>
     <script src="bower_components/doc-ready/doc-ready.js"></script>
     <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
     <script src="bower_components/matches-selector/matches-selector.js"></script>
-    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+    <script src="bower_components/outlayer/item.js"></script>
     <script src="bower_components/outlayer/outlayer.js"></script>
     <script src="bower_components/masonry/masonry.js"></script>
     <script src="bower_components/imagesloaded/imagesloaded.js"></script>
@@ -291,7 +293,7 @@
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
     <script src="bower_components/angular-inview/angular-inview.js"></script>
     <script src="bower_components/ng-context-menu/dist/ng-context-menu.js"></script>
     <script src="bower_components/angular-redactor/angular-redactor.js"></script>
@@ -300,21 +302,8 @@
     <script src="bower_components/jquery-waypoints/waypoints.js"></script>
     <script src="bower_components/SHA-1/sha1.js"></script>
     <script src="bower_components/angulartics/src/angulartics.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-adobe.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-chartbeat.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-flurry.js"></script>
     <script src="bower_components/angulartics/src/angulartics-ga-cordova.js"></script>
     <script src="bower_components/angulartics/src/angulartics-ga.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-gtm.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-kissmetrics.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-mixpanel.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-piwik.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-scroll.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-segmentio.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-splunk.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-woopra.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-marketo.js"></script>
-    <script src="bower_components/angulartics/src/angulartics-intercom.js"></script>
     <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
@@ -324,20 +313,15 @@
     <script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
     <script src="bower_components/FroalaWysiwygEditor/js/froala_editor.min.js"></script>
     <script src="bower_components/FroalaWysiwygEditor/js/plugins/block_styles.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/char_counter.min.js"></script>
     <script src="bower_components/FroalaWysiwygEditor/js/plugins/colors.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/entities.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/file_upload.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_family.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_size.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/fullscreen.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/inline_styles.min.js"></script>
     <script src="bower_components/FroalaWysiwygEditor/js/plugins/media_manager.min.js"></script>
     <script src="bower_components/FroalaWysiwygEditor/js/plugins/tables.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/urls.min.js"></script>
     <script src="bower_components/FroalaWysiwygEditor/js/plugins/video.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_family.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_size.min.js"></script>
+    <script src="bower_components/FroalaWysiwygEditor/js/plugins/char_counter.min.js"></script>
     <script src="bower_components/angular-froala/src/angular-froala.js"></script>
-    <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <script src="bower_components/ui-router-extras/release/ct-ui-router-extras.js"></script>

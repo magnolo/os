@@ -35,5 +35,6 @@
   },
   "_source": "git://github.com/TylerGarlick/angular-redactor.git",
   "_target": "~1.0.0",
-  "_originalSource": "angular-redactor"
+  "_originalSource": "angular-redactor",
+  "_direct": true
 }

@@ -75,7 +75,7 @@ angular.module('froala', []).
 				};
 
 				ngModel.$render = function(){
-					element.editable('setHTML', ngModel.$viewValue || '', true);
+					element.editable('setHTML', ngModel.$viewValue || '', false);
 				};
 
 				var froala = element.editable(options).data('fa.editable');
@@ -133,7 +133,7 @@ angular.module('froala', []).
 				}, true);
 
 				scope.$on('$destroy', function(){
-					froala['destroy']();
+					element.editable('destroy');
 				});
 			}
 		};

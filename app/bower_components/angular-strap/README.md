@@ -1,12 +1,15 @@
-# [AngularStrap](http://mgcrea.github.io/angular-strap)
-
-[![Build Status](http://img.shields.io/travis/mgcrea/angular-strap/master.svg?style=flat)](http://travis-ci.org/mgcrea/angular-strap) [![devDependency Status](http://img.shields.io/david/dev/mgcrea/angular-strap.svg?style=flat)](https://david-dm.org/mgcrea/angular-strap#info=devDependencies) [![Coverage Status](http://img.shields.io/codeclimate/coverage/github/mgcrea/angular-strap.svg?style=flat)](https://codeclimate.com/github/mgcrea/angular-strap) [![Climate Status](https://img.shields.io/codeclimate/github/mgcrea/angular-strap.svg?style=flat)](https://codeclimate.com/github/mgcrea/angular-strap) [![Tips](http://img.shields.io/gratipay/mgcrea.svg?style=flat)](https://gratipay.com/mgcrea)
+# [AngularStrap](http://mgcrea.github.io/angular-strap) [![Build Status](http://img.shields.io/travis/mgcrea/angular-strap/master.svg?style=flat)](http://travis-ci.org/mgcrea/angular-strap) [![devDependency Status](http://img.shields.io/david/dev/mgcrea/angular-strap.svg?style=flat)](https://david-dm.org/mgcrea/angular-strap#info=devDependencies) [![Coverage Status](http://img.shields.io/codeclimate/coverage/github/mgcrea/angular-strap.svg?style=flat)](https://codeclimate.com/github/mgcrea/angular-strap) [![Tips](http://img.shields.io/gratipay/mgcrea.svg?style=flat)](https://gratipay.com/mgcrea)
 
 [![Banner](http://mgcrea.github.io/angular-strap/images/snippet.png)](http://mgcrea.github.io/angular-strap)
 
 AngularStrap is a set of native directives that enables seamless integration of [Bootstrap 3.0+](https://github.com/twbs/bootstrap) into your [AngularJS 1.2+](https://github.com/angular/angular.js) app.
 
-- With no external dependency except the [Bootstrap CSS Styles](https://github.com/twbs/bootstrap/blob/master/dist/css/bootstrap.css), AngularStrap is lighter and faster than ever as it does leverage the power of ngAnimate from AngularJS 1.2+!
+- The only required dependency is [Bootstrap CSS Styles](https://github.com/twbs/bootstrap/blob/master/dist/css/bootstrap.css)!
+
+>
+AngularStrap was initially written to provide AngularJS wrapping directives for Bootstrap. It used to leverage the JavaScript code written by Bootstrap's contributors to minimize work, retro-compatibility issues & time to market.
+>
+While it worked pretty well, it required a big JavaScript payload: both jQuery & Bootstrap libraries. When the 1.2 release of AngularJS showed up with the ngAnimate module, greatly simplifying DOM manipulation, we knew it was time for a rewrite!
 
 - If you don't want to use `ngAnimate`, you will have to include a tiny [ngAnimate mock](https://github.com/mgcrea/angular-strap/wiki/ngAnimate-mock).
 
@@ -14,13 +17,6 @@ AngularStrap is a set of native directives that enables seamless integration of 
 
 + Check the [documentation](http://mgcrea.github.io/angular-strap) and [changelog](https://github.com/mgcrea/angular-strap/releases).
 
-## Communication
-
-- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/angular-strap). (Tag 'angular-strap')
-- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/angular-strap).
-- If you **found a bug**, open an issue.
-- If you **have a feature request**, open an issue.
-- If you **want to contribute**, submit a pull request.
 
 ## Quick start
 
@@ -36,7 +32,6 @@ $ bower install angular-strap --save
 >
 ``` html
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 ```
@@ -45,7 +40,7 @@ $ bower install angular-strap --save
 
 >
 ``` js
-angular.module('myApp', ['ngAnimate', 'mgcrea.ngStrap']);
+angular.module('myApp', ['mgcrea.ngStrap']);
 ```
 
 
@@ -57,7 +52,6 @@ AngularStrap is tested with `karma` against the latest stable release of Angular
 
 >
 	$ npm install
-	$ bower install
 	$ gulp test
 
 You can build the latest version using `gulp`.
@@ -74,7 +68,7 @@ You can quickly hack around (the docs) with:
 
 ## Contributing
 
-Please submit all pull requests the against master branch. If your pull request contains JavaScript patches or features, you should include relevant unit tests. Thanks!
+Please submit all pull requests the against master branch. If your unit test contains JavaScript patches or features, you should include relevant unit tests. Thanks!
 
 
 

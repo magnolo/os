@@ -1,6 +1,6 @@
 # matchesSelector helper
 
-[`matches`/`matchesSelector`](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) is pretty hot :fire:, but has [vendor-prefix baggage](http://caniuse.com/#feat=matchesselector) :handbag: :pouch:. This helper function takes care of that, without augmenting `Element.prototype`.
+[`matchesSelector`](https://developer.mozilla.org/en-US/docs/DOM/Element.mozMatchesSelector) is pretty hot :fire:, but has [vendor-prefix baggage](http://caniuse.com/#search=matchesSelector) :handbag: :pouch:. This helper function takes care of that, without augmenting `Element.prototype`.
 
 ``` js
 matchesSelector( elem, selector );
@@ -10,15 +10,19 @@ matchesSelector( myElem, 'div.my-hawt-selector' );
 // this DOES NOT polyfill myElem.matchesSelector
 ```
 
-## Install
+## Package managers
 
-Download [matches-selector.js](https://github.com/desandro/matches-selector/raw/master/matches-selector.js)
+Install with [:bird: Bower](http://bower.io)
 
-Install with [Bower](http://bower.io): `bower install matches-selector`
+``` bash
+bower install desandro/matches-selector
+```
 
-[Install with npm](https://www.npmjs.org/package/desandro-matches-selector): `npm install desandro-matches-selector`
+Install with [:nut_and_bolt: component](https://github.com/component/component)
 
-Install with [Component](https://github.com/component/component): `component install desandro/matches-selector`
+``` bash
+component install desandro/matches-selector
+```
 
 ## MIT license
 

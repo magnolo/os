@@ -1,7 +1,7 @@
 {
   "name": "angular-socialshare",
   "main": "angular-socialshare.js",
-  "version": "0.0.7",
+  "version": "0.0.2",
   "authors": [
     "djds4rce <djd4rce@gmail.com>"
   ],
@@ -22,13 +22,14 @@
     "tests"
   ],
   "homepage": "https://github.com/djds4rce/angular-socialshare",
-  "_release": "0.0.7",
+  "_release": "0.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "0.0.7",
-    "commit": "4083f882b0ce92df277a97925a125e604176301f"
+    "tag": "0.0.2",
+    "commit": "2bfd3f7c46f370b97560402b936c521e45ad2674"
   },
   "_source": "git://github.com/djds4rce/angular-socialshare.git",
   "_target": "~0.0.2",
-  "_originalSource": "angular-socialshare"
+  "_originalSource": "angular-socialshare",
+  "_direct": true
 }

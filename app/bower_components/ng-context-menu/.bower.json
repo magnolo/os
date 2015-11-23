@@ -1,6 +1,6 @@
 {
   "name": "ng-context-menu",
-  "version": "0.1.7",
+  "version": "0.1.6",
   "description": "An AngularJS directive to display a context menu when a right-click event is triggered",
   "keywords": [
     "ng-context-menu",
@@ -30,13 +30,14 @@
   "dependencies": {
     "angular": ">= 1.2.5"
   },
-  "_release": "0.1.7",
+  "_release": "0.1.6",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.7",
-    "commit": "0ff913624d4d82673521164f757ff6676d472e94"
+    "tag": "v0.1.6",
+    "commit": "73553e479eab189c6e240279bd87ba6ee8ef2ccb"
   },
   "_source": "git://github.com/ianwalter/ng-context-menu.git",
   "_target": "~0.1.6",
-  "_originalSource": "ng-context-menu"
+  "_originalSource": "ng-context-menu",
+  "_direct": true
 }

@@ -155,7 +155,9 @@ button::-moz-focus-inner {
   right: 0;
   color: #cccccc;
   font-size: 12px;
-  line-height: 18px; }
+  line-height: 18px; 
+  width:50px;
+}
 
 .mfp-arrow {
   position: absolute;

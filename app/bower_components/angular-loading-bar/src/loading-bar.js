@@ -67,15 +67,19 @@ angular.module('cfp.loadingBarInterceptor', ['cfp.loadingBar'])
        */
       function isCached(config) {
         var cache;
-        var defaultCache = $cacheFactory.get('$http');
         var defaults = $httpProvider.defaults;
 
-        // Choose the proper cache source. Borrowed from angular: $http service
-        if ((config.cache || defaults.cache) && config.cache !== false &&
-          (config.method === 'GET' || config.method === 'JSONP')) {
-            cache = angular.isObject(config.cache) ? config.cache
-              : angular.isObject(defaults.cache) ? defaults.cache
-              : defaultCache;
+        if (config.method !== 'GET' || config.cache === false) {
+          config.cached = false;
+          return false;
+        }
+
+        if (config.cache === true && defaults.cache === undefined) {
+          cache = $cacheFactory.get('$http');
+        } else if (defaults.cache !== undefined) {
+          cache = defaults.cache;
+        } else {
+          cache = config.cache;
         }
 
         var cached = cache !== undefined ?
@@ -157,8 +161,8 @@ angular.module('cfp.loadingBar', [])
     this.parentSelector = 'body';
     this.spinnerTemplate = '<div id="loading-bar-spinner"><div class="spinner-icon"></div></div>';
 
-    this.$get = ['$injector', '$document', '$timeout', '$rootScope', function ($injector, $document, $timeout, $rootScope) {
-      var $animate;
+    this.$get = ['$document', '$timeout', '$animate', '$rootScope', function ($document, $timeout, $animate, $rootScope) {
+
       var $parentSelector = this.parentSelector,
         loadingBarContainer = angular.element('<div id="loading-bar"><div class="bar"><div class="peg"></div></div></div>'),
         loadingBar = loadingBarContainer.find('div').eq(0),
@@ -177,10 +181,6 @@ angular.module('cfp.loadingBar', [])
        * Inserts the loading bar element into the dom, and sets it to 2%
        */
       function _start() {
-        if (!$animate) {
-          $animate = $injector.get('$animate');
-        }
-
         var $parent = $document.find($parentSelector);
         $timeout.cancel(completeTimeout);
 
@@ -264,16 +264,7 @@ angular.module('cfp.loadingBar', [])
         return status;
       }
 
-      function _completeAnimation() {
-        status = 0;
-        started = false;
-      }
-
       function _complete() {
-        if (!$animate) {
-          $animate = $injector.get('$animate');
-        }
-
         $rootScope.$broadcast('cfpLoadingBar:completed');
         _set(1);
 
@@ -281,10 +272,10 @@ angular.module('cfp.loadingBar', [])
 
         // Attempt to aggregate any start/complete calls within 500ms:
         completeTimeout = $timeout(function() {
-          var promise = $animate.leave(loadingBarContainer, _completeAnimation);
-          if (promise && promise.then) {
-            promise.then(_completeAnimation);
-          }
+          $animate.leave(loadingBarContainer, function() {
+            status = 0;
+            started = false;
+          });
           $animate.leave(spinner);
         }, 500);
       }
