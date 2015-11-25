@@ -1225,6 +1225,11 @@ img {
 }
 .alert {
   border-radius: 0;
+
+  &.bottom {
+    margin: 0;
+    border: 0;
+  }
   &.alert-info {
     background-color: #f7f7f5;
     border-top: 1px solid $os-color;
@@ -1232,10 +1237,6 @@ img {
     color: $os-color;
     font-size: 1.3em;
     text-align: center;
-  }
-  &.bottom {
-    margin: 0;
-    border: 0;
   }
 }
 div.thesaurus {

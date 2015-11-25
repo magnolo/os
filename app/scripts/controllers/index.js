@@ -152,7 +152,8 @@ angular.module('osApp')
             $rootScope.$emit('readyToGo', article);
         };
         $scope.checkLanguage = function() {
-            if ($state.current.name.indexOf('section') !== -1 && $scope.lang === 'en') {
+
+            if (($state.current.name.indexOf('section') !== -1 || $state.current.name == 'home') && $scope.lang === 'en') {
                 if (typeof $scope.langAlert != 'object') {
                     $scope.langAlert = $alert({
                         title: 'This content is not available in English.',
