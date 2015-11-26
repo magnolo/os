@@ -277,9 +277,7 @@ $vol-background: #FAD7DC;
 }
 .wissen .cke_top{
   background-color: $wissen-background;
-  border-top:2px solid $wissen-color;
-  border-bottom:2px solid $wissen-color;
-  box-shadow: 0px 0px 10px $wissen-background;
+  outline:1px solid $wissen-color;
   .cke_toolgroup{
     border-color:$wissen-color;
   }
@@ -402,8 +400,7 @@ $vol-background: #FAD7DC;
 
 .projekte .cke_top{
   background-color: $projekte-background;
-  border-top:2px solid $projekte-color;
-  border-bottom:2px solid $projekte-color;
+  outline:1px solid $projekte-color;
   box-shadow: 0px 0px 10px $projekte-background;
   .cke_toolgroup{
     border-color:$projekte-color;
@@ -526,8 +523,7 @@ $vol-background: #FAD7DC;
 }
 .schulcorner .cke_top{
   background-color: $schulcorner-background;
-  border-top:2px solid $schulcorner-color;
-  border-bottom:2px solid $schulcorner-color;
+  outline:1px solid $schulcorner-color;
   box-shadow: 0px 0px 10px $schulcorner-background;
   .cke_toolgroup{
     border-color:$schulcorner-color;
@@ -702,8 +698,7 @@ $vol-background: #FAD7DC;
 }
 .vol .cke_top{
   background-color: $vol-background;
-  border-top:2px solid $vol-color;
-  border-bottom:2px solid $vol-color;
+  outline:1px solid $vol-color;
   box-shadow: 0px 0px 10px $vol-background;
   .cke_toolgroup{
     border-color:$vol-color;

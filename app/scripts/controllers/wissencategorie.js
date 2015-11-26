@@ -385,11 +385,13 @@ angular.module('osApp')
 				name: 'about',
 				groups: ['about']
 			}],
-			removeButtons: 'Underline,Subscript,Superscript,About,Styles,Image,Table,HorizontalRule,SpecialChar,Source,Anchor',
+			removeButtons: 'Underline,Subscript,Superscript,About,Styles,Table,HorizontalRule,SpecialChar,Source,Anchor',
 			removePlugins: 'language,tableresize,tabletools,scayt,menubutton,contextmenu',
 			resize_maxwidth: 460,
 			resize_minwidth: 460,
-			width: 460
+			width: 460,
+			filebrowserImageUploadUrl: 'http://www.openscience.or.at/assets/ajax/uploadContentImage.php?id=content&cat=articles',
+			extraPlugins: 'youtube,uploadimage,image2,notification' 
 		};
 		$scope.getText = function () {
 			//console.log($scope.froalaOptions.froala("showMediaManager"));

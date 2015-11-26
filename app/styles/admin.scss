@@ -161,16 +161,20 @@ $vol-background: #FAD7DC;
 .froala-element.f-basic {
     padding: 15px;
 }
+
 #admin .text, #admin li:hover, .admin-sub-menu > li {
     background: $os-background;
 }
-
+.cke_editable{
+  outline:1px solid !important;
+}
 .wissen {
     .froala-editor, .absoluted, &.selected {
         background: $wissen-background;
     }
-    .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $wissen-color;
+        outline-color: $wissen-color !important;
     }
     .froala-editor button.fr-bttn, .froala-editor button.fr-trigger, #admin {
         color: $wissen-color;
@@ -219,8 +223,9 @@ $vol-background: #FAD7DC;
     .froala-editor, .absoluted, &.selected {
         background: $projekte-background;
     }
-    .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $projekte-color;
+        outline-color: $projekte-color !important;
     }
     .froala-editor button.fr-bttn, .froala-editor button.fr-trigger, #admin {
         color: $projekte-color;
@@ -269,8 +274,9 @@ $vol-background: #FAD7DC;
     .froala-editor, .absoluted, &.selected, &.section-list li {
         background: $schulcorner-background;
     }
-    .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $schulcorner-color;
+        outline-color: $schulcorner-color !important;
     }
     .froala-editor button.fr-bttn, .froala-editor button.fr-trigger, #admin {
         color: $schulcorner-color;
@@ -319,8 +325,9 @@ $vol-background: #FAD7DC;
     .froala-editor, .absoluted, &.selected, &.section-list li {
         background: $vol-background;
     }
-    .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $vol-color;
+        outline-color: $vol-color !important;
     }
     .froala-editor button.fr-bttn, .froala-editor button.fr-trigger, #admin {
         color: $vol-color;
@@ -1412,8 +1419,8 @@ table {
 }
 .cke{
   width:460px !important;
-
 }
+
 a[href="http://editor.froala.com"]{
   display:none !important;
 }
