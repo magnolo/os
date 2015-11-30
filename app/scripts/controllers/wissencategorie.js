@@ -283,6 +283,7 @@ angular.module('osApp')
 
 		};
 		$scope.editArticle = function () {
+
 			$scope.article.edit = true;
 			$timeout(function () {
 				var articleDOM = angular.element(document.getElementById($scope.article.name));
@@ -290,7 +291,6 @@ angular.module('osApp')
 			});
 		};
 		$scope.saveArticle = function () {
-			console.log($scope.article, $scope.article.text);
 			if ($scope.article.id) {
 				Article.update({
 					articleId: $scope.article.id
@@ -391,7 +391,7 @@ angular.module('osApp')
 			resize_minwidth: 460,
 			width: 460,
 			filebrowserImageUploadUrl: 'http://www.openscience.or.at/assets/ajax/uploadContentImage.php?id=content&cat=articles',
-			extraPlugins: 'youtube,uploadimage,image2,notification' 
+			extraPlugins: 'youtube,uploadimage,image2,notification'
 		};
 		$scope.getText = function () {
 			//console.log($scope.froalaOptions.froala("showMediaManager"));

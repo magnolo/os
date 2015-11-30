@@ -12,6 +12,18 @@ angular.module('osApp')
 			},
 			get: {
 				method: 'GET'
+			},
+			update:{
+				method: 'PUT',
+				params:{
+					markerId: ''
+				}
+			},
+			create:{
+				method: 'POST',
+				params: {
+					markerId: ''
+				}
 			}
 
 		});

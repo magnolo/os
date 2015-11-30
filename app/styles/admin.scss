@@ -165,14 +165,14 @@ $vol-background: #FAD7DC;
 #admin .text, #admin li:hover, .admin-sub-menu > li {
     background: $os-background;
 }
-.cke_editable{
+.editor{
   outline:1px solid !important;
 }
 .wissen {
     .froala-editor, .absoluted, &.selected {
         background: $wissen-background;
     }
-    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .editor, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $wissen-color;
         outline-color: $wissen-color !important;
     }
@@ -223,7 +223,7 @@ $vol-background: #FAD7DC;
     .froala-editor, .absoluted, &.selected {
         background: $projekte-background;
     }
-    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .editor, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $projekte-color;
         outline-color: $projekte-color !important;
     }
@@ -274,7 +274,7 @@ $vol-background: #FAD7DC;
     .froala-editor, .absoluted, &.selected, &.section-list li {
         background: $schulcorner-background;
     }
-    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .editor, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $schulcorner-color;
         outline-color: $schulcorner-color !important;
     }
@@ -325,7 +325,7 @@ $vol-background: #FAD7DC;
     .froala-editor, .absoluted, &.selected, &.section-list li {
         background: $vol-background;
     }
-    .cke_editable, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
+    .editor, .froala-editor, .froala-wrapper.f-basic, .froala-editor span.f-sep {
         border-color: $vol-color;
         outline-color: $vol-color !important;
     }
@@ -1419,6 +1419,7 @@ table {
 }
 .cke{
   width:460px !important;
+  margin-right:-16px !important;
 }
 
 a[href="http://editor.froala.com"]{

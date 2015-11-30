@@ -9,9 +9,18 @@
 	<div ng-if="article.edit && lang == 'en'" froala="froalaOptions" class="article_main_content" ng-model="article.text_en"></div>
 </div>
 <masonry class="row extra_thumb floating" id="marker_container" load-images="false" masonry-options="{ transitionDuration: '0s' }" preserve-order >
-	<div class="grid_3 article_thumb no_border marker masonry-brick" ng-class="marker.categorie" ng-repeat="marker in markers">
-		<div class="thumb_heading" ng-bind-html="marker.title"></div>
-		<div class="thumb_text" ng-bind-html="marker.text"></div>
+	<div class="grid_3 article_thumb no_border marker masonry-brick"  ng-class="marker.categorie" ng-repeat="marker in markers">
+		<div class="thumb_heading" ng-if="lang == 'en' && !marker.title_en || lang == 'de'" ng-bind-html="marker.title"></div>
+		<div class="thumb_heading" ng-if="lang == 'en' && marker.title_en" ng-bind-html="marker.title_en"></div>
+		<div class="thumb_text" ng-if="lang == 'en' && !marker.text_en || lang == 'de'" ng-bind-html="marker.text" data-target="markerMenu" context-menu-disabled="!$root.isLoggedIn" context-menu="setMarkerContext(marker)"></div>
+		<div class="thumb_text" ng-if="lang == 'en' && marker.text_en" ng-bind-html="marker.text_en" data-target="markerMenu" context-menu-disabled="!$root.isLoggedIn" context-menu="setMarkerContext(marker)"></div>
 	</div>
 </masonry>
-<edit nodelete="true"></edit>
+<div class="context-menu" id="markerMenu" ng-if="$root.isLoggedIn">
+    <ul class="dropdown-menu">
+        <li ng-click="editMarker()">
+            <i class="fa fa-edit"></i>
+            <span class="text">Bearbeiten</span>
+        </li>
+		</ul>
+</div>

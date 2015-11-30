@@ -288,6 +288,7 @@ angular
         customer: 'customer',
         guest: 'guest'
     }).run(function($rootScope, $state, $location,$analytics, AuthService, FlashService, AUTH_EVENTS, $timeout) {
+      
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $rootScope.lastState = {
                 state: fromState,
