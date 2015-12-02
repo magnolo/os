@@ -343,7 +343,7 @@ angular.module('osApp')
 		$scope.ckeOptions = {
 			language: 'de',
 			//allowedContent: true,
-			entities: true,
+			entities: false,
 			skin: 'flat',
 			toolbarGroups: [{
 				name: 'clipboard',
