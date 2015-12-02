@@ -361,6 +361,15 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'eLabs // OpenScience'
             }
         })
+        .state('vienom',{
+          url: '/vienom',
+          views: {
+            '':{
+                controller: 'VienomCtrl',
+              templateUrl: 'views/vienom.html'
+            }
+          }
+        })
         .state('tag', {
             url: '/tag/:name',
             views: {
