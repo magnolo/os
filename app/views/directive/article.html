@@ -23,10 +23,10 @@
     <div ng-if="!article.edit && lang == 'en' && article.text_en == '' || !article.edit && lang != 'en'" class="article_main_content" ng-bind-html="article.text | unsafe" thesaurus></div>
     <div ng-if="!article.edit && lang == 'en' && article.text_en != ''" class="article_main_content" ng-bind-html="article.text_en | unsafe" thesaurus></div>
     <div ng-if="article.edit && lang == 'de'"  class="article_main_content editor" >
-      <textarea ckeditor="ckeOptions" contenteditable="true" ng-model="$parent.article.text"></textarea>
+      <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.article.text"></textarea>
     </div>
     <div ng-if="article.edit && lang == 'en'" class="article_main_content editor">
-      <textarea ckeditor="ckeOptions" contenteditable="true" ng-model="$parent.article.text_en"></textarea>
+      <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.article.text_en"></textarea>
     </div>
     <div ng-if="article.images.length" class="gallery_view article_partners" style="border:0">
       <div class="" style="width:100%;padding:10px 16px">

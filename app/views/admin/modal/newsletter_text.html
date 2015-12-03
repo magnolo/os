@@ -15,7 +15,8 @@
                     </div>
                     <div class="form-group">
                         <label>Inhalt</label>
-                        <div froala ng-model="newText.text" required></div>
+                        <textarea ckeditor="$root.ckeOptions" contenteditable="true" required ng-model="newText.text"></textarea>
+
                     </div>
 
                 </div>

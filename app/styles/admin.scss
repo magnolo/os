@@ -1422,6 +1422,12 @@ table {
   margin-right:-16px !important;
 }
 
+.form-group, .editor_content{
+  .cke_editable{
+    outline:1px solid #ccc;
+    padding:1em;
+  }
+}
 a[href="http://editor.froala.com"]{
   display:none !important;
 }

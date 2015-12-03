@@ -14,8 +14,9 @@
                     </div>
                     <div class="form-group">
                         <label>Text</label>
-                        <div ng-model="faq.text" required froala="">
-                        </div>
+                        <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="faq.text"></textarea>
+
+                  
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
