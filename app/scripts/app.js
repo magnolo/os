@@ -314,6 +314,7 @@ angular
             }
         });
         $rootScope.$on('$stateChangeSuccess', function (event, current) {
+          $rootScope.subOpened = false;
           $timeout(function(){$analytics.pageTrack($location.path())}, 500);
         });
         $rootScope.$on(AUTH_EVENTS.notAuthorized, function(event, args) {
@@ -336,9 +337,6 @@ angular
     				name: 'clipboard',
     				groups: ['clipboard', 'undo']
     			}, {
-    				name: 'links',
-    				groups: ['links']
-    			}, {
     				name: 'insert',
     				groups: ['insert']
     			}, {
@@ -355,7 +353,7 @@ angular
     				groups: ['basicstyles', 'cleanup']
     			}, {
     				name: 'paragraph',
-    				groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
+    				groups: ['list', 'blocks', 'align', 'bidi', 'paragraph']
     			}, {
     				name: 'styles',
     				groups: ['styles']
@@ -365,6 +363,9 @@ angular
     			}, {
     				name: 'editing',
     				groups: ['find', 'selection', 'spellchecker', 'editing']
+    			}, {
+    				name: 'links',
+    				groups: ['links']
     			}, {
     				name: 'colors',
     				groups: ['colors']
@@ -378,6 +379,6 @@ angular
     			resize_minwidth: 460,
     			width: 460,
     			filebrowserImageUploadUrl: 'http://www.openscience.or.at/assets/ajax/uploadContentImage.php?id=content&cat=articles',
-    			extraPlugins: 'youtube,uploadimage,image2,notification'
+    			extraPlugins: 'youtube,justify,uploadimage,image2,notification'
     		};
     });

@@ -31,7 +31,7 @@
 							<tbody>
 								<tr ng-repeat="item in uploader.queue">
 									<td>
-										
+
 										<!-- Image preview -->
 										<!--auto height-->
 										<!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
@@ -73,7 +73,7 @@
 								</div>
 							</div>
 							<button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-								<span class="glyphicon glyphicon-upload"></span> Alle Hochladen 
+								<span class="glyphicon glyphicon-upload"></span> Alle Hochladen
 							</button>
 							<button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
 								<span class="glyphicon glyphicon-ban-circle"></span> Alle Abbrechen

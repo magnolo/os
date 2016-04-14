@@ -80,6 +80,10 @@ angular.module('osApp')
             $scope.elabentry = entry;
             $scope.elabModal.show();
         };
+        $scope.entryModalHide = function() {
+            $scope.elabentry = {};
+            $scope.elabModal.hide();
+        };
         $scope.newElabentry = function() {
             $scope.elabentry = {};
             $scope.elabModal.show();
@@ -94,11 +98,14 @@ angular.module('osApp')
                             container_url: $scope.elabentry.container_url,
                             online: $scope.elabentry.online,
                             title: $scope.elabentry.title,
-                            text: $scope.elabentry.text
+                            text: $scope.elabentry.text,
+                            image_id: $scope.elabentry.image_id
                         }, function(data) {
                             if (data.status == true) {
                                 FlashService.show(data.message, '', 'success');
+
                                 $scope.elabModal.hide();
+                                    $scope.elabentry = {};
                             } else {
                                 FlashService.show('Speichern fehlgeschlagen!', '', 'danger');
                             }
@@ -111,12 +118,14 @@ angular.module('osApp')
                             online: $scope.elabentry.online,
                             title: $scope.elabentry.title,
                             text: $scope.elabentry.text,
+                            image_id: $scope.elabentry.image_id,
                             section_id: $scope.elab.id
                         }, function(data) {
                             if (data.status == true) {
                                 FlashService.show(data.message, '', 'success');
                                 $scope.elabs.push(data.elab);
                                 $scope.elabModal.hide();
+                                $scope.elabentry = {};
                             } else {
                                 FlashService.show('Speichern fehlgeschlagen!', '', 'danger');
                             }
@@ -216,14 +225,30 @@ angular.module('osApp')
             $scope.uploadImagesModal.$promise.then($scope.uploadImagesModal.show);
         };
         $scope.deleteImage = function() {
-            delete $scope.elab.image;
-            $scope.elab.image_id = 0;
+            if($scope.elabentry.id){
+              delete $scope.elabentry.image;
+              $scope.elabentry.image_id = 0;
+            }
+            else{
+              delete $scope.elab.image;
+              $scope.elab.image_id = 0;
+            }
+
         };
         $scope.addImages = function(isValid) {
-            $scope.elab.image = $scope.image;
-            $scope.elab.image_id = $scope.image.id;
-            $scope.image = {};
-            $scope.uploadImagesModal.hide();
+            if($scope.elabentry.id){
+              $scope.elabentry.image = $scope.image;
+              $scope.elabentry.image_id = $scope.image.id;
+              $scope.image = {};
+              $scope.uploadImagesModal.hide();
+            }
+            else{
+              $scope.elab.image = $scope.image;
+              $scope.elab.image_id = $scope.image.id;
+              $scope.image = {};
+              $scope.uploadImagesModal.hide();
+            }
+
         };
 
         var uploaderFiles = $scope.uploaderFiles = new FileUploader({

@@ -65,17 +65,25 @@ angular.module('osApp')
 			}
 			$scope.deleteDate(0);
 			$scope.deleteDate(1);
+			$scope.calOpen = true;
 			$timeout(function () {
 				$timeout(function(){
 					var marker = angular.element(document.getElementById('choose_date'));
 					$document.scrollToElement(marker, 0, 100);
+
 				});
 			});
 		});
+			$scope.$watch('selectedDate', function(n, o){
+
+				if( typeof n.time == "undefined") return
+					$scope.calOpen = false;
+			});
 		$scope.$watch('selectedSecond', function (date) {
 			if (typeof date === 'undefined') {
 				return;
 			}
+			$scope.calOpen = false;
 			$timeout(function () {
 				var marker = angular.element(document.getElementById('fill_form'));
 				$document.scrollToElement(marker, 0, 100);

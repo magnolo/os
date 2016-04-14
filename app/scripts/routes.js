@@ -740,11 +740,15 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
             }
         })
 
-        .state('vol.elab', {
-            url: '/elab',
+        .state('volelab', {
+            url: '/vol/elab',
             views: {
-                'content@vol': {
-                    templateUrl: 'views/vol/vol.elab.html',
+              '': {
+                  templateUrl: 'views/elab/elab.html',
+                  controller: 'VolelabCtrl'
+              },
+                'content@volelab': {
+                    templateUrl: '/views/elab/vol.elab.html',
                     controller: 'VolelabCtrl'
                 }
             },
@@ -752,11 +756,15 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'eLAB // ViennaOpenLab'
             }
         })
-        .state('vol.elab.section', {
+        .state('volelab.section', {
             url: '/:id',
             views: {
-                'content@vol': {
-                    templateUrl: 'views/vol/vol.elab.section.html',
+                'list@volelab': {
+                    templateUrl: 'views/elab/vol.elab.list.html',
+                    controller: 'VolelabsectionCtrl'
+                },
+                'content@volelab': {
+                    templateUrl: 'views/elab/vol.elab.section.html',
                     controller: 'VolelabsectionCtrl'
                 }
             },
@@ -764,11 +772,12 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 pageTitle: 'eLAB // ViennaOpenLab'
             }
         })
-        .state('vol.elab.section.details', {
+        .state('volelab.section.details', {
             url: '/:name',
             views: {
-                'content@vol': {
-                    templateUrl: 'views/vol/vol.elab.details.html',
+
+                'content@volelab': {
+                    templateUrl: 'views/elab/vol.elab.details.html',
                     controller: 'VolelabdetailsCtrl'
                 }
             },

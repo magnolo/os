@@ -45,7 +45,7 @@
     <!-- endbuild -->
 </head>
 
-<body ng-controller="IndexCtrl"  ng-class="{'opened':$root.menuOpened}" id="body" class="{{section}}">
+<body ng-controller="IndexCtrl"  ng-class="{'opened':$root.menuOpened, 'subOpened': $root.subOpened}" id="body" class="{{section}}">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
@@ -155,6 +155,7 @@
 
 
     </div>
+    <div id="sub-menu-toggle" ng-click="$root.subOpened = !$root.subOpened"><i class="fa fa-bars"></i></div>
     <div ui-view="login"></div>
     <div ui-view="admin"></div>
     <div id="admin" class="anim" ng-if="$root.isLoggedIn" ng-controller="AdminCtrl">

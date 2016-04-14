@@ -198,7 +198,13 @@ angular.module('osApp')
                     if (kurs === 'team') {
                         //console.log($state);
                         if ($state.current.name.indexOf('vol') !== -1) {
-                            state = 'voluns.team.person';
+                            if ($state.current.name.indexOf('elab') !== -1) {
+                              state = 'volelab';
+                            }
+                            else{
+                              state = 'voluns.team.person';
+                            }
+                            //
                         } else {
                             state = 'uns.wer.person';
                         }
@@ -271,7 +277,7 @@ angular.module('osApp')
                     }
 
                 }
-
+                console.log(state);
             }
         };
         $scope.downloadFile = function(file) {

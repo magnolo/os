@@ -2,7 +2,7 @@
     <div class="modal-dialog wide">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <button type="button" class="close" ng-click="entryModalHide()">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">eLAB // {{ elabentry.title}}</h4>
             </div>
             <form role="form" name="elabentryForm" ng-submit="saveElabEntry(elabentryForm.$valid)" novalidate>
@@ -20,6 +20,21 @@
                         <div class="form-group">
                             <label>Beschreibung</label>
                             <textarea ng-model="elabentry.text" class="form-control"></textarea>
+                        </div>
+
+                        <div class="article_pre_image text-center">
+                            <img ng-if="elabentry.image_id" ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{elabentry.image.url.replace('s_150', 'm_650')}}&amp;w=460&amp;q=100" class="article_main_image img-thumbnail">
+                            <img ng-if="!elabentry.image_id || elabentry.image_id == 0" ng-src="http://placehold.it/460x250&text=Kein+Bild" class="article_main_image img-thumbnail">
+                            <div id="image-menu">
+                                <ul>
+                                    <li ng-click="openImagesModal(false)" title="Neues Bild hochladen...">
+                                        <i class="fa fa-upload"></i>
+                                    </li>
+                                    <li ng-if="elabentry.image_id" title="Bild löschen..." ng-click="deleteImage()">
+                                        <i class="fa fa-times"></i>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -47,7 +62,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" ng-if="elab.id" ng-click="deleteElabentry(elabentry)">Löschen</button>
-                    <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+                    <button type="button" class="btn btn-default" ng-click="entryModalHide()">Schließen</button>
                     <button type="submit" class="btn btn-success" ng-disabled="elabentryForm.$invalid">Speichern</button>
                 </div>
             </form>

@@ -1,7 +1,23 @@
-.mobile_view,#smarter .menu_toggler{
+.mobile_view,#smarter .menu_toggler,#sub-menu-toggle,#toggle-calender,.show-xs{
   display: none;
 }
+
 @media screen and (max-width: 960px) {
+  .show-xs
+  {
+    display:inline-block;
+  }
+  #sub-menu-toggle{
+    position:fixed;
+    z-index:15;
+    right:0px;
+    bottom:0px;
+    padding:.5em;
+    display: block;
+    font-size:2.5em;
+    cursor:pointer;
+    background-color: rgba(255,255,255,0.5);
+  }
   *{
     max-width:100% !important;
   }
@@ -12,6 +28,14 @@
     &.fixed {
       #wrapper {
         padding-top: 395px;
+      }
+    }
+    &.subOpened{
+      .cat_menu{
+        transform:translateY(0);
+        overflow-y: visible;
+        max-height: 100%;
+        z-index: 14;
       }
     }
   }
@@ -136,7 +160,7 @@
   .container_12 .grid_8 {
     width: 98%;
   }
-  .container_12 .grid_9 {
+  .container_12 .grid_9, .fullfill {
     width: 98% !important;
   }
   .container_12 .grid_10 {
@@ -224,11 +248,59 @@
   #socialbar {
     display: none;
   }
+  .fullfill{
+    text-align: center;
+    padding-top: 2em;
+    position: fixed;
+    z-index: 11;
+    background: #fff;
+    border: 1px solid #a31031;
+    border-left: 0px;
+    bottom: 5em;
+    left:0px;
+    box-shadow: 0px 0px 5px #a31031;
+    transition:all .5s ease;
+    transform:translateX(-100%);
+    &.opened{
+      transform: translateX(0);
+    }
+    .cal{
+      position:static !important;
+      float:none;
+      width:250px  !important;
+      .calendar-container{
+        //width:250px;,
+        width:100% !important;
+      }
+    }
+  }
+  .resetDater{
+    width:100%;
+    //text-align:right;
+  }
+  #toggle-calender{
+    position: fixed;
+      left: 0px;
+      bottom: 0;
+      padding: .5em .7em;
+      color: #fff;
+      display: block;
+      background-color: #a31031;
+      font-size: 2em;
+      z-index: 12;
+  }
   .cat_menu {
-    width: 98% !important;
+    width: 100% !important;
     left: 0 !important;
-    margin-left: 1% !important;
-    margin-right: 1% !important;
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+    position:fixed;
+    z-index:10;
+    background: #fff;
+    bottom:0px;
+    //height:calc(100% - 45px - 31px);
+    transition:all .5s ease;
+    transform:translateY(100%);
   }
   .cat_menu > div {
     width: 99.9% !important;
@@ -252,6 +324,9 @@
     float: left;
   }
   #categorie_container {
+    .cat_menu{
+      display:none !important;
+    }
     .grid_9 {
       width: 100% !important;
     }
@@ -260,14 +335,25 @@
     }
     #article_functions_menu {
       position: fixed;
-    bottom:41px;
+    bottom:0px;
     width: 100%;
     right: 0px;
     z-index:1;
+      background-color: rgba(255,255,255,1);
+      > .anim:not(.files_list){
 
+          display: none;
 
-      #interact_menu{
-        background-color: rgba(255,255,255,0.6);
+      }.files_menu_content{
+        margin-left:3em;
+        margin-right:3em;
+        text-align: center;
+      }
+      .files_menu_content ul li .file_download .download-icon{
+        width:18px;
+      }
+      #interact_menu, .interact_menu{
+
         margin-bottom:0px;
         border-left:0px;
         border-right:0px;
@@ -417,7 +503,7 @@
 
   #smarter {
     max-height:100%;
-    position:fixed;
+
     top:100%;
     left:0px;
     width:100%;
@@ -513,6 +599,10 @@
   #categorie_container {
     width: 100% !important;
     margin: 0 !important;
+    padding-bottom:200px;
+    object{
+      margin:0px;
+    }
   }
   #articles_container {
 
@@ -652,6 +742,53 @@
     position:fixed;
     top:calc(100% - 31px);
   }
+  #categorie_container .article{
+    padding:0px;
+  }
+  #calendar_container{
+    margin-left:0px !important;
+    text-align: center;
+    .calendar{
+      //display:none;
+      position: fixed !important;
+    width: 260px !important;
+    left: 0px;
+    bottom: 2em;
+    transition: all .5s ease;
+    transform: translateX(-100%);
+    z-index: 5 !important;
+    background: #fff;
+    border: 1px solid #a31031;
+    box-shadow:0px 0px 5px #a31031;
+      &.calendar-labor2{
+        left:auto;
+        right:0;
+        transform: translateX(100%);
+        margin-bottom:0px;
+      }
+      &.opened{
+        transform: translateX(0);
+        display:block;
+      }
+      .closer{
+        color:#fff;
+        background-color: #a31031;
+        padding:.5em 0;
+      }
+    }
+  }
+  .hide-xs{
+    display:none;
+  }
+  .grid50{
+    width:48% !important;
+    margin:0;
+    margin:0 1%;
+  }
+  .grid100{
+    width:100% !important;
+  }
+
 }
 @media screen and (max-width: 500px) {
   .full_view{
@@ -659,6 +796,9 @@
   }
   .mobile_view{
     display: block;
+  }
+  .content_box .seperator{
+    display:none;
   }
 }
 @media screen and (max-width: 405px) {
