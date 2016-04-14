@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('osApp')
-	.controller('VolCtrl', function($scope, $modal, Categorie, FlashService, Quiz) {
+	.controller('VolCtrl', function($scope, $rootScope, $modal, Categorie, FlashService, Quiz) {
 		$scope.color = 'A31031';
 		$scope.categorie = Categorie.categorie({
 			categorieName: 'vol'
@@ -11,7 +11,11 @@ angular.module('osApp')
 		$scope.quiz = Quiz.byCategorie({
 				typeId: 'vol'
 		});
-
+		$rootScope.activateArticle({
+			title: 'Vienna Open Lab',
+			intro: 'DAS MOLEKULARBIOLOGISCHE MITMACHLABOR',
+			text: 'DAS MOLEKULARBIOLOGISCHE MITMACHLABOR'
+		});
 
 
 		//ADMIN PART
@@ -140,5 +144,5 @@ angular.module('osApp')
 		$scope.toggleOffline = function(type) {
 				$scope.showOffline = type;
 		};
-		
+
 	});

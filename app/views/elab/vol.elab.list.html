@@ -1,0 +1,3 @@
+<li ng-repeat="lab in elabs">
+    <a class="categorie_content_link" ui-sref="volelab.section.details({name: lab.name})" ng-class="{'active':state.current.name == 'volelab.section.details' && state.params.name == lab.name}">{{ lab.title }}</a>
+</li>

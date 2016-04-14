@@ -22,15 +22,19 @@
 	</div>
 	<div ng-if="!article.edit && (lang == 'de' || article.text_en == '')" class="article_main_content" ng-bind-html="article.text" thesaurus></div>
 	<div ng-if="!article.edit && lang == 'en' && article.text_en != ''" class="article_main_content" ng-bind-html="article.text_en" thesaurus></div>
-	<div ng-if="article.edit && lang == 'de'" froala="froalaOptions" class="article_main_content" ng-model="article.text"></div>
-	<div ng-if="article.edit && lang == 'en'" froala="froalaOptions" class="article_main_content" ng-model="article.text_en"></div>
+	<div ng-if="article.edit && lang == 'de'" class="article_main_content editor">
+		<textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.article.text"></textarea>
+	</div>
+	<div ng-if="article.edit && lang == 'en'"  class="article_main_content editor" >
+		<textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.article.text_en"></textarea>
+	</div>
 </div>
 <edit nodelete="true"></edit>
 <div class="article full anim" ng-if="persons.length">
 	<h1 class="article_main_header">{{ 'THE_TEAM' | translate }}</h1>
 	<div id="uns_team" class=" floating">
 		<div class="team grid_3 article_thumb bordered openscience anim" ng-repeat="person in persons" ng-if="person.section.id != 1">
-			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)"> 
+			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)">
 				<a ui-sref="uns.wer.person({name:person.name})"><img ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&fltr[]=gray&fltr[]=brit|-40&fltr[]=clr|60|112F56&fltr[]=cont|10&w=220&h=145&zc=1&f=png" /></a>
 			</div>
 			<div class="thumb_heading">
@@ -52,7 +56,7 @@
 	<h1 class="article_main_header">{{ 'ADVISORY_BOARD' | translate }}</h1>
 	<div id="uns_team" class=" floating">
 		<div class="team grid_3 article_thumb bordered openscience" ng-repeat="person in persons | filter: {section:{id:1}}">
-			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)"> 
+			<div class="thumb_image" style="background-image:url(http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&w=218&h=146&zc=1&f=png)">
 				<a ui-sref="uns.wer.person({name:person.name})"><img ng-src="http://www.openscience.or.at/assets/lib/phpThumb/phpThumb.php?src=/{{person.image.url}}&fltr[]=gray&fltr[]=brit|-40&fltr[]=clr|60|112F56&fltr[]=cont|10&w=220&h=145&zc=1&f=png" /></a>
 			</div>
 			<div class="clear"></div>

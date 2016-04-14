@@ -133,7 +133,8 @@ angular.module('osApp')
                 if (typeof toParams.article !== 'undefined' && toParams.categorie === fromParams.categorie) {
                     var article = angular.element(document.getElementById(toParams.article));
                     $document.scrollToElement(article, 70);
-                    $scope.setArticle = angular.element(article).scope().article;
+                    //$scope.setArticle = angular.element(article).scope().article;
+                    $rootScope.activateArticle(angular.element(article).scope().article);
                 }
                 if (typeof toParams.name !== 'undefined' && toParams.categorie === fromParams.categorie) {
                     var name = angular.element(document.getElementById(toParams.name));
@@ -144,29 +145,15 @@ angular.module('osApp')
             }
 
             $scope.checkLanguage();
-            /*
-            var el = angular.element(document.getElementById('content_container'));
-            var someElement = angular.element(document.getElementById(toParams.article));
-            if (typeof toParams.article !== "undefined") {
-                $scope.stop = true;
-                $document.scrollToElement(someElement, 70, 200).then(function() {
-                    $scope.stop = false;
-                    $('.headroom').removeClass('headroom--pinned').addClass('headroom--unpinned');
-                });
-            } else if (typeof toParams.name !== "undefined") {
-                $scope.stop = true;
-                $document.scrollToElement(someElement, 70, 200).then(function() {
-                    $scope.stop = false;
-                    $('.headroom').removeClass('headroom--pinned').addClass('headroom--unpinned');
-                });
-            }*/
         });
         $rootScope.activateArticle = function(article) {
             $scope.setArticle = article;
+            $rootScope.article = article;
+            $rootScope.$emit('readyToGo', article);
         };
-
         $scope.checkLanguage = function() {
-            if ($state.current.name.indexOf('section') !== -1 && $scope.lang === 'en') {
+
+            if (($state.current.name.indexOf('section') !== -1 || $state.current.name == 'home') && $scope.lang === 'en') {
                 if (typeof $scope.langAlert != 'object') {
                     $scope.langAlert = $alert({
                         title: 'This content is not available in English.',
@@ -201,7 +188,8 @@ angular.module('osApp')
                 if (typeof locate !== 'undefined') {
                     if (locate === 'false') {
                         direct = false;
-                        $scope.setArticle = article;
+                        $rootScope.activateArticle(article)
+                        //$scope.setArticle = article;
                         return;
                     }
                 }
@@ -210,7 +198,13 @@ angular.module('osApp')
                     if (kurs === 'team') {
                         //console.log($state);
                         if ($state.current.name.indexOf('vol') !== -1) {
-                            state = 'voluns.team.person';
+                            if ($state.current.name.indexOf('elab') !== -1) {
+                              state = 'volelab';
+                            }
+                            else{
+                              state = 'voluns.team.person';
+                            }
+                            //
                         } else {
                             state = 'uns.wer.person';
                         }
@@ -268,18 +262,22 @@ angular.module('osApp')
                 }
 
                 if ($inviewpart !== 'bottom') {
-                    $scope.setArticle = article;
+                    //$scope.setArticle = article;
                     $scope.scrolling = true;
+                    //$rootScope.article = article;
+                    $rootScope.activateArticle(article)
                     if (direct) {
                         $state.transitionTo(state, data, {
                             //notify: false
                         }).then(function() {
                             $scope.scrolling = false;
+                              $rootScope.activateArticle(article)
+
                         });
                     }
 
                 }
-
+                console.log(state);
             }
         };
         $scope.downloadFile = function(file) {

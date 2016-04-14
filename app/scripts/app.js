@@ -29,7 +29,6 @@ angular
         'mgcrea.ngStrap.collapse',
         'pascalprecht.translate',
         'angularMoment',
-        'froala',
         'angularFileUpload',
         'localytics.directives',
         'xeditable',
@@ -38,7 +37,8 @@ angular
         'ui.sortable',
         'bsTable',
         'ui.checkbox',
-        'FBAngular'
+        'FBAngular',
+        'ckeditor'
     ]).value('froalaConfig', {
         inlineMode: false,
         toolbarFixed: false,
@@ -287,6 +287,7 @@ angular
         customer: 'customer',
         guest: 'guest'
     }).run(function($rootScope, $state, $location,$analytics, AuthService, FlashService, AUTH_EVENTS, $timeout) {
+
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $rootScope.lastState = {
                 state: fromState,
@@ -313,6 +314,7 @@ angular
             }
         });
         $rootScope.$on('$stateChangeSuccess', function (event, current) {
+          $rootScope.subOpened = false;
           $timeout(function(){$analytics.pageTrack($location.path())}, 500);
         });
         $rootScope.$on(AUTH_EVENTS.notAuthorized, function(event, args) {
@@ -326,5 +328,57 @@ angular
             FlashService.show('Zugriff nicht erlaubt!', 'Sie müssen sich zuerst anmelden', 'danger');
             $state.go('login');
         });
-
+        $rootScope.ckeOptions = {
+    			language: 'de',
+    			//allowedContent: true,
+    			entities: false,
+    			skin: 'flat',
+    			toolbarGroups: [{
+    				name: 'clipboard',
+    				groups: ['clipboard', 'undo']
+    			}, {
+    				name: 'insert',
+    				groups: ['insert']
+    			}, {
+    				name: 'forms',
+    				groups: ['forms']
+    			}, {
+    				name: 'document',
+    				groups: ['mode', 'document', 'doctools']
+    			}, {
+    				name: 'others',
+    				groups: ['others']
+    			}, {
+    				name: 'basicstyles',
+    				groups: ['basicstyles', 'cleanup']
+    			}, {
+    				name: 'paragraph',
+    				groups: ['list', 'blocks', 'align', 'bidi', 'paragraph']
+    			}, {
+    				name: 'styles',
+    				groups: ['styles']
+    			}, {
+    				name: 'tools',
+    				groups: ['tools']
+    			}, {
+    				name: 'editing',
+    				groups: ['find', 'selection', 'spellchecker', 'editing']
+    			}, {
+    				name: 'links',
+    				groups: ['links']
+    			}, {
+    				name: 'colors',
+    				groups: ['colors']
+    			}, {
+    				name: 'about',
+    				groups: ['about']
+    			}],
+    			removeButtons: 'Underline,Subscript,Superscript,About,Styles,Table,HorizontalRule,SpecialChar,Source,Anchor',
+    			removePlugins: 'language,tableresize,tabletools,scayt,menubutton,contextmenu',
+    			resize_maxwidth: 460,
+    			resize_minwidth: 460,
+    			width: 460,
+    			filebrowserImageUploadUrl: 'http://www.openscience.or.at/assets/ajax/uploadContentImage.php?id=content&cat=articles',
+    			extraPlugins: 'youtube,justify,uploadimage,image2,notification'
+    		};
     });

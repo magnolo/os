@@ -52,7 +52,7 @@
                                 <a ng-class="{'active': state.includes('vol.camps')}" ui-sref="vol.camps">{{ 'CAMPS' | translate}}</a>
                             </li>
                             <li ng-if="$root.isLoggedIn">
-                                <a ng-class="{'active': state.includes('vol.elab')}" ui-sref="vol.elab">eLAB</a>
+                                <a ng-class="{'active': state.includes('vol.elab')}" ui-sref="volelab">eLAB</a>
                             </li>
                             <li context-menu-disabled="!$root.isLoggedIn" context-menu="setCatContext(cat)" data-target="catMenu" ng-class="{'offline': cat.active == 0}" ng-if="cat.active == 1 || $root.isLoggedIn && showOffline == true" ng-repeat="cat in categorie.categories">
                                 <a class="categorie_content_link editable_categorie_content_link" ng-class="{'active': catName == cat.name}" ui-sref="vol.categorie({categorie: cat.name})">

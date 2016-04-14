@@ -345,6 +345,14 @@ img {
       z-index: -1;
     }
   }
+  figcaption{
+    font-family: 'conduit_itcregular';
+    color: #888;
+    font-size: .9em;
+    margin: 3px 0 0;
+    text-align: right;
+    line-height: 1.2em;
+  }
 }
 .vol {
   .article {
@@ -1225,6 +1233,11 @@ img {
 }
 .alert {
   border-radius: 0;
+
+  &.bottom {
+    margin: 0;
+    border: 0;
+  }
   &.alert-info {
     background-color: #f7f7f5;
     border-top: 1px solid $os-color;
@@ -1232,10 +1245,6 @@ img {
     color: $os-color;
     font-size: 1.3em;
     text-align: center;
-  }
-  &.bottom {
-    margin: 0;
-    border: 0;
   }
 }
 div.thesaurus {

@@ -1,0 +1,19 @@
+<div id="content_container" class="container_12">
+    <p>&nbsp;</p>
+</div>
+<div class="container_12 vol" id="content_container">
+  <div class="grid_3 cat_menu">
+      <div class="frame" sticker>
+          <h3 class="bg_full"><a ui-sref="volelab" style="color:#fff">eLAB</a></h3>
+          <ul class="cat_menu_main ">
+            <li ng-repeat="section in elabs">
+                <a class="categorie_content_link" ui-sref="volelab.section({id:section.name})" ng-class="{'greyed': state.current.name != 'volelab' && section.name != state.params.id}">{{ section.title }}</a>
+            </li>
+          </ul>
+          <ul class="tabs cat_menu_sub" ui-view="list" >
+
+          </ul>
+      </div>
+  </div>
+    <div ui-view="content" id="categorie_container" class="grid_9 floating "></div>
+</div>

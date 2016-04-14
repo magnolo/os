@@ -10,16 +10,16 @@
     <base href="/" />
     <meta charset="utf-8">
     <title update-title>Open Science</title>
-    <meta name="description" content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit.">
+    <meta name="description" update-description content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit.">
     <meta name="fragment" content="!">
-
+    <meta name="robots" content="noarchive">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/x-icon" href="favicon_os.ico" />
     <meta property="og:title" content="Open Science"/>
-  <meta property="og:description" content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="http://www.openscience.or.at/images/os_logoFB.png"/>
-  <meta property="og:url" content="http://www.openscience.or.at"/>
+    <meta property="og:description" update-description content="Open Science bietet ein vielfältiges Angebot zu Themen der Lebenswissenschaften! Wir fördern den sachlich fundierten Dialog und bieten Informationen und Möglichkeiten zum Austausch zwischen Wissenschaft und Öffentlichkeit."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.openscience.or.at/images/os_logoFB.png"/>
+    <meta property="og:url" content="http://www.openscience.or.at"/>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -29,9 +29,6 @@
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.min.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.min.css" />
     <link rel="stylesheet" href="bower_components/magnific-popup/dist/magnific-popup.css" />
-    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_editor.min.css" />
-    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_content.min.css" />
-    <link rel="stylesheet" href="bower_components/FroalaWysiwygEditor/css/froala_style.min.css" />
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
     <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css" />
     <link rel="stylesheet" href="bower_components/ng-sortable/dist/ng-sortable.css" />
@@ -48,7 +45,7 @@
     <!-- endbuild -->
 </head>
 
-<body ng-controller="IndexCtrl"  ng-class="{'opened':$root.menuOpened}" id="body" class="{{section}}">
+<body ng-controller="IndexCtrl"  ng-class="{'opened':$root.menuOpened, 'subOpened': $root.subOpened}" id="body" class="{{section}}">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
@@ -158,6 +155,7 @@
 
 
     </div>
+    <div id="sub-menu-toggle" ng-click="$root.subOpened = !$root.subOpened"><i class="fa fa-bars"></i></div>
     <div ui-view="login"></div>
     <div ui-view="admin"></div>
     <div id="admin" class="anim" ng-if="$root.isLoggedIn" ng-controller="AdminCtrl">
@@ -268,7 +266,9 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-
+    <script>
+      window.CKEDITOR_BASEPATH = "/bower_components/ckeditor/";
+    </script>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -311,16 +311,6 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/froala_editor.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/block_styles.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/colors.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/media_manager.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/tables.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/video.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_family.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/font_size.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/char_counter.min.js"></script>
-    <script src="bower_components/angular-froala/src/angular-froala.js"></script>
     <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
@@ -330,6 +320,8 @@
     <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script src="bower_components/ng-sortable/dist/ng-sortable.js"></script>
     <script src="bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
+    <script src="bower_components/angular-ckeditor/angular-ckeditor.js"></script>
+    <script src="bower_components/ckeditor/ckeditor.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -340,8 +332,6 @@
     <script src="bower_components/angular-autocomplete/script/autocomplete.js"></script>
     <script src="bower_components/sly/sly.js"></script>
     <script src="bower_components/thesaurus/jquery.thesaurus.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/plugins/lists.min.js"></script>
-    <script src="bower_components/FroalaWysiwygEditor/js/langs/de.js"></script>
     <script src="bower_components/chosen/chosen.jquery.min.js"></script>
     <script src="bower_components/chosen/chosen.proto.min.js"></script>
     <script src="bower_components/imageselect/jquery.imgareaselect.min.js"></script>
@@ -489,6 +479,7 @@
     <script src="scripts/directives/sticktop.js"></script>
     <script src="scripts/controllers/newsletterconfig.js"></script>
     <script src="scripts/services/email.js"></script>
+    <script src="scripts/controllers/vienom.js"></script>
     <!-- endbuild -->
 
     <script>
@@ -506,7 +497,23 @@
 
         ga('create', 'UA-54896855-1');
     </script>
+    <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js"></script>
+
     <script src="bower_components/swfobject/swfobject.js"></script>
+    <script type="application/ld+json">
+      { "@context" : "http://schema.org",
+        "@type" : "Organization",
+        "name" : "Open Science",
+        "url" : "http://www.openscience.or.at",
+        "sameAs" : [ "https://www.facebook.com/OpenScience.or.at", "https://www.facebook.com/ViennaOpenLab"],
+        "logo": "http://www.openscience.or.at/images/os_logoFB.png",
+        "contactPoint" : [
+          { "@type" : "ContactPoint",
+            "telephone" : "+43 (0)1 4277-24090",
+            "contactType" : "customer service"
+          } ] }
+      }
+    </script>
 </body>
 
 </html>

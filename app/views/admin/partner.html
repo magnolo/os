@@ -57,11 +57,11 @@
             <div class="col-md-5">
                 <div class="form-group" ng-if="lang == 'de'">
                     <label>Beschreibung</label>
-                    <div froala="" ng-model="partner.text"></div>
+                    <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.partner.text"></textarea>
                 </div>
                 <div class="form-group" ng-if="lang == 'en'">
                     <label>Description</label>
-                    <div froala="" ng-model="partner.text_en"></div>
+                    <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.partner.text_en"></textarea>
                 </div>
             </div>
         </form>

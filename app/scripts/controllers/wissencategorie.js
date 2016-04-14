@@ -283,6 +283,7 @@ angular.module('osApp')
 
 		};
 		$scope.editArticle = function () {
+
 			$scope.article.edit = true;
 			$timeout(function () {
 				var articleDOM = angular.element(document.getElementById($scope.article.name));
@@ -339,6 +340,7 @@ angular.module('osApp')
 			$scope.saveArticle();
 		};
 		$scope.froalaOptions = {};
+
 		$scope.getText = function () {
 			//console.log($scope.froalaOptions.froala("showMediaManager"));
 		};

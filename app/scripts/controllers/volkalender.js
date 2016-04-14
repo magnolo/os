@@ -36,9 +36,14 @@ angular.module('osApp')
           $scope.gap = 0;
           var space = 120;
 					d.set('hour', 9).set('minute', 30);
+					var fullDay = false;
 					angular.forEach(data, function (date) {
 						//date.cssClass = 'calendarEventSolo_before';
 						date.date = new Date(date.start * 1000);
+						if(date.full_day == 1){
+							fullDay = true;
+						}
+
 						if (d.weekday() != 6 && d.weekday() != 7 && d.isAfter(moment())) {
 							var start = moment(date.date);
 							var diff = start.diff(d, 'minutes');
@@ -47,7 +52,8 @@ angular.module('osApp')
                   d.add(30, 'minutes');
                 }
                 $scope.gap = Math.max($scope.gap, start.subtract(30, 'minutes').diff(d, 'minutes'));
-								if($scope.gap >= space){
+
+								if($scope.gap >= space && !fullDay){
 									$scope.eventList.push({
 										date_start: d,
 										type: 'register',
@@ -78,11 +84,15 @@ angular.module('osApp')
 							};
 
               $scope.gap = Math.max($scope.gap, end.diff(d, 'minutes'));
+
               if($scope.eventList.length == 0){
 								registerEvent.fullDay = true;
                 registerEvent.title =  'Labor ganztags frei';
               }
-							$scope.eventList.push(registerEvent);
+							if(!fullDay){
+									$scope.eventList.push(registerEvent);
+							}
+
 						}
 					}
 
@@ -105,7 +115,7 @@ angular.module('osApp')
           $scope.prebookModal.$promise.then($scope.prebookModal.show);
         };
         $scope.prebook = function(){
-      
+
            $scope.prebookModal.hide();
            $state.go('vol.gruppenbuchung.kurs.date.places',{
              kurs:$scope.user.selectedCourse.name,

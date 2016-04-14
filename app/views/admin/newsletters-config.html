@@ -23,19 +23,20 @@
             </ul>
         </div>
     </div>
-    <div ng-if="view == 'os'" class="col-sm-6 col-sm-offset-3" style="margin-bottom: 40px; margin-top: 40px;">
+    <div ng-if="view == 'os'" class="col-sm-6 col-sm-offset-3 editor_content" style="margin-bottom: 40px; margin-top: 40px;">
       <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Header</h3>
-      <div froala="froalaOptions" ng-model="configs['headertext'].value">
-      </div>
+
+      <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.configs['headertext'].value"></textarea>
+
       <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Footer</h3>
-      <div froala="froalaOptions" ng-model="configs['footertext'].value">
-      </div>
+
+      <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.configs['footertext'].value"></textarea>
+
     </div>
-    <div ng-if="view == 'vol'" class="col-sm-6 col-sm-offset-3" style="margin-bottom: 40px; margin-top: 40px;">
+    <div ng-if="view == 'vol'" class="col-sm-6 col-sm-offset-3 editor_content" style="margin-bottom: 40px; margin-top: 40px;">
         <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Header</h3>
-        <div froala="froalaOptions" ng-model="configs['headertext_vol'].value">
-        </div>
+        <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.configs['headertext_vol'].value"></textarea>
         <h3 class="admin-header" style="margin-bottom:0px;margin-top:10px">Footer</h3>
-        <div froala="froalaOptions" ng-model="configs['footertext_vol'].value" >
-        </div>
+        <textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.configs['footertext_vol'].value"></textarea>
+
     </div>
