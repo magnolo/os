@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('osApp')
-	.controller('VolCtrl', function($scope, $rootScope, $modal, Categorie, FlashService, Quiz) {
+	.controller('VolCtrl', function($scope, $state, $rootScope, $modal, Categorie, FlashService, Quiz) {
 		$scope.color = 'A31031';
+		$scope.filter = {
+			age: ''
+		};
 		$scope.categorie = Categorie.categorie({
 			categorieName: 'vol'
 		}, function() {
@@ -16,7 +19,10 @@ angular.module('osApp')
 			intro: 'DAS MOLEKULARBIOLOGISCHE MITMACHLABOR',
 			text: 'DAS MOLEKULARBIOLOGISCHE MITMACHLABOR'
 		});
-
+		$scope.getCourseByAge = function(){
+			console.log($scope.filter.age);
+			$state.go('vol.kurse.age',{age:$scope.filter.age})
+		}
 
 		//ADMIN PART
 		$scope.editCategorie = {};

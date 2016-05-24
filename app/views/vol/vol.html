@@ -27,9 +27,11 @@
                         <h3 class="bg_full">{{'SORT' | translate}}</h3>
                         <ul class="cat_menu_main ">
                             <li style="font-size: 1.5em;padding: 10px 0; text-transform: uppercase;">
+                              <form ng-submit="getCourseByAge()">
                                 <label style="font-weight:normal">{{'AGE' | translate}}:</label>
-                                <input id="age_filter" maxlength="3" style="font-size: 1em;width:30px;background:transparent;border:0;border-bottom:1px solid #a31031;color:#a31031;text-align:center;line-height:1.1em;" type="text">
-                                <button id="filterAge" style="background:transparent;border:0;font-size:1em;color:#a31031;cursor:pointer">»</button>
+                                <input id="age_filter" maxlength="3" ng-model="filter.age" required style="font-size: 1em;width:30px;background:transparent;border:0;border-bottom:1px solid #a31031;color:#a31031;text-align:center;line-height:1.1em;" type="text">
+                                <button id="filterAge" type="submit"  style="background:transparent;border:0;font-size:1em;color:#a31031;cursor:pointer">»</button>
+                              </form>
                             </li>
                             <li>
                                 <a class="categorie_content_link" ui-sref="vol.kurse">{{'WORKSHOPS' | translate}}</a>
@@ -46,7 +48,7 @@
                                 <a ng-class="{'active': state.includes('vol.gruppenbuchung')}" ui-sref="vol.gruppenbuchung">{{ 'GROUP_REGISTRATION' | translate}}</a>
                             </li>
                             <li>
-                                <a ng-class="{'active': state.includes('vol.seminare')}" ui-sref="vol.seminare">LehrerInnen-Seminar</a>
+                                <a ng-class="{'active': state.includes('vol.seminare')}" ui-sref="vol.seminare">{{ 'LEHRER_SEMINAR' | translate}}</a>
                             </li>
                             <li>
                                 <a ng-class="{'active': state.includes('vol.camps')}" ui-sref="vol.camps">{{ 'CAMPS' | translate}}</a>

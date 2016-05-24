@@ -166,7 +166,8 @@ angular
             NEXT: 'Weiter',
             SEAT:'Platz',
             SEATS: 'Plätze',
-            LEFT: 'frei'
+            LEFT: 'frei',
+            LEHRER_SEMINAR: 'LehrerInnen-Seminar'
         });
         $translateProvider.translations('en', {
             WHO: 'Who we are',
@@ -261,7 +262,8 @@ angular
             NEXT: 'Next',
             SEAT:'Place',
             SEATS: 'Places',
-            LEFT :'left'
+            LEFT :'left',
+            LEHRER_SEMINAR: 'Teacher Training'
         });
         // Nicht vergessen: die Standardsprache
         //$translateProvider.determinePreferredLanguage();

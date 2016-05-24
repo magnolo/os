@@ -1,4 +1,4 @@
-<div class="article anim" in-view-offset="100" in-view="inThaView($index, $inview, $inviewpart, kurs, section, locate)" ng-repeat="kurs in kurse">
+<div class="article anim" in-view-offset="100" in-view="inThaView($index, $inview, $inviewpart, kurs, section, locate)" ng-repeat="kurs in kurse | ageFilter: filter.age">
     <h1 id="{{kurs.name}}" style="opacity:0;height:0;margin:0;padding:0">{{ kurs.title }}</h1>
     <div class="big_block kurs">
         <div class="grid_3 block_image">

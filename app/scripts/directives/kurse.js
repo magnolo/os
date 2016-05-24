@@ -10,6 +10,7 @@ angular.module('osApp')
 				scope.locate = attr.locate;
 				scope.offset = attr.offset;
 				scope.section = attr.section;
+				scope.filter.age = attr.age;
 			}
 			/*link: function(scope) {
 				scope.inView = function($index, $inview, $inviewpart, kurs) {

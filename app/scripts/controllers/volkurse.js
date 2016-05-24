@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('osApp')
-	.controller('VolkurseCtrl', function($scope, $rootScope, $document, $timeout, $state, Classes) {
+	.controller('VolkurseCtrl', function($scope, $rootScope, $document, $window,$timeout, $state, Classes) {
+
 		$scope.register = true;
 		$scope.kurse = Classes.query({
 			active: 1,
@@ -13,8 +14,10 @@ angular.module('osApp')
 				$timeout(function() {
 					$timeout(function() {
 						var article = angular.element(document.getElementById($state.params.kurs));
-						$document.scrollToElement(article, 215);
-						$rootScope.isLoading = false;
+							$rootScope.isLoading = false;
+							console.log(article);
+							$document.scrollToElement(article,150);
+
 					});
 				});
 			} else {

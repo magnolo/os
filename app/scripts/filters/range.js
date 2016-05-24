@@ -10,7 +10,22 @@ angular.module('osApp')
 			}
 			return input;
 		};
-	}).filter('labcount', function () {
+	})
+	.filter('ageFilter', function () {
+		return function (items, age) {
+			var filtered = [];
+			if(!age || isNaN(parseInt(age)))
+			return items;
+			 age = parseInt(age);
+			 angular.forEach(items, function(item) {
+					 if( item.age_from <= age && item.age_limit >= age ) {
+							 filtered.push(item);
+					 }
+			 });
+			 return filtered;
+		};
+	})
+	.filter('labcount', function () {
 		return function (input, min, course, lab) {
 			if (!course) {
 				return;

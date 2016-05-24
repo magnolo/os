@@ -107,6 +107,7 @@ angular.module('osApp')
 			$scope.customer.firstname = "Test";
 			$scope.customer.lastname = "Test";
 			$scope.customer.email = "test@test.com";
+			$scope.customer.phone = "01 555 111";
 		};
 		$scope.sendAnmeldung = function(isValid) {
 			if (isValid) {

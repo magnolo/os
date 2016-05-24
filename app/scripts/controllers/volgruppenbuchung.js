@@ -42,11 +42,11 @@ angular.module('osApp')
 					$scope.selectedPlaces = parseInt($state.params.places);
 				});
 			}
-			/*if($state.params.date){
-				$timeout(function(){
-					$scope.selectedFirstDate = moment.unix($state.params.date).format('DD.MM.YYYY');
-				});
-			}*/
+			// if($state.params.date){
+			// 	$timeout(function(){
+			// 		$scope.selectedFirstDate = moment.unix($state.params.date).format('DD.MM.YYYY');
+			// 	});
+			// }
 		});
 		$scope.$watch('selectedClass', function (course) {
 			$scope.selectedPlaces = "";
@@ -79,11 +79,18 @@ angular.module('osApp')
 				if( typeof n.time == "undefined") return
 					$scope.calOpen = false;
 			});
-		$scope.$watch('selectedSecond', function (date) {
-			if (typeof date === 'undefined') {
+		$scope.$watch('selectedSecond', function (date, o) {
+			if (typeof date === 'undefined' || date == o ) {
 				return;
 			}
 			$scope.calOpen = false;
+			if($scope.selectedDate == date){
+				alert('Bitte geben Sie als Ersatztermin ein anderes Datum als den Wunschtermin an');
+				$scope.selectedSecond = [];
+				$scope.hours.selectedSecondHours = "";
+				delete $scope.selectedSecondDate;
+				return;
+			}
 			$timeout(function () {
 				var marker = angular.element(document.getElementById('fill_form'));
 				$document.scrollToElement(marker, 0, 100);

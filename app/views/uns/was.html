@@ -12,6 +12,7 @@
 		<textarea ckeditor="$root.ckeOptions" contenteditable="true" ng-model="$parent.article.text_en"></textarea>
 	</div>
 </div>
+<edit nodelete="true"></edit>
 <masonry class="row extra_thumb floating" id="marker_container" load-images="false" masonry-options="{ transitionDuration: '0s' }" preserve-order >
 	<div class="grid_3 article_thumb no_border marker masonry-brick"  ng-class="marker.categorie" ng-repeat="marker in markers">
 		<div class="thumb_heading" ng-if="lang == 'en' && !marker.title_en || lang == 'de'" ng-bind-html="marker.title"></div>

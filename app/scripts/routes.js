@@ -362,7 +362,7 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
             }
         })
         .state('vienom',{
-          url: '/vienom',
+          url: '/Allergiespiel',
           views: {
             '':{
                 controller: 'VienomCtrl',
@@ -530,9 +530,13 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
                 }
             }
         })
-        .state('vol.kurse.kurs', {
-            url: '/:kurs'
+        .state('vol.kurse.age', {
+            url: '/age/:age'
         })
+        .state('vol.kurse.kurs', {
+            url: '/list/:kurs'
+        })
+
         .state('vol.kalender', {
             url: '/kalender',
             views: {
@@ -853,5 +857,5 @@ angular.module('osApp').config(function($stateProvider, $urlRouterProvider, USER
             url: '/:article'
         });
 
-  $locationProvider.html5Mode(true).hashPrefix('!');
+  //$locationProvider.html5Mode(true).hashPrefix('!');
 });
